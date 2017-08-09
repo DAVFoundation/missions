@@ -1,8 +1,9 @@
-# Mission App
+# Missions
+> By DAV
 
 <img src="./resources/images/missionapp-logo.png" align="right" />
 
-Mission App is the client facing side of the marketplace connecting DAV users looking to ship packages, with autonomous vehicles.
+Missions is the client facing side of the marketplace connecting DAV users looking to ship packages, with autonomous vehicles.
 
 It demonstrates how a third party might build their own product, while integrating technologies provided by DAV, and provide a way for users and autonomous vehicles to transact.
 
