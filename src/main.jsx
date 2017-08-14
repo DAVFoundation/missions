@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Map from './components/Map.jsx';
+import App from './containers/App.jsx';
 import './main.css';
 
 ReactDOM.render(
-  <div>
-    <Map />
-  </div>,
+  <App />,
   document.getElementById('app')
 );
