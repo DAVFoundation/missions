@@ -11,7 +11,8 @@ module.exports = {
   devServer: {
     inline: true,
     contentBase: path.resolve(__dirname, 'dist  '),
-    port: 3333
+    port: 3333,
+    historyApiFallback: true
   },
   module: {
     loaders: [
