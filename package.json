@@ -4,4 +4,6 @@
   "description": "Missions is the client facing side of the marketplace connecting DAV users looking to ship packages, with autonomous vehicles.",
   "license": "MIT",
   "author": "Tal Ater <tal@talater.com>",
+  "dependencies": {
+  }
 }
