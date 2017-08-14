@@ -5,7 +5,8 @@ module.exports = {
   entry: './src/main.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    sourceMapFilename: '[file].map'
   },
   devServer: {
     inline: true,
