@@ -2,4 +2,23 @@ div#welcome {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 10;
+}
+
+div.welcome-card {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  transform: translateX(0);
+  transition: all .75s ease-in-out;
+}
+
+div.welcome-card.upcoming-card {
+  transform: translateX(100vw);
+}
+
+div.welcome-card.previous-card{
+  transform: translateX(-100vw);
 }
