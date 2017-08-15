@@ -4,6 +4,10 @@
   "description": "Missions is the client facing side of the marketplace connecting DAV users looking to ship packages, with autonomous vehicles.",
   "license": "MIT",
   "author": "Tal Ater <tal@talater.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DAVFoundation/missions.git"
+  },
   "scripts": {
     "start": "webpack-dev-server"
   },
