@@ -20,7 +20,10 @@ const createGeoJson = (features = []) => {
 };
 
 export const createMap = (containerId, coords) => {
+  // Add support for right-to-left languages
   mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.1/mapbox-gl-rtl-text.js');
+
+  // Create the map
   let map = new mapboxgl.Map({
     container: containerId,
     style: 'https://openmaptiles.github.io/positron-gl-style/style-cdn.json',
@@ -28,9 +31,13 @@ export const createMap = (containerId, coords) => {
     zoom: 13,
     attributionControl: false
   });
+
+  // Add minimal attribution controls
   map.addControl(new mapboxgl.AttributionControl({
     compact: true
   }));
+
+  // add images, sources, and layers on load
   map.on('load', () => {
     map.addImage('drone', makeImage(droneIcon));
     map.addSource('vehicles', {
@@ -49,6 +56,7 @@ export const createMap = (containerId, coords) => {
       }
     })
   });
+
   return map;
 };
 
