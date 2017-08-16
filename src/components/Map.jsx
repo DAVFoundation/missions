@@ -10,13 +10,13 @@ class Map extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    updateMap(nextProps.vehicles.list);
+    updateMap(this.map, nextProps.vehicles.list);
     return false;
   }
 
   componentDidMount() {
     this.map = createMap('map', {lat: 32.0766127, long: 34.7796028});
-    updateMap(this.props.vehicles.list);
+    updateMap(this.map, this.props.vehicles.list);
   }
 
   render() {
