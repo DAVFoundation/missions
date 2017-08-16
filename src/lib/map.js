@@ -28,7 +28,7 @@ export const createMap = (containerId, coords) => {
     container: containerId,
     style: 'https://openmaptiles.github.io/positron-gl-style/style-cdn.json',
     center: [coords.long, coords.lat],
-    zoom: 13,
+    zoom: 14,
     attributionControl: false
   });
 

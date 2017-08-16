@@ -15,7 +15,7 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    this.map = createMap('map', {lat: 32.0766127, long: 34.7796028});
+    this.map = createMap('map', {lat: 32.0766127, long: 34.7726028});
     updateMap(this.map, this.props.vehicles.list);
   }
 
