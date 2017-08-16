@@ -1,3 +1,5 @@
+import { SET_VEHICLES } from '../actions';
+
 const defaultState = {
   list: [
     {
@@ -29,6 +31,8 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
   switch (action.type) {
+    case SET_VEHICLES:
+      return {...state, list: action.payload};
     default:
       return state;
   }
