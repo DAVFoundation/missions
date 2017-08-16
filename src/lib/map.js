@@ -63,7 +63,12 @@ export const createMap = (containerId, coords) => {
 };
 
 export const updateMap = (map, vehicles = []) => {
-  map.on('load', () => {
+  const _updateMap = () => {
     map.getSource('vehicles').setData(createGeoJson(vehicles));
-  });
+  };
+  if (!map.loaded()) {
+    map.on('load', _updateMap);
+  } else {
+    _updateMap();
+  }
 };
