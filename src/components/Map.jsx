@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { createMap, updateMap } from '../lib/map';
 import './Map.css';
 
@@ -26,6 +25,4 @@ class Map extends Component {
   }
 }
 
-export default connect(
-  (state) => ({vehicles: state.vehicles})
-)(Map);
+export default Map;
