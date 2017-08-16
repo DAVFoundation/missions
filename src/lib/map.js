@@ -12,3 +12,6 @@ export const createMap = () => {
     compact: true
   }));
 };
+
+export const updateMap = (vehicles = []) => {
+};

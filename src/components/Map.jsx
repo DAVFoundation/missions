@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createMap } from '../lib/map';
+import { createMap, updateMap } from '../lib/map';
 import './Map.css';
 
 class Map extends Component {
@@ -9,8 +9,14 @@ class Map extends Component {
     this.map = null;
   }
 
+  shouldComponentUpdate(nextProps) {
+    updateMap(nextProps.vehicles.list);
+    return false;
+  }
+
   componentDidMount() {
     this.map = createMap();
+    updateMap(this.props.vehicles.list);
   }
 
   render() {
