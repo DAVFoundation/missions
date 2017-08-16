@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 import './Map.css';
 
-class App extends Component {
+class Map extends Component {
   constructor(props) {
     super(props);
     this.map = null;
@@ -28,4 +28,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Map;
