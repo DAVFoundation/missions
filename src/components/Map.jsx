@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import { createMap, updateMap } from '../lib/map';
 import './Map.css';
 
@@ -24,5 +25,9 @@ class Map extends Component {
     );
   }
 }
+
+Map.propTypes = {
+  vehicles: PropTypes.object.isRequired,
+};
 
 export default Map;
