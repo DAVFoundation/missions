@@ -39,7 +39,9 @@ export const createMap = (containerId, coords) => {
 
   // add images, sources, and layers on load
   map.on('load', () => {
-    map.addImage('drone', makeImage(droneIcon));
+    makeImage(droneIcon).addEventListener('load', (event) => {
+      map.addImage('drone', event.target)
+    });
     map.addSource('vehicles', {
       "type": "geojson",
       "data": {
