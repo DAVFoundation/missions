@@ -1,4 +1,6 @@
 import mapboxgl from 'mapbox-gl';
+import { makeImage } from './utils'
+import droneIcon from '../images/drone_icon.png';
 
 const createGeoJson = (features = []) => {
   return {
@@ -30,6 +32,7 @@ export const createMap = (containerId, coords) => {
     compact: true
   }));
   map.on('load', () => {
+    map.addImage('drone', makeImage(droneIcon));
     map.addSource('vehicles', {
       "type": "geojson",
       "data": {
@@ -39,8 +42,11 @@ export const createMap = (containerId, coords) => {
     });
     map.addLayer({
       'id': 'vehicles',
-      'type': 'circle', // 'symbol',
-      'source': 'vehicles'
+      'type': 'symbol',
+      'source': 'vehicles',
+      "layout": {
+        "icon-image": "drone",
+      }
     })
   });
   return map;
