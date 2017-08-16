@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import mapboxgl from 'mapbox-gl';
+import { createMap } from '../lib/map';
 import './Map.css';
 
 class Map extends Component {
@@ -9,16 +9,7 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.1/mapbox-gl-rtl-text.js');
-    this.map = new mapboxgl.Map({
-      container: 'map',
-      style: 'https://openmaptiles.github.io/positron-gl-style/style-cdn.json',
-      center: [34.7796028, 32.0766127],
-      zoom: 11,
-      attributionControl: false
-    }).addControl(new mapboxgl.AttributionControl({
-      compact: true
-    }));
+    this.map = createMap();
   }
 
   render() {
