@@ -7,6 +7,7 @@ class Map extends Component {
   constructor(props) {
     super(props);
     this.map = null;
+    this.onVehicleClick = this.onVehicleClick.bind(this);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -14,8 +15,16 @@ class Map extends Component {
     return false;
   }
 
+  onVehicleClick(id) {
+    console.log('vehicle', id);
+  }
+
   componentDidMount() {
-    this.map = createMap('map', this.props.coords);
+    this.map = createMap({
+      'containerId': 'map',
+      'coords': this.props.coords,
+      'onVehicleClick': this.onVehicleClick
+    });
     updateMap(this.map, this.props.vehicles.list);
   }
 

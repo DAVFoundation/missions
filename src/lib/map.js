@@ -18,7 +18,7 @@ const createGeoJson = (features = []) => {
   };
 };
 
-export const createMap = (containerId, coords) => {
+export const createMap = ({containerId, coords, onVehicleClick}) => {
   // Add support for right-to-left languages
   mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.1/mapbox-gl-rtl-text.js');
 
@@ -64,6 +64,7 @@ export const createMap = (containerId, coords) => {
         'icon-image': 'drone',
       }
     });
+    map.on('click', 'vehicles', (e) => onVehicleClick(e.features[0].properties.id));
   });
 
   return map;
