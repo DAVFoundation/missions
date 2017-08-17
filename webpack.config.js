@@ -10,7 +10,7 @@ module.exports = {
   },
   devServer: {
     inline: true,
-    contentBase: path.resolve(__dirname, 'dist  '),
+    contentBase: path.resolve(__dirname, 'src'),
     port: 3333,
     historyApiFallback: true
   },
