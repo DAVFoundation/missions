@@ -1,6 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import { makeImage } from './utils'
-import droneIcon from '../images/drone_icon.png';
+import droneIcon from '../images/icon_drone.png';
 
 const createGeoJson = (features = []) => {
   return {
