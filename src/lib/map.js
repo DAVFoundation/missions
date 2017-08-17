@@ -38,7 +38,7 @@ export const createMap = (containerId, coords) => {
       enableHighAccuracy: true
     },
     trackUserLocation: true
-  }));
+  }), 'bottom-left');
 
   // Add minimal attribution controls
   map.addControl(new mapboxgl.AttributionControl({
