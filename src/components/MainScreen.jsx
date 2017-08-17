@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class MainScreen extends Component {
   render() {
     return (
-      <div>MISSIONS powered by DAV</div>
+      <div className="screen">MISSIONS powered by DAV</div>
     );
   }
 }

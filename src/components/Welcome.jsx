@@ -26,7 +26,7 @@ class Welcome extends Component {
 
   render() {
     return (
-      <div id="welcome">
+      <div id="welcome" className="screen">
 
         <div className={this.getClassNamesForCard(1)}>
           <h1>Welcome to Missions by DAV</h1>
@@ -50,7 +50,7 @@ class Welcome extends Component {
           <p>Simulation mode is a great way for you to get a feel for the app, but more importantly, it is an awesome tool for developers to start building on the DAV Network without needing to invest in any hardware. Every part of the DAV stack is built to support both a simulation/development environment and the live one.</p>
           <p>You can switch to the live environment at any time from the settings screen.</p>
         </div>
-        
+
       </div>
     );
   }
