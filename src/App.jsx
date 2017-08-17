@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Map from './containers/MapContainer.jsx';
-import MainScreenContainer from "./containers/MainScreenContainer.jsx";
+import MainScreenContainer from './containers/MainScreenContainer.jsx';
 import Welcome from './components/Welcome.jsx';
 
 const App = () =>

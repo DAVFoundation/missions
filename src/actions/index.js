@@ -7,5 +7,5 @@ export const setVehicles = vehicles => {
   return {
     type: SET_VEHICLES,
     payload: vehicles
-  }
+  };
 };

@@ -1,20 +1,19 @@
 import mapboxgl from 'mapbox-gl';
-import { makeImage } from './utils'
+import { makeImage } from './utils';
 import droneIcon from '../images/icon_drone.png';
 
 const createGeoJson = (features = []) => {
   return {
-    "type": "FeatureCollection",
-    "features": features.map(feature => ({
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [feature.coords.long, feature.coords.lat]
+    'type': 'FeatureCollection',
+    'features': features.map(feature => ({
+      'type': 'Feature',
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [feature.coords.long, feature.coords.lat]
       },
-      "properties": {
-        "id": feature.id,
+      'properties': {
+        'id': feature.id,
       }
-
     }))
   };
 };
@@ -51,20 +50,20 @@ export const createMap = (containerId, coords) => {
       img => map.addImage('drone', img)
     );
     map.addSource('vehicles', {
-      "type": "geojson",
-      "data": {
-        "type": "FeatureCollection",
-        "features": []
+      'type': 'geojson',
+      'data': {
+        'type': 'FeatureCollection',
+        'features': []
       }
     });
     map.addLayer({
       'id': 'vehicles',
       'type': 'symbol',
       'source': 'vehicles',
-      "layout": {
-        "icon-image": "drone",
+      'layout': {
+        'icon-image': 'drone',
       }
-    })
+    });
   });
 
   return map;
