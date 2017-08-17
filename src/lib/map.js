@@ -32,6 +32,14 @@ export const createMap = (containerId, coords) => {
     attributionControl: false
   });
 
+  // Add controls to geolocate the user
+  map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true
+    },
+    trackUserLocation: true
+  }));
+
   // Add minimal attribution controls
   map.addControl(new mapboxgl.AttributionControl({
     compact: true
