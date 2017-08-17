@@ -26,7 +26,7 @@ export const createMap = (containerId, coords) => {
   // Create the map
   let map = new mapboxgl.Map({
     container: containerId,
-    style: 'https://openmaptiles.github.io/positron-gl-style/style-cdn.json',
+    style: '/lib/map_style.json',
     center: [coords.long, coords.lat],
     zoom: 14,
     attributionControl: false
