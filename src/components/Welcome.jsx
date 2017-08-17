@@ -26,7 +26,7 @@ class Welcome extends Component {
 
   render() {
     return (
-      <div id="welcome" className="screen">
+      <div id="welcome-screen" className="screen">
 
         <div className={this.getClassNamesForCard(1)}>
           <h1>Welcome to Missions by DAV</h1>
