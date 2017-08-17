@@ -1,0 +1,26 @@
+div#main-screen {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Interactive components */
+div#user-controls {
+  pointer-events: all;
+}
+
+div#logo {
+  margin: 15px auto 0;
+  width: 116px;
+}
+div#logo img {
+  width: 116px;
+  height: 46px;
+}
+
+div#user-controls {
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
