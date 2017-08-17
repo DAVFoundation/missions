@@ -15,7 +15,7 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    this.map = createMap('map', {lat: 32.0766127, long: 34.7726028});
+    this.map = createMap('map', this.props.coords);
     updateMap(this.map, this.props.vehicles.list);
   }
 
@@ -26,8 +26,13 @@ class Map extends Component {
   }
 }
 
+Map.defaultProps = {
+  coords: {lat: 32.0766127, long: 34.7726028}
+};
+
 Map.propTypes = {
   vehicles: PropTypes.object.isRequired,
+  coords: PropTypes.object.isRequired,
 };
 
 export default Map;
