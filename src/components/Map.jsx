@@ -27,7 +27,7 @@ class Map extends Component {
 }
 
 Map.defaultProps = {
-  coords: {lat: 32.0766127, long: 34.7726028}
+  coords: {lat: 32.068717, long: 34.775805}
 };
 
 Map.propTypes = {
