@@ -11,7 +11,7 @@ class Map extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    updateMap(this.map, nextProps.vehicles.list);
+    updateMap(this.map, nextProps.vehicles);
     return false;
   }
 
@@ -25,7 +25,7 @@ class Map extends Component {
       'coords': this.props.coords,
       'onVehicleClick': this.onVehicleClick
     });
-    updateMap(this.map, this.props.vehicles.list);
+    updateMap(this.map, this.props.vehicles);
   }
 
   render() {
@@ -40,7 +40,7 @@ Map.defaultProps = {
 };
 
 Map.propTypes = {
-  vehicles: PropTypes.object.isRequired,
+  vehicles: PropTypes.array.isRequired,
   coords: PropTypes.object.isRequired,
 };
 
