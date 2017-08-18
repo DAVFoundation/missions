@@ -6,8 +6,13 @@ import VehicleDetailsContainer from '../containers/VehicleDetailsContainer.jsx';
 const VehicleDetailsScreen = ({match}) => {
   return (
     <div id="vehicle-details-screen" className="screen">
-      <Link to="/">Close</Link>
-      <VehicleDetailsContainer vehicleUid={match.params.uid} />
+      <Link to="/" className="screen-background--dark" />
+      <div className="modal-container">
+        <div className="modal-box">
+          <Link to="/">x</Link>
+          <VehicleDetailsContainer vehicleUid={match.params.uid} />
+        </div>
+      </div>
     </div>
   );
 };
