@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 const VehicleDetails = ({vehicle}) => (
   <div>
-    VehicleDetails - {vehicle}
+    VehicleDetails - {vehicle.model}
   </div>
 );
 
 VehicleDetails.propTypes = {
-  vehicle: PropTypes.string.isRequired,
+  vehicle: PropTypes.object.isRequired,
 };
 
 export default VehicleDetails;
