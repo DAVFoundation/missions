@@ -5,6 +5,7 @@ module.exports = {
   entry: './src/Main.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
     filename: 'bundle.js',
     sourceMapFilename: '[file].map'
   },
