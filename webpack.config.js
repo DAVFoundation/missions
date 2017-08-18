@@ -14,6 +14,7 @@ module.exports = {
     port: 3333,
     historyApiFallback: true
   },
+  devtool: 'eval-source-map',
   module: {
     loaders: [
       {
