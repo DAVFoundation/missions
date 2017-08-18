@@ -16,7 +16,7 @@ class Map extends Component {
   }
 
   onVehicleClick(id) {
-    console.log('vehicle', id);
+    this.props.history.push('/vehicle/'+id);
   }
 
   componentDidMount() {
@@ -42,6 +42,7 @@ Map.defaultProps = {
 Map.propTypes = {
   vehicles: PropTypes.array.isRequired,
   coords: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default Map;
