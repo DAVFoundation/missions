@@ -9,7 +9,7 @@ const App = () =>
   <Router>
     <div>
       <Map />
-      <Route path="/" component={ MainScreen } />
+      <Route exact path="/" component={ MainScreen } />
       <Route path="/welcome" component={ Welcome } />
       <Route path="/vehicle/:uid" component={ VehicleDetailsScreen } />
     </div>
