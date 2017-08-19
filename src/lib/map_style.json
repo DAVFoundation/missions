@@ -77,6 +77,26 @@
       }
     },
     {
+      "id": "landcover_grass",
+      "type": "fill",
+      "metadata": {},
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "filter": [
+        "all",
+        [
+          "==",
+          "class",
+          "grass"
+        ]
+      ],
+      "paint": {
+        "fill-antialias": false,
+        "fill-color": "rgba(176, 213, 154, 1)",
+        "fill-opacity": 0.3
+      }
+    },
+    {
       "id": "park",
       "type": "fill",
       "source": "openmaptiles",
