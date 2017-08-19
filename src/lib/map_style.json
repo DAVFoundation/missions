@@ -1144,6 +1144,55 @@
         }
       }
     },
+    {
+      "id": "landuse_cemetery",
+      "type": "fill",
+      "metadata": {},
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": [
+        "==",
+        "class",
+        "cemetery"
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "fill-color": "hsl(75, 37%, 81%)"
+      }
+    },
+    {
+      "id": "landuse_hospital",
+      "type": "fill",
+      "metadata": {},
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": [
+        "==",
+        "class",
+        "hospital"
+      ],
+      "paint": {
+        "fill-color": "rgba(255, 221, 238, 0.7)"
+      }
+    },
+    {
+      "id": "landuse_school",
+      "type": "fill",
+      "metadata": {},
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": [
+        "==",
+        "class",
+        "school"
+      ],
+      "paint": {
+        "fill-color": "rgb(236,238,204)"
+      }
+    },
+    {
       "id": "railway_transit",
       "type": "line",
       "metadata": {
