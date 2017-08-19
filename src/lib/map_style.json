@@ -1566,7 +1566,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "rgba(179, 181, 247, 0.22)",
+        "line-color": "rgba(192, 192, 206, 0.3)",
         "line-width": {
           "base": 1.3,
           "stops": [
@@ -1606,7 +1606,7 @@
         "line-join": "round"
       },
       "paint": {
-        "line-color": "rgba(179, 181, 247, 0.7)",
+        "line-color": "rgba(192, 192, 206, 0.8)",
         "line-width": {
           "base": 1.1,
           "stops": [
