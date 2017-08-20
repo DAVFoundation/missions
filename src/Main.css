@@ -2,8 +2,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  color: #383061;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
+  font-size: 15px;
 }
 
 .screen {
