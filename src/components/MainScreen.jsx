@@ -14,7 +14,7 @@ class MainScreen extends Component {
         <div id="user-controls">
           <img src={userIcon} alt="User Profile and Settings" />
         </div>
-        <Link to="/order" className="big-button order-button">Order Pick Up</Link>
+        <Link to="/order" className="big-button order-button">Order Pickup</Link>
       </div>
     );
   }

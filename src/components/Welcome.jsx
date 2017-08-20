@@ -40,7 +40,7 @@ class Welcome extends Component {
         </div>
 
         <div className={this.getClassNamesForCard(3)}>
-          <p>Click the Order pickup button to order a drone to pickup a package and deliver it for you.</p>
+          <p>Click the <strong>Order Pickup</strong> button to order a drone to pick up a package and deliver it for you.</p>
           <button onClick={() => this.nextCard()}>&gt;</button>
         </div>
 
