@@ -9,9 +9,14 @@ const App = () =>
   <Router>
     <div>
       <Map />
+
       <Route exact path="/" component={ MainScreen } />
+
       <Route path="/welcome" component={ Welcome } />
+
+      <Route path="/vehicle/:uid" component={ MainScreen } />
       <Route path="/vehicle/:uid" component={ VehicleDetailsScreen } />
+
     </div>
   </Router>;
 
