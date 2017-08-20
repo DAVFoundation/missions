@@ -30,6 +30,12 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+h1 {
+  font-weight: 500;
+  font-size: 17px;
+  text-align: center;
+}
+
 .modal-container {
   width: 100vw;
   height: 100vh;
@@ -39,7 +45,7 @@ body {
 }
 
 .modal-box {
-  border-radius: 7px 7px 7px 7px;
+  border-radius: 7px 7px;
   background-color: white;
   z-index: 20;
   padding: 20px 20px;
@@ -47,7 +53,7 @@ body {
 }
 
 .big-button {
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px;
   text-decoration: none;
   text-transform: uppercase;
   color: #fff;
@@ -55,4 +61,27 @@ body {
   font-size: 17px;
   background-color: #2BCA81;
   padding: 20px 20px;
+}
+
+.back-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+input {
+  border-radius: 5px 5px;
+  border: 1px solid #B8BCFF;
+  padding: 8px 10px;
+  display: block;
+  width: 100%;
+  color: #807B9C;
+  font-weight: 300;
+  font-size: 15px;
 }

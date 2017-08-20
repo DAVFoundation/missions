@@ -1,0 +1,11 @@
+#order-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 10px 10px;
+}
+
+a.form-submit-button {
+  margin: 0 auto 10px;
+}
