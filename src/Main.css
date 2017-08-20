@@ -40,3 +40,14 @@
   padding: 20px 20px;
   margin: 10px 10px;
 }
+
+.big-button {
+  border-radius: 5px 5px 5px 5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 700;
+  font-size: 17px;
+  background-color: #2BCA81;
+  padding: 20px 20px;
+}

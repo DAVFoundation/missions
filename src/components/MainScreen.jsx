@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './MainScreen.css';
 import logo from '../images/logo_missions.png';
 import userIcon from '../images/user.svg';
@@ -13,6 +14,7 @@ class MainScreen extends Component {
         <div id="user-controls">
           <img src={userIcon} alt="User Profile and Settings" />
         </div>
+        <Link to="/" className="big-button order-button">Order Pick Up</Link>
       </div>
     );
   }
