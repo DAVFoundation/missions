@@ -1,4 +1,5 @@
-import { createAction, handleActions } from 'redux-actions';
+import { handleActions } from 'redux-actions';
+import { setVehicles } from '../actions';
 
 const defaultState = {
   '0xb2930B35844a230f00E51431aCAe96Fe543a0347': {
@@ -26,8 +27,6 @@ const defaultState = {
     'missions_completed_7_days': 0,
   }
 };
-
-export const setVehicles = createAction('SET_VEHICLES');
 
 export default handleActions({
 
