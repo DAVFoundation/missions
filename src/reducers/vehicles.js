@@ -32,7 +32,7 @@ export const setVehicles = createAction('SET_VEHICLES');
 export default handleActions({
 
   [setVehicles]: (state, { payload }) => {
-    let nextState = { ...state };
+    let nextState = {};
     payload.forEach(vehicle => {
       nextState[vehicle.id] = vehicle;
     });
