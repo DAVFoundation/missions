@@ -1,4 +1,4 @@
-import { SET_VEHICLES } from '../actions';
+import { createAction, handleActions } from 'redux-actions';
 
 const defaultState = {
   '0xb2930B35844a230f00E51431aCAe96Fe543a0347': {
@@ -27,18 +27,18 @@ const defaultState = {
   }
 };
 
-export default (state = defaultState, action) => {
-  let nextState;
-  switch (action.type) {
-  case SET_VEHICLES:
-    nextState = { ...state };
-    action.payload.forEach(vehicle => {
+export const setVehicles = createAction('SET_VEHICLES');
+
+export default handleActions({
+
+  [setVehicles]: (state, { payload }) => {
+    let nextState = { ...state };
+    payload.forEach(vehicle => {
       nextState[vehicle.id] = vehicle;
     });
     return nextState;
-  default:
-    return state;
   }
-};
+
+}, defaultState);
 
 export const getVehicleArray = (state) => Object.entries(state).map(([, vehicle]) => vehicle);
