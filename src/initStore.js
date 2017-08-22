@@ -1,13 +1,18 @@
 import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import promiseMiddleware from 'redux-promise-middleware';
 import reducers from './reducers';
+import { updateStatus } from './actions';
 
 const initStore = () => {
-  return createStore(
+  const store = createStore(
     reducers,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(promiseMiddleware)
+    composeWithDevTools(applyMiddleware(promiseMiddleware()))
   );
+
+  store.dispatch(updateStatus());
+
+  return store;
 };
 
 export default initStore;
