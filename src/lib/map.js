@@ -18,9 +18,9 @@ const createGeoJson = (features = []) => {
   };
 };
 
-const getUserLocation = (success) => {
-  navigator.geolocation.getCurrentPosition(success);
-};
+const getUserLocation = () => new Promise(
+  (resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject)
+);
 
 /**
  * Returns a promise that resolves only if we can determine that the user has granted geolocation permission
@@ -87,11 +87,10 @@ export const createMap = ({containerId, coords, onVehicleClick}) => {
   // Check if user has already granted permission to access geolocation
   // If permission was granted, get user location and center map on them
   hasGeolocationPermission()
-    .then(() => {
-      getUserLocation(({ coords }) => {
-        map.setCenter([coords.longitude, coords.latitude]);
-      });
-    });
+    .then(getUserLocation)
+    .then(
+      ({ coords }) => map.setCenter([coords.longitude, coords.latitude])
+    ).catch(() => {});
 
   return map;
 };
