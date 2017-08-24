@@ -18,6 +18,10 @@ const createGeoJson = (features = []) => {
   };
 };
 
+const getUserLocation = (success) => {
+  navigator.geolocation.getCurrentPosition(success);
+};
+
 export const createMap = ({containerId, coords, onVehicleClick}) => {
   // Add support for right-to-left languages
   mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.1/mapbox-gl-rtl-text.js');
@@ -65,6 +69,10 @@ export const createMap = ({containerId, coords, onVehicleClick}) => {
       }
     });
     map.on('click', 'vehicles', (e) => onVehicleClick(e.features[0].properties.id));
+  });
+
+  getUserLocation(({ coords }) => {
+    map.setCenter([coords.longitude, coords.latitude]);
   });
 
   return map;
