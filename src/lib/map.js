@@ -22,6 +22,19 @@ const getUserLocation = (success) => {
   navigator.geolocation.getCurrentPosition(success);
 };
 
+/**
+ * Returns a promise that resolves only if we can determine that the user has granted geolocation permission
+ * Promise rejects if permission wasn't granted, denied, or Permissions API is not supported
+ *
+ * @returns {Promise}
+ */
+const hasGeolocationPermission = () => new Promise((resolve, reject) => {
+  if (!navigator.permissions) reject();
+  navigator.permissions.query({name: 'geolocation'}).then(
+    result => result.state === 'granted' ? resolve() : reject()
+  );
+});
+
 export const createMap = ({containerId, coords, onVehicleClick}) => {
   // Add support for right-to-left languages
   mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.1/mapbox-gl-rtl-text.js');
@@ -71,9 +84,14 @@ export const createMap = ({containerId, coords, onVehicleClick}) => {
     map.on('click', 'vehicles', (e) => onVehicleClick(e.features[0].properties.id));
   });
 
-  getUserLocation(({ coords }) => {
-    map.setCenter([coords.longitude, coords.latitude]);
-  });
+  // Check if user has already granted permission to access geolocation
+  // If permission was granted, get user location and center map on them
+  hasGeolocationPermission()
+    .then(() => {
+      getUserLocation(({ coords }) => {
+        map.setCenter([coords.longitude, coords.latitude]);
+      });
+    });
 
   return map;
 };
