@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { initializeApp } from './lib/app';
 import Map from './containers/MapContainer.jsx';
 import MainScreen from './components/MainScreen.jsx';
 import VehicleDetailsScreen from './components/VehicleDetailsScreen.jsx';
@@ -7,6 +8,11 @@ import OrderScreen from './components/OrderScreen.jsx';
 import Welcome from './components/Welcome.jsx';
 
 class App extends Component {
+
+  componentDidMount() {
+    initializeApp();
+  }
+
   render() {
     return (
       <Router>
