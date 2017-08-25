@@ -15,4 +15,6 @@ const initStore = () => {
   return store;
 };
 
-export default initStore;
+const store = initStore();
+
+export default store;
