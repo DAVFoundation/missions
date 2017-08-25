@@ -35,7 +35,7 @@ const hasGeolocationPermission = () => new Promise((resolve, reject) => {
   );
 });
 
-export const createMap = ({containerId, coords, onVehicleClick}) => {
+export const createMap = ({containerId, coords, onVehicleClick, onMoveEnd}) => {
   // Add support for right-to-left languages
   mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.1/mapbox-gl-rtl-text.js');
 
@@ -82,6 +82,11 @@ export const createMap = ({containerId, coords, onVehicleClick}) => {
       }
     });
     map.on('click', 'vehicles', (e) => onVehicleClick(e.features[0].properties.id));
+  });
+
+  map.on('moveend', () => {
+    const mapCenter = map.getCenter();
+    onMoveEnd({ lat: mapCenter.lat, long: mapCenter.lng });
   });
 
   // Check if user has already granted permission to access geolocation

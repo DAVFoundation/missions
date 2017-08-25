@@ -23,7 +23,8 @@ class Map extends Component {
     this.map = createMap({
       'containerId': 'map',
       'coords': this.props.coords,
-      'onVehicleClick': this.onVehicleClick
+      'onVehicleClick': this.onVehicleClick,
+      'onMoveEnd': this.props.onMoveEnd
     });
     updateMap(this.map, this.props.vehicles);
   }
@@ -43,6 +44,7 @@ Map.propTypes = {
   vehicles: PropTypes.array.isRequired,
   coords: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  onMoveEnd: PropTypes.func.isRequired,
 };
 
 export default Map;
