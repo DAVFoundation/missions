@@ -2,7 +2,10 @@ import store from '../store';
 import { updateStatus } from '../actions';
 
 const _updateStatusAndDispatch = () => {
-  store.dispatch(updateStatus({id: '0xabc', lat: 32.068717, long: 34.775805}));
+  const coords = store.getState().map.coords;
+  if (!coords.lat || !coords.long) return;
+  const {lat, long} = coords;
+  store.dispatch(updateStatus({id: '0xabc', lat, long }));
 };
 
 export function initializeApp() {
