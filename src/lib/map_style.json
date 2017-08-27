@@ -380,7 +380,6 @@
     {
       "id": "building-3d",
       "type": "fill-extrusion",
-      "metadata": {},
       "source": "openmaptiles",
       "source-layer": "building",
       "minzoom": 14,
@@ -388,7 +387,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "fill-extrusion-color": "hsl(35, 8%, 85%)",
+        "fill-extrusion-color": "#aaa",
         "fill-extrusion-height": {
           "property": "render_height",
           "type": "identity"
