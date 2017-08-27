@@ -77,6 +77,7 @@ export const createMap = ({containerId, coords, onVehicleClick, onMoveEnd}) => {
       'id': 'vehicles',
       'type': 'symbol',
       'source': 'vehicles',
+      'minzoom': 10,
       'layout': {
         'icon-image': 'drone',
       }
