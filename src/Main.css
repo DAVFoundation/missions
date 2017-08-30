@@ -55,6 +55,17 @@ h1 {
   position: absolute;
 }
 
+.modal-close-button {
+  color: #807B9C;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+  position: absolute;
+  top: 0;
+  right: 9px;
+}
+
+
 .big-button {
   border-radius: 5px 5px;
   text-decoration: none;

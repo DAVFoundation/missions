@@ -9,7 +9,7 @@ const VehicleDetailsScreen = ({match}) => {
       <Link to="/" className="screen-background--dark" />
       <div className="modal-container">
         <div className="modal-box">
-          <Link to="/">x</Link>
+          <Link to="/" className="modal-close-button">x</Link>
           <VehicleDetailsContainer vehicleUid={match.params.uid} />
         </div>
       </div>
