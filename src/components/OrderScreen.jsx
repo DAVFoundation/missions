@@ -8,16 +8,35 @@ import arrow from '../images/arrow-left.svg';
 class OrderScreen extends Component {
   constructor(props) {
     super(props);
+    this.updateStoreFromForm = this.updateStoreFromForm.bind(this);
+    this.submitForm = this.submitForm.bind(this);
+  }
+
+  updateStoreFromForm() {
+    this.props.updateOrderDetails(
+      {
+        pickup: this.pickupNode.value || undefined,
+        dropoff: this.dropoffNode.value || undefined,
+        size: this.sizeNode.value || undefined,
+        weight: this.weightNode.value || undefined,
+        requested_pickup_time: this.pickupTimeNode.value || undefined,
+      }
+    );
+  }
+
+  submitForm(e) {
+    e.preventDefault();
+    this.updateStoreFromForm();
   }
 
   render() {
-    const {coords} = this.props;
-    const coordsString = getShortCoordsString(coords);
-    const pickupPlaceholder = coordsString ? `${coordsString} (your current location)` : '';
-    const currentTime = (new Date).toTimeString().slice(0,5);
+    const { userCoords, pickup, dropoff, size, weight } = this.props;
+    const requested_pickup_time = this.props.requested_pickup_time || (new Date).toTimeString().slice(0,5);
+    const coordsString = getShortCoordsString(userCoords);
+    const pickupPlaceholder = coordsString ? `Your current location (${coordsString})` : '';
     return (
       <div id="order-screen" className="screen">
-        <Link to="/" className="back-button">
+        <Link to="/" className="back-button" onClick={this.updateStoreFromForm}>
           <img src={arrow} alt="Back" />
         </Link>
 
@@ -25,17 +44,17 @@ class OrderScreen extends Component {
 
         <div className="form-field">
           <label htmlFor="pickup-location">Set pickup location</label>
-          <input type="text" id="pickup-location" placeholder={pickupPlaceholder} />
+          <input type="text" id="pickup-location" placeholder={pickupPlaceholder} defaultValue={pickup} ref={node => { this.pickupNode = node; }} />
         </div>
 
         <div className="form-field">
           <label htmlFor="dropoff-location">Set dropoff location</label>
-          <input type="text" id="dropoff-location"/>
+          <input type="text" id="dropoff-location" defaultValue={dropoff} ref={node => { this.dropoffNode = node; }} />
         </div>
 
         <div className="form-field">
           <label htmlFor="package-size">How big is the package?</label>
-          <select name="package-size" id="package-size">
+          <select id="package-size" defaultValue={size} ref={node => { this.sizeNode = node; }}>
             <option value="letter">Letter</option>
             <option value="can">Beverage can</option>
             <option value="pizza">Pizza box</option>
@@ -45,7 +64,7 @@ class OrderScreen extends Component {
 
         <div className="form-field">
           <label htmlFor="weight">Weight</label>
-          <select name="weight" id="weight">
+          <select id="weight" defaultValue={weight} ref={node => { this.weightNode = node; }}>
             <option value="500">Up to 500 grams</option>
             <option value="1000">Up to 1 kg</option>
             <option value="5000">Up to 5 kg</option>
@@ -55,10 +74,10 @@ class OrderScreen extends Component {
 
         <div className="form-field">
           <label htmlFor="pickup-time">Pickup time</label>
-          <input type="time" defaultValue={currentTime} />
+          <input id="pickup-time" type="time" defaultValue={requested_pickup_time} ref={node => { this.pickupTimeNode = node; }} />
         </div>
 
-        <Link to="/" className="big-button form-submit-button">Find drones</Link>
+        <a className="big-button form-submit-button" onClick={this.submitForm}>Find drones</a>
 
       </div>
     );
@@ -66,7 +85,13 @@ class OrderScreen extends Component {
 }
 
 OrderScreen.propTypes = {
-  coords: PropTypes.object,
+  userCoords: PropTypes.object,
+  pickup: PropTypes.string,
+  dropoff: PropTypes.string,
+  requested_pickup_time: PropTypes.string,
+  size: PropTypes.string,
+  weight: PropTypes.string,
+  updateOrderDetails: PropTypes.func.isRequired,
 };
 
 export default OrderScreen;
