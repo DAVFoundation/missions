@@ -14,6 +14,7 @@ class OrderScreen extends Component {
     const {coords} = this.props;
     const coordsString = getShortCoordsString(coords);
     const pickupPlaceholder = coordsString ? `${coordsString} (your current location)` : '';
+    const currentTime = (new Date).toTimeString().slice(0,5);
     return (
       <div id="order-screen" className="screen">
         <Link to="/" className="back-button">
@@ -34,17 +35,27 @@ class OrderScreen extends Component {
 
         <div className="form-field">
           <label htmlFor="package-size">How big is the package?</label>
-          <input type="text" id="package-size"/>
+          <select name="package-size" id="package-size">
+            <option value="letter">Letter</option>
+            <option value="can">Beverage can</option>
+            <option value="pizza">Pizza box</option>
+            <option value="box">Shipping box</option>
+          </select>
         </div>
 
         <div className="form-field">
           <label htmlFor="weight">Weight</label>
-          <input type="text" id="weight"/>
+          <select name="weight" id="weight">
+            <option value="500">Up to 500 grams</option>
+            <option value="1000">Up to 1 kg</option>
+            <option value="5000">Up to 5 kg</option>
+            <option value="100000">Up to 100 kg</option>
+          </select>
         </div>
 
         <div className="form-field">
           <label htmlFor="pickup-time">Pickup time</label>
-          <input type="text" id="pickup-time"/>
+          <input type="time" defaultValue={currentTime} />
         </div>
 
         <Link to="/" className="big-button form-submit-button">Find drones</Link>
