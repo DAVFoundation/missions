@@ -5,6 +5,7 @@ import Map from './containers/MapContainer.jsx';
 import MainScreen from './components/MainScreen.jsx';
 import VehicleDetailsScreen from './components/VehicleDetailsScreen.jsx';
 import OrderScreenContainer from './containers/OrderScreenContainer.jsx';
+import SearchingScreenContainer from './containers/SearchingScreenContainer.jsx';
 import Welcome from './components/Welcome.jsx';
 
 class App extends Component {
@@ -27,6 +28,8 @@ class App extends Component {
           <Route path="/vehicle/:uid" component={ VehicleDetailsScreen } />
 
           <Route path="/order" component={ OrderScreenContainer } />
+
+          <Route path="/searching" component={ SearchingScreenContainer } />
 
         </div>
       </Router>

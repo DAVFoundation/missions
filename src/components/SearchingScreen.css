@@ -1,0 +1,28 @@
+#radar {
+  position: absolute;
+  top: calc(50vh - 185px);
+  left: calc(50vw - 185px);
+  animation-name: spin;
+  animation-duration: 1200ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+#searching-screen h1 {
+  font-size: 15px;
+  font-weight: 500;
+  max-width: 160px;
+  margin: 35px auto 10px;
+}
+
+#searching-screen .cancel-button {
+  display: block;
+  margin: 20px auto 10px;
+  width: 60px;
+  text-align: center;
+}

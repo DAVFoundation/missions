@@ -77,10 +77,27 @@ h1 {
   padding: 20px 20px;
 }
 
+.med-button {
+  border-radius: 5px 5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 500;
+  font-size: 11px;
+  background-color: #2BCA81;
+  padding: 6px 8px;
+}
+
 .back-button {
   position: absolute;
   top: 10px;
   left: 15px;
+}
+
+.cancel-button {
+  background-color: transparent;
+  color: #807B9C;
+  border: 1px solid #807B9C;
 }
 
 label {
