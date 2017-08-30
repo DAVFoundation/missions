@@ -1,0 +1,53 @@
+.vehicle-details {
+  max-width: 330px;
+  font-weight: 300;
+  font-size: 11px;
+  color: #807B9C;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 70px 1fr;
+  grid-template-areas:
+    "vehicle-card vehicle-card"
+    "mission-count mission-count-7";
+  grid-row-gap: 7px;
+}
+
+.vehicle-details strong{
+  font-weight: 500;
+}
+
+.vehicle-card {
+  grid-area: vehicle-card;
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  grid-template-areas:
+    "vehicle-icon vehicle-vitals"
+}
+.vehicle-vitals {
+  grid-area: vehicle-vitals;
+  overflow: hidden;
+}
+.rating:after {
+  content: "\2605";
+  color: #2BCA81;
+  margin-left: 2px;
+}
+.rating strong {
+  font-weight: 700;
+}
+.vehicle-card img {
+  grid-area: vehicle-icon;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.vehicle-missions-count {
+  grid-area: mission-count;
+}
+
+.vehicle-missions-count-7 {
+  border-left: 1px solid #D8D8D8;
+  padding-left: 20px;
+  grid-area: mission-count-7;
+}
