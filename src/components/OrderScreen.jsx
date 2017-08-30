@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { getShortCoordsString } from '../lib/utils';
 import './OrderScreen.css';
 import arrow from '../images/arrow-left.svg';
 
 class OrderScreen extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    const {coords} = this.props;
+    const coordsString = getShortCoordsString(coords);
+    const pickupPlaceholder = coordsString ? `${coordsString} (your current location)` : '';
     return (
       <div id="order-screen" className="screen">
         <Link to="/" className="back-button">
@@ -15,7 +24,7 @@ class OrderScreen extends Component {
 
         <div className="form-field">
           <label htmlFor="pickup-location">Set pickup location</label>
-          <input type="text" id="pickup-location"/>
+          <input type="text" id="pickup-location" placeholder={pickupPlaceholder} />
         </div>
 
         <div className="form-field">
@@ -44,5 +53,9 @@ class OrderScreen extends Component {
     );
   }
 }
+
+OrderScreen.propTypes = {
+  coords: PropTypes.object,
+};
 
 export default OrderScreen;
