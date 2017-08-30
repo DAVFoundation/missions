@@ -24,8 +24,7 @@ class OrderScreen extends Component {
     );
   }
 
-  submitForm(e) {
-    e.preventDefault();
+  submitForm() {
     this.updateStoreFromForm();
   }
 
@@ -77,7 +76,7 @@ class OrderScreen extends Component {
           <input id="pickup-time" type="time" defaultValue={requested_pickup_time} ref={node => { this.pickupTimeNode = node; }} />
         </div>
 
-        <a className="big-button form-submit-button" onClick={this.submitForm}>Find drones</a>
+        <Link to="/searching" className="big-button form-submit-button" onClick={this.submitForm}>Find drones</Link>
 
       </div>
     );
