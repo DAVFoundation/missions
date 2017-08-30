@@ -6,3 +6,8 @@ export const makeImage = (imageData) => {
     image.addEventListener('error', () => reject());
   });
 };
+
+export const getShortCoordsString = (coords, precision = 7) => {
+  const {lat, long} = coords;
+  return lat && long && `${lat.toFixed(precision)}, ${long.toFixed(precision)}`;
+};
