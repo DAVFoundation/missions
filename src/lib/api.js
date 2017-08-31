@@ -5,7 +5,7 @@ export const fetchStatus = ({ id, lat, long, requestId }) => {
   id && url.searchParams.set('id', id);
   lat && url.searchParams.set('lat', lat); // Don't stand on the equator or you'll break this
   long && url.searchParams.set('long', long);
-  requestId && url.searchParams.set('requestId ', requestId );
+  requestId && url.searchParams.set('requestId', requestId);
   return fetch(url)
     .then(
       response => response.json()
