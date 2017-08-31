@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import OrderScreen from '../components/OrderScreen.jsx';
-import { updateOrderDetails } from '../actions';
+import { updateOrderDetails, createRequest } from '../actions';
 
 const mapDispatchToProps = (dispatch) => ({
-  updateOrderDetails: (details) => dispatch(updateOrderDetails({details}))
+  updateOrderDetails: (details) => dispatch(updateOrderDetails({details})),
+  createRequest: (request) => dispatch(createRequest(request)),
 });
 
 export default connect(

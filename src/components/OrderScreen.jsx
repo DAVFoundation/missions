@@ -27,7 +27,12 @@ class OrderScreen extends Component {
   }
 
   submitForm() {
+    const { userCoords, createRequest } = this.props;
     this.updateStoreFromForm();
+    let requestDetails = this.createOrderDetailsObject();
+    requestDetails.user_id = '0xabc';
+    requestDetails.pickup = requestDetails.pickup || userCoords.lat+','+userCoords.long;
+    createRequest(requestDetails);
   }
 
   render() {
@@ -93,6 +98,7 @@ OrderScreen.propTypes = {
   size: PropTypes.string,
   weight: PropTypes.string,
   updateOrderDetails: PropTypes.func.isRequired,
+  createRequest: PropTypes.func.isRequired,
 };
 
 export default OrderScreen;
