@@ -12,16 +12,18 @@ class OrderScreen extends Component {
     this.submitForm = this.submitForm.bind(this);
   }
 
+  createOrderDetailsObject() {
+    return {
+      pickup: this.pickupNode.value || undefined,
+      dropoff: this.dropoffNode.value || undefined,
+      size: this.sizeNode.value || undefined,
+      weight: this.weightNode.value || undefined,
+      requested_pickup_time: this.pickupTimeNode.value || undefined,
+    };
+  }
+
   updateStoreFromForm() {
-    this.props.updateOrderDetails(
-      {
-        pickup: this.pickupNode.value || undefined,
-        dropoff: this.dropoffNode.value || undefined,
-        size: this.sizeNode.value || undefined,
-        weight: this.weightNode.value || undefined,
-        requested_pickup_time: this.pickupTimeNode.value || undefined,
-      }
-    );
+    this.props.updateOrderDetails(this.createOrderDetailsObject());
   }
 
   submitForm() {
