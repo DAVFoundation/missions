@@ -9,6 +9,8 @@ export const updateMapCoords = createAction('UPDATE_MAP_COORDS');
 
 export const updateOrderDetails = createAction('UPDATE_ORDER_DETAILS');
 
+export const resetOrderDetails = createAction('RESET_ORDER_DETAILS');
+
 export const createRequest = createAction('CREATE_REQUEST', apiCreateRequest);
 
 export const createRequestFulfilled = createAction('CREATE_REQUEST_FULFILLED');

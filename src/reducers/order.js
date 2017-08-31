@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { updateOrderDetails, createRequestFulfilled } from '../actions';
+import { updateOrderDetails, createRequestFulfilled, resetOrderDetails } from '../actions';
 
 const defaultState = {
   state: 'draft',
@@ -18,6 +18,8 @@ export default handleActions({
 
   [createRequestFulfilled]: (state, {payload }) => {
     return {...state, ...payload, state: 'searching'};
-  }
+  },
+
+  [resetOrderDetails]: () => defaultState,
 
 }, defaultState);
