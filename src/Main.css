@@ -117,3 +117,29 @@ input, select {
   font-weight: 300;
   font-size: 15px;
 }
+
+.vehicle-card {
+  grid-area: vehicle-card;
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  grid-template-areas:
+    "vehicle-icon vehicle-vitals"
+}
+.vehicle-vitals {
+  grid-area: vehicle-vitals;
+  overflow: hidden;
+}
+.rating:after {
+  content: "\2605";
+  color: #2BCA81;
+  margin-left: 2px;
+}
+.rating strong {
+  font-weight: 700;
+}
+.vehicle-card img {
+  grid-area: vehicle-icon;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
