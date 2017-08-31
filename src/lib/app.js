@@ -5,7 +5,8 @@ const _updateStatusAndDispatch = () => {
   const coords = store.getState().map.coords;
   if (!coords.lat || !coords.long) return;
   const {lat, long} = coords;
-  store.dispatch(updateStatus({id: '0xabc', lat, long }));
+  const requestId = store.getState().order.requestId;
+  store.dispatch(updateStatus({id: '0xabc', lat, long, requestId }));
 };
 
 export function initializeApp() {
