@@ -6,6 +6,7 @@
   animation-duration: 1200ms;
   animation-iteration-count: infinite;
   animation-timing-function: cubic-bezier(0.7, 0.3, 0.3, 0.7);
+  z-index: -1;
 }
 
 @keyframes spin {
@@ -25,4 +26,54 @@
   margin: 20px auto 10px;
   width: 60px;
   text-align: center;
+}
+
+.vehicle-bid-card {
+  border-radius: 7px 7px;
+  background-color: white;
+  z-index: 20;
+  padding: 20px 20px;
+  margin: 10px 10px;
+  width: calc(100vw - 20px);
+  position: absolute;
+  box-shadow: 0 2px 10px 0 #c4c8fa;
+}
+
+.vehicle-bid-card--small .vehicle-card img {
+  width: 50px;
+  height: 50px;
+}
+.vehicle-bid-card--small {
+  bottom: 10px;
+}
+
+.vehicle-bid-card--small:nth-child(1) {
+  z-index: 50;
+}
+.vehicle-bid-card--small:nth-child(2) {
+  z-index: 49;
+  bottom: 21px;
+  transform: scale(0.96);
+  background-color: #fafafa;
+}
+.vehicle-bid-card--small:nth-child(3) {
+  z-index: 48;
+  bottom: 31px;
+  transform: scale(0.92);
+  background-color: #f6f6f6;
+}
+.vehicle-bid-card--small:nth-child(4) {
+  z-index: 47;
+  bottom: 40px;
+  transform: scale(0.88);
+  background-color: #f3f3f3;
+}
+.vehicle-bid-card--small:nth-child(5) {
+  z-index: 46;
+  bottom: 49px;
+  transform: scale(0.83);
+  background-color: #f0f0f0;
+}
+.vehicle-bid-card--small:nth-child(n+6) {
+  visibility: hidden;
 }

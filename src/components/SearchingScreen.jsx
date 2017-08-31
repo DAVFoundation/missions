@@ -13,9 +13,11 @@ class SearchingScreen extends Component {
         <h1>Matching you with autonomous vehicles</h1>
         <Link to="/" className="med-button cancel-button">cancel</Link>
         <img src={radar} id="radar" />
-        {bids.map(bid => (
-          <VehicleBid key={bid.id} vehicle={vehicles[bid.vehicle_id]} />
-        ))}
+        <div id="vehicle-bid-cards">
+          {bids.map(bid => (
+            <VehicleBid key={bid.id} vehicle={vehicles[bid.vehicle_id]} />
+          ))}
+        </div>
       </div>
     );
   }
