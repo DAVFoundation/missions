@@ -21,7 +21,7 @@ class SearchingScreen extends Component {
 }
 
 SearchingScreen.propTypes = {
-  vehicles: PropTypes.array.isRequired,
+  vehicles: PropTypes.object.isRequired,
   bids: PropTypes.array.isRequired,
 };
 
