@@ -3,7 +3,7 @@ import OrderScreen from '../components/OrderScreen.jsx';
 import { updateOrderDetails, createRequest } from '../actions';
 
 const mapDispatchToProps = (dispatch) => ({
-  updateOrderDetails: (details) => dispatch(updateOrderDetails({details})),
+  updateOrderDetails: (details) => dispatch(updateOrderDetails(details)),
   createRequest: (request) => dispatch(createRequest(request)),
 });
 

@@ -12,12 +12,12 @@ const defaultState = {
 
 export default handleActions({
 
-  [updateOrderDetails]: (state, { payload: { details } }) => {
-    return {...state, ...details};
+  [updateOrderDetails]: (state, { payload }) => {
+    return {...state, ...payload};
   },
 
-  [createRequestFulfilled]: (state, {payload: details}) => {
-    return {...state, ...details, state: 'searching'};
+  [createRequestFulfilled]: (state, {payload }) => {
+    return {...state, ...payload, state: 'searching'};
   }
 
 }, defaultState);
