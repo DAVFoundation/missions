@@ -12,5 +12,5 @@ const _updateStatusAndDispatch = () => {
 export function initializeApp() {
   // Get updated status from server, now and then at steady intervals
   _updateStatusAndDispatch();
-  setInterval(_updateStatusAndDispatch, 500);
+  setInterval(_updateStatusAndDispatch, 1000);
 }
