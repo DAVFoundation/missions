@@ -22,13 +22,14 @@ class OrderScreen extends Component {
     };
   }
 
-  updateStoreFromForm() {
-    this.props.updateOrderDetails(this.createOrderDetailsObject());
+  updateStoreFromForm(detailOverride = {}) {
+    const details = this.createOrderDetailsObject();
+    this.props.updateOrderDetails({...details, ...detailOverride});
   }
 
   submitForm() {
     const { userCoords, createRequest } = this.props;
-    this.updateStoreFromForm();
+    this.updateStoreFromForm({state: 'searching'});
     let requestDetails = this.createOrderDetailsObject();
     requestDetails.user_id = '0xabc';
     requestDetails.pickup = requestDetails.pickup || userCoords.lat+','+userCoords.long;
