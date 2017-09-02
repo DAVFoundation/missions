@@ -66,19 +66,19 @@
 }
 .vehicle-bid-card--small:nth-child(3) {
   z-index: 48;
-  bottom: 18px;
+  bottom: 17px;
   transform: scale(0.92);
   background-color: #f6f6f6;
 }
 .vehicle-bid-card--small:nth-child(4) {
   z-index: 47;
-  bottom: 25px;
+  bottom: 24px;
   transform: scale(0.88);
   background-color: #f3f3f3;
 }
 .vehicle-bid-card--small:nth-child(5) {
   z-index: 46;
-  bottom: 32px;
+  bottom: 30px;
   transform: scale(0.83);
   background-color: #f0f0f0;
 }
