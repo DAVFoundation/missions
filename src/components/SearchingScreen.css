@@ -25,6 +25,15 @@
   margin: 35px auto 10px;
 }
 
+#searching-screen .vehicle-card {
+  grid-template-columns: 50px 1fr;
+}
+
+#searching-screen .vehicle-card img {
+  width: 38px;
+  height: 38px;
+}
+
 #searching-screen .cancel-button {
   display: block;
   margin: 20px auto 10px;
@@ -57,21 +66,16 @@
   transform: translateY(120vh);
 }
 
+.vehicle-bid-card .vehicle-card h2 {
+  font-size: 17px;
+}
+.vehicle-bid-card .vehicle-card div.rating {
+  font-size: 13px;
+}
+
 .vehicle-bid-card--small {
   bottom: 0;
   position: absolute;
-}
-
-.vehicle-bid-card--small .vehicle-card img {
-  width: 40px;
-  height: 40px;
-}
-
-.vehicle-bid-card--small .vehicle-card h2 {
-  font-size: 17px;
-}
-.vehicle-bid-card--small .vehicle-card div.rating {
-  font-size: 13px;
 }
 
 .vehicle-bid-card--small:nth-child(1) {
@@ -105,4 +109,24 @@
   z-index: 45;
   bottom: 10px;
   transform: scale(0.70);
+}
+
+#searching-screen .choose-bid-button {
+  float: right;
+  padding: 9px 16px;
+}
+
+dl.bid-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 5px;
+  margin-top: 7px;
+  font-size: 13px;
+}
+.bid-details dt {
+  font-weight: 300;
+}
+.bid-details dd {
+  text-align: right;
+  font-weight: 500;
 }
