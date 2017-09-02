@@ -17,7 +17,7 @@ export default handleActions({
   },
 
   [createRequestFulfilled]: (state, {payload }) => {
-    return {...state, ...payload, state: 'searching'};
+    return {...state, ...payload, state: 'searching', created_at: Date.now()};
   },
 
   [resetOrderDetails]: () => defaultState,
