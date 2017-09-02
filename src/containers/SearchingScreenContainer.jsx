@@ -4,7 +4,7 @@ import SearchingScreen from '../components/SearchingScreen.jsx';
 import { resetOrderDetails } from '../actions';
 
 const mapDispatchToProps = (dispatch) => ({
-  stopSearching: () => dispatch(resetOrderDetails()),
+  cancelSearch: () => dispatch(resetOrderDetails()),
 });
 
 export default connect(

@@ -7,11 +7,11 @@ import radar from '../images/radar.png';
 
 class SearchingScreen extends Component {
   render() {
-    const { bids, vehicles, stopSearching } = this.props;
+    const { bids, vehicles, cancelSearch } = this.props;
     return (
       <div id="searching-screen" className="screen">
         <h1>Matching you with autonomous vehicles</h1>
-        <Link to="/" className="med-button cancel-button" onClick={stopSearching}>cancel</Link>
+        <Link to="/" className="med-button cancel-button" onClick={cancelSearch}>cancel</Link>
         <img src={radar} id="radar" />
         <div id="vehicle-bid-cards">
           {bids.map(bid => (
@@ -26,7 +26,7 @@ class SearchingScreen extends Component {
 SearchingScreen.propTypes = {
   vehicles: PropTypes.object.isRequired,
   bids: PropTypes.array.isRequired,
-  stopSearching: PropTypes.func.isRequired,
+  cancelSearch: PropTypes.func.isRequired,
 };
 
 export default SearchingScreen;
