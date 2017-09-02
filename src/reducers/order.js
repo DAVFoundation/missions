@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions';
 import { updateOrderDetails, createRequestFulfilled, updateStatusFulfilled, resetOrderDetails } from '../actions';
 
 const defaultState = {
-  state: 'draft', // draft | searching | choosing
+  stage: 'draft', // draft | searching | choosing
   pickup: undefined,
   dropoff: undefined,
   requested_pickup_time: undefined,
@@ -17,15 +17,15 @@ export default handleActions({
   },
 
   [createRequestFulfilled]: (state, { payload }) => {
-    return {...state, ...payload, state: 'searching', created_at: Date.now()};
+    return {...state, ...payload, stage: 'searching', created_at: Date.now()};
   },
 
   [updateStatusFulfilled]: (state, { payload }) => {
     // If searching, and at least 10 bids received OR searched for over 10 seconds change state
-    if (state.state === 'searching') {
+    if (state.stage === 'searching') {
       const time = Date.now();
       if (payload.bids.length>=10 || time - state.created_at > 10 * 1000) {
-        return {...state, state: 'choosing'};
+        return {...state, stage: 'choosing'};
       }
     }
     return state;
