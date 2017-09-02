@@ -13,14 +13,18 @@ class SearchingScreen extends Component {
     if (stage === 'choosing') screenClassNames.push('screen--stage-choosing');
     return (
       <div id="searching-screen" className={screenClassNames.join(' ')}>
-        <h1>Matching you with autonomous vehicles</h1>
-        <Link to="/" className="med-button cancel-button" onClick={cancelSearch}>cancel</Link>
-        <img src={radar} id="radar" />
-        <div id="vehicle-bid-preview-cards">
-          {stage === 'searching' && bids.map(bid => (
-            <VehicleBidPreview key={bid.id} vehicle={vehicles[bid.vehicle_id]} />
-          ))}
-        </div>
+        {stage === 'searching' && (
+          <div>
+            <h1>Matching you with autonomous vehicles</h1>
+            <Link to="/" className="med-button cancel-button" onClick={cancelSearch}>cancel</Link>
+            <img src={radar} id="radar" />
+            <div id="vehicle-bid-preview-cards">
+              {bids.map(bid => (
+                <VehicleBidPreview key={bid.id} vehicle={vehicles[bid.vehicle_id]} />
+              ))}
+            </div>
+          </div>
+        )}
         <div id="vehicle-bid-cards">
           {bids.map(bid => (
             <VehicleBid key={bid.id} bid={bid} vehicle={vehicles[bid.vehicle_id]} shown={stage === 'choosing'} />
