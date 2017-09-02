@@ -11,6 +11,7 @@ export default connect(
   (state) => ({
     vehicles: state.vehicles,
     bids: getBidArray(state.bids),
+    stage: state.order.stage,
   }),
   mapDispatchToProps
 )(SearchingScreen);

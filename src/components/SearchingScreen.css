@@ -14,6 +14,10 @@
   to {transform:rotate(360deg);}
 }
 
+#searching-screen.screen--stage-choosing {
+  overflow: scroll;
+}
+
 #searching-screen h1 {
   font-size: 15px;
   font-weight: 500;
@@ -36,11 +40,26 @@
   margin: 10px 10px;
   width: calc(100vw - 20px);
   box-shadow: 0 2px 10px 0 #c4c8fa;
+  transition: all ease-out .4s;
+}
+
+.vehicle-bid-card:nth-child(2) { transition-delay: 50ms; }
+.vehicle-bid-card:nth-child(3) { transition-delay: 100ms; }
+.vehicle-bid-card:nth-child(4) { transition-delay: 150ms; }
+.vehicle-bid-card:nth-child(5) { transition-delay: 200ms; }
+.vehicle-bid-card:nth-child(6) { transition-delay: 250ms; }
+.vehicle-bid-card:nth-child(7) { transition-delay: 300ms; }
+.vehicle-bid-card:nth-child(8) { transition-delay: 350ms; }
+.vehicle-bid-card:nth-child(9) { transition-delay: 400ms; }
+.vehicle-bid-card:nth-child(10) { transition-delay: 450ms; }
+
+.vehicle-bid-card--hidden {
+  transform: translateY(120vh);
 }
 
 .vehicle-bid-card--small {
-  position: absolute;
   bottom: 0;
+  position: absolute;
 }
 
 .vehicle-bid-card--small .vehicle-card img {
