@@ -143,3 +143,9 @@ input, select {
   width: 60px;
   height: 60px;
 }
+
+img.currency-symbol {
+  height: 13px;
+  margin-bottom: -4px;
+  margin-left: 3px;
+}
