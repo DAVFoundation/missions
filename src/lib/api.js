@@ -19,3 +19,12 @@ export const createRequest = ({pickup, dropoff, requested_pickup_time, size, wei
       response => response.json()
     );
 };
+
+export const chooseBid = (bid_id) => {
+  const userId = store.getState().settings.user_id;
+  let url = new URL(`/choose_bid`, apiRoot);
+  url.searchParams.set('user_id', userId);
+  url.searchParams.set('bid_id', bid_id);
+  return fetch(url)
+    .then(response => response.json());
+};
