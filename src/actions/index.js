@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
-import { fetchStatus, createRequest as apiCreateRequest } from '../lib/api';
+import { fetchStatus as apiFetchStatus, createRequest as apiCreateRequest } from '../lib/api';
 
-export const updateStatus = createAction('UPDATE_STATUS', fetchStatus);
+export const updateStatus = createAction('UPDATE_STATUS', apiFetchStatus);
 
 export const updateStatusFulfilled = createAction('UPDATE_STATUS_FULFILLED');
 
