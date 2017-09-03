@@ -31,7 +31,6 @@ class OrderScreen extends Component {
     const { userCoords, createRequest } = this.props;
     this.updateStoreFromForm({stage: 'searching'});
     let requestDetails = this.createOrderDetailsObject();
-    requestDetails.user_id = '0xabc';
     requestDetails.pickup = requestDetails.pickup || userCoords.lat+','+userCoords.long;
     createRequest(requestDetails);
   }
