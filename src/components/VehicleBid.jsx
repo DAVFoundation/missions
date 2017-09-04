@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import currencyImage from '../images/dav.svg';
 
 const VehicleBid = ({bid, vehicle, shown, chooseBid}) => {
@@ -25,9 +24,9 @@ const VehicleBid = ({bid, vehicle, shown, chooseBid}) => {
       </div>
       <dl className="bid-details">
         <dt>Estimated pickup time:</dt>
-        <dd>{moment(bid.pickup, 'x').fromNow()}</dd>
-        <dt>Estimated dropoff time:</dt>
-        <dd>{moment(bid.dropoff, 'x').format('h:mm a')}</dd>
+        <dd>in {Math.ceil(bid.pickup)} minutes</dd>
+        <dt>Estimated delivery time:</dt>
+        <dd>{Math.ceil(bid.dropoff)} minutes</dd>
         <dt>Cost for delivery:</dt>
         <dd>{bid.bid} <img src={currencyImage} className="currency-symbol" alt="DAV"/></dd>
       </dl>
