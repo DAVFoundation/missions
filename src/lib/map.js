@@ -1,6 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 import { makeImage } from './utils';
 import droneIcon from '../images/icon_drone.png';
+import mapStyle from './map_style.json';
 
 const createGeoJson = (features = []) => {
   return {
@@ -42,7 +43,7 @@ export const createMap = ({containerId, coords, onVehicleClick, onMoveEnd}) => {
   // Create the map
   let map = new mapboxgl.Map({
     container: containerId,
-    style: '/lib/map_style.json',
+    style: mapStyle,
     center: [coords.long, coords.lat],
     zoom: 14,
     attributionControl: false
