@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './MainScreen.css';
 import logo from '../images/logo_missions.png';
 
 class MainScreen extends Component {
+  componentDidMount() {
+    this.props.onMount();
+  }
   render() {
     return (
       <div id="main-screen" className="screen">
@@ -15,5 +19,10 @@ class MainScreen extends Component {
     );
   }
 }
+
+MainScreen.propTypes = {
+  onMount: PropTypes.func.isRequired,
+};
+
 
 export default MainScreen;
