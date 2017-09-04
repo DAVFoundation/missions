@@ -1,6 +1,6 @@
 import store from '../store';
 
-const apiRoot = 'http://localhost:8888';
+const apiRoot = process.env.MISSION_CONTROL_HOST;
 
 export const fetchStatus = ({ id, lat, long, requestId }) => {
   let url = new URL(`/status`, apiRoot);

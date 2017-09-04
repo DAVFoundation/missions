@@ -9,7 +9,8 @@ module.exports = merge(common, {
     new UglifyJSPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production')
+        'NODE_ENV': JSON.stringify('production'),
+        'MISSION_CONTROL_HOST': JSON.stringify('https://ctrl.missions.io')
       }
     })
   ]

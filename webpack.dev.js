@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
@@ -10,4 +11,12 @@ module.exports = merge(common, {
     port: 3333,
     historyApiFallback: true
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('development'),
+        'MISSION_CONTROL_HOST': JSON.stringify('http://localhost:8888')
+      }
+    })
+  ]
 });
