@@ -7,7 +7,7 @@ export const makeImage = (imageData) => {
   });
 };
 
-export const getShortCoordsString = (coords, precision = 7) => {
+export const getShortCoordsString = (coords = {}, precision = 6) => {
   const {lat, long} = coords;
   return lat && long && `${lat.toFixed(precision)}, ${long.toFixed(precision)}`;
 };
