@@ -11,3 +11,8 @@ export const getShortCoordsString = (coords = {}, precision = 6) => {
   const {lat, long} = coords;
   return lat && long && `${lat.toFixed(precision)}, ${long.toFixed(precision)}`;
 };
+
+export const coordsFromString = (strCoords) => {
+  const [lat, long] = strCoords.replace(/[^\d.,]/gi, '').split(',');
+  return (lat && long) ? {lat: parseFloat(lat), long: parseFloat(long)} : undefined;
+};
