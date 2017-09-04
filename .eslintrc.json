@@ -35,5 +35,6 @@
     ]
   },
   "globals": {
+    "process": false
   }
 }
