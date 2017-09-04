@@ -12,6 +12,10 @@ class OrderScreen extends Component {
     this.submitForm = this.submitForm.bind(this);
   }
 
+  componentDidMount() {
+    this.props.onMount();
+  }
+
   createOrderDetailsObject() {
     return {
       pickup: coordsFromString(this.pickupNode.value),
@@ -101,6 +105,7 @@ OrderScreen.propTypes = {
   weight: PropTypes.string,
   updateOrderDetails: PropTypes.func.isRequired,
   createRequest: PropTypes.func.isRequired,
+  onMount: PropTypes.func.isRequired,
 };
 
 export default OrderScreen;
