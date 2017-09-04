@@ -7,9 +7,9 @@ export const makeImage = (imageData) => {
   });
 };
 
-export const getShortCoordsString = (coords = {}, precision = 6) => {
+export const getShortCoordsString = (coords = {}, precision = 6, separator=', ') => {
   const {lat, long} = coords;
-  return lat && long && `${lat.toFixed(precision)}, ${long.toFixed(precision)}`;
+  return lat && long && lat.toFixed(precision)+separator+long.toFixed(precision);
 };
 
 export const coordsFromString = (strCoords) => {
