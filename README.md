@@ -1,5 +1,5 @@
 # Missions
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/DAVFoundation/DAV-Contributors)
+[![Gitter](https://img.shields.io/gitter/room/DAVFoundation/DAV-Contributors.svg?style=flat-square)](https://gitter.im/DAVFoundation/DAV-Contributors)
 [![license](https://img.shields.io/github/license/DAVFoundation/missions.svg?style=flat-square)](https://github.com/DAVFoundation/missions/blob/master/LICENSE)
 
 > By DAV
