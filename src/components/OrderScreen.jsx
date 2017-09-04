@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { getShortCoordsString } from '../lib/utils';
+import { getShortCoordsString, coordsFromString } from '../lib/utils';
 import './OrderScreen.css';
 import arrow from '../images/arrow-left.svg';
 
@@ -14,8 +14,8 @@ class OrderScreen extends Component {
 
   createOrderDetailsObject() {
     return {
-      pickup: this.pickupNode.value || undefined,
-      dropoff: this.dropoffNode.value || undefined,
+      pickup: coordsFromString(this.pickupNode.value),
+      dropoff: coordsFromString(this.dropoffNode.value),
       size: this.sizeNode.value || undefined,
       weight: this.weightNode.value || undefined,
       requested_pickup_time: this.pickupTimeNode.value || undefined,
@@ -31,15 +31,17 @@ class OrderScreen extends Component {
     const { userCoords, createRequest } = this.props;
     this.updateStoreFromForm({stage: 'searching'});
     let requestDetails = this.createOrderDetailsObject();
-    requestDetails.pickup = requestDetails.pickup || userCoords.lat+','+userCoords.long;
+    requestDetails.pickup = requestDetails.pickup || {lat: userCoords.lat, long: userCoords.long};
     createRequest(requestDetails);
   }
 
   render() {
     const { userCoords, pickup, dropoff, size, weight } = this.props;
     const requested_pickup_time = this.props.requested_pickup_time || (new Date).toTimeString().slice(0,5);
-    const coordsString = getShortCoordsString(userCoords);
-    const pickupPlaceholder = coordsString ? `Your current location (${coordsString})` : '';
+    const userCoordsString = getShortCoordsString(userCoords);
+    const pickupPlaceholder = userCoordsString ? `Your current location (${userCoordsString})` : '';
+    const pickupCoordsString = getShortCoordsString(pickup);
+    const dropoffCoordsString = getShortCoordsString(dropoff);
     return (
       <div id="order-screen" className="screen">
         <Link to="/" className="back-button" onClick={this.updateStoreFromForm}>
@@ -50,12 +52,12 @@ class OrderScreen extends Component {
 
         <div className="form-field">
           <label htmlFor="pickup-location">Set pickup location</label>
-          <input type="text" id="pickup-location" placeholder={pickupPlaceholder} defaultValue={pickup} ref={node => { this.pickupNode = node; }} />
+          <input type="text" id="pickup-location" placeholder={pickupPlaceholder} defaultValue={pickupCoordsString} ref={node => { this.pickupNode = node; }} />
         </div>
 
         <div className="form-field">
           <label htmlFor="dropoff-location">Set dropoff location</label>
-          <input type="text" id="dropoff-location" defaultValue={dropoff} ref={node => { this.dropoffNode = node; }} />
+          <input type="text" id="dropoff-location" defaultValue={dropoffCoordsString} ref={node => { this.dropoffNode = node; }} />
         </div>
 
         <div className="form-field">
@@ -92,8 +94,8 @@ class OrderScreen extends Component {
 
 OrderScreen.propTypes = {
   userCoords: PropTypes.object,
-  pickup: PropTypes.string,
-  dropoff: PropTypes.string,
+  pickup: PropTypes.object,
+  dropoff: PropTypes.object,
   requested_pickup_time: PropTypes.string,
   size: PropTypes.string,
   weight: PropTypes.string,

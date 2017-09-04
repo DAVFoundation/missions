@@ -1,4 +1,5 @@
 import store from '../store';
+import { getShortCoordsString } from '../lib/utils';
 
 const apiRoot = process.env.MISSION_CONTROL_HOST;
 
@@ -13,11 +14,11 @@ export const fetchStatus = ({ id, lat, long, requestId }) => {
 };
 
 export const createRequest = ({pickup, dropoff, requested_pickup_time, size, weight}) => {
+  pickup = getShortCoordsString(pickup, 8, ',');
+  dropoff = getShortCoordsString(dropoff, 8, ',');
   const userId = store.getState().settings.user_id;
   return fetch(`${apiRoot}/request/new?user_id=${userId}&pickup=${pickup}&dropoff=${dropoff}&requested_pickup_time=${requested_pickup_time}&size=${size}&weight=${weight}`)
-    .then(
-      response => response.json()
-    );
+    .then(response => response.json());
 };
 
 export const chooseBid = (bid_id) => {
