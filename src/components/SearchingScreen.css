@@ -1,6 +1,6 @@
 #radar {
   position: absolute;
-  top: calc(50vh - 185px);
+  top: calc(50% - 185px);
   left: calc(50vw - 185px);
   animation-name: spin;
   animation-duration: 1200ms;
