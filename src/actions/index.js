@@ -17,4 +17,4 @@ export const createRequestFulfilled = createAction('CREATE_REQUEST_FULFILLED');
 
 export const chooseBid = createAction('CHOOSE_BID', apiChooseBid);
 
-export const chooseBidPending = createAction('CHOOSE_BID_PENDING', apiChooseBid);
+export const chooseBidPending = createAction('CHOOSE_BID_PENDING');
