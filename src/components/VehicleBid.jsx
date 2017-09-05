@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import VehicleCard from './VehicleCard.jsx';
 import currencyImage from '../images/dav.svg';
 
 const VehicleBid = ({bid, vehicle, shown, chooseBid}) => {
@@ -14,14 +15,7 @@ const VehicleBid = ({bid, vehicle, shown, chooseBid}) => {
   }
   return (
     <div className={classNames.join(' ')}>
-      <div className="vehicle-card">
-        <img src={vehicle.icon} />
-        <div className="vehicle-vitals">
-          <a href="#" className="med-button choose-bid-button" onClick={clickChooseBid}>Order</a>
-          <h2>{vehicle.model}</h2>
-          <div className="rating">Rating <strong>{vehicle.rating}</strong></div>
-        </div>
-      </div>
+      <VehicleCard icon={vehicle.icon} buttonClass={'choose-bid-button'} buttonOnClick={clickChooseBid} buttonText="Order" model={vehicle.model} rating={vehicle.rating} />
       <dl className="bid-details">
         <dt>Estimated pickup time:</dt>
         <dd>in {Math.ceil(bid.pickup)} minutes</dd>

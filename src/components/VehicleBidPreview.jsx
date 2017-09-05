@@ -1,15 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import VehicleCard from './VehicleCard.jsx';
 
 const VehicleBidPreview = ({vehicle}) => (
   <div className="vehicle-bid-card vehicle-bid-card--small">
-    <div className="vehicle-card">
-      <img src={vehicle.icon} />
-      <div className="vehicle-vitals">
-        <h2>{vehicle.model}</h2>
-        <div className="rating">Rating <strong>{vehicle.rating}</strong></div>
-      </div>
-    </div>
+    <VehicleCard icon={vehicle.icon} model={vehicle.model} rating={vehicle.rating} />
   </div>
 );
 
