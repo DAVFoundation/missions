@@ -1,8 +1,8 @@
 import { handleActions } from 'redux-actions';
-import { updateOrderDetails, createRequestFulfilled, updateStatusFulfilled, resetOrderDetails } from '../actions';
+import { updateOrderDetails, createRequestFulfilled, updateStatusFulfilled, resetOrderDetails, chooseBidPending } from '../actions';
 
 const defaultState = {
-  stage: 'draft', // draft | searching | choosing
+  stage: 'draft', // draft | searching | choosing | signing
   pickup: undefined,
   dropoff: {lat: 32.075477, long: 34.775730},
   requested_pickup_time: undefined,
@@ -32,5 +32,9 @@ export default handleActions({
   },
 
   [resetOrderDetails]: () => defaultState,
+
+  [chooseBidPending]: (state) => {
+    return {...state, stage: 'signing'};
+  }
 
 }, defaultState);
