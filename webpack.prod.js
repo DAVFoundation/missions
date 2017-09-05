@@ -1,8 +1,10 @@
+const path = require('path');
 const webpack = require('webpack');
 const common = require('./webpack.common.js');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = merge(common, {
   devtool: 'source-map',
@@ -19,5 +21,11 @@ module.exports = merge(common, {
       { from: 'src/browserconfig.xml' },
       { from: 'src/manifest.json' },
     ]),
+    // WorkboxPlugin needs to remain as the last plugin
+    new WorkboxPlugin({
+      globDirectory: './dist/',
+      globPatterns: ['**/*.{png,svg,gif}'],
+      swDest: path.resolve(__dirname, 'dist/service-worker.js')
+    })
   ]
 });
