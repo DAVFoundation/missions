@@ -4,6 +4,7 @@ const common = require('./webpack.common.js');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = merge(common, {
@@ -15,6 +16,12 @@ module.exports = merge(common, {
         'NODE_ENV': JSON.stringify('production'),
         'MISSION_CONTROL_HOST': JSON.stringify('https://ctrl.missions.io')
       }
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.resolve(__dirname, 'src/index.html'),
+      favicon: path.resolve(__dirname, 'src/favicon.ico'),
+      hasServiceWorker: true
     }),
     new CopyWebpackPlugin([
       { from: 'src/images', to: 'images' },
