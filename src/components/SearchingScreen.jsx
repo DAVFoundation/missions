@@ -7,12 +7,18 @@ import './SearchingScreen.css';
 import radar from '../images/radar.png';
 
 class SearchingScreen extends Component {
+  componentDidUpdate(prevProps) {
+    if (this.props.stage === 'signing' && prevProps.stage !== 'signing') {
+      this.screenNode.scrollTop = 0;
+    }
+  }
+
   render() {
     const { bids, vehicles, stage, cancelSearch, chooseBid } = this.props;
     let screenClassNames = ['screen'];
     if (stage === 'choosing') screenClassNames.push('screen--stage-choosing');
     return (
-      <div id="searching-screen" className={screenClassNames.join(' ')}>
+      <div id="searching-screen" className={screenClassNames.join(' ')} ref={node => { this.screenNode = node; }}>
         {stage === 'searching' && (
           <div>
             <h1>Matching you with autonomous vehicles</h1>
