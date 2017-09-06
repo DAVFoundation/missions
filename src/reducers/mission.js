@@ -22,7 +22,7 @@ export default handleActions({
       signed_at,
     } = payload.mission;
     const mission = {
-      missionId: parseInt(mission_id),
+      id: parseInt(mission_id),
       vehicleId: vehicle_id,
       price: parseFloat(price),
       timeToPickup: parseFloat(time_to_pickup),
