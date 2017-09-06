@@ -16,3 +16,6 @@ export default handleActions({
 }, defaultState);
 
 export const getVehicleArray = (state) => Object.entries(state).map(([, vehicle]) => vehicle);
+
+export const getVehicleOnMission = state =>
+  (state.mission.vehicleId) ? state.vehicles[state.mission.vehicleId] : undefined;
