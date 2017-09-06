@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import VehicleBid from './VehicleBid.jsx';
 import VehicleBidPreview from './VehicleBidPreview.jsx';
+import VehicleCard from './VehicleCard.jsx';
+import UserCardContainer from '../containers/UserCardContainer.jsx';
 import './SearchingScreen.css';
 import radar from '../images/radar.png';
 
@@ -14,9 +16,12 @@ class SearchingScreen extends Component {
   }
 
   render() {
-    const { bids, vehicles, stage, cancelSearch, chooseBid } = this.props;
+    const { bids, vehicles, stage, cancelSearch, chooseBid, vehicleOnMission, missionId } = this.props;
+
     let screenClassNames = ['screen'];
     if (stage === 'choosing') screenClassNames.push('screen--stage-choosing');
+    if (stage === 'signing')  screenClassNames.push('screen--stage-signing');
+
     return (
       <div id="searching-screen" className={screenClassNames.join(' ')} ref={node => { this.screenNode = node; }}>
         {stage === 'searching' && (
@@ -31,10 +36,27 @@ class SearchingScreen extends Component {
             </div>
           </div>
         )}
+
         <div id="vehicle-bid-cards">
           {bids.map(bid => (
             <VehicleBid key={bid.id} bid={bid} vehicle={vehicles[bid.vehicle_id]} shown={stage === 'choosing'} chooseBid={chooseBid} />
           ))}
+        </div>
+
+        <div className="screen-background--dark">
+          {stage === 'signing' && vehicleOnMission && (
+            <div className="modal-container">
+              <div id="signing-box" className="modal-box">
+                <h2>Initiating DAV Transaction</h2>
+                <p>Signing secure smart contract between:</p>
+                <VehicleCard icon={vehicleOnMission.icon} id={vehicleOnMission.id} model={vehicleOnMission.model} />
+                <div id="sign-here">
+                  <img src={'/images/signing.gif?'+missionId} alt="Signing smart contract" />
+                </div>
+                <UserCardContainer />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );

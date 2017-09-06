@@ -132,3 +132,50 @@ dl.bid-details {
   text-align: right;
   font-weight: 500;
 }
+
+#searching-screen .screen-background--dark {
+  z-index: -1;
+  transition: all ease-in-out .4s;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#searching-screen.screen--stage-signing .screen-background--dark {
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#signing-box {
+  text-align: center;
+}
+#signing-box>h2 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+#signing-box>p {
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+#signing-box .vehicle-vitals h2 {
+  font-size: 14px;
+}
+#signing-box .vehicle-vitals {
+  font-weight: 300;
+  font-size: 11px;
+  color: #383061;
+}
+#signing-box img.user-icon {
+  width: 31px;
+  height: 31px;
+}
+
+#signing-box #sign-here {
+  background: url('/images/and-connector.svg') 1px 0 no-repeat;
+  height: 105px;
+}
+#signing-box #sign-here img {
+  margin-top: 11px;
+}
