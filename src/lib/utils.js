@@ -13,6 +13,6 @@ export const getShortCoordsString = (coords = {}, precision = 6, separator=', ')
 };
 
 export const coordsFromString = (strCoords) => {
-  const [lat, long] = strCoords.replace(/[^\d.,]/gi, '').split(',');
+  const [lat, long] = strCoords.replace(/[^\d.,-]/gi, '').split(',');
   return (lat && long) ? {lat: parseFloat(lat), long: parseFloat(long)} : undefined;
 };
