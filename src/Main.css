@@ -119,6 +119,7 @@ input, select {
 }
 
 .vehicle-card {
+  text-align: left;
   grid-area: vehicle-card;
   display: grid;
   grid-template-columns: 70px 1fr;
