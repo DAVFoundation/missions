@@ -6,7 +6,7 @@ const VehicleCard = ({ id, icon, model, rating, buttonText, buttonOnClick, butto
   if (buttonClass) buttonClasses.push(buttonClass);
   return (
     <div className="vehicle-card">
-      <img src={icon} />
+      <img src={icon} className="user-icon" />
       <div className="vehicle-vitals">
         {buttonText && buttonOnClick && (
           <a href="#" className={buttonClasses.join(' ')} onClick={buttonOnClick}>{buttonText}</a>
