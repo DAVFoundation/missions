@@ -15,6 +15,7 @@ export default connect(
     bids: getBidArray(state.bids),
     stage: state.order.stage,
     vehicleOnMission: getVehicleOnMission(state),
+    missionId: state.mission.id,
   }),
   mapDispatchToProps
 )(SearchingScreen);
