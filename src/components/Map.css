@@ -1,5 +1,11 @@
-#map {
+#map, #map-overlay {
   width: 100vw;
   height: 100%;
   position: absolute;
+}
+
+#map-overlay {
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 3%, rgba(255,255,255,0) 18%, rgba(255,255,255,0) 82%, rgba(255,255,255,1) 97%);
+  box-shadow: inset 0px 0px 10px 3px rgba(255,255,255,0.75);
 }

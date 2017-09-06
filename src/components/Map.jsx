@@ -31,7 +31,10 @@ class Map extends Component {
 
   render() {
     return (
-      <div id="map" />
+      <div>
+        <div id="map" />
+        <div id="map-overlay" />
+      </div>
     );
   }
 }
