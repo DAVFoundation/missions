@@ -43,6 +43,7 @@ class SearchingScreen extends Component {
 
 SearchingScreen.propTypes = {
   vehicles: PropTypes.object.isRequired,
+  vehicleOnMission: PropTypes.object,
   bids: PropTypes.array.isRequired,
   stage: PropTypes.string.isRequired,
   cancelSearch: PropTypes.func.isRequired,
