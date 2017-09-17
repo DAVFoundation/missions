@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { initializeApp } from './lib/app';
 import Map from './containers/MapContainer.jsx';
 import MainScreenContainer from './containers/MainScreenContainer.jsx';
@@ -19,18 +19,22 @@ class App extends Component {
       <Router>
         <div>
           <Map />
+          <Switch >
 
-          <Route exact path="/" component={ MainScreenContainer } />
+            <Route exact path="/" component={ MainScreenContainer } />
 
-          <Route path="/welcome" component={ Welcome } />
+            <Route path="/welcome" component={ Welcome } />
 
-          <Route path="/vehicle/:uid" component={ MainScreenContainer } />
-          <Route path="/vehicle/:uid" component={ VehicleDetailsScreen } />
+            <Route path="/vehicle/:uid" component={ MainScreenContainer } />
+            <Route path="/vehicle/:uid" component={ VehicleDetailsScreen } />
 
-          <Route path="/order" component={ OrderScreenContainer } />
+            <Route path="/order" component={ OrderScreenContainer } />
 
-          <Route path="/searching" component={ SearchingScreenContainer } />
+            <Route path="/searching" component={ SearchingScreenContainer } />
 
+            <Route component={ () => <Redirect to='/' /> } />
+
+          </Switch>
         </div>
       </Router>
     );
