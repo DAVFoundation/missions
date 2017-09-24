@@ -5,11 +5,13 @@ const apiRoot = process.env.MISSION_CONTROL_HOST;
 
 export const fetchStatus = ({ id, lat, long, requestId }) => {
   const userId = store.getState().settings.user_id;
+  const missionId = store.getState().mission.id;
   let url = new URL(`/status`, apiRoot);
   id && url.searchParams.set('id', id);
   lat && url.searchParams.set('lat', lat); // Don't stand on the equator or you'll break this
   long && url.searchParams.set('long', long);
   requestId && url.searchParams.set('requestId', requestId);
+  missionId && url.searchParams.set('missionId', missionId);
   url.searchParams.set('userId', userId);
   return fetch(url)
     .then(response => response.json());
