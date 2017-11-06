@@ -4,7 +4,7 @@ import { updateOrderDetails, createRequestFulfilled, updateStatusFulfilled, rese
 const defaultState = {
   stage: 'draft', // draft | searching | choosing | signing
   pickup: undefined,
-  dropoff: {lat: 55.711948, long: 13.203493},
+  dropoff: {lat: 55.704265, long: 13.185997},
   requested_pickup_time: undefined,
   size: 'letter',
   weight: '500',
