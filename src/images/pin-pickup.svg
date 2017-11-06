@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="38px" viewBox="0 0 22 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 9</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Main-screen-during-mission" transform="translate(-253.000000, -106.000000)">
+            <g id="Group-9" transform="translate(253.000000, 106.000000)">
+                <circle id="point_blue" fill="#684BF1" cx="11" cy="34" r="4"></circle>
+                <g id="Group-4">
+                    <g id="location">
+                        <path d="M11,30 L10.3993813,29.3201133 C9.97486466,28.8399021 0,17.4749031 0,10.6686102 C0,4.78643527 4.93426141,0 11,0 C17.0657386,0 22,4.78643527 22,10.6686102 C22,17.4749031 12.0251353,28.8399021 11.6006187,29.3201133 L11,30 L11,30 Z" id="Fill-55" fill="#B1A3F8"></path>
+                        <ellipse id="Oval" fill="#FFFFFF" cx="11.0595514" cy="10.7345957" rx="8.63184901" ry="8.37180298"></ellipse>
+                    </g>
+                    <g id="Group-6" transform="translate(7.000000, 5.000000)" fill="#B1A3F8">
+                        <polyline id="Fill-74" points="7.40635028 5.32839589 4.20031208 2.04015158 0.994273873 5.32839589 0.205815292 4.51848956 4.20031208 0.421569783 8.19480886 4.51848956 7.40635028 5.32839589"></polyline>
+                        <polygon id="Fill-75" points="3.60026749 1.23086068 4.80035666 1.23086068 4.80035666 11 3.60026749 11"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
