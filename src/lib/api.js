@@ -33,3 +33,11 @@ export const chooseBid = (bid_id) => {
   return fetch(url)
     .then(response => response.json());
 };
+
+export const cancelRequest = () => {
+  const requestId = store.getState().order.requestId;
+  let url = new URL(`/request/cancel`, apiRoot);
+  url.searchParams.set('requestId', requestId);
+  return fetch(url)
+    .then(response => response.json());
+};
