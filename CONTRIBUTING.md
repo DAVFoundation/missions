@@ -28,7 +28,7 @@ A lot of **missions** functionality came from pull requests sent by the develope
 
 #### Important:
 
-* This project is just the client-facing side of missions. You can run it on its own and do some limited development, but you won't see any drones on the map, or get any responses to your requests for pickups. To get the full-experience, you will need to also [get **Mission Control** up and running](https://github.com/DAVFoundation/missioncontrol/blob/master/CONTRIBUTING.md)
+* This project is just the client-facing side of missions. You can run it on its own and do some limited development, but you won't see any drones on the map, or get any responses to your requests for pickups. To get the full-experience, you will need to also [get **Mission Control** up and running](https://github.com/DAVFoundation/missioncontrol/blob/master/CONTRIBUTING.md) in a separate console window
 * Please stick to the project's existing coding style. Coding styles don't need to have a consensus, they just need to be consistent :smile:
 * Push your changes to a topic branch in your fork of the repository. Your branch should be based on the `master` branch
 * When submitting a [pull request](https://help.github.com/articles/using-pull-requests/), please elaborate as much as possible about the change, your motivation for the change, etc.
