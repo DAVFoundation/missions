@@ -3,9 +3,10 @@ import { getBidArray } from '../reducers/bids';
 import { getVehicleOnMission } from '../reducers/vehicles';
 import SearchingScreen from '../components/SearchingScreen.jsx';
 import { resetOrderDetails, chooseBid } from '../actions';
+import { cancelRequest } from '../lib/api';
 
 const mapDispatchToProps = (dispatch) => ({
-  cancelSearch: () => dispatch(resetOrderDetails()),
+  cancelSearch: () => cancelRequest().then(dispatch(resetOrderDetails())),
   chooseBid: (bidId) => dispatch(chooseBid(bidId)),
 });
 
