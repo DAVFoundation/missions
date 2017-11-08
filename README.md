@@ -1,5 +1,6 @@
 # Missions
 <img src="https://user-images.githubusercontent.com/926653/30173417-3eeb63fe-9400-11e7-90aa-e9997aac1ef1.gif" align="right" />
+
 [![Gitter](https://img.shields.io/gitter/room/DAVFoundation/DAV-Contributors.svg?style=flat-square)](https://gitter.im/DAVFoundation/DAV-Contributors)
 [![license](https://img.shields.io/github/license/DAVFoundation/missions.svg?style=flat-square)](https://github.com/DAVFoundation/missions/blob/master/LICENSE)
 
