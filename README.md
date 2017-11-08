@@ -4,7 +4,7 @@
 
 > By DAV
 
-<img src="./resources/images/missionapp-logo.png" align="right" />
+<img src="https://user-images.githubusercontent.com/926653/30173417-3eeb63fe-9400-11e7-90aa-e9997aac1ef1.gif" align="right" />
 
 Missions is the client facing side of the marketplace connecting DAV users looking to ship packages, with autonomous vehicles.
 
