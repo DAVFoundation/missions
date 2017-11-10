@@ -5,10 +5,10 @@ const config = {
 };
     
 export default (key) => {
-  if (config[key]) {
+  if (!(key in config)) {
+    throw `The given key "${key}" to config was invalid`;
+  } else {
     return config[key];
   }
-    
-  throw 'The given key to config was invalid';
 };
   
