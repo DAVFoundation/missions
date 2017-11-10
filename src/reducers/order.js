@@ -1,13 +1,14 @@
 import { handleActions } from 'redux-actions';
 import { updateOrderDetails, createRequestFulfilled, updateStatusFulfilled, resetOrderDetails, chooseBidPending } from '../actions';
+import getConfig from '../config';
 
 const defaultState = {
   stage: 'draft', // draft | searching | choosing | signing
   pickup: undefined,
-  dropoff: {lat: 55.704265, long: 13.185997},
+  dropoff: getConfig('default_dropoff_coordinates'),
   requested_pickup_time: undefined,
-  size: 'letter',
-  weight: '500',
+  size: getConfig('default_package_size'),
+  weight: getConfig('default_package_weight'),
 };
 
 export default handleActions({
