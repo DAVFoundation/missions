@@ -4,7 +4,13 @@ import { Link } from 'react-router-dom';
 import { getShortCoordsString, coordsFromString } from '../lib/utils';
 import './OrderScreen.css';
 import arrow from '../images/arrow-left.svg';
-import PackageOptions from './PackageOptions.jsx';
+import IconSelector from './IconSelector.jsx';
+
+// icons
+import sizeLetter from '../images/size_letter.svg';
+import sizeCan from '../images/size_can.svg';
+import sizePizza from '../images/size_pizza.svg';
+import sizeBox from '../images/size_box.svg';
 
 class OrderScreen extends Component {
   constructor(props) {
@@ -16,6 +22,17 @@ class OrderScreen extends Component {
       packageSize: ''
     };
 
+    // Options should be read from some kind of configuration
+    // but putting it here for now
+    this.packageSizeOptions = [
+      { id: 'letter', icon: sizeLetter },
+      { id: 'can', icon: sizeCan },
+      { id: 'pizza', icon: sizePizza },
+      { id: 'box', icon: sizeBox }
+    ];
+
+    // Reference to a method that toggles the currently selected
+    // package size option on / off.
     this.selectPackageSize = this.selectPackageSize.bind(this);
   }
 
@@ -50,12 +67,9 @@ class OrderScreen extends Component {
   }
 
   selectPackageSize(size) {
-    console.log('select', size);
-    if (this.state.packageSize !== size) {
-      this.setState({ packageSize: size });
-    } else {
-      this.setState({ packageSize: undefined });
-    }
+    this.setState({
+      packageSize: this.state.packageSize !== size ? size : undefined
+    });
   }
 
   getSizeContainer() {}
@@ -102,9 +116,10 @@ class OrderScreen extends Component {
 
         <div className="form-field">
           <label>How big is the package?</label>
-          <PackageOptions
+          <IconSelector
             onSelect={this.selectPackageSize}
             selectedOption={this.state.packageSize}
+            options={this.packageSizeOptions}
           />
         </div>
 

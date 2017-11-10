@@ -1,0 +1,29 @@
+.IconSelector {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.option {
+  display: flex;
+  width: 60px;
+  height: 60px;
+  border-radius: 9999px;
+  background-color: rgba(116, 67, 250, 0);
+  align-items: center;
+  justify-content: center;
+}
+
+.selected {
+  transition: background-color 0.3s ease;
+  background-color: rgba(116, 67, 250, 1);
+}
+
+.svgSelected {
+  filter: hue-rotate(360deg) saturate(0) contrast(100);
+  -webkit-filter: hue-rotate(360deg) saturate(0) contrast(100);
+}
