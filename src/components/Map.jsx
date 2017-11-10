@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createMap, updateMap } from '../lib/map';
+import { createMap, updateMap, initiateZoomTransition } from '../lib/map';
 import './Map.css';
 
 class Map extends Component {
@@ -12,6 +12,12 @@ class Map extends Component {
 
   shouldComponentUpdate(nextProps) {
     updateMap(this.map, nextProps.vehicles);
+
+    if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching')
+    {
+      initiateZoomTransition(this.map, 15, 14);
+    }
+
     return false;
   }
 
@@ -48,6 +54,7 @@ Map.propTypes = {
   coords: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   onMoveEnd: PropTypes.func.isRequired,
+  orderStage: PropTypes.string.isRequired
 };
 
 export default Map;

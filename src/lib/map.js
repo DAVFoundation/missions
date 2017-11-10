@@ -103,12 +103,28 @@ export const createMap = ({containerId, coords, onVehicleClick, onMoveEnd}) => {
 };
 
 export const updateMap = (map, vehicles = []) => {
-  const _updateMap = () => {
+  handleMapUpdate(map, () => {
     map.getSource('vehicles').setData(createGeoJson(vehicles));
-  };
+  });
+};
+
+const handleMapUpdate = (map, update) => {
   if (!map.loaded()) {
-    map.on('load', _updateMap);
+    map.on('load', update);
   } else {
-    _updateMap();
+    update();
   }
+};
+
+export const initiateZoomTransition = (map, startZoomLevel, endZoomLevel) => {
+  handleMapUpdate(map, () => {
+    map.setZoom(startZoomLevel);
+
+    map.flyTo({
+      center: map.center,
+      zoom: endZoomLevel,
+      bearing: 0,
+      speed: 0.03
+    });
+  });
 };

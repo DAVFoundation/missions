@@ -22,7 +22,10 @@ export default connect(
       vehicles = getVehicleArray(state.vehicles);
     }
 
-    return {vehicles};
+    return {
+      vehicles,
+      orderStage: state.order.stage
+    };
   },
   mapDispatchToProps
 )(withRouter(Map));
