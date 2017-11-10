@@ -1,44 +1,70 @@
 const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = {
-  entry: './src/Main.jsx',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
-    filename: 'bundle.js',
-    sourceMapFilename: '[file].map'
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'
-      },
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      },
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192
+module.exports = (env = 'development') => {
+  return {
+    entry: {
+      app: './src/Main.jsx',
+      vendor: [
+        'mapbox-gl',
+        'react',
+        'react-dom',
+        'react-redux',
+        'react-router-dom',
+        'redux',
+        'redux-actions',
+        'redux-devtools-extension',
+        'redux-promise-middleware',
+      ],      
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      publicPath: '/',
+      filename: 'bundle.js',
+      sourceMapFilename: '[file].map'
+    },
+    module: {
+      loaders: [
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader'
+        },
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loader: 'eslint-loader'
+        },
+        {
+          test: /\.css$/,
+          exclude: /node_modules/,
+          use: (env === 'production') ? ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: 'css-loader'
+          }) : [
+            'style-loader',
+            'css-loader'
+          ]
+        },
+        {
+          test: /\.(png|jpg|gif|svg)$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 8192
+              }
             }
-          }
-        ]
-      }
+          ]
+        }
+      ]
+    },
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        filename: 'vendor.bundle.js'
+      })      
     ]
-  }
-};
+  };
+}

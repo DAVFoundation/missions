@@ -1,19 +1,23 @@
 const path = require('path');
 const webpack = require('webpack');
-const common = require('./webpack.common.js');
+const getCommon = require('./webpack.common.js');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = merge(common, {
-  devtool: 'source-map',
+process.env.NODE_ENV = 'production';
+
+module.exports = merge(getCommon(process.env.NODE_ENV), {
+  devtool: 'eval',  
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production'),
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
         'MISSION_CONTROL_HOST': JSON.stringify('https://ctrl.missions.io')
       }
     }),
@@ -28,6 +32,10 @@ module.exports = merge(common, {
       { from: 'src/browserconfig.xml' },
       { from: 'src/manifest.json' },
     ]),
+    new ExtractTextPlugin('styles.css'),
+    new UglifyJSPlugin({
+      sourceMap: true      
+    }),    
     // WorkboxPlugin needs to remain as the last plugin
     new WorkboxPlugin({
       globDirectory: './dist/',
