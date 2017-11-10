@@ -1,10 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
+const getCommon = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = merge(common, {
+process.env.NODE_ENV = 'development';
+
+module.exports = merge(getCommon(process.env.NODE_ENV), {
   devtool: 'eval-source-map',
   devServer: {
     inline: true,
@@ -21,7 +23,7 @@ module.exports = merge(common, {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('development'),
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
         'MISSION_CONTROL_HOST': JSON.stringify('http://localhost:8888')
       }
     })
