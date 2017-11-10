@@ -28,7 +28,7 @@ class SearchingScreen extends Component {
           <div>
             <h1>Matching you with autonomous vehicles</h1>
             <Link to="/" className="med-button cancel-button" onClick={cancelSearch}>cancel</Link>
-            <img src={radar} id="radar" />
+            <img src={radar} id="radar" alt="" />
             <div id="vehicle-bid-preview-cards">
               {bids.map(bid => (
                 <VehicleBidPreview key={bid.id} vehicle={vehicles[bid.vehicle_id]} />

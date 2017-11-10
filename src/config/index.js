@@ -6,7 +6,7 @@ const config = {
     
 export default (key) => {
   if (!(key in config)) {
-    throw `The given key "${key}" to config was invalid`;
+    throw new Error(`The given key "${key}" to config was invalid`);
   } else {
     return config[key];
   }
