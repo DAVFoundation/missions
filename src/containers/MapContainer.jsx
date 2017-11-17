@@ -24,7 +24,8 @@ export default connect(
 
     return {
       vehicles,
-      orderStage: state.order.stage
+      orderStage: state.order.stage,
+      orderPickupCoords: state.order.pickup,
     };
   },
   mapDispatchToProps

@@ -15,7 +15,7 @@ class Map extends Component {
 
     if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching')
     {
-      initiateZoomTransition(this.map, 15, 14);
+      initiateZoomTransition(this.map, 15, 14, nextProps.orderPickupCoords);
     }
 
     return false;
@@ -54,7 +54,8 @@ Map.propTypes = {
   coords: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   onMoveEnd: PropTypes.func.isRequired,
-  orderStage: PropTypes.string.isRequired
+  orderStage: PropTypes.string.isRequired,
+  orderPickupCoords: PropTypes.object.isRequired
 };
 
 export default Map;

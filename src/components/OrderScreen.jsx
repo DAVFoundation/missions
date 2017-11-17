@@ -17,6 +17,7 @@ class OrderScreen extends Component {
     super(props);
     this.updateStoreFromForm = this.updateStoreFromForm.bind(this);
     this.submitForm = this.submitForm.bind(this);
+    this.createOrderDetailsObject = this.createOrderDetailsObject.bind(this);
 
     this.state = {
       packageSize: ''
@@ -41,8 +42,13 @@ class OrderScreen extends Component {
   }
 
   createOrderDetailsObject() {
+    const { userCoords } = this.props;
+
     return {
-      pickup: coordsFromString(this.pickupNode.value),
+      pickup: coordsFromString(this.pickupNode.value) || {
+        lat: userCoords.lat,
+        long: userCoords.long
+      },
       dropoff: coordsFromString(this.dropoffNode.value),
       size: this.state.packageSize || undefined,
       weight: this.weightNode.value || undefined,
@@ -56,14 +62,9 @@ class OrderScreen extends Component {
   }
 
   submitForm() {
-    const { userCoords, createRequest } = this.props;
     this.updateStoreFromForm({ stage: 'searching' });
     let requestDetails = this.createOrderDetailsObject();
-    requestDetails.pickup = requestDetails.pickup || {
-      lat: userCoords.lat,
-      long: userCoords.long
-    };
-    createRequest(requestDetails);
+    this.props.createRequest(requestDetails);
   }
 
   selectPackageSize(size) {
