@@ -116,9 +116,10 @@ const handleMapUpdate = (map, update) => {
   }
 };
 
-export const initiateZoomTransition = (map, startZoomLevel, endZoomLevel) => {
+export const initiateZoomTransition = (map, startZoomLevel, endZoomLevel, location) => {
   handleMapUpdate(map, () => {
     map.setZoom(startZoomLevel);
+    map.setCenter([location.long, location.lat]);
 
     map.flyTo({
       center: map.center,
