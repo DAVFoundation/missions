@@ -55,7 +55,7 @@ Map.propTypes = {
   history: PropTypes.object.isRequired,
   onMoveEnd: PropTypes.func.isRequired,
   orderStage: PropTypes.string.isRequired,
-  orderPickupCoords: PropTypes.object.isRequired
+  orderPickupCoords: PropTypes.object
 };
 
 export default Map;
