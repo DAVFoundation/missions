@@ -6,9 +6,10 @@ const VehicleCard = ({ id, icon, model, rating, buttonText, buttonOnClick, butto
   if (buttonClass) buttonClasses.push(buttonClass);
   return (
     <div className="vehicle-card">
-      <img src={icon} className="user-icon" />
+      <img src={icon} className="user-icon" alt="" />
       <div className="vehicle-vitals">
         {buttonText && buttonOnClick && (
+          // eslint-disable-next-line
           <a href="#" className={buttonClasses.join(' ')} onClick={buttonOnClick}>{buttonText}</a>
         )}
         <h2>{model}</h2>

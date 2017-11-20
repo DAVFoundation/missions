@@ -9,8 +9,10 @@
     "url": "https://github.com/DAVFoundation/missions.git"
   },
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "coverage": "npm test -- --coverage"
   },
   "dependencies": {
     "mapbox-gl": "^0.41.0",
@@ -18,32 +20,10 @@
     "react-dom": "^16.1.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-scripts": "^1.0.17",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-promise-middleware": "4.4.2"
-  },
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "clean-webpack-plugin": "^0.1.17",
-    "copy-webpack-plugin": "^4.2.0",
-    "css-loader": "^0.28.7",
-    "eslint": "^4.10.0",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-react": "^7.4.0",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^1.1.5",
-    "html-webpack-plugin": "^2.30.1",
-    "style-loader": "^0.19.0",
-    "uglifyjs-webpack-plugin": "^1.0.1",
-    "url-loader": "^0.6.2",
-    "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.4",
-    "webpack-merge": "^4.1.1",
-    "workbox-webpack-plugin": "^2.1.1"
   }
 }

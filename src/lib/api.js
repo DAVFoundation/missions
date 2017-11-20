@@ -1,7 +1,7 @@
 import store from '../store';
 import { getShortCoordsString } from '../lib/utils';
 
-const apiRoot = process.env.MISSION_CONTROL_HOST;
+const apiRoot = process.env.REACT_APP_MISSION_CONTROL_HOST;
 
 export const fetchStatus = ({ id, lat, long, requestId }) => {
   const userId = store.getState().settings.user_id;
