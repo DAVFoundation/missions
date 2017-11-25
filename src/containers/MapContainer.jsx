@@ -21,11 +21,11 @@ export default connect(
     } else {
       vehicles = getVehicleArray(state.vehicles);
     }
-
     return {
       vehicles,
       orderStage: state.order.stage,
       orderPickupCoords: state.order.pickup,
+      orderDropoffCoords: state.order.dropoff
     };
   },
   mapDispatchToProps

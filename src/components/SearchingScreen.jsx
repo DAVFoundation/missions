@@ -9,6 +9,12 @@ import './SearchingScreen.css';
 import radar from '../images/radar.png';
 
 class SearchingScreen extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+
   componentDidUpdate(prevProps) {
     if (this.props.stage === 'signing' && prevProps.stage !== 'signing') {
       this.screenNode.scrollTop = 0;
@@ -70,7 +76,7 @@ SearchingScreen.propTypes = {
   bids: PropTypes.array.isRequired,
   stage: PropTypes.string.isRequired,
   cancelSearch: PropTypes.func.isRequired,
-  chooseBid: PropTypes.func.isRequired,
+  chooseBid: PropTypes.func.isRequired
 };
 
 export default SearchingScreen;
