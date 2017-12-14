@@ -12,7 +12,7 @@ export const fetchStatus = ({ id, lat, long, requestId }) => {
   long && url.searchParams.set('long', long);
   requestId && url.searchParams.set('requestId', requestId);
   missionId && url.searchParams.set('missionId', missionId);
-  url.searchParams.set('userId', userId);
+  url.searchParams.set('user_id', userId);
   return fetch(url)
     .then(response => response.json());
 };
@@ -36,8 +36,10 @@ export const chooseBid = (bid_id) => {
 
 export const cancelRequest = () => {
   const requestId = store.getState().order.requestId;
+  const userId = store.getState().settings.user_id;
   let url = new URL(`/request/cancel`, apiRoot);
   url.searchParams.set('requestId', requestId);
+  url.searchParams.set('user_id', userId);
   return fetch(url)
     .then(response => response.json());
 };
