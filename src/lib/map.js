@@ -147,7 +147,7 @@ export const createMap = ({containerId, coords, onVehicleClick, onMoveEnd}) => {
 export const updateMap = (map, vehicles = [], {pickup, dropoff} = {}) => {
   handleMapUpdate(map, () => {
     if (vehicles) map.getSource('vehicles').setData(createGeoJson(vehicles));
-    if (pickup && dropoff) {
+    if (pickupAndDropoffPresent(pickup, dropoff)) {
       map.getSource('pickup').setData(turf.point([pickup.long, pickup.lat]));
       map.getSource('dropoff').setData(turf.point([dropoff.long, dropoff.lat]));
     }
@@ -161,6 +161,10 @@ const handleMapUpdate = (map, update) => {
     update();
   }
 };
+
+const pickupAndDropoffPresent = (pickup, dropoff) => {
+  return pickup && dropoff && map.getSource('pickup') && map.getSource('dropoff')
+}
 
 export const initiateZoomTransition = (map, pickup, dropoff) => {
   handleMapUpdate(map, () => {
