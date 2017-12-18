@@ -93,38 +93,6 @@ export const createMap = ({containerId, coords, onVehicleClick, onMoveEnd}) => {
         'icon-image': 'drone',
       }
     });
-    map.addSource('pickup', {
-      'type': 'geojson',
-      'data': {
-        'type': 'FeatureCollection',
-        'features': []
-      }
-    });
-    map.addLayer({
-      'id': 'pickup',
-      'type': 'symbol',
-      'source': 'pickup',
-      'minzoom': 10,
-      'layout': {
-        'icon-image': 'pickup',
-      }
-    });
-    map.addSource('dropoff', {
-      'type': 'geojson',
-      'data': {
-        'type': 'FeatureCollection',
-        'features': []
-      }
-    });
-    map.addLayer({
-      'id': 'dropoff',
-      'type': 'symbol',
-      'source': 'dropoff',
-      'minzoom': 10,
-      'layout': {
-        'icon-image': 'dropoff',
-      }
-    });
     map.on('click', 'vehicles', (e) => onVehicleClick(e.features[0].properties.id));
   });
 
@@ -139,7 +107,8 @@ export const createMap = ({containerId, coords, onVehicleClick, onMoveEnd}) => {
     .then(getUserLocation)
     .then(
       ({coords}) => map.setCenter([coords.longitude, coords.latitude])
-    ).catch(() => {});
+    ).catch(() => {
+    });
 
   return map;
 };
@@ -182,4 +151,39 @@ export const clearPins = (map) => {
   map.removeLayer('dropoff');
   map.removeSource('pickup');
   map.removeSource('dropoff');
+};
+
+export const addTerminalPinSources = (map) => {
+  map.addSource('pickup', {
+    'type': 'geojson',
+    'data': {
+      'type': 'FeatureCollection',
+      'features': []
+    }
+  });
+  map.addLayer({
+    'id': 'pickup',
+    'type': 'symbol',
+    'source': 'pickup',
+    'minzoom': 10,
+    'layout': {
+      'icon-image': 'pickup',
+    }
+  });
+  map.addSource('dropoff', {
+    'type': 'geojson',
+    'data': {
+      'type': 'FeatureCollection',
+      'features': []
+    }
+  });
+  map.addLayer({
+    'id': 'dropoff',
+    'type': 'symbol',
+    'source': 'dropoff',
+    'minzoom': 10,
+    'layout': {
+      'icon-image': 'dropoff',
+    }
+  });
 };
