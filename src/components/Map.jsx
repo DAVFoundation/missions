@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createMap, updateMap, initiateZoomTransition, clearPins} from '../lib/map';
+import { createMap, updateMap, initiateZoomTransition, clearPins, addTerminalPinSources} from '../lib/map';
 import './Map.css';
 
 class Map extends Component {
@@ -19,6 +19,7 @@ class Map extends Component {
 
     if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
       initiateZoomTransition(this.map, nextProps.orderPickupCoords, nextProps.orderDropoffCoords);
+      addTerminalPinSources(this.map);
     }
 
     if(this.props.orderStage === 'searching' && nextProps.orderStage === 'draft') {
