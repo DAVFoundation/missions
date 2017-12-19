@@ -13,6 +13,7 @@
     "build": "webpack --config webpack.prod.js"
   },
   "dependencies": {
+    "@turf/turf": "^5.0.4",
     "mapbox-gl": "^0.41.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
@@ -21,7 +22,8 @@
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
     "redux-devtools-extension": "^2.13.2",
-    "redux-promise-middleware": "4.4.2"
+    "redux-promise-middleware": "4.4.2",
+    "turf": "^3.0.14"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

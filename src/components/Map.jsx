@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createMap, updateMap, initiateZoomTransition } from '../lib/map';
+import { createMap, updateMap, initiateZoomTransition, clearPins, addTerminalPinSources} from '../lib/map';
 import './Map.css';
 
 class Map extends Component {
@@ -11,11 +11,19 @@ class Map extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    updateMap(this.map, nextProps.vehicles);
+    const terminals = {
+      pickup: nextProps.orderPickupCoords,
+      dropoff: nextProps.orderDropoffCoords
+    };
+    updateMap(this.map, nextProps.vehicles, terminals);
 
-    if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching')
-    {
-      initiateZoomTransition(this.map, 15, 14, nextProps.orderPickupCoords);
+    if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
+      initiateZoomTransition(this.map, nextProps.orderPickupCoords, nextProps.orderDropoffCoords);
+      addTerminalPinSources(this.map);
+    }
+
+    if(this.props.orderStage === 'searching' && nextProps.orderStage === 'draft') {
+      clearPins(this.map);
     }
 
     return false;
@@ -32,7 +40,11 @@ class Map extends Component {
       'onVehicleClick': this.onVehicleClick,
       'onMoveEnd': this.props.onMoveEnd
     });
-    updateMap(this.map, this.props.vehicles);
+    const terminals = {
+      pickup: this.props.orderPickupCoords,
+      dropoff: this.props.orderDropoffCoords
+    };
+    updateMap(this.map, this.props.vehicles, terminals);
   }
 
   render() {
@@ -55,7 +67,8 @@ Map.propTypes = {
   history: PropTypes.object.isRequired,
   onMoveEnd: PropTypes.func.isRequired,
   orderStage: PropTypes.string.isRequired,
-  orderPickupCoords: PropTypes.object
+  orderPickupCoords: PropTypes.object,
+  orderDropoffCoords: PropTypes.object
 };
 
 export default Map;

@@ -1,7 +1,10 @@
 import mapboxgl from 'mapbox-gl';
-import { makeImage } from './utils';
+import {makeImage} from './utils';
 import droneIcon from '../images/icon_drone.png';
+import pickupIcon from '../images/pin-pickup.svg';
+import dropoffIcon from '../images/pin-dropoff.svg';
 import mapStyle from './map_style.json';
+import turf from 'turf';
 
 const createGeoJson = (features = []) => {
   return {
@@ -18,6 +21,7 @@ const createGeoJson = (features = []) => {
     }))
   };
 };
+
 
 const getUserLocation = () => new Promise(
   (resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject)
@@ -67,6 +71,12 @@ export const createMap = ({containerId, coords, onVehicleClick, onMoveEnd}) => {
     makeImage(droneIcon).then(
       img => map.addImage('drone', img)
     );
+    makeImage(pickupIcon).then(
+      img => map.addImage('pickup', img)
+    );
+    makeImage(dropoffIcon).then(
+      img => map.addImage('dropoff', img)
+    );
     map.addSource('vehicles', {
       'type': 'geojson',
       'data': {
@@ -88,7 +98,7 @@ export const createMap = ({containerId, coords, onVehicleClick, onMoveEnd}) => {
 
   map.on('moveend', () => {
     const mapCenter = map.getCenter();
-    onMoveEnd({ lat: mapCenter.lat, long: mapCenter.lng });
+    onMoveEnd({lat: mapCenter.lat, long: mapCenter.lng});
   });
 
   // Check if user has already granted permission to access geolocation
@@ -96,15 +106,20 @@ export const createMap = ({containerId, coords, onVehicleClick, onMoveEnd}) => {
   hasGeolocationPermission()
     .then(getUserLocation)
     .then(
-      ({ coords }) => map.setCenter([coords.longitude, coords.latitude])
-    ).catch(() => {});
+      ({coords}) => map.setCenter([coords.longitude, coords.latitude])
+    ).catch(() => {
+    });
 
   return map;
 };
 
-export const updateMap = (map, vehicles = []) => {
+export const updateMap = (map, vehicles = [], {pickup, dropoff} = {}) => {
   handleMapUpdate(map, () => {
-    map.getSource('vehicles').setData(createGeoJson(vehicles));
+    if (vehicles) map.getSource('vehicles').setData(createGeoJson(vehicles));
+    if (pickupAndDropoffPresent(map, pickup, dropoff)) {
+      map.getSource('pickup').setData(turf.point([pickup.long, pickup.lat]));
+      map.getSource('dropoff').setData(turf.point([dropoff.long, dropoff.lat]));
+    }
   });
 };
 
@@ -116,16 +131,59 @@ const handleMapUpdate = (map, update) => {
   }
 };
 
-export const initiateZoomTransition = (map, startZoomLevel, endZoomLevel, location) => {
-  handleMapUpdate(map, () => {
-    map.setZoom(startZoomLevel);
-    map.setCenter([location.long, location.lat]);
+const pickupAndDropoffPresent = (map, pickup, dropoff) => {
+  return pickup && dropoff && map.getSource('pickup') && map.getSource('dropoff');
+};
 
-    map.flyTo({
-      center: map.center,
-      zoom: endZoomLevel,
-      bearing: 0,
-      speed: 0.03
-    });
+export const initiateZoomTransition = (map, pickup, dropoff) => {
+  handleMapUpdate(map, () => {
+    const collection = turf.featureCollection([
+      turf.point([pickup.long, pickup.lat]),
+      turf.point([dropoff.long, dropoff.lat])
+    ]);
+    let bbox = turf.bbox(collection);
+    map.fitBounds(bbox, {padding: 100});
+  });
+};
+
+export const clearPins = (map) => {
+  map.removeLayer('pickup');
+  map.removeLayer('dropoff');
+  map.removeSource('pickup');
+  map.removeSource('dropoff');
+};
+
+export const addTerminalPinSources = (map) => {
+  map.addSource('pickup', {
+    'type': 'geojson',
+    'data': {
+      'type': 'FeatureCollection',
+      'features': []
+    }
+  });
+  map.addLayer({
+    'id': 'pickup',
+    'type': 'symbol',
+    'source': 'pickup',
+    'minzoom': 10,
+    'layout': {
+      'icon-image': 'pickup',
+    }
+  });
+  map.addSource('dropoff', {
+    'type': 'geojson',
+    'data': {
+      'type': 'FeatureCollection',
+      'features': []
+    }
+  });
+  map.addLayer({
+    'id': 'dropoff',
+    'type': 'symbol',
+    'source': 'dropoff',
+    'minzoom': 10,
+    'layout': {
+      'icon-image': 'dropoff',
+    }
   });
 };
