@@ -6784,12 +6784,6 @@ turf-explode@^3.0.12:
     turf-helpers "^3.0.12"
     turf-meta "^3.0.12"
 
-turf-extent@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/turf-extent/-/turf-extent-1.0.4.tgz#9f28ce11af916ada88862a062074658ba3fe0f01"
-  dependencies:
-    turf-meta "^1.0.2"
-
 turf-flip@^3.0.12:
   version "3.0.12"
   resolved "https://registry.yarnpkg.com/turf-flip/-/turf-flip-3.0.12.tgz#deb868177b9ff3bb310c5d41aaac61a9156a3cbb"
@@ -6863,10 +6857,6 @@ turf-line-slice@^3.0.12:
     turf-distance "^3.0.12"
     turf-helpers "^3.0.12"
     turf-point-on-line "^3.0.12"
-
-turf-meta@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/turf-meta/-/turf-meta-1.0.2.tgz#74d4c495938eb24772a70b31a157ee3d4fd6ba1b"
 
 turf-meta@^3.0.12:
   version "3.0.12"
