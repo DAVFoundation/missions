@@ -5,14 +5,13 @@ const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 process.env.NODE_ENV = 'production';
 
 module.exports = merge(getCommon(process.env.NODE_ENV), {
-  devtool: 'eval',  
+  devtool: 'eval',
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new webpack.DefinePlugin({
@@ -34,13 +33,7 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
     ]),
     new ExtractTextPlugin('styles.css'),
     new UglifyJSPlugin({
-      sourceMap: true      
-    }),    
-    // WorkboxPlugin needs to remain as the last plugin
-    new WorkboxPlugin({
-      globDirectory: './dist/',
-      globPatterns: ['**/*.{png,svg,gif}'],
-      swDest: path.resolve(__dirname, 'dist/service-worker.js')
+      sourceMap: true
     })
   ]
 });
