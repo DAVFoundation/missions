@@ -16,7 +16,7 @@ export default connect(
     // if we are looking at bids, only show vehicles with bids
     if (['searching', 'choosing'].includes(state.order.stage)) {
       getBidArray(state.bids).forEach(
-        bid => vehicles.push(state.vehicles[bid.vehicle_id])
+        bid => state.vehicles[bid.vehicle_id] && vehicles.push(state.vehicles[bid.vehicle_id])
       );
     } else {
       vehicles = getVehicleArray(state.vehicles);
