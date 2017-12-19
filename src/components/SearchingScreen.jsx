@@ -36,7 +36,7 @@ class SearchingScreen extends Component {
             <Link to="/" className="med-button cancel-button" onClick={cancelSearch}>cancel</Link>
             <img src={radar} id="radar" />
             <div id="vehicle-bid-preview-cards">
-              {bids.map(bid => (
+              {bids.map(bid => vehicles[bid.vehicle_id] && (
                 <VehicleBidPreview key={bid.id} vehicle={vehicles[bid.vehicle_id]} />
               ))}
             </div>
@@ -44,7 +44,7 @@ class SearchingScreen extends Component {
         )}
 
         <div id="vehicle-bid-cards">
-          {bids.map(bid => (
+          {bids.map(bid => vehicles[bid.vehicle_id] && (
             <VehicleBid key={bid.id} bid={bid} vehicle={vehicles[bid.vehicle_id]} shown={stage === 'choosing'} chooseBid={chooseBid} />
           ))}
         </div>
