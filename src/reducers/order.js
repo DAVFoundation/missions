@@ -29,6 +29,11 @@ export default handleActions({
         return {...state, stage: 'choosing'};
       }
     }
+
+    if (payload.state === 'in_mission') {
+      return {...state, stage: 'in_mission'};
+    }
+
     return state;
   },
 
