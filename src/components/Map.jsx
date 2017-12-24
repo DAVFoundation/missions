@@ -26,6 +26,10 @@ class Map extends Component {
       clearPins(this.map);
     }
 
+    if (this.props.orderStage === 'signing' && nextProps.orderStage === 'in_mission') {
+      this.props.history.push('/mission');
+    }
+
     return false;
   }
 

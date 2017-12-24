@@ -3,7 +3,7 @@ import { updateOrderDetails, createRequestFulfilled, updateStatusFulfilled, rese
 import getConfig from '../config';
 
 const defaultState = {
-  stage: 'draft', // draft | searching | choosing | signing
+  stage: 'draft', // draft | searching | choosing | signing | in_mission
   pickup: undefined,
   dropoff: getConfig('default_dropoff_coordinates'),
   requested_pickup_time: undefined,
@@ -30,7 +30,7 @@ export default handleActions({
       }
     }
 
-    if (payload.state === 'in_mission') {
+    if (payload.status === 'in_mission') {
       return {...state, stage: 'in_mission'};
     }
 

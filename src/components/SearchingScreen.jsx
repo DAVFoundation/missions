@@ -14,7 +14,6 @@ class SearchingScreen extends Component {
     super(props);
   }
 
-
   componentDidUpdate(prevProps) {
     if (this.props.stage === 'signing' && prevProps.stage !== 'signing') {
       this.screenNode.scrollTop = 0;

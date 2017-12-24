@@ -5,6 +5,7 @@ import Map from './containers/MapContainer.jsx';
 import MainScreenContainer from './containers/MainScreenContainer.jsx';
 import VehicleDetailsScreen from './components/VehicleDetailsScreen.jsx';
 import OrderScreenContainer from './containers/OrderScreenContainer.jsx';
+import MissionContainer from './containers/MissionContainer.jsx';
 import SearchingScreenContainer from './containers/SearchingScreenContainer.jsx';
 import Welcome from './components/Welcome.jsx';
 
@@ -31,6 +32,7 @@ class App extends Component {
 
           <Route path="/searching" component={ SearchingScreenContainer } />
 
+          <Route path="/mission" component= { MissionContainer } />
         </div>
       </Router>
     );
