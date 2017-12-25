@@ -15,7 +15,12 @@ class Map extends Component {
       pickup: nextProps.orderPickupCoords,
       dropoff: nextProps.orderDropoffCoords
     };
-    updateMap(this.map, nextProps.vehicles, terminals);
+
+    if (nextProps.orderStage === 'in_mission'){
+      updateMap(this.map, [nextProps.chosenVehicle], terminals);
+    } else {
+      updateMap(this.map, nextProps.vehicles, terminals);
+    }
 
     if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
       initiateZoomTransition(this.map, nextProps.orderPickupCoords, nextProps.orderDropoffCoords);
@@ -67,6 +72,7 @@ Map.defaultProps = {
 
 Map.propTypes = {
   vehicles: PropTypes.array.isRequired,
+  chosenVehicle: PropTypes.object,
   coords: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   onMoveEnd: PropTypes.func.isRequired,

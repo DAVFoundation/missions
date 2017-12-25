@@ -12,7 +12,6 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   (state) => {
     let vehicles = [];
-
     // if we are looking at bids, only show vehicles with bids
     if (['searching', 'choosing'].includes(state.order.stage)) {
       getBidArray(state.bids).forEach(
@@ -23,6 +22,7 @@ export default connect(
     }
     return {
       vehicles,
+      chosenVehicle: state.order.vehicle,
       orderStage: state.order.stage,
       orderPickupCoords: state.order.pickup,
       orderDropoffCoords: state.order.dropoff

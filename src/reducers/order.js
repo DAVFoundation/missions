@@ -31,7 +31,7 @@ export default handleActions({
     }
 
     if (payload.status === 'in_mission') {
-      return {...state, stage: 'in_mission'};
+      return {...state, stage: 'in_mission', vehicle: payload.vehicle };
     }
 
     return state;
