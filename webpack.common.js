@@ -16,7 +16,7 @@ module.exports = (env = 'development') => {
         'redux-actions',
         'redux-devtools-extension',
         'redux-promise-middleware',
-      ],      
+      ],
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -64,7 +64,7 @@ module.exports = (env = 'development') => {
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
         filename: 'vendor.bundle.js'
-      })      
+      })
     ]
   };
-}
+};
