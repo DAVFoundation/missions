@@ -24,7 +24,7 @@ export default handleActions({
     const mission = {
       id: parseInt(mission_id),
       vehicleId: vehicle_id,
-      price: parseFloat(price),
+      price: price,
       timeToPickup: parseFloat(time_to_pickup),
       timeToDropoff: parseFloat(time_to_dropoff),
       pickup: {lat: parseFloat(pickup_lat), long: parseFloat(pickup_long) },
