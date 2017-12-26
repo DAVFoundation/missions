@@ -18,8 +18,7 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/index.html'),
-      favicon: path.resolve(__dirname, 'src/favicon.ico'),
-      hasServiceWorker: false
+      favicon: path.resolve(__dirname, 'src/favicon.ico')
     }),
     new webpack.DefinePlugin({
       'process.env': {
