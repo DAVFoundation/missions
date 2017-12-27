@@ -16,11 +16,7 @@ class Map extends Component {
       dropoff: nextProps.orderDropoffCoords
     };
 
-    if (nextProps.orderStage === 'in_mission'){
-      updateMap(this.map, [nextProps.chosenVehicle], terminals);
-    } else {
-      updateMap(this.map, nextProps.vehicles, terminals);
-    }
+    updateMap(this.map, nextProps.vehicles, terminals);
 
     if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
       initiateZoomTransition(this.map, nextProps.orderPickupCoords, nextProps.orderDropoffCoords);
@@ -39,7 +35,11 @@ class Map extends Component {
   }
 
   onVehicleClick(id) {
-    this.props.history.push('/vehicle/'+id);
+    if (this.props.orderStage == 'in_mission'){
+      this.props.history.push('mission/vehicle/'+id);
+    } else {
+      this.props.history.push('/vehicle/'+id);
+    }
   }
 
   componentDidMount() {

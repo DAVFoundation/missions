@@ -1,0 +1,56 @@
+.mission-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-bottom: 40px;
+}
+
+.mission-info:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 300%;
+    background: linear-gradient(0deg, rgba(255,255,255,1), rgba(255,255,255,0.0));
+}
+
+.mission-info-container {
+    display: flex;
+    padding: 20px 30px;
+    position: relative;
+}
+
+.mission-info-container:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50px;
+    right: 0;
+    height: 1px;
+    background: rgba(0,0,0,0.05);
+}
+
+.mission-info-container:last-child:after {
+    display: none;
+}
+
+.mission-info-icon {
+    width: 30px;
+}
+
+.mission-info-text {
+    flex: 1;
+}
+
+.mission-info-text p {
+    font-size: 16px;
+    margin: 0 0 5px 0;
+}
+
+.mission-info-text h3 {
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0;
+}
