@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import promiseMiddleware from 'redux-promise-middleware';
 import reducers from './reducers';
-import { loadState, saveState } from './localStorage.js';
+import { loadState, saveState } from './lib/localStorage';
 
 const initStore = () => {
   const persistedState = loadState();
