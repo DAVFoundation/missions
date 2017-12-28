@@ -7,6 +7,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/DAVFoundation/missions.git"
+    "homepage": "https://github.com/DAVFoundation/missions#readme"
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
