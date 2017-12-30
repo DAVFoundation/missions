@@ -17,8 +17,6 @@ export default connect(
       getBidArray(state.bids).forEach(
         bid => state.vehicles[bid.vehicle_id] && vehicles.push(state.vehicles[bid.vehicle_id])
       );
-    } else if (state.order.stage === 'in_mission') {
-      vehicles = [state.order.vehicle];
     } else {
       vehicles = getVehicleArray(state.vehicles);
     }
