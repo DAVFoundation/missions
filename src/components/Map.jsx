@@ -15,6 +15,7 @@ class Map extends Component {
       pickup: nextProps.orderPickupCoords,
       dropoff: nextProps.orderDropoffCoords
     };
+
     updateMap(this.map, nextProps.vehicles, terminals);
 
     if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
@@ -26,11 +27,19 @@ class Map extends Component {
       clearPins(this.map);
     }
 
+    if (this.props.orderStage === 'signing' && nextProps.orderStage === 'in_mission') {
+      this.props.history.push('/mission');
+    }
+
     return false;
   }
 
   onVehicleClick(id) {
-    this.props.history.push('/vehicle/'+id);
+    if (this.props.orderStage == 'in_mission'){
+      this.props.history.push('mission/vehicle/'+id);
+    } else {
+      this.props.history.push('/vehicle/'+id);
+    }
   }
 
   componentDidMount() {
@@ -63,6 +72,7 @@ Map.defaultProps = {
 
 Map.propTypes = {
   vehicles: PropTypes.array.isRequired,
+  chosenVehicle: PropTypes.object,
   coords: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   onMoveEnd: PropTypes.func.isRequired,

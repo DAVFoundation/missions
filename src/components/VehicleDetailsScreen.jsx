@@ -1,24 +1,36 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import VehicleDetailsContainer from '../containers/VehicleDetailsContainer.jsx';
 
-const VehicleDetailsScreen = ({match}) => {
-  return (
-    <div id="vehicle-details-screen" className="screen">
-      <Link to="/" className="screen-background--dark" />
-      <div className="modal-container">
-        <div className="modal-box">
-          <Link to="/" className="modal-close-button">x</Link>
-          <VehicleDetailsContainer vehicleUid={match.params.uid} />
+class VehicleDetailsScreen extends Component {
+
+  constructor(props){
+    super(props);
+    this.goBack = this.goBack.bind(this);
+  }
+
+  goBack(){
+    this.props.history.goBack();
+  }
+
+  render(){
+    return (
+      <div id="vehicle-details-screen" className="screen">
+        <button onClick={this.goBack} className="screen-background--dark" />
+        <div className="modal-container">
+          <div className="modal-box">
+            <button onClick={this.goBack} className="modal-close-button">x</button>
+            <VehicleDetailsContainer vehicleUid={this.props.match.params.uid} />
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 VehicleDetailsScreen.propTypes = {
   match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default VehicleDetailsScreen;
