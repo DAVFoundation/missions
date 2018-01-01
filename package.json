@@ -2,6 +2,9 @@
   "name": "missions",
   "version": "0.2.0",
   "description": "Missions is the client facing side of the marketplace connecting DAV users looking to ship packages, with autonomous vehicles.",
+  "bugs": {
+    "url": "https://github.com/DAVFoundation/missions/issues"
+  },
   "license": "MIT",
   "author": "Tal Ater <tal@talater.com>",
   "repository": {
@@ -9,8 +12,8 @@
     "url": "https://github.com/DAVFoundation/missions.git"
   },
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --config webpack.dev.js"
   },
   "dependencies": {
     "@turf/turf": "^5.0.4",
