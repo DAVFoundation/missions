@@ -5,6 +5,7 @@ import { getShortCoordsString, coordsFromString } from '../lib/utils';
 import './OrderScreen.css';
 import arrow from '../images/arrow-left.svg';
 import IconSelector from './IconSelector.jsx';
+import getConfig from '../config';
 
 // icons
 import sizeLetter from '../images/size_letter.svg';
@@ -20,7 +21,7 @@ class OrderScreen extends Component {
     this.createOrderDetailsObject = this.createOrderDetailsObject.bind(this);
 
     this.state = {
-      packageSize: ''
+      packageSize: getConfig('default_package_size')
     };
 
     // Options should be read from some kind of configuration
