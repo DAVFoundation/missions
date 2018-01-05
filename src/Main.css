@@ -66,6 +66,44 @@ h1 {
   right: 9px;
 }
 
+/* Alert Modal */
+
+.alert-box {
+  padding-bottom: 60px;
+}
+
+.alert-button-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+}
+
+.alert-button-cancel,
+.alert-button-confirm {
+  width: 50%;
+  border: 0;
+  border-radius: 0;
+  border-top: 1px solid #F6F7F9;
+
+  background-color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.alert-button-cancel {
+  border-right: 1px solid #F6F7F9;
+  border-bottom-left-radius: 5px;
+  color: #8E8AA7;
+}
+
+.alert-button-confirm {
+  border-bottom-right-radius: 5px;
+  color: #2BCA81;
+}
 
 .big-button {
   border-radius: 5px 5px;

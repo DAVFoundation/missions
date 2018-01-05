@@ -36,7 +36,6 @@ class App extends Component {
           <Route path="/mission" component= { MissionContainer } />
           <Route path="/mission/vehicle/:uid" component={ VehicleDetailsScreenContainer } />
 
-
           <Route path="/confirm" component= { ConfirmTakeoffContainer } />
         </div>
       </Router>
