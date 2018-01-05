@@ -1,0 +1,25 @@
+.confirm-takeoff {
+  text-align: center;
+}
+
+.confirm-takeoff p {
+  text-align:center;
+  margin: 25px;
+}
+
+.confirm-takeoff h1 {
+  font-size: 20px;
+}
+
+.confirm-takeoff i {
+  font-size: 12px;
+}
+
+.big-button.with-subtext {
+  padding: 10px 45px;
+  margin: auto;
+}
+
+.big-button .button-subtext {
+  font-size: 12px;
+}
