@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import VehicleCard from './VehicleCard.jsx';
-import currencyImage from '../images/dav.svg';
+import currencyImage from 'images/dav.svg';
 
 const VehicleBid = ({bid, vehicle, shown, chooseBid}) => {
   const clickChooseBid = (e) => {

@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getShortCoordsString, coordsFromString } from '../lib/utils';
 import './OrderScreen.css';
-import arrow from '../images/arrow-left.svg';
+import arrow from 'images/arrow-left.svg';
 import IconSelector from './IconSelector.jsx';
-import getConfig from '../config';
+import getConfig from 'config';
 
 // icons
-import sizeLetter from '../images/size_letter.svg';
-import sizeCan from '../images/size_can.svg';
-import sizePizza from '../images/size_pizza.svg';
-import sizeBox from '../images/size_box.svg';
+import sizeLetter from 'images/size_letter.svg';
+import sizeCan from 'images/size_can.svg';
+import sizePizza from 'images/size_pizza.svg';
+import sizeBox from 'images/size_box.svg';
 
 class OrderScreen extends Component {
   constructor(props) {

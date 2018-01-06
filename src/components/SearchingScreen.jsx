@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import VehicleBid from './VehicleBid.jsx';
 import VehicleBidPreview from './VehicleBidPreview.jsx';
 import VehicleCard from './VehicleCard.jsx';
-import UserCardContainer from '../containers/UserCardContainer.jsx';
+import UserCardContainer from 'containers/UserCardContainer.jsx';
 import './SearchingScreen.css';
-import radar from '../images/radar.png';
+import radar from 'images/radar.png';
 
 class SearchingScreen extends Component {
 

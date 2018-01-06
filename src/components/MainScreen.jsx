@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './MainScreen.css';
-import logo from '../images/logo_missions.png';
+import logo from 'images/logo_missions.png';
 
 class MainScreen extends Component {
   componentDidMount() {
