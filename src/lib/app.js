@@ -1,5 +1,5 @@
-import store from '../store';
-import { updateStatus } from '../actions';
+import store from 'store';
+import { updateStatus } from 'actions';
 
 const _updateStatusAndDispatch = () => {
   const coords = store.getState().map.coords;

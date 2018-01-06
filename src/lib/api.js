@@ -1,5 +1,5 @@
-import store from '../store';
-import { getShortCoordsString } from '../lib/utils';
+import store from 'store';
+import { getShortCoordsString } from './utils';
 
 const apiRoot = process.env.MISSION_CONTROL_HOST;
 

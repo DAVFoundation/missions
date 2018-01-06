@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import VehicleCard from '../components/VehicleCard.jsx';
+import VehicleCard from 'components/VehicleCard.jsx';
 
 export default connect(
   (state) => ({

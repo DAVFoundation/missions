@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import VehicleDetailsContainer from '../containers/VehicleDetailsContainer.jsx';
+import VehicleDetailsContainer from 'containers/VehicleDetailsContainer.jsx';
 
 class VehicleDetailsScreen extends Component {
 

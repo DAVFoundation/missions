@@ -1,8 +1,8 @@
 import mapboxgl from 'mapbox-gl';
 import {makeImage} from './utils';
-import droneIcon from '../images/icon_drone.png';
-import pickupIcon from '../images/pin-pickup.svg';
-import dropoffIcon from '../images/pin-dropoff.svg';
+import droneIcon from 'images/icon_drone.png';
+import pickupIcon from 'images/pin-pickup.svg';
+import dropoffIcon from 'images/pin-dropoff.svg';
 import mapStyle from './map_style.json';
 import turf from 'turf';
 

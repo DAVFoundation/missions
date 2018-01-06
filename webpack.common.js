@@ -24,6 +24,12 @@ module.exports = (env = 'development') => {
       filename: 'bundle.js',
       sourceMapFilename: '[file].map'
     },
+    resolve: {
+      modules: [
+        path.resolve('./node_modules'),
+        path.resolve('./src')
+      ]
+    },
     module: {
       loaders: [
         {

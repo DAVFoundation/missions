@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getVehicleArray } from '../reducers/vehicles';
-import { getBidArray } from '../reducers/bids';
-import { updateMapCoords } from '../actions';
-import Map from '../components/Map.jsx';
+import { getVehicleArray } from 'reducers/vehicles';
+import { getBidArray } from 'reducers/bids';
+import { updateMapCoords } from 'actions';
+import Map from 'components/Map.jsx';
 
 const mapDispatchToProps = (dispatch) => ({
   onMoveEnd: (coords) => dispatch(updateMapCoords({coords: coords}))

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import VehicleDetails from '../components/VehicleDetails.jsx';
+import VehicleDetails from 'components/VehicleDetails.jsx';
 
 export default connect(
   (state, ownProps) => ({
