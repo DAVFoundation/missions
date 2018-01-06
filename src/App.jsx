@@ -7,7 +7,7 @@ import VehicleDetailsScreenContainer from './containers/VehicleDetailsScreenCont
 import OrderScreenContainer from './containers/OrderScreenContainer.jsx';
 import MissionContainer from './containers/MissionContainer.jsx';
 import SearchingScreenContainer from './containers/SearchingScreenContainer.jsx';
-import ConfirmTakeoffContainer from './containers/ConfirmTakeoffContainer.jsx';
+import ConfirmPickupContainer from './containers/ConfirmTakeoffContainer.jsx';
 import Welcome from './components/Welcome.jsx';
 
 class App extends Component {
@@ -36,7 +36,8 @@ class App extends Component {
           <Route path="/mission" component= { MissionContainer } />
           <Route path="/mission/vehicle/:uid" component={ VehicleDetailsScreenContainer } />
 
-          <Route path="/confirm" component= { ConfirmTakeoffContainer } />
+          <Route path="/confirm-takeoff" component= { ConfirmPickupContainer } />
+
         </div>
       </Router>
     );

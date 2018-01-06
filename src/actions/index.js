@@ -20,3 +20,5 @@ export const chooseBid = createAction('CHOOSE_BID', apiChooseBid);
 export const chooseBidPending = createAction('CHOOSE_BID_PENDING');
 
 export const chooseBidFulfilled = createAction('CHOOSE_BID_FULFILLED');
+
+export const confirmTakeoff = createAction('CONFIRM_TAKEOFF');
