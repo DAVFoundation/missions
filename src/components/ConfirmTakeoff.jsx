@@ -8,7 +8,8 @@ class ConfirmTakeoff extends Component {
   constructor () {
     super();
     this.state = {
-      alertHidden: true
+      alertHidden: true,
+      buttonsDisabled: false
     };
   }
 
@@ -16,6 +17,19 @@ class ConfirmTakeoff extends Component {
     this.setState({
       alertHidden: !this.state.alertHidden
     });
+  }
+
+  componentDidUpdate(prevProps) {
+    // if (prevProps.confirmationInitiated) {
+    //   console.log('confirmation tings');
+    //   this.setState({
+    //     buttonsDisabled: true
+    //   });
+    // }
+
+    if (prevProps.vehicleStatus === 'takeoff_pickup'){
+      this.props.history.push('/mission');
+    }
   }
 
   render() {
@@ -43,10 +57,10 @@ class ConfirmTakeoff extends Component {
             <h1>Drone will take off immediately</h1>
             <p>Are you sure the package is secure and the area around the drone is clear?</p>
             <div className="alert-button-container">
-              <button onClick={this.toggleAlert.bind(this)} className="alert-button-cancel">
+              <button onClick={this.toggleAlert.bind(this)} className="alert-button-cancel" disabled={this.state.buttonsDisabled}>
                 CANCEL
               </button>
-              <button onClick={this.props.confirmTakeoff} className="alert-button-confirm">
+              <button onClick={this.props.confirmTakeoff} className="alert-button-confirm" disabled={this.state.buttonsDisabled}>
                 CONFIRM
               </button>
             </div>
@@ -57,8 +71,10 @@ class ConfirmTakeoff extends Component {
 }
 
 ConfirmTakeoff.propTypes = {
+  history: PropTypes.object.isRequired,
   confirmTakeoff: PropTypes.func.isRequired,
-  coords: PropTypes.object.isRequired
+  coords: PropTypes.object.isRequired,
+  vehicleStatus: PropTypes.string.isRequired
 };
 
 

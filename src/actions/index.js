@@ -23,4 +23,6 @@ export const chooseBidFulfilled = createAction('CHOOSE_BID_FULFILLED');
 
 export const confirmTakeoff = createAction('CONFIRM_TAKEOFF', apiConfirmTakeoff);
 
+export const confirmTakeoffPending = createAction('CONFIRM_TAKEOFF_PENDING');
+
 export const confirmTakeoffFulfilled = createAction('CONFIRM_TAKEOFF_FULFILLED');
