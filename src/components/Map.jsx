@@ -31,6 +31,10 @@ class Map extends Component {
       this.props.history.push('/mission');
     }
 
+    if (this.props.orderStage === 'in_mission' && this.props.vehicles[0].status === 'waiting_pickup') {
+      this.props.history.push('/confirm-takeoff');
+    }
+
     return false;
   }
 

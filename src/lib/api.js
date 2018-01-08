@@ -39,6 +39,14 @@ export const cancelRequest = () => {
   return fetchWithUserId(url);
 };
 
+export const confirmTakeoff = () => {
+  const missionId = store.getState().mission.id;
+  const command = 'takeoff_pickup';
+  let url = new URL(`/mission_command`, apiRoot);
+  url.searchParams.set('mission_id', missionId);
+  url.searchParams.set('command', command);
+  return fetchWithUserId(url);
+};
 
 const fetchWithUserId = (url) => {
   const userId = store.getState().settings.user_id;
@@ -46,3 +54,4 @@ const fetchWithUserId = (url) => {
   return fetch(url)
     .then(response => response.json());
 };
+
