@@ -20,14 +20,13 @@ class ConfirmTakeoff extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // if (prevProps.confirmationInitiated) {
-    //   console.log('confirmation tings');
-    //   this.setState({
-    //     buttonsDisabled: true
-    //   });
-    // }
+    if (!prevProps.status && (this.props.status === 'takeoff_confirmation_initiated')) {
+      this.setState({
+        buttonsDisabled: true
+      });
+    }
 
-    if (prevProps.vehicleStatus === 'takeoff_pickup'){
+    if ((prevProps.status === 'takeoff_confirmation_initiated') && (this.props.status === 'takeoff_confirmation_received')){
       this.props.history.push('/mission');
     }
   }
@@ -72,9 +71,9 @@ class ConfirmTakeoff extends Component {
 
 ConfirmTakeoff.propTypes = {
   history: PropTypes.object.isRequired,
-  confirmTakeoff: PropTypes.func.isRequired,
   coords: PropTypes.object.isRequired,
-  vehicleStatus: PropTypes.string.isRequired
+  status: PropTypes.string,
+  confirmTakeoff: PropTypes.func.isRequired
 };
 
 

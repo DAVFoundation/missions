@@ -37,13 +37,10 @@ export default handleActions({
     return {...state, ...mission};
   },
 
-  [confirmTakeoffPending]: (state) => {
-    return state;
-  },
+  [confirmTakeoffPending]: state => ({...state, status: 'takeoff_confirmation_initiated'}),
 
-  [confirmTakeoffFulfilled]: (state, {payload}) => {
-    console.log(payload);
-    return state;
+  [confirmTakeoffFulfilled]: (state, { payload: {mission} }) => {
+    return {...state, ...mission, status: 'takeoff_confirmation_received'};
   }
 
 }, defaultState);

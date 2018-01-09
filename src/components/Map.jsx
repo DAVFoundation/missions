@@ -76,7 +76,6 @@ Map.defaultProps = {
 
 Map.propTypes = {
   vehicles: PropTypes.array.isRequired,
-  chosenVehicle: PropTypes.object,
   coords: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   onMoveEnd: PropTypes.func.isRequired,
