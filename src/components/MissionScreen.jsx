@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './MissionScreen.css';
 import gpsPointIcon from '../images/gps_point.svg';
 import timeIcon from '../images/time.svg';
+import PropTypes from 'prop-types';
 
 class MissionScreen extends Component {
 
@@ -18,7 +19,7 @@ class MissionScreen extends Component {
           </div>
           <div className="mission-info-text">
             <p>Current State:</p>
-            <h3>Flying to Pickup</h3>
+            <h3>{this.props.vehicleStatus}</h3>
           </div>
         </div>
         <div className="mission-info-container">
@@ -36,5 +37,10 @@ class MissionScreen extends Component {
 
 
 }
+
+MissionScreen.propTypes = {
+  vehicleStatus: PropTypes.string
+};
+
 
 export default MissionScreen;
