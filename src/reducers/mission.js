@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { chooseBidFulfilled } from '../actions';
+import { chooseBidFulfilled, confirmTakeoffPending, confirmTakeoffFulfilled} from '../actions';
 
 const defaultState = {};
 
@@ -35,6 +35,12 @@ export default handleActions({
       signedAt: parseInt(signed_at),
     };
     return {...state, ...mission};
+  },
+
+  [confirmTakeoffPending]: state => ({...state, status: 'takeoff_confirmation_initiated'}),
+
+  [confirmTakeoffFulfilled]: (state, { payload: {mission} }) => {
+    return {...state, ...mission, status: 'takeoff_confirmation_received'};
   }
 
 }, defaultState);

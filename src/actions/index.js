@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import { fetchStatus as apiFetchStatus, createRequest as apiCreateRequest, chooseBid as apiChooseBid } from '../lib/api';
+import { fetchStatus as apiFetchStatus, createRequest as apiCreateRequest, chooseBid as apiChooseBid, confirmTakeoff as apiConfirmTakeoff } from '../lib/api';
 
 export const updateStatus = createAction('UPDATE_STATUS', apiFetchStatus);
 
@@ -20,3 +20,9 @@ export const chooseBid = createAction('CHOOSE_BID', apiChooseBid);
 export const chooseBidPending = createAction('CHOOSE_BID_PENDING');
 
 export const chooseBidFulfilled = createAction('CHOOSE_BID_FULFILLED');
+
+export const confirmTakeoff = createAction('CONFIRM_TAKEOFF', apiConfirmTakeoff);
+
+export const confirmTakeoffPending = createAction('CONFIRM_TAKEOFF_PENDING');
+
+export const confirmTakeoffFulfilled = createAction('CONFIRM_TAKEOFF_FULFILLED');

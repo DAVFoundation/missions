@@ -16,3 +16,13 @@ export const coordsFromString = (strCoords) => {
   const [lat, long] = strCoords.replace(/[^\d.,-]/gi, '').split(',');
   return (lat && long) ? {lat: parseFloat(lat), long: parseFloat(long)} : undefined;
 };
+
+
+export const humanReadableVehicleStatus = {
+  travelling_pickup: 'Flying to Pickup',
+  landing_pickup: 'Landing at Pickup',
+  waiting_pickup: 'Waiting for Takeoff confirmation',
+  takeoff_pickup: 'Taking off',
+  travelling_dropoff: 'Flying to Dropoff',
+  waiting_dropoff: 'Waiting at Dropoff'
+};

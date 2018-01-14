@@ -31,6 +31,10 @@ class Map extends Component {
       this.props.history.push('/mission');
     }
 
+    if (this.props.vehicles.length > 0) {
+      if (this.props.vehicles[0].status === 'landing_pickup' && nextProps.vehicles[0].status === 'waiting_pickup') this.props.history.push('/confirm-takeoff');
+    }
+
     return false;
   }
 
@@ -72,7 +76,6 @@ Map.defaultProps = {
 
 Map.propTypes = {
   vehicles: PropTypes.array.isRequired,
-  chosenVehicle: PropTypes.object,
   coords: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   onMoveEnd: PropTypes.func.isRequired,
