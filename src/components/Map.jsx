@@ -80,6 +80,7 @@ Map.propTypes = {
   history: PropTypes.object.isRequired,
   onMoveEnd: PropTypes.func.isRequired,
   orderStage: PropTypes.string.isRequired,
+  missionStatus: PropTypes.string,
   orderPickupCoords: PropTypes.object,
   orderDropoffCoords: PropTypes.object
 };

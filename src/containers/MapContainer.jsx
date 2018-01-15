@@ -20,12 +20,14 @@ export default connect(
     } else {
       vehicles = getVehicleArray(state.vehicles);
     }
-    return {
+    let props = {
       vehicles,
       orderStage: state.order.stage,
       orderPickupCoords: state.order.pickup,
       orderDropoffCoords: state.order.dropoff
     };
+    if (state.mission) props.missionStatus = state.mission.status;
+    return props;
   },
   mapDispatchToProps
 )(withRouter(Map));

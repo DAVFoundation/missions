@@ -54,3 +54,20 @@
     font-weight: 400;
     margin: 0;
 }
+
+.mission-info-summary {
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.mission-info-summary h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.mission-info-summary .close {
+    padding: 15px 45px;
+    display: inline-block;
+    background-color: #807B9C;
+}
