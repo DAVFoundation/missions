@@ -35,10 +35,6 @@ class Map extends Component {
       if (this.props.vehicles[0].status === 'landing_pickup' && nextProps.vehicles[0].status === 'waiting_pickup') this.props.history.push('/confirm-takeoff');
     }
 
-    // if (this.props.missionStatus === 'in_progress' &&  nextProps.missionStatus === 'completed'){
-    //
-    // }
-
     return false;
   }
 
