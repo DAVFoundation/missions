@@ -5,9 +5,9 @@ import { getVehicleArray } from '../reducers/vehicles';
 
 const matchStateToProps = (state) => {
   const vehicles = getVehicleArray(state.vehicles);
-  return {
-    vehicleStatus: humanReadableVehicleStatus[vehicles[0].status],
-  };
+  let props = {};
+  if (vehicles[0]) props.vehicleStatus = humanReadableVehicleStatus[vehicles[0].status];
+  return props;
 };
 
 export default connect(
