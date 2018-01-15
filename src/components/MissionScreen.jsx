@@ -5,23 +5,35 @@ import timeIcon from '../images/time.svg';
 import currencyImage from '../images/dav.svg';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { humanReadableVehicleStatus } from '../lib/utils';
 
 class MissionScreen extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      missionComplete: false,
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if ((prevProps.vehicleStatus === 'waiting_dropoff') && (this.props.vehicleStatus === 'available')){
+      this.setState({
+        missionComplete: true
+      });
+    }
   }
 
   render() {
     return (
-      false && (<div className="mission-info">
+      !this.state.missionComplete && (<div className="mission-info">
         <div className="mission-info-container">
           <div className="mission-info-icon">
             <img src={gpsPointIcon} alt="GPS Point Icon"/>
           </div>
           <div className="mission-info-text">
             <p>Current State:</p>
-            <h3>{this.props.vehicleStatus}</h3>
+            <h3>{humanReadableVehicleStatus[this.props.vehicleStatus]}</h3>
           </div>
         </div>
         <div className="mission-info-container">
@@ -34,7 +46,7 @@ class MissionScreen extends Component {
           </div>
         </div>
       </div>) ||
-      true && (<div className="mission-info">
+      this.state.missionComplete && (<div className="mission-info">
         <div className="mission-info-summary">
           <h1>Delivery completed successfully</h1>
           <p>Cost for delivery:</p>
