@@ -91,6 +91,8 @@ export const createMap = ({containerId, coords, onVehicleClick, onMoveEnd}) => {
       'minzoom': 10,
       'layout': {
         'icon-image': 'drone',
+        'icon-allow-overlap':true,
+        'icon-ignore-placement':true
       }
     });
     map.on('click', 'vehicles', (e) => onVehicleClick(e.features[0].properties.id));
@@ -168,6 +170,8 @@ export const addTerminalPinSources = (map) => {
     'minzoom': 10,
     'layout': {
       'icon-image': 'pickup',
+      'icon-allow-overlap':true,
+      'icon-ignore-placement':true
     }
   });
   map.addSource('dropoff', {
@@ -184,6 +188,8 @@ export const addTerminalPinSources = (map) => {
     'minzoom': 10,
     'layout': {
       'icon-image': 'dropoff',
+      'icon-allow-overlap':true,
+      'icon-ignore-placement':true
     }
   });
 };
