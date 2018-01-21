@@ -18,9 +18,9 @@ const VehicleBid = ({bid, vehicle, shown, chooseBid}) => {
       <VehicleCard icon={vehicle.icon} buttonClass={'choose-bid-button'} buttonOnClick={clickChooseBid} buttonText="Order" model={vehicle.model} rating={vehicle.rating} />
       <dl className="bid-details">
         <dt>Estimated pickup time:</dt>
-        <dd>in {Math.ceil(bid.time_to_pickup)} minutes</dd>
+        <dd>in {Math.ceil(bid.time_to_pickup/60000)} minutes</dd>
         <dt>Estimated delivery time:</dt>
-        <dd>{Math.ceil(bid.time_to_dropoff)} minutes</dd>
+        <dd>{Math.ceil(bid.time_to_dropoff/60000)} minutes</dd>
         <dt>Cost for delivery:</dt>
         <dd>{parseFloat(bid.price).toFixed(2)} <img src={currencyImage} className="currency-symbol" alt="DAV"/></dd>
       </dl>
