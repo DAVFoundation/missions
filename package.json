@@ -17,7 +17,7 @@
     "start": "webpack-dev-server --config webpack.dev.js"
   },
   "dependencies": {
-    "@turf/turf": "^5.0.4",
+    "@turf/turf": "^5.1.6",
     "mapbox-gl": "^0.43.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
