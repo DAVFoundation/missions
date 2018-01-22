@@ -71,7 +71,7 @@ class ConfirmTakeoff extends Component {
 
 ConfirmTakeoff.propTypes = {
   history: PropTypes.object.isRequired,
-  coords: PropTypes.object.isRequired,
+  coords: PropTypes.object,
   status: PropTypes.string,
   confirmTakeoff: PropTypes.func.isRequired
 };

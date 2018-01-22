@@ -40,7 +40,7 @@ export const cancelRequest = () => {
 };
 
 export const confirmTakeoff = () => {
-  const missionId = store.getState().mission.id;
+  const missionId = store.getState().mission.mission_id ;
   const command = 'takeoff_pickup';
   let url = new URL(`/mission_command`, apiRoot);
   url.searchParams.set('mission_id', missionId);
