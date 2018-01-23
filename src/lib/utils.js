@@ -7,6 +7,12 @@ export const makeImage = (imageData) => {
   });
 };
 
+export const shiftCoords = (coords) => {
+  const {lat, long} = coords;
+  if (lat && long) return {lat: lat + randomShift(), long: long + randomShift()};
+  return undefined;
+};
+
 export const getShortCoordsString = (coords = {}, precision = 6, separator=', ') => {
   const {lat, long} = coords;
   return lat && long && lat.toFixed(precision)+separator+long.toFixed(precision);
@@ -25,4 +31,8 @@ export const humanReadableVehicleStatus = {
   takeoff_pickup: 'Taking off',
   travelling_dropoff: 'Flying to Dropoff',
   waiting_dropoff: 'Waiting at Dropoff'
+};
+
+const randomShift = () => {
+  return (Math.floor(Math.random() * 10) + 4)/10000;
 };
