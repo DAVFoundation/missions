@@ -5,7 +5,7 @@ import getConfig from '../config';
 const defaultState = {
   stage: 'draft', // draft | searching | choosing | signing | in_mission
   pickup: undefined,
-  dropoff: getConfig('default_dropoff_coordinates'),
+  dropoff: undefined,
   requested_pickup_time: undefined,
   size: getConfig('default_package_size'),
   weight: getConfig('default_package_weight'),

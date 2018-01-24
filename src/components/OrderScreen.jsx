@@ -43,14 +43,13 @@ class OrderScreen extends Component {
   }
 
   createOrderDetailsObject() {
-    const { userCoords } = this.props;
-
+    const { userCoords, defaultDropoff } = this.props;
     return {
       pickup: coordsFromString(this.pickupNode.value) || {
         lat: userCoords.lat,
         long: userCoords.long
       },
-      dropoff: coordsFromString(this.dropoffNode.value),
+      dropoff: coordsFromString(this.dropoffNode.value) || defaultDropoff,
       size: this.state.packageSize || undefined,
       weight: this.weightNode.value || undefined,
       requested_pickup_time: this.pickupTimeNode.value || undefined
@@ -77,7 +76,7 @@ class OrderScreen extends Component {
   getSizeContainer() {}
 
   render() {
-    const { userCoords, pickup, dropoff, weight } = this.props; // size
+    const { userCoords, defaultDropoff, pickup, weight } = this.props; // size
     const requested_pickup_time =
       this.props.requested_pickup_time || new Date().toTimeString().slice(0, 5);
     const userCoordsString = getShortCoordsString(userCoords);
@@ -85,7 +84,7 @@ class OrderScreen extends Component {
       ? `Your current location (${userCoordsString})`
       : '';
     const pickupCoordsString = getShortCoordsString(pickup);
-    const dropoffCoordsString = getShortCoordsString(dropoff);
+    const dropoffCoordsString = defaultDropoff ? getShortCoordsString(defaultDropoff) : '';
     return (
       <div id="order-screen" className="screen">
         <Link to="/" className="back-button" onClick={this.updateStoreFromForm}>
@@ -109,6 +108,7 @@ class OrderScreen extends Component {
           <input
             type="text"
             id="dropoff-location"
+            placeholder={dropoffCoordsString}
             defaultValue={dropoffCoordsString}
             ref={node => {
               this.dropoffNode = node;
@@ -165,6 +165,7 @@ class OrderScreen extends Component {
 
 OrderScreen.propTypes = {
   userCoords: PropTypes.object,
+  defaultDropoff: PropTypes.object,
   pickup: PropTypes.object,
   dropoff: PropTypes.object,
   requested_pickup_time: PropTypes.string,
