@@ -4,8 +4,8 @@ import gpsPointIcon from '../images/gps_point.svg';
 import timeIcon from '../images/time.svg';
 import currencyImage from '../images/dav.svg';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { humanReadableVehicleStatus } from '../lib/utils';
+import {Link} from 'react-router-dom';
+import {humanReadableVehicleStatus} from '../lib/utils';
 
 class MissionScreen extends Component {
 
@@ -17,7 +17,7 @@ class MissionScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if ((prevProps.vehicleStatus === 'waiting_dropoff') && (this.props.vehicleStatus === 'available')){
+    if (prevProps.vehicleStatus === 'available' && this.state === false) {
       this.setState({
         missionComplete: true
       });

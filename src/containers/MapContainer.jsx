@@ -23,10 +23,16 @@ export default connect(
     let props = {
       vehicles,
       orderStage: state.order.stage,
-      orderPickupCoords: state.order.pickup,
-      orderDropoffCoords: state.order.dropoff
+      pickup: state.order.pickup,
+      dropoff: state.order.dropoff
     };
-    if (state.mission) props.missionStatus = state.mission.status;
+    if (state.mission) {
+      props.missionStatus = state.mission.status;
+      if (props.missionStatus === 'in_progress'){
+        props.dropoff = {long: state.mission.dropoff_long, lat:state.mission.dropoff_lat};
+        props.pickup = {long: state.mission.pickup_long, lat: state.mission.pickup_lat};
+      }
+    }
     return props;
   },
   mapDispatchToProps

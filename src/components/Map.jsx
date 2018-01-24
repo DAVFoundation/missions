@@ -12,27 +12,30 @@ class Map extends Component {
 
   shouldComponentUpdate(nextProps) {
     const terminals = {
-      pickup: nextProps.orderPickupCoords,
-      dropoff: nextProps.orderDropoffCoords
+      pickup: nextProps.pickup,
+      dropoff: nextProps.dropoff
     };
 
     updateMap(this.map, nextProps.vehicles, terminals);
 
     if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
-      initiateZoomTransition(this.map, nextProps.orderPickupCoords, nextProps.orderDropoffCoords);
+      initiateZoomTransition(this.map, nextProps.pickup, nextProps.dropoff);
       addTerminalPinSources(this.map);
     }
 
     if(['searching', 'choosing', 'signing'].includes(this.props.orderStage) && nextProps.orderStage === 'draft') {
       clearPins(this.map);
+    } else {
+      addTerminalPinSources(this.map);
     }
 
-    if (this.props.orderStage === 'signing' && nextProps.orderStage === 'in_mission') {
-      this.props.history.push('/mission');
-    }
-
-    if (this.props.vehicles.length > 0) {
-      if (this.props.vehicles[0].status === 'landing_pickup' && nextProps.vehicles[0].status === 'waiting_pickup') this.props.history.push('/confirm-takeoff');
+    if (nextProps.orderStage === 'in_mission') {
+      initiateZoomTransition(this.map, nextProps.pickup, nextProps.dropoff);
+      if (this.props.vehicles.length > 0 && nextProps.vehicles[0].status === 'waiting_pickup') {
+        this.props.history.push('/confirm-takeoff');
+      } else {
+        this.props.history.push('/mission');
+      }
     }
 
     return false;
@@ -54,8 +57,8 @@ class Map extends Component {
       'onMoveEnd': this.props.onMoveEnd
     });
     const terminals = {
-      pickup: this.props.orderPickupCoords,
-      dropoff: this.props.orderDropoffCoords
+      pickup: this.props.pickup,
+      dropoff: this.props.dropoff
     };
     updateMap(this.map, this.props.vehicles, terminals);
   }
@@ -81,8 +84,8 @@ Map.propTypes = {
   onMoveEnd: PropTypes.func.isRequired,
   orderStage: PropTypes.string.isRequired,
   missionStatus: PropTypes.string,
-  orderPickupCoords: PropTypes.object,
-  orderDropoffCoords: PropTypes.object
+  pickup: PropTypes.object,
+  dropoff: PropTypes.object
 };
 
 export default Map;

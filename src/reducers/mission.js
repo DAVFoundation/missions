@@ -45,7 +45,7 @@ export default handleActions({
 
   [updateStatusFulfilled]: (state, { payload: {mission} }) => {
     if (mission){
-      return {...state, status: mission.status};
+      return {...state, ...mission, status: mission.status};
     }
     return state;
   }

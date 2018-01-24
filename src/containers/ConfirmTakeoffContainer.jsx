@@ -9,7 +9,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const matchStateToProps = (state) => {
   return {
-    coords: state.mission.pickup,
+    coords: {long: state.mission.pickup_long, lat: state.mission.pickup_lat},
     status: state.mission.status
   };
 };

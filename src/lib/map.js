@@ -156,40 +156,42 @@ export const clearPins = (map) => {
 };
 
 export const addTerminalPinSources = (map) => {
-  map.addSource('pickup', {
-    'type': 'geojson',
-    'data': {
-      'type': 'FeatureCollection',
-      'features': []
-    }
-  });
-  map.addLayer({
-    'id': 'pickup',
-    'type': 'symbol',
-    'source': 'pickup',
-    'minzoom': 10,
-    'layout': {
-      'icon-image': 'pickup',
-      'icon-allow-overlap':true,
-      'icon-ignore-placement':true
-    }
-  });
-  map.addSource('dropoff', {
-    'type': 'geojson',
-    'data': {
-      'type': 'FeatureCollection',
-      'features': []
-    }
-  });
-  map.addLayer({
-    'id': 'dropoff',
-    'type': 'symbol',
-    'source': 'dropoff',
-    'minzoom': 10,
-    'layout': {
-      'icon-image': 'dropoff',
-      'icon-allow-overlap':true,
-      'icon-ignore-placement':true
-    }
-  });
+  if (!map.getSource('pickup') && !map.getSource('dropoff')){
+    map.addSource('pickup', {
+      'type': 'geojson',
+      'data': {
+        'type': 'FeatureCollection',
+        'features': []
+      }
+    });
+    map.addLayer({
+      'id': 'pickup',
+      'type': 'symbol',
+      'source': 'pickup',
+      'minzoom': 10,
+      'layout': {
+        'icon-image': 'pickup',
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true
+      }
+    });
+    map.addSource('dropoff', {
+      'type': 'geojson',
+      'data': {
+        'type': 'FeatureCollection',
+        'features': []
+      }
+    });
+    map.addLayer({
+      'id': 'dropoff',
+      'type': 'symbol',
+      'source': 'dropoff',
+      'minzoom': 10,
+      'layout': {
+        'icon-image': 'dropoff',
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true
+      }
+    });
+  }
 };
