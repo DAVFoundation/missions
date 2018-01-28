@@ -10,7 +10,6 @@ export const makeImage = (imageData) => {
 export const shiftCoords = (coords) => {
   const {lat, long} = coords;
   if (lat && long) return {lat: lat + randomShift(), long: long + randomShift()};
-  return undefined;
 };
 
 export const getShortCoordsString = (coords = {}, precision = 6, separator=', ') => {
