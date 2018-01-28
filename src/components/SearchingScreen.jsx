@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import VehicleBid from './VehicleBid.jsx';
 import VehicleBidPreview from './VehicleBidPreview.jsx';
 import VehicleCard from './VehicleCard.jsx';
@@ -22,6 +22,10 @@ class SearchingScreen extends Component {
 
   render() {
     const { bids, vehicles, stage, cancelSearch, chooseBid, vehicleOnMission, missionId } = this.props;
+
+    if (stage === 'draft') {
+      return <Redirect to='/'/>;
+    }
 
     let screenClassNames = ['screen'];
     if (stage === 'choosing') screenClassNames.push('screen--stage-choosing');
