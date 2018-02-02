@@ -21,7 +21,7 @@ class Map extends Component {
     if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
       initiateZoomTransition(this.map, nextProps.pickup, nextProps.pickup);
       this.map.easeTo({
-        zoom: 7,  // zoom to level 7
+        zoom: 14,   // zoom to level 14
         curve: 1.5  // speed of zoom
       });
       addTerminalPinSources(this.map);
