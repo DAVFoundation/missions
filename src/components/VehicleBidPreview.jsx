@@ -4,7 +4,7 @@ import VehicleCard from './VehicleCard.jsx';
 
 const VehicleBidPreview = ({vehicle}) => (
   <div className="vehicle-bid-card vehicle-bid-card--small">
-    <VehicleCard icon={vehicle.icon} model={vehicle.model} rating={vehicle.rating} />
+    <VehicleCard icon={vehicle.icon} model={vehicle.model} />
   </div>
 );
 

@@ -167,14 +167,6 @@ input, select {
   grid-area: vehicle-vitals;
   overflow: hidden;
 }
-.rating:after {
-  content: "\2605";
-  color: #2BCA81;
-  margin-left: 2px;
-}
-.rating strong {
-  font-weight: 700;
-}
 .vehicle-card img {
   grid-area: vehicle-icon;
   border-radius: 50%;
