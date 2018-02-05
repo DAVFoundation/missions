@@ -5,6 +5,7 @@ import map from './map';
 import order from './order';
 import bids from './bids';
 import mission from './mission';
+import app from './app';
 
 export default combineReducers({
   settings,
@@ -13,4 +14,5 @@ export default combineReducers({
   order,
   bids,
   mission,
+  app,
 });
