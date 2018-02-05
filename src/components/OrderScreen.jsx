@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from '../containers/LinkContainer.jsx';
 import { getShortCoordsString, coordsFromString } from '../lib/utils';
 import './OrderScreen.css';
 import arrow from '../images/arrow-left.svg';

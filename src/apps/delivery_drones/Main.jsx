@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './store';
+import store from '../../store';
 import App from './App.jsx';
-import './Main.css';
+import '../../common.css';
+import { updateApp } from '../../actions';
+
+store.dispatch(updateApp({ name: 'Drone Deliveries', path: '/delivery_drones' }));
 
 ReactDOM.render(
   <Provider store={store}>

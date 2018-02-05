@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from '../containers/LinkContainer.jsx';
 import VehicleBid from './VehicleBid.jsx';
 import VehicleBidPreview from './VehicleBidPreview.jsx';
 import VehicleCard from './VehicleCard.jsx';

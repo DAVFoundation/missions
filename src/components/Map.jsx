@@ -36,9 +36,9 @@ class Map extends Component {
     if (nextProps.orderStage === 'in_mission') {
       initiateZoomTransition(this.map, nextProps.pickup, nextProps.dropoff);
       if (this.props.vehicles.length > 0 && nextProps.vehicles[0].status === 'waiting_pickup') {
-        this.props.history.push('/confirm-takeoff');
+        this.props.history.push(this.props.appPath+'/confirm-takeoff');
       } else {
-        this.props.history.push('/mission');
+        this.props.history.push(this.props.appPath+'/mission');
       }
     }
 
@@ -47,9 +47,9 @@ class Map extends Component {
 
   onVehicleClick(id) {
     if (this.props.orderStage == 'in_mission'){
-      this.props.history.push('mission/vehicle/'+id);
+      this.props.history.push(this.props.appPath+'/mission/vehicle/'+id);
     } else {
-      this.props.history.push('/vehicle/'+id);
+      this.props.history.push(this.props.appPath+'/vehicle/'+id);
     }
   }
 
@@ -89,7 +89,8 @@ Map.propTypes = {
   orderStage: PropTypes.string.isRequired,
   missionStatus: PropTypes.string,
   pickup: PropTypes.object,
-  dropoff: PropTypes.object
+  dropoff: PropTypes.object,
+  appPath: PropTypes.string
 };
 
 export default Map;

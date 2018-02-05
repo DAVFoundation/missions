@@ -17,6 +17,13 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
+      chunks: ['vendor', 'drone_simulation'],
+      template: path.resolve(__dirname, 'src/index.html'),
+      favicon: path.resolve(__dirname, 'src/favicon.ico')
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'delivery_drones/index.html',
+      chunks: ['vendor', 'delivery_drones'],
       template: path.resolve(__dirname, 'src/index.html'),
       favicon: path.resolve(__dirname, 'src/favicon.ico')
     }),

@@ -28,6 +28,7 @@ const matchStateToProps = (state) => {
       props.pickup = {long: state.mission.pickup_long, lat: state.mission.pickup_lat};
     }
   }
+  props.appPath = state.app.path;
   return props;
 };
 

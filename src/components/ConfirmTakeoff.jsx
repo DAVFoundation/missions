@@ -27,7 +27,7 @@ class ConfirmTakeoff extends Component {
     }
 
     if ((prevProps.status === 'takeoff_confirmation_initiated') && (this.props.status === 'takeoff_confirmation_received')){
-      this.props.history.push('/mission');
+      this.props.history.push(this.props.appPath+'/mission');
     }
   }
 
@@ -72,6 +72,7 @@ ConfirmTakeoff.propTypes = {
   history: PropTypes.object.isRequired,
   coords: PropTypes.object,
   status: PropTypes.string,
+  appPath: PropTypes.string,
   confirmTakeoff: PropTypes.func.isRequired
 };
 

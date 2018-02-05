@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { initializeApp } from './lib/app';
-import Map from './containers/MapContainer.jsx';
-import MainScreenContainer from './containers/MainScreenContainer.jsx';
-import VehicleDetailsScreenContainer from './containers/VehicleDetailsScreenContainer.jsx';
-import OrderScreenContainer from './containers/OrderScreenContainer.jsx';
-import MissionContainer from './containers/MissionContainer.jsx';
-import SearchingScreenContainer from './containers/SearchingScreenContainer.jsx';
-import ConfirmPickupContainer from './containers/ConfirmTakeoffContainer.jsx';
-import Welcome from './components/Welcome.jsx';
+import { initializeApp } from '../../lib/app';
+import Map from '../../containers/MapContainer.jsx';
+import MainScreenContainer from '../../containers/MainScreenContainer.jsx';
+import VehicleDetailsScreenContainer from '../../containers/VehicleDetailsScreenContainer.jsx';
+import OrderScreenContainer from '../../containers/OrderScreenContainer.jsx';
+import MissionContainer from '../../containers/MissionContainer.jsx';
+import SearchingScreenContainer from '../../containers/SearchingScreenContainer.jsx';
+import ConfirmPickupContainer from '../../containers/ConfirmTakeoffContainer.jsx';
+import Welcome from '../../components/Welcome.jsx';
 
 class App extends Component {
 

@@ -4,7 +4,7 @@ import gpsPointIcon from '../images/gps_point.svg';
 import timeIcon from '../images/time.svg';
 import currencyImage from '../images/dav.svg';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import Link from '../containers/LinkContainer.jsx';
 import {humanReadableVehicleStatus} from '../lib/utils';
 
 class MissionScreen extends Component {

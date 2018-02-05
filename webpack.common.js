@@ -5,7 +5,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = (env = 'development') => {
   return {
     entry: {
-      app: './src/Main.jsx',
+      drone_simulation: './src/apps/drone_simulation/Main.jsx',
+      delivery_drones: './src/apps/delivery_drones/Main.jsx',
       vendor: [
         'mapbox-gl',
         'react',
@@ -21,7 +22,7 @@ module.exports = (env = 'development') => {
     output: {
       path: path.resolve(__dirname, 'dist'),
       publicPath: '/',
-      filename: 'bundle.js',
+      filename: '[name].bundle.js',
       sourceMapFilename: '[file].map'
     },
     module: {
