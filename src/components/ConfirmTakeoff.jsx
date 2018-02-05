@@ -39,8 +39,7 @@ class ConfirmTakeoff extends Component {
           <h1>Ready for Pickup</h1>
           <p>Drone has arrived at <br/><b>{this.props.coords.lat}, {this.props.coords.long}</b></p>
           <p>
-            <i>Please load the package into the yellow compartment on the bottom of the drone,
-              close the door with the latch until you hear a click.</i>
+            <i>Please slide the package into the compartment at the bottom of the drone. Package should click into place when secured.</i>
           </p>
           <button onClick={this.toggleAlert.bind(this)} className="big-button with-subtext">
             TAKE OFF<br/>
