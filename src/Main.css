@@ -167,6 +167,12 @@ input, select {
   grid-area: vehicle-vitals;
   overflow: hidden;
 }
+.vehicle-vitals .dav-uid {
+  font-size: 9px;
+}
+.vehicle-bid-card--small .vehicle-vitals .dav-uid {
+  font-size: 12px;
+}
 .vehicle-card img {
   grid-area: vehicle-icon;
   border-radius: 50%;
