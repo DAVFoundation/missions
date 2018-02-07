@@ -29,7 +29,9 @@ export const humanReadableVehicleStatus = {
   waiting_pickup: 'Waiting for Takeoff confirmation',
   takeoff_pickup: 'Taking off',
   travelling_dropoff: 'Flying to Dropoff',
-  waiting_dropoff: 'Waiting at Dropoff'
+  landing_dropoff: 'Landing at Dropoff',
+  waiting_dropoff: 'Waiting at Dropoff',
+  available: 'Completed'
 };
 
 const randomShift = () => {
