@@ -41,8 +41,8 @@ class MissionScreen extends Component {
             <img src={timeIcon} alt="Time Icon"/>
           </div>
           <div className="mission-info-text">
-            <p>Estimated time to pickup location:</p>
-            <h3>3 minutes</h3>
+            <p>Estimated time to {this.props.leg} location:</p>
+            <h3>{this.props.timeLeftInLeg} {this.props.timeLeftInLeg == '1' ? 'minute': 'minutes'}</h3>
           </div>
         </div>
       </div>) ||
@@ -61,7 +61,9 @@ class MissionScreen extends Component {
 }
 
 MissionScreen.propTypes = {
-  vehicleStatus: PropTypes.string
+  vehicleStatus: PropTypes.string,
+  leg: PropTypes.string,
+  timeLeftInLeg: PropTypes.string
 };
 
 
