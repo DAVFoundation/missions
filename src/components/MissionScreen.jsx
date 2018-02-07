@@ -42,7 +42,7 @@ class MissionScreen extends Component {
           </div>
           <div className="mission-info-text">
             <p>Estimated time to {this.props.leg} location:</p>
-            <h3>{this.props.timeLeftInLeg} {this.props.timeLeftInLeg == '1' ? 'minute': 'minutes'}</h3>
+            <h3>{parseFloat(this.props.timeLeftInLeg) > 1 ? `${this.props.timeLeftInLeg} minutes` : 'less than a minute'}</h3>
           </div>
         </div>
       </div>) ||
