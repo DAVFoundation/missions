@@ -6,7 +6,7 @@ const matchStateToProps = (state) => {
   const vehicles = getVehicleArray(state.vehicles);
   const mission = state.mission;
   let props = {};
-  if (vehicles[0]){
+  if (vehicles[0] && vehicles[0].status) {
     const leg = vehicles[0].status.split('_')[1];
     props.vehicleStatus = vehicles[0].status;
     props.leg = leg;
