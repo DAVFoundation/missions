@@ -29,6 +29,7 @@ const matchStateToProps = (state) => {
     props.timeLeftInLeg = timeLeftInLeg;
   }
 
+  props.missionComplete = mission.status === 'completed';
   return props;
 };
 
