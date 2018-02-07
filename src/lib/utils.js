@@ -1,3 +1,5 @@
+import randomString from 'randomstring';
+
 export const makeImage = (imageData) => {
   return new Promise((resolve, reject) => {
     let image = new Image();
@@ -34,4 +36,19 @@ export const humanReadableVehicleStatus = {
 
 const randomShift = () => {
   return (Math.floor(Math.random() * 10) + 4)/10000;
+};
+
+/**
+ * Generates a random DAV address (a UID)
+ *
+ * @returns {String} DAV address. A string of length 42 beginning with 0x followed by 40 hexadecimal characters
+ */
+export const randomDavAddress = () => {
+  return (
+    '0x' +
+    randomString.generate({
+      length: 40,
+      charset: 'hex',
+    })
+  );
 };
