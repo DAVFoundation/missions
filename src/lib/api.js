@@ -17,13 +17,11 @@ export const fetchStatus = ({ id, lat, long, requestId }) => {
 export const createRequest = ({pickup, dropoff, requested_pickup_time, size, weight}) => {
   pickup = getShortCoordsString(pickup, 8, ',');
   dropoff = getShortCoordsString(dropoff, 8, ',');
-  let url = new URL(`/request/new`, apiRoot);
-  url.searchParams.set('pickup', pickup);
-  url.searchParams.set('dropoff', dropoff);
-  url.searchParams.set('requested_pickup_time', requested_pickup_time);
-  url.searchParams.set('size', size);
-  url.searchParams.set('weight', weight);
-  return fetchWithUserId(url);
+  let url = new URL(`/needs`, apiRoot);
+  const body = {
+    pickup, dropoff, requested_pickup_time, size, weight
+  };
+  return fetchWithUserId(url, 'POST', body);
 };
 
 export const chooseBid = (bid_id) => {
@@ -34,9 +32,8 @@ export const chooseBid = (bid_id) => {
 
 export const cancelRequest = () => {
   const requestId = store.getState().order.requestId;
-  let url = new URL(`/request/cancel`, apiRoot);
-  url.searchParams.set('requestId', requestId);
-  return fetchWithUserId(url);
+  let url = new URL(`/needs/${requestId}`, apiRoot);
+  return fetchWithUserId(url, 'DELETE');
 };
 
 export const confirmTakeoff = () => {
@@ -48,10 +45,17 @@ export const confirmTakeoff = () => {
   return fetchWithUserId(url);
 };
 
-const fetchWithUserId = (url) => {
+const fetchWithUserId = (url, method = 'GET', body) => {
   const userId = store.getState().settings.user_id;
   url.searchParams.set('user_id', userId);
-  return fetch(url)
+  const headers = new Headers();
+
+  headers.append('Accept', 'application/json');
+  headers.append('Content-Type', 'application/json');
+
+  const options = {method, headers};
+  if (body) options.body = JSON.stringify(body);
+  return fetch(url, options)
     .then(response => response.json());
 };
 
