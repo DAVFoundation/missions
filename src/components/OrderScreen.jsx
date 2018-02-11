@@ -63,8 +63,8 @@ class OrderScreen extends Component {
 
   submitForm() {
     this.updateStoreFromForm({ stage: 'searching' });
-    let requestDetails = this.createOrderDetailsObject();
-    this.props.createRequest(requestDetails);
+    let needDetails = this.createOrderDetailsObject();
+    this.props.createNeed(needDetails);
   }
 
   selectPackageSize(size) {
@@ -172,7 +172,7 @@ OrderScreen.propTypes = {
   size: PropTypes.string,
   weight: PropTypes.string,
   updateOrderDetails: PropTypes.func.isRequired,
-  createRequest: PropTypes.func.isRequired,
+  createNeed: PropTypes.func.isRequired,
   onMount: PropTypes.func.isRequired
 };
 

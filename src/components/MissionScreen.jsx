@@ -14,7 +14,6 @@ class MissionScreen extends Component {
   }
 
   render() {
-    console.log(this.props.missionComplete);
     return (
       !this.props.missionComplete && (<div className="mission-info">
         <div className="mission-info-container">

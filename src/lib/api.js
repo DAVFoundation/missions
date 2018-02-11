@@ -3,18 +3,18 @@ import { getShortCoordsString } from '../lib/utils';
 
 const apiRoot = process.env.MISSION_CONTROL_HOST;
 
-export const fetchStatus = ({ id, lat, long, requestId }) => {
+export const fetchStatus = ({ id, lat, long, needId }) => {
   const missionId = store.getState().mission.id;
   let url = new URL(`/status`, apiRoot);
   id && url.searchParams.set('id', id);
   lat && url.searchParams.set('lat', lat); // Don't stand on the equator or you'll break this
   long && url.searchParams.set('long', long);
-  requestId && url.searchParams.set('requestId', requestId);
+  needId && url.searchParams.set('needId', needId);
   missionId && url.searchParams.set('missionId', missionId);
   return fetchWithUserId(url);
 };
 
-export const createRequest = ({pickup, dropoff, requested_pickup_time, size, weight}) => {
+export const createNeed = ({pickup, dropoff, requested_pickup_time, size, weight}) => {
   pickup = getShortCoordsString(pickup, 8, ',');
   dropoff = getShortCoordsString(dropoff, 8, ',');
   let url = new URL(`/needs`, apiRoot);
@@ -30,9 +30,9 @@ export const chooseBid = (bid_id) => {
   return fetchWithUserId(url);
 };
 
-export const cancelRequest = () => {
-  const requestId = store.getState().order.requestId;
-  let url = new URL(`/needs/${requestId}`, apiRoot);
+export const cancelNeed = () => {
+  const needId = store.getState().order.needId;
+  let url = new URL(`/needs/${needId}`, apiRoot);
   return fetchWithUserId(url, 'DELETE');
 };
 

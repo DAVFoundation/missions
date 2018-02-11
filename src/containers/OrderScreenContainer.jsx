@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import OrderScreen from '../components/OrderScreen.jsx';
 import { shiftCoords } from '../lib/utils';
-import { updateOrderDetails, createRequest } from '../actions';
+import { updateOrderDetails, createNeed } from '../actions';
 
 const mapDispatchToProps = (dispatch) => ({
   updateOrderDetails: (details) => dispatch(updateOrderDetails(details)),
-  createRequest: (request) => dispatch(createRequest(request)),
+  createNeed: (need) => dispatch(createNeed(need)),
   onMount: () => dispatch(updateOrderDetails({ stage: 'draft' })),
 });
 
