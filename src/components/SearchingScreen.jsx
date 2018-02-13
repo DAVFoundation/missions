@@ -5,76 +5,9 @@ import VehicleBid from './VehicleBid.jsx';
 import VehicleBidPreview from './VehicleBidPreview.jsx';
 import VehicleCard from './VehicleCard.jsx';
 import UserCardContainer from '../containers/UserCardContainer.jsx';
+import BidSelectionHeader from '../components/BidSelectionHeader.jsx';
 import './SearchingScreen.css';
 import radar from '../images/radar.png';
-import sort_button from '../images/sort_button.svg';
-import arrow_left from '../images/arrow-left.svg';
-import x_button from '../images/x_button.svg';
-// import check from '../images/check.svg';
-
-class BidSelectionHeader extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      sortOptionsOpen: false
-    };
-
-    this.handleSortButtonClick = this.handleSortButtonClick.bind(this);
-    this.handleCloseButtonClick = this.handleCloseButtonClick.bind(this);
-  }
-
-  handleSortButtonClick() {
-    console.log('sort button clicked');
-
-    this.setState({ sortOptionsOpen: !this.state.sortOptionsOpen });
-  }
-
-  handleCloseButtonClick() {
-    console.log('close button clicked');
-
-    this.setState({ sortOptionsOpen: !this.state.sortOptionsOpen });
-  }
-
-  render() {
-    let { sortOptionsOpen } = this.state;
-    return (
-      <div className="bid-selection-header-wrapper">
-        <div
-          className={
-            'sort-options ' + (sortOptionsOpen ? 'sort-options--expand' : '')
-          }
-        >
-          <div
-            onClick={this.handleCloseButtonClick}
-            className="sort-options__close-button"
-          >
-            <img src={x_button} alt="close button" />
-          </div>
-          <div className="sort-options__header">Sort by:</div>
-          <ul className="sort-options__list">
-            <li>Best match</li>
-            <li>Fastest pickup</li>
-            <li>Fastest delivery</li>
-            <li>Lowest cost</li>
-          </ul>
-        </div>
-        <div className="bid-selection-header">
-          <div className="bid-selection-header__back-button">
-            <img src={arrow_left} alt="back button" />
-          </div>
-          <div className="bid-selection-header__title">Bid Selection</div>
-          <div
-            onClick={this.handleSortButtonClick}
-            className="bid-selection-header__sort-button"
-          >
-            <img src={sort_button} alt="sort button" />
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
 
 class SearchingScreen extends Component {
   constructor(props) {
@@ -138,7 +71,7 @@ class SearchingScreen extends Component {
         )}
 
         <div id="vehicle-bid-cards">
-          {stage === 'choosing' && <BidSelectionHeader />}
+          {stage === 'choosing' && <BidSelectionHeader {...this.props} />}
           {bids.map(
             bid =>
               vehicles[bid.vehicle_id] && (
