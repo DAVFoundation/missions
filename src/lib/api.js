@@ -1,5 +1,5 @@
 import store from '../store';
-import { getShortCoordsString } from '../lib/utils';
+import { packageSizeOptions } from '../lib/utils';
 
 const apiRoot = process.env.MISSION_CONTROL_HOST;
 
@@ -14,12 +14,17 @@ export const fetchStatus = ({ id, lat, long, needId }) => {
   return fetchWithUserId(url);
 };
 
-export const createNeed = ({pickup, dropoff, requested_pickup_time, size, weight}) => {
-  pickup = getShortCoordsString(pickup, 8, ',');
-  dropoff = getShortCoordsString(dropoff, 8, ',');
+export const createNeed = ({pickup, dropoff, start_at, size, weight}) => {
   let url = new URL(`/needs`, apiRoot);
+  const sizeOption = packageSizeOptions.find(sizeOption => sizeOption.id === size);
   const body = {
-    pickup, dropoff, requested_pickup_time, size, weight
+    start_at: start_at,
+    pickup_latitude: pickup.lat,
+    pickup_longitude: pickup.long,
+    dropoff_latitude: dropoff.lat,
+    dropoff_longitude: dropoff.long,
+    cargo_type: sizeOption.cargoType,
+    weight: parseFloat(weight)
   };
   return fetchWithUserId(url, 'POST', body);
 };

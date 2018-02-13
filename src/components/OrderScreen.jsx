@@ -6,12 +6,7 @@ import './OrderScreen.css';
 import arrow from '../images/arrow-left.svg';
 import IconSelector from './IconSelector.jsx';
 import getConfig from '../config';
-
-// icons
-import sizeLetter from '../images/size_letter.svg';
-import sizeCan from '../images/size_can.svg';
-import sizePizza from '../images/size_pizza.svg';
-import sizeBox from '../images/size_box.svg';
+import { packageSizeOptions } from '../lib/utils';
 
 class OrderScreen extends Component {
   constructor(props) {
@@ -26,12 +21,7 @@ class OrderScreen extends Component {
 
     // Options should be read from some kind of configuration
     // but putting it here for now
-    this.packageSizeOptions = [
-      { id: 'letter', icon: sizeLetter },
-      { id: 'can', icon: sizeCan },
-      { id: 'pizza', icon: sizePizza },
-      { id: 'box', icon: sizeBox }
-    ];
+    this.packageSizeOptions = packageSizeOptions;
 
     // Reference to a method that toggles the currently selected
     // package size option on / off.
@@ -52,7 +42,7 @@ class OrderScreen extends Component {
       dropoff: coordsFromString(this.dropoffNode.value) || defaultDropoff,
       size: this.state.packageSize || undefined,
       weight: this.weightNode.value || undefined,
-      requested_pickup_time: this.pickupTimeNode.value || undefined
+      start_at: this.pickupTimeNode.value || undefined
     };
   }
 
@@ -68,6 +58,7 @@ class OrderScreen extends Component {
   }
 
   selectPackageSize(size) {
+    console.log(size);
     this.setState({
       packageSize: this.state.packageSize !== size ? size : undefined
     });
@@ -77,8 +68,8 @@ class OrderScreen extends Component {
 
   render() {
     const { userCoords, defaultDropoff, pickup, weight } = this.props; // size
-    const requested_pickup_time =
-      this.props.requested_pickup_time || new Date().toTimeString().slice(0, 5);
+    const start_at =
+      this.props.start_at || new Date().toTimeString().slice(0, 5);
     const userCoordsString = getShortCoordsString(userCoords);
     const pickupPlaceholder = userCoordsString
       ? `Your current location (${userCoordsString})`
@@ -145,7 +136,7 @@ class OrderScreen extends Component {
           <input
             id="pickup-time"
             type="time"
-            defaultValue={requested_pickup_time}
+            defaultValue={start_at}
             ref={node => {
               this.pickupTimeNode = node;
             }}
@@ -168,7 +159,7 @@ OrderScreen.propTypes = {
   defaultDropoff: PropTypes.object,
   pickup: PropTypes.object,
   dropoff: PropTypes.object,
-  requested_pickup_time: PropTypes.string,
+  start_at: PropTypes.string,
   size: PropTypes.string,
   weight: PropTypes.string,
   updateOrderDetails: PropTypes.func.isRequired,

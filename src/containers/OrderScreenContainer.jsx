@@ -17,7 +17,7 @@ export default connect(
       userCoords: state.map.coords,
       pickup: state.order.pickup,
       dropoff: state.order.dropoff,
-      requested_pickup_time: state.order.requested_pickup_time,
+      start_at: state.order.start_at,
       size: state.order.size,
       weight: state.order.weight,
     };

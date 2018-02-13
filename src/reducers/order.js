@@ -6,7 +6,7 @@ const defaultState = {
   stage: 'draft', // draft | searching | choosing | signing | in_mission
   pickup: undefined,
   dropoff: undefined,
-  requested_pickup_time: undefined,
+  start_at: undefined,
   size: getConfig('default_package_size'),
   weight: getConfig('default_package_weight'),
 };
