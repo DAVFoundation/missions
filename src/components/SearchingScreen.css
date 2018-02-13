@@ -12,31 +12,35 @@
 }
 
 @keyframes spin {
-  from {transform:rotate(0deg);}
-  to {transform:rotate(360deg);}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-#searching-screen.screen--stage-choosing {
+#bid-selection.screen--stage-choosing {
   overflow: scroll;
 }
 
-#searching-screen h1 {
+#bid-selection h1 {
   font-size: 15px;
   font-weight: 500;
   max-width: 160px;
   margin: 35px auto 10px;
 }
 
-#searching-screen .vehicle-card {
+#bid-selection .vehicle-card {
   grid-template-columns: 50px 1fr;
 }
 
-#searching-screen .vehicle-card img {
+#bid-selection .vehicle-card img {
   width: 38px;
   height: 38px;
 }
 
-#searching-screen .cancel-button {
+#bid-selection .cancel-button {
   display: block;
   margin: 20px auto 10px;
   width: 60px;
@@ -51,18 +55,36 @@
   margin: 10px 10px;
   width: calc(100vw - 20px);
   box-shadow: 0 2px 10px 0 #c4c8fa;
-  transition: all ease-out .4s;
+  transition: all ease-out 0.4s;
 }
 
-.vehicle-bid-card:nth-child(2) { transition-delay: 50ms; }
-.vehicle-bid-card:nth-child(3) { transition-delay: 100ms; }
-.vehicle-bid-card:nth-child(4) { transition-delay: 150ms; }
-.vehicle-bid-card:nth-child(5) { transition-delay: 200ms; }
-.vehicle-bid-card:nth-child(6) { transition-delay: 250ms; }
-.vehicle-bid-card:nth-child(7) { transition-delay: 300ms; }
-.vehicle-bid-card:nth-child(8) { transition-delay: 350ms; }
-.vehicle-bid-card:nth-child(9) { transition-delay: 400ms; }
-.vehicle-bid-card:nth-child(10) { transition-delay: 450ms; }
+.vehicle-bid-card:nth-child(2) {
+  transition-delay: 50ms;
+}
+.vehicle-bid-card:nth-child(3) {
+  transition-delay: 100ms;
+}
+.vehicle-bid-card:nth-child(4) {
+  transition-delay: 150ms;
+}
+.vehicle-bid-card:nth-child(5) {
+  transition-delay: 200ms;
+}
+.vehicle-bid-card:nth-child(6) {
+  transition-delay: 250ms;
+}
+.vehicle-bid-card:nth-child(7) {
+  transition-delay: 300ms;
+}
+.vehicle-bid-card:nth-child(8) {
+  transition-delay: 350ms;
+}
+.vehicle-bid-card:nth-child(9) {
+  transition-delay: 400ms;
+}
+.vehicle-bid-card:nth-child(10) {
+  transition-delay: 450ms;
+}
 
 .vehicle-bid-card--hidden {
   transform: translateY(120vh);
@@ -104,13 +126,13 @@
   transform: scale(0.83);
   background-color: #f0f0f0;
 }
-.vehicle-bid-card--small:nth-child(n+6) {
+.vehicle-bid-card--small:nth-child(n + 6) {
   z-index: 45;
   bottom: 10px;
-  transform: scale(0.70);
+  transform: scale(0.7);
 }
 
-#searching-screen .choose-bid-button {
+#bid-selection .choose-bid-button {
   float: right;
   padding: 9px 16px;
 }
@@ -130,13 +152,13 @@ dl.bid-details {
   font-weight: 500;
 }
 
-#searching-screen .screen-background--dark {
+#bid-selection .screen-background--dark {
   z-index: -1;
-  transition: all ease-in-out .4s;
+  transition: all ease-in-out 0.4s;
   background-color: rgba(0, 0, 0, 0);
 }
 
-#searching-screen.screen--stage-signing .screen-background--dark {
+#bid-selection.screen--stage-signing .screen-background--dark {
   z-index: 20;
   background-color: rgba(0, 0, 0, 0.3);
 }
@@ -144,13 +166,13 @@ dl.bid-details {
 #signing-box {
   text-align: center;
 }
-#signing-box>h2 {
+#signing-box > h2 {
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 10px;
 }
 
-#signing-box>p {
+#signing-box > p {
   font-size: 14px;
   font-weight: 300;
   margin-bottom: 20px;
@@ -175,4 +197,73 @@ dl.bid-details {
 }
 #signing-box #sign-here img {
   margin-top: 11px;
+}
+
+/*****************************
+
+SearchingScreenHeader styles
+
+****************************/
+
+.bid-selection-header-wrapper {
+  min-height: 60px;
+}
+
+.bid-selection-header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
+
+.bid-selection-header__back-button {
+  margin-left: 10px;
+  padding: 10px;
+}
+
+.bid-selection-header__title {
+}
+
+.bid-selection-header__sort-button {
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.sort-options {
+  position: relative;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 2px 10px 0 #c4c8fa;
+  height: 0;
+  transition: all 0.5s ease-in-out;
+  overflow-y: hidden;
+  z-index: 100;
+}
+
+.sort-options--expand {
+  height: 180px;
+}
+
+.sort-options__close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  margin: 10px 13px 0 0;
+}
+
+.sort-options__header {
+  padding: 20px 0 15px 0;
+}
+
+.sort-options__list {
+  /* padding-bottom: 15px; */
+}
+
+.sort-options__list > li {
+  margin: 0 0 10px 0;
+  font-size: 13px;
 }
