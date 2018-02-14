@@ -6,6 +6,18 @@ import arrow_left from '../images/arrow-left.svg';
 import x_button from '../images/x_button.svg';
 import check from '../images/check.svg';
 
+const CheckMark = props => (
+  <img
+    className={props.hide ? 'sort-options__checkmark--hide' : ''}
+    src={check}
+    alt="checkmark"
+  />
+);
+
+CheckMark.propTypes = {
+  hide: PropTypes.bool
+};
+
 class BidSelectionHeader extends Component {
   constructor(props) {
     super(props);
@@ -72,15 +84,13 @@ class BidSelectionHeader extends Component {
               onClick={this.handleSortOptionClick}
             >
               Best match
-              {sortOptionSelected === this.sortOptions.bestMatch ? (
-                <img src={check} alt="checkmark" />
-              ) : (
-                <img
-                  className="sort-options__checkmark--hide"
-                  src={check}
-                  alt="checkmark"
-                />
-              )}
+              <CheckMark
+                hide={
+                  sortOptionSelected === this.sortOptions.bestMatch
+                    ? false
+                    : true
+                }
+              />
             </li>
             <li
               title={this.sortOptions.fastestPickup}
@@ -92,15 +102,13 @@ class BidSelectionHeader extends Component {
               onClick={this.handleSortOptionClick}
             >
               Fastest pickup
-              {sortOptionSelected === this.sortOptions.fastestPickup ? (
-                <img src={check} alt="checkmark" />
-              ) : (
-                <img
-                  className="sort-options__checkmark--hide"
-                  src={check}
-                  alt="checkmark"
-                />
-              )}
+              <CheckMark
+                hide={
+                  sortOptionSelected === this.sortOptions.fastestPickup
+                    ? false
+                    : true
+                }
+              />
             </li>
             <li
               title={this.sortOptions.fastestDelivery}
@@ -112,35 +120,31 @@ class BidSelectionHeader extends Component {
               onClick={this.handleSortOptionClick}
             >
               Fastest delivery
-              {sortOptionSelected === this.sortOptions.fastestDelivery ? (
-                <img src={check} alt="checkmark" />
-              ) : (
-                <img
-                  className="sort-options__checkmark--hide"
-                  src={check}
-                  alt="checkmark"
-                />
-              )}
+              <CheckMark
+                hide={
+                  sortOptionSelected === this.sortOptions.fastestDelivery
+                    ? false
+                    : true
+                }
+              />
             </li>
             <li
               title={this.sortOptions.lowestCost}
               className={
-                sortOptionSelected === 'lowestCost'
+                sortOptionSelected === this.sortOptions.lowestCost
                   ? 'sort-options__list--selected'
                   : ''
               }
               onClick={this.handleSortOptionClick}
             >
               Lowest cost
-              {sortOptionSelected === this.sortOptions.lowestCost ? (
-                <img src={check} alt="checkmark" />
-              ) : (
-                <img
-                  className="sort-options__checkmark--hide"
-                  src={check}
-                  alt="checkmark"
-                />
-              )}
+              <CheckMark
+                hide={
+                  sortOptionSelected === this.sortOptions.lowestCost
+                    ? false
+                    : true
+                }
+              />
             </li>
           </ul>
         </div>
