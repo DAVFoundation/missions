@@ -89,9 +89,7 @@ class SearchingScreen extends Component {
     /* eslint-enable indent */
   }
 
-  render() {
-    console.log('props:  ', this.props);
-    
+  render() {    
 
     const {
       bids,
