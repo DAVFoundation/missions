@@ -25,36 +25,40 @@ class MissionScreen extends Component {
   }
 
   render() {
-    if ( this.state.missionComplete ){
-      return (<div className="mission-info">
-        <div className="mission-info-summary">
-          <h1>Delivery completed successfully</h1>
-          <p>Cost for delivery:</p>
-          <h1>20 <img src={currencyImage} className="currency-symbol" alt="DAV"/></h1>
-          <Link to="/" className="big-button close">Close</Link>
-        </div>
-      </div>);
-    }else{
-      return (<div className="mission-info">
-        <div className="mission-info-container">
-          <div className="mission-info-icon">
-            <img src={gpsPointIcon} alt="GPS Point Icon"/>
-          </div>
-          <div className="mission-info-text">
-            <p>Current State:</p>
-            <h3>{humanReadableVehicleStatus[this.props.vehicleStatus]}</h3>
+    if (this.state.missionComplete) {
+      return (
+        <div className="mission-info">
+          <div className="mission-info-summary">
+            <h1>Delivery completed successfully</h1>
+            <p>Cost for delivery:</p>
+            <h1>20 <img src={currencyImage} className="currency-symbol" alt="DAV"/></h1>
+            <Link to="/" className="big-button close">Close</Link>
           </div>
         </div>
-        <div className="mission-info-container">
-          <div className="mission-info-icon">
-            <img src={timeIcon} alt="Time Icon"/>
+      );
+    } else {
+      return (
+        <div className="mission-info">
+          <div className="mission-info-container">
+            <div className="mission-info-icon">
+              <img src={gpsPointIcon} alt="GPS Point Icon"/>
+            </div>
+            <div className="mission-info-text">
+              <p>Current State:</p>
+              <h3>{humanReadableVehicleStatus[this.props.vehicleStatus]}</h3>
+            </div>
           </div>
-          <div className="mission-info-text">
-            <p>Estimated time to {this.props.leg} location:</p>
-            <h3>{parseFloat(this.props.timeLeftInLeg) > 1 ? `${this.props.timeLeftInLeg} minutes` : 'less than a minute'}</h3>
+          <div className="mission-info-container">
+            <div className="mission-info-icon">
+              <img src={timeIcon} alt="Time Icon"/>
+            </div>
+            <div className="mission-info-text">
+              <p>Estimated time to {this.props.leg} location:</p>
+              <h3>{parseFloat(this.props.timeLeftInLeg) > 1 ? `${this.props.timeLeftInLeg} minutes` : 'less than a minute'}</h3>
+            </div>
           </div>
         </div>
-      </div>);
+      );
     }
   }
 }
@@ -64,6 +68,5 @@ MissionScreen.propTypes = {
   leg: PropTypes.string,
   timeLeftInLeg: PropTypes.string
 };
-
 
 export default MissionScreen;
