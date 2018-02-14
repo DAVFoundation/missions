@@ -42,7 +42,7 @@ class OrderScreen extends Component {
       dropoff: coordsFromString(this.dropoffNode.value) || defaultDropoff,
       size: this.state.packageSize || undefined,
       weight: this.weightNode.value || undefined,
-      start_at: this.pickupTimeNode.value || undefined
+      pickup_at: this.pickupTimeNode.value || undefined
     };
   }
 
@@ -58,7 +58,6 @@ class OrderScreen extends Component {
   }
 
   selectPackageSize(size) {
-    console.log(size);
     this.setState({
       packageSize: this.state.packageSize !== size ? size : undefined
     });
@@ -68,8 +67,8 @@ class OrderScreen extends Component {
 
   render() {
     const { userCoords, defaultDropoff, pickup, weight } = this.props; // size
-    const start_at =
-      this.props.start_at || new Date().toTimeString().slice(0, 5);
+    const pickup_at =
+      this.props.pickup_at || new Date().toTimeString().slice(0, 5);
     const userCoordsString = getShortCoordsString(userCoords);
     const pickupPlaceholder = userCoordsString
       ? `Your current location (${userCoordsString})`
@@ -136,7 +135,7 @@ class OrderScreen extends Component {
           <input
             id="pickup-time"
             type="time"
-            defaultValue={start_at}
+            defaultValue={pickup_at}
             ref={node => {
               this.pickupTimeNode = node;
             }}
@@ -159,7 +158,7 @@ OrderScreen.propTypes = {
   defaultDropoff: PropTypes.object,
   pickup: PropTypes.object,
   dropoff: PropTypes.object,
-  start_at: PropTypes.string,
+  pickup_at: PropTypes.string,
   size: PropTypes.string,
   weight: PropTypes.string,
   updateOrderDetails: PropTypes.func.isRequired,

@@ -14,11 +14,11 @@ export const fetchStatus = ({ id, lat, long, needId }) => {
   return fetchWithUserId(url);
 };
 
-export const createNeed = ({pickup, dropoff, start_at, size, weight}) => {
+export const createNeed = ({pickup, dropoff, pickup_at, size, weight}) => {
   let url = new URL(`/needs`, apiRoot);
   const sizeOption = packageSizeOptions.find(sizeOption => sizeOption.id === size);
   const body = {
-    start_at: start_at,
+    pickup_at: pickup_at,
     pickup_latitude: pickup.lat,
     pickup_longitude: pickup.long,
     dropoff_latitude: dropoff.lat,
