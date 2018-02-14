@@ -10,9 +10,16 @@ class BidSelectionHeader extends Component {
   constructor(props) {
     super(props);
 
+    this.sortOptions = {
+      bestMatch: 'Best match',
+      fastestPickup: 'Fastest pickup',
+      fastestDelivery: 'Fastest delivery',
+      lowestCost: 'Lowest cost'
+    };
+
     this.state = {
       sortOptionsOpen: false,
-      sortOptionSelected: 'bestMatch'
+      sortOptionSelected: this.sortOptions.bestMatch
     };
 
     this.handleSortButtonClick = this.handleSortButtonClick.bind(this);
@@ -29,13 +36,11 @@ class BidSelectionHeader extends Component {
   }
 
   handleSortOptionClick(e) {
-    console.log(e.target.id);
-
     //call function in SearchingScreen, passing in
     //selected sort option
 
     this.setState({
-      sortOptionSelected: e.target.id,
+      sortOptionSelected: e.target.title,
       sortOptionsOpen: !this.state.sortOptionsOpen
     });
   }
@@ -58,17 +63,16 @@ class BidSelectionHeader extends Component {
           <div className="sort-options__header">Sort by:</div>
           <ul className="sort-options__list">
             <li
-              title="Best match"
-              id="bestMatch"
+              title={this.sortOptions.bestMatch}
               className={
-                sortOptionSelected === 'bestMatch'
+                sortOptionSelected === this.sortOptions.bestMatch
                   ? 'sort-options__list--selected'
                   : ''
               }
               onClick={this.handleSortOptionClick}
             >
               Best match
-              {sortOptionSelected === 'bestMatch' ? (
+              {sortOptionSelected === this.sortOptions.bestMatch ? (
                 <img src={check} alt="checkmark" />
               ) : (
                 <img
@@ -79,17 +83,16 @@ class BidSelectionHeader extends Component {
               )}
             </li>
             <li
-              title="Fastest pickup"
-              id="fastestPickup"
+              title={this.sortOptions.fastestPickup}
               className={
-                sortOptionSelected === 'fastestPickup'
+                sortOptionSelected === this.sortOptions.fastestPickup
                   ? 'sort-options__list--selected'
                   : ''
               }
               onClick={this.handleSortOptionClick}
             >
               Fastest pickup
-              {sortOptionSelected === 'fastestPickup' ? (
+              {sortOptionSelected === this.sortOptions.fastestPickup ? (
                 <img src={check} alt="checkmark" />
               ) : (
                 <img
@@ -100,17 +103,16 @@ class BidSelectionHeader extends Component {
               )}
             </li>
             <li
-              title="Fastest delivery"
-              id="fastestDelivery"
+              title={this.sortOptions.fastestDelivery}
               className={
-                sortOptionSelected === 'fastestDelivery'
+                sortOptionSelected === this.sortOptions.fastestDelivery
                   ? 'sort-options__list--selected'
                   : ''
               }
               onClick={this.handleSortOptionClick}
             >
               Fastest delivery
-              {sortOptionSelected === 'fastestDelivery' ? (
+              {sortOptionSelected === this.sortOptions.fastestDelivery ? (
                 <img src={check} alt="checkmark" />
               ) : (
                 <img
@@ -121,8 +123,7 @@ class BidSelectionHeader extends Component {
               )}
             </li>
             <li
-              title="Lowest cost"
-              id="lowestCost"
+              title={this.sortOptions.lowestCost}
               className={
                 sortOptionSelected === 'lowestCost'
                   ? 'sort-options__list--selected'
@@ -131,7 +132,7 @@ class BidSelectionHeader extends Component {
               onClick={this.handleSortOptionClick}
             >
               Lowest cost
-              {sortOptionSelected === 'lowestCost' ? (
+              {sortOptionSelected === this.sortOptions.lowestCost ? (
                 <img src={check} alt="checkmark" />
               ) : (
                 <img
