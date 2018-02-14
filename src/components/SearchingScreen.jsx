@@ -90,6 +90,9 @@ class SearchingScreen extends Component {
   }
 
   render() {
+    console.log('props:  ', this.props);
+    
+
     const {
       bids,
       vehicles,
@@ -106,7 +109,7 @@ class SearchingScreen extends Component {
 
     return (
       <div
-        id="bid-selection"
+        id="searching-screen"
         className={screenClassNames.join(' ')}
         ref={node => {
           this.screenNode = node;

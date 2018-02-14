@@ -12,35 +12,31 @@
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
 }
 
-#bid-selection.screen--stage-choosing {
+#searching-screen.screen--stage-choosing {
   overflow: scroll;
 }
 
-#bid-selection h1 {
+#searching-screen h1 {
   font-size: 15px;
   font-weight: 500;
   max-width: 160px;
   margin: 35px auto 10px;
 }
 
-#bid-selection .vehicle-card {
+#searching-screen .vehicle-card {
   grid-template-columns: 50px 1fr;
 }
 
-#bid-selection .vehicle-card img {
+#searching-screen .vehicle-card img {
   width: 38px;
   height: 38px;
 }
 
-#bid-selection .cancel-button {
+#searching-screen .cancel-button {
   display: block;
   margin: 20px auto 10px;
   width: 60px;
@@ -55,36 +51,18 @@
   margin: 10px 10px;
   width: calc(100vw - 20px);
   box-shadow: 0 2px 10px 0 #c4c8fa;
-  transition: all ease-out 0.4s;
+  transition: all ease-out .4s;
 }
 
-.vehicle-bid-card:nth-child(2) {
-  transition-delay: 50ms;
-}
-.vehicle-bid-card:nth-child(3) {
-  transition-delay: 100ms;
-}
-.vehicle-bid-card:nth-child(4) {
-  transition-delay: 150ms;
-}
-.vehicle-bid-card:nth-child(5) {
-  transition-delay: 200ms;
-}
-.vehicle-bid-card:nth-child(6) {
-  transition-delay: 250ms;
-}
-.vehicle-bid-card:nth-child(7) {
-  transition-delay: 300ms;
-}
-.vehicle-bid-card:nth-child(8) {
-  transition-delay: 350ms;
-}
-.vehicle-bid-card:nth-child(9) {
-  transition-delay: 400ms;
-}
-.vehicle-bid-card:nth-child(10) {
-  transition-delay: 450ms;
-}
+.vehicle-bid-card:nth-child(2) { transition-delay: 50ms; }
+.vehicle-bid-card:nth-child(3) { transition-delay: 100ms; }
+.vehicle-bid-card:nth-child(4) { transition-delay: 150ms; }
+.vehicle-bid-card:nth-child(5) { transition-delay: 200ms; }
+.vehicle-bid-card:nth-child(6) { transition-delay: 250ms; }
+.vehicle-bid-card:nth-child(7) { transition-delay: 300ms; }
+.vehicle-bid-card:nth-child(8) { transition-delay: 350ms; }
+.vehicle-bid-card:nth-child(9) { transition-delay: 400ms; }
+.vehicle-bid-card:nth-child(10) { transition-delay: 450ms; }
 
 .vehicle-bid-card--hidden {
   transform: translateY(120vh);
@@ -126,13 +104,13 @@
   transform: scale(0.83);
   background-color: #f0f0f0;
 }
-.vehicle-bid-card--small:nth-child(n + 6) {
+.vehicle-bid-card--small:nth-child(n+6) {
   z-index: 45;
   bottom: 10px;
-  transform: scale(0.7);
+  transform: scale(0.70);
 }
 
-#bid-selection .choose-bid-button {
+#searching-screen .choose-bid-button {
   float: right;
   padding: 9px 16px;
 }
@@ -152,13 +130,13 @@ dl.bid-details {
   font-weight: 500;
 }
 
-#bid-selection .screen-background--dark {
+#searching-screen .screen-background--dark {
   z-index: -1;
-  transition: all ease-in-out 0.4s;
+  transition: all ease-in-out .4s;
   background-color: rgba(0, 0, 0, 0);
 }
 
-#bid-selection.screen--stage-signing .screen-background--dark {
+#searching-screen.screen--stage-signing .screen-background--dark {
   z-index: 20;
   background-color: rgba(0, 0, 0, 0.3);
 }
@@ -166,13 +144,13 @@ dl.bid-details {
 #signing-box {
   text-align: center;
 }
-#signing-box > h2 {
+#signing-box>h2 {
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 10px;
 }
 
-#signing-box > p {
+#signing-box>p {
   font-size: 14px;
   font-weight: 300;
   margin-bottom: 20px;
