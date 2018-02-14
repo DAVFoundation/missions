@@ -1,5 +1,6 @@
 import store from '../store';
 import { packageSizeOptions } from '../lib/utils';
+import moment from 'moment';
 
 const apiRoot = process.env.MISSION_CONTROL_HOST;
 
@@ -15,6 +16,7 @@ export const fetchStatus = ({ id, lat, long, needId }) => {
 };
 
 export const createNeed = ({pickup, dropoff, pickup_at, size, weight}) => {
+  pickup_at = moment(pickup_at, 'HH:mm').format('x');
   let url = new URL(`/needs`, apiRoot);
   const sizeOption = packageSizeOptions.find(sizeOption => sizeOption.id === size);
   const body = {
