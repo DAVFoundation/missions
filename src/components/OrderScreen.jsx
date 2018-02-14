@@ -63,7 +63,7 @@ class OrderScreen extends Component {
   }
 
   cancelForm() {
-    this.updateStoreFromForm({ stage: 'draft', dropoff: null });
+    this.updateStoreFromForm({ stage: 'draft', pickup: null, dropoff: null });
   }
 
   submitForm() {
