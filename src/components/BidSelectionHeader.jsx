@@ -50,6 +50,7 @@ class BidSelectionHeader extends Component {
   handleSortOptionClick(e) {
     //call function in SearchingScreen, passing in
     //selected sort option
+    this.props.handleSortingOptionChange(e.target.title);
 
     this.setState({
       sortOptionSelected: e.target.title,
@@ -172,7 +173,8 @@ BidSelectionHeader.propTypes = {
   bids: PropTypes.array.isRequired,
   stage: PropTypes.string.isRequired,
   cancelSearch: PropTypes.func.isRequired,
-  chooseBid: PropTypes.func.isRequired
+  chooseBid: PropTypes.func.isRequired,
+  handleSortingOptionChange: PropTypes.func.isRequired
 };
 
 export default BidSelectionHeader;
