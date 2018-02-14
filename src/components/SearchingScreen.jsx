@@ -28,6 +28,7 @@ class SearchingScreen extends Component {
     }
 
     if (this.props.stage === 'choosing' && prevProps.stage !== 'choosing') {
+      //run initial bid sort when bids have been received
       this.handleSortingOptionChange(this.state.selectedSortingOption);
     }
   }
@@ -43,6 +44,7 @@ class SearchingScreen extends Component {
 
   returnSortedBids(option) {
     /* eslint-disable indent */
+
     switch (option) {
       case 'Best match': {
         // sort on 'time_to_pickup', if bids have similar pickup time, show
@@ -88,8 +90,6 @@ class SearchingScreen extends Component {
   }
 
   render() {
-    console.log('props:  ', this.props);
-
     const {
       bids,
       vehicles,
