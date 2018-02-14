@@ -18,6 +18,7 @@ class OrderScreen extends Component {
     super(props);
     this.updateStoreFromForm = this.updateStoreFromForm.bind(this);
     this.submitForm = this.submitForm.bind(this);
+    this.cancelForm = this.cancelForm.bind(this);
     this.createOrderDetailsObject = this.createOrderDetailsObject.bind(this);
 
     this.state = {
@@ -61,6 +62,10 @@ class OrderScreen extends Component {
     this.props.updateOrderDetails({ ...details, ...detailOverride });
   }
 
+  cancelForm() {
+    this.updateStoreFromForm({ stage: 'draft', pickup: null, dropoff: null });
+  }
+
   submitForm() {
     this.updateStoreFromForm({ stage: 'searching' });
     let requestDetails = this.createOrderDetailsObject();
@@ -73,7 +78,7 @@ class OrderScreen extends Component {
     });
   }
 
-  getSizeContainer() {}
+  getSizeContainer() { }
 
   render() {
     const { userCoords, defaultDropoff, pickup, weight } = this.props; // size
@@ -87,7 +92,7 @@ class OrderScreen extends Component {
     const dropoffCoordsString = defaultDropoff ? getShortCoordsString(defaultDropoff) : '';
     return (
       <div id="order-screen" className="screen">
-        <Link to="/" className="back-button" onClick={this.updateStoreFromForm}>
+        <Link to="/" className="back-button" onClick={this.cancelForm}>
           <img src={arrow} alt="Back" />
         </Link>
         <h1>Order Pickup</h1>
