@@ -37,7 +37,7 @@
 }
 
 .sort-options--expand {
-  height: 180px;
+  height: 190px;
 }
 
 .sort-options__close-button {
@@ -57,6 +57,29 @@
 }
 
 .sort-options__list > li {
-  margin: 0 0 10px 0;
+  padding: 7px 0 7px 0;
   font-size: 13px;
+}
+
+.sort-options__list > li::after {
+  display: block;
+  content: attr(title);
+  font-weight: bold;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.sort-options__list > li > img {
+  margin: 0 -30px 0 10px;
+  /* height: 10px;
+  width: 10px; */
+}
+
+.sort-options__list--selected {
+  font-weight: bold;
+}
+
+.sort-options__checkmark--hide {
+  visibility: hidden;
 }
