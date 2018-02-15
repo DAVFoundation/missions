@@ -28,7 +28,8 @@
     "redux-actions": "^2.2.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-promise-middleware": "5.0.0",
-    "turf": "^3.0.14"
+    "turf": "^3.0.14",
+    "moment": "^2.20.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

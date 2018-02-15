@@ -11,17 +11,6 @@ class MissionScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      missionComplete: false,
-    };
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.vehicleStatus === 'available' && this.state === false) {
-      this.setState({
-        missionComplete: true
-      });
-    }
   }
 
   render() {
@@ -65,8 +54,9 @@ class MissionScreen extends Component {
 
 MissionScreen.propTypes = {
   vehicleStatus: PropTypes.string,
+  missionComplete: PropTypes.bool.isRequired,
   leg: PropTypes.string,
-  timeLeftInLeg: PropTypes.string
+  timeLeftInLeg: PropTypes.number
 };
 
 export default MissionScreen;

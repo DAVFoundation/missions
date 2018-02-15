@@ -25,7 +25,7 @@ const matchStateToProps = (state) => {
       break;
     }
     }
-    timeLeftInLeg = timeLeftInLeg ? timeLeftInLeg.toFixed(0) : '0';
+    timeLeftInLeg = timeLeftInLeg ? parseInt(timeLeftInLeg.toFixed(0)) : 0;
     props.timeLeftInLeg = timeLeftInLeg;
   }
 
