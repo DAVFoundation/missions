@@ -1,12 +1,12 @@
 import { handleActions } from 'redux-actions';
-import { updateOrderDetails, createRequestFulfilled, updateStatusFulfilled, resetOrderDetails, chooseBidPending } from '../actions';
+import { updateOrderDetails, createNeedFulfilled, updateStatusFulfilled, resetOrderDetails, chooseBidPending } from '../actions';
 import getConfig from '../config';
 
 const defaultState = {
   stage: 'draft', // draft | searching | choosing | signing | in_mission
   pickup: undefined,
   dropoff: undefined,
-  requested_pickup_time: undefined,
+  pickup_at: undefined,
   size: getConfig('default_package_size'),
   weight: getConfig('default_package_weight'),
 };
@@ -17,7 +17,7 @@ export default handleActions({
     return {...state, ...payload};
   },
 
-  [createRequestFulfilled]: (state, { payload }) => {
+  [createNeedFulfilled]: (state, { payload }) => {
     return {...state, ...payload, stage: 'searching', created_at: Date.now()};
   },
 

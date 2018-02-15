@@ -1,5 +1,11 @@
 import randomString from 'randomstring';
 
+// icons
+import sizeLetter from '../images/size_letter.svg';
+import sizeCan from '../images/size_can.svg';
+import sizePizza from '../images/size_pizza.svg';
+import sizeBox from '../images/size_box.svg';
+
 export const makeImage = (imageData) => {
   return new Promise((resolve, reject) => {
     let image = new Image();
@@ -39,6 +45,14 @@ export const humanReadableVehicleStatus = {
 const randomShift = () => {
   return (Math.floor(Math.random() * 10) + 4)/10000;
 };
+
+
+export const packageSizeOptions = [
+  { id: 'letter', icon: sizeLetter, cargoType: 7 },
+  { id: 'can', icon: sizeCan, cargoType: 6 },
+  { id: 'pizza', icon: sizePizza, cargoType: 18 },
+  { id: 'box', icon: sizeBox, cargoType: 14 }
+];
 
 /**
  * Generates a random DAV address (a UID)
