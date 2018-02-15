@@ -1,28 +1,49 @@
 .bid-selection-header-wrapper {
-  min-height: 60px;
+  min-height: 50px;
 }
 
 .bid-selection-header {
-  height: 60px;
+  /* height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: absolute;
   width: 100%;
-  top: 0;
+  top: 0; */
+  /* padding-top: 10px; */
 }
 
-.bid-selection-header__back-button {
+.bid-selection-header > a {
+  z-index: 100;
+}
+
+.bid-selection-header__label {
+  font-weight: 500;
+  font-size: 17px;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 10px;
+}
+
+/* .bid-selection-header__back-button {
   margin-left: 10px;
   padding: 10px;
-}
+  position: relative;
+} */
 
-.bid-selection-header__title {
-}
+/*
+  .back-button {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+  }
+*/
 
 .bid-selection-header__sort-button {
-  margin-right: 10px;
-  padding: 10px;
+  position: absolute;
+  top: 10px;
+  right: 15px;
 }
 
 .sort-options {
@@ -33,7 +54,7 @@
   height: 0;
   transition: all 0.5s ease-in-out;
   overflow-y: hidden;
-  z-index: 100;
+  z-index: 200;
 }
 
 .sort-options--expand {
@@ -42,10 +63,8 @@
 
 .sort-options__close-button {
   position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
-  margin: 10px 13px 0 0;
+  top: 10px;
+  right: 19px;
 }
 
 .sort-options__header {

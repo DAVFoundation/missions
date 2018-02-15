@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Link from '../containers/LinkContainer.jsx';
 import './BidSelectionHeader.css';
 import sort_button from '../images/sort_button.svg';
-import arrow_left from '../images/arrow-left.svg';
+import arrow from '../images/arrow-left.svg';
 import x_button from '../images/x_button.svg';
 import check from '../images/check.svg';
 
@@ -150,10 +151,12 @@ class BidSelectionHeader extends Component {
           </ul>
         </div>
         <div className="bid-selection-header">
-          <div className="bid-selection-header__back-button">
-            <img src={arrow_left} alt="back button" />
-          </div>
-          <div className="bid-selection-header__title">Bid Selection</div>
+          <Link to="/order" className="back-button">
+            <img src={arrow} alt="Back" />
+          </Link>
+
+          {/*<div className="bid-selection-header__title">Bid Selection</div>*/}
+          <div className="bid-selection-header__label">Bid Selection</div>
           <div
             onClick={this.handleSortButtonClick}
             className="bid-selection-header__sort-button"
