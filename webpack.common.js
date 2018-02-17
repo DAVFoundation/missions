@@ -41,10 +41,12 @@ module.exports = (env = 'development') => {
           test: /\.css$/,
           exclude: /node_modules/,
           use: env === 'production'
-            ? ExtractTextPlugin.extract({
+            ? ExtractTextPlugin.extract(
+              {
                 fallback: 'style-loader',
                 use: [{ loader: 'css-loader', options: { minimize: true } }],
-              })
+              }
+            )
             : ['style-loader', 'css-loader'],
         },
         {
