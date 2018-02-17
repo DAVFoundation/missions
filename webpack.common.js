@@ -23,32 +23,29 @@ module.exports = (env = 'development') => {
       path: path.resolve(__dirname, 'dist'),
       publicPath: '/',
       filename: '[name].bundle.js',
-      sourceMapFilename: '[file].map'
+      sourceMapFilename: '[file].map',
     },
     module: {
       loaders: [
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
-          loader: 'babel-loader'
+          loader: 'babel-loader',
         },
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
-          loader: 'eslint-loader'
+          loader: 'eslint-loader',
         },
         {
           test: /\.css$/,
           exclude: /node_modules/,
-          use: (env === 'production') ? ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-            	{ loader: 'css-loader', options: { minimize: true } }
-            ]
-          }) : [
-            'style-loader',
-            'css-loader'
-          ]
+          use: env === 'production'
+            ? ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: [{ loader: 'css-loader', options: { minimize: true } }],
+              })
+            : ['style-loader', 'css-loader'],
         },
         {
           test: /\.(png|jpg|gif|svg)$/,
@@ -56,18 +53,18 @@ module.exports = (env = 'development') => {
             {
               loader: 'url-loader',
               options: {
-                limit: 8192
-              }
-            }
-          ]
-        }
-      ]
+                limit: 8192,
+              },
+            },
+          ],
+        },
+      ],
     },
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
-        filename: 'vendor.bundle.js'
-      })
-    ]
+        filename: 'vendor.bundle.js',
+      }),
+    ],
   };
 };
