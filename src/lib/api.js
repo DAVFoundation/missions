@@ -15,10 +15,12 @@ export const fetchStatus = ({ id, lat, long, needId }) => {
   return fetchWithUserId(url);
 };
 
-export const createNeed = ({pickup, dropoff, pickup_at, size, weight}) => {
+export const createNeed = ({ pickup, dropoff, pickup_at, size, weight }) => {
   pickup_at = moment(pickup_at, 'HH:mm').format('x');
   let url = new URL(`/needs`, apiRoot);
-  const sizeOption = packageSizeOptions.find(sizeOption => sizeOption.id === size);
+  const sizeOption = packageSizeOptions.find(
+    sizeOption => sizeOption.id === size,
+  );
   const body = {
     pickup_at: pickup_at,
     pickup_latitude: pickup.lat,
@@ -26,12 +28,12 @@ export const createNeed = ({pickup, dropoff, pickup_at, size, weight}) => {
     dropoff_latitude: dropoff.lat,
     dropoff_longitude: dropoff.long,
     cargo_type: sizeOption.cargoType,
-    weight: parseFloat(weight)
+    weight: parseFloat(weight),
   };
   return fetchWithUserId(url, 'POST', body);
 };
 
-export const chooseBid = (bid_id) => {
+export const chooseBid = bid_id => {
   let url = new URL(`/choose_bid`, apiRoot);
   url.searchParams.set('bid_id', bid_id);
   return fetchWithUserId(url);
@@ -44,7 +46,7 @@ export const cancelNeed = () => {
 };
 
 export const confirmTakeoff = () => {
-  const missionId = store.getState().mission.mission_id ;
+  const missionId = store.getState().mission.mission_id;
   const command = 'takeoff_pickup';
   let url = new URL(`/mission_command`, apiRoot);
   url.searchParams.set('mission_id', missionId);
@@ -60,9 +62,7 @@ const fetchWithUserId = (url, method = 'GET', body) => {
   headers.append('Accept', 'application/json');
   headers.append('Content-Type', 'application/json');
 
-  const options = {method, headers};
+  const options = { method, headers };
   if (body) options.body = JSON.stringify(body);
-  return fetch(url, options)
-    .then(response => response.json());
+  return fetch(url, options).then(response => response.json());
 };
-

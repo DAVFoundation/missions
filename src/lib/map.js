@@ -1,5 +1,5 @@
 import mapboxgl from 'mapbox-gl';
-import {makeImage} from './utils';
+import { makeImage } from './utils';
 import droneIcon from '../images/icon_drone.png';
 import pickupIcon from '../images/pin-pickup.svg';
 import dropoffIcon from '../images/pin-dropoff.svg';
@@ -8,24 +8,24 @@ import turf from 'turf';
 
 const createGeoJson = (features = []) => {
   return {
-    'type': 'FeatureCollection',
-    'features': features.map(feature => ({
-      'type': 'Feature',
-      'geometry': {
-        'type': 'Point',
-        'coordinates': [feature.coords.long, feature.coords.lat]
+    type: 'FeatureCollection',
+    features: features.map(feature => ({
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [feature.coords.long, feature.coords.lat],
       },
-      'properties': {
-        'id': feature.id,
-      }
-    }))
+      properties: {
+        id: feature.id,
+      },
+    })),
   };
 };
 
-
-const getUserLocation = () => new Promise(
-  (resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject)
-);
+const getUserLocation = () =>
+  new Promise((resolve, reject) =>
+    navigator.geolocation.getCurrentPosition(resolve, reject),
+  );
 
 /**
  * Returns a promise that resolves only if we can determine that the user has granted geolocation permission
@@ -33,16 +33,24 @@ const getUserLocation = () => new Promise(
  *
  * @returns {Promise}
  */
-const hasGeolocationPermission = () => new Promise((resolve, reject) => {
-  if (!navigator.permissions) reject();
-  navigator.permissions.query({name: 'geolocation'}).then(
-    result => result.state === 'granted' ? resolve() : reject()
-  );
-});
+const hasGeolocationPermission = () =>
+  new Promise((resolve, reject) => {
+    if (!navigator.permissions) reject();
+    navigator.permissions
+      .query({ name: 'geolocation' })
+      .then(result => (result.state === 'granted' ? resolve() : reject()));
+  });
 
-export const createMap = ({containerId, coords, onVehicleClick, onMoveEnd}) => {
+export const createMap = ({
+  containerId,
+  coords,
+  onVehicleClick,
+  onMoveEnd,
+}) => {
   // Add support for right-to-left languages
-  mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.1/mapbox-gl-rtl-text.js');
+  mapboxgl.setRTLTextPlugin(
+    'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.1/mapbox-gl-rtl-text.js',
+  );
 
   // Create the map
   let map = new mapboxgl.Map({
@@ -50,72 +58,71 @@ export const createMap = ({containerId, coords, onVehicleClick, onMoveEnd}) => {
     style: mapStyle,
     center: [coords.long, coords.lat],
     zoom: 14,
-    attributionControl: false
+    attributionControl: false,
   });
 
   // Add controls to geolocate the user
-  map.addControl(new mapboxgl.GeolocateControl({
-    positionOptions: {
-      enableHighAccuracy: true
-    },
-    trackUserLocation: true
-  }), 'bottom-left');
+  map.addControl(
+    new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true,
+      },
+      trackUserLocation: true,
+    }),
+    'bottom-left',
+  );
 
   // Add minimal attribution controls
-  map.addControl(new mapboxgl.AttributionControl({
-    compact: true
-  }));
+  map.addControl(
+    new mapboxgl.AttributionControl({
+      compact: true,
+    }),
+  );
 
   // add images, sources, and layers on load
   map.on('load', () => {
-    makeImage(droneIcon).then(
-      img => map.addImage('drone', img)
-    );
-    makeImage(pickupIcon).then(
-      img => map.addImage('pickup', img)
-    );
-    makeImage(dropoffIcon).then(
-      img => map.addImage('dropoff', img)
-    );
+    makeImage(droneIcon).then(img => map.addImage('drone', img));
+    makeImage(pickupIcon).then(img => map.addImage('pickup', img));
+    makeImage(dropoffIcon).then(img => map.addImage('dropoff', img));
     map.addSource('vehicles', {
-      'type': 'geojson',
-      'data': {
-        'type': 'FeatureCollection',
-        'features': []
-      }
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: [],
+      },
     });
     map.addLayer({
-      'id': 'vehicles',
-      'type': 'symbol',
-      'source': 'vehicles',
-      'minzoom': 10,
-      'layout': {
+      id: 'vehicles',
+      type: 'symbol',
+      source: 'vehicles',
+      minzoom: 10,
+      layout: {
         'icon-image': 'drone',
-        'icon-allow-overlap':true,
-        'icon-ignore-placement':true
-      }
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
+      },
     });
-    map.on('click', 'vehicles', (e) => onVehicleClick(e.features[0].properties.id));
+    map.on('click', 'vehicles', e =>
+      onVehicleClick(e.features[0].properties.id),
+    );
   });
 
   map.on('moveend', () => {
     const mapCenter = map.getCenter();
-    onMoveEnd({lat: mapCenter.lat, long: mapCenter.lng});
+    onMoveEnd({ lat: mapCenter.lat, long: mapCenter.lng });
   });
 
   // Check if user has already granted permission to access geolocation
   // If permission was granted, get user location and center map on them
   hasGeolocationPermission()
     .then(getUserLocation)
-    .then(
-      ({coords}) => map.setCenter([coords.longitude, coords.latitude])
-    ).catch(() => {
-    });
+    .then(({ coords }) => map.setCenter([coords.longitude, coords.latitude]))
+    .catch(() => {});
 
   return map;
 };
 
-export const updateMap = (map, vehicles = [], {pickup, dropoff} = {}) => {
+export const updateMap = (map, vehicles = [], { pickup, dropoff } = {}) => {
   handleMapUpdate(map, () => {
     if (vehicles) map.getSource('vehicles').setData(createGeoJson(vehicles));
     if (pickupAndDropoffPresent(map, pickup, dropoff)) {
@@ -134,64 +141,66 @@ const handleMapUpdate = (map, update) => {
 };
 
 const pickupAndDropoffPresent = (map, pickup, dropoff) => {
-  return pickup && dropoff && map.getSource('pickup') && map.getSource('dropoff');
+  return (
+    pickup && dropoff && map.getSource('pickup') && map.getSource('dropoff')
+  );
 };
 
 export const initiateZoomTransition = (map, pickup, dropoff) => {
   handleMapUpdate(map, () => {
     const collection = turf.featureCollection([
       turf.point([pickup.long, pickup.lat]),
-      turf.point([dropoff.long, dropoff.lat])
+      turf.point([dropoff.long, dropoff.lat]),
     ]);
     let bbox = turf.bbox(collection);
-    map.fitBounds(bbox, {padding: 100});
+    map.fitBounds(bbox, { padding: 100 });
   });
 };
 
-export const clearPins = (map) => {
+export const clearPins = map => {
   map.removeLayer('pickup');
   map.removeLayer('dropoff');
   map.removeSource('pickup');
   map.removeSource('dropoff');
 };
 
-export const addTerminalPinSources = (map) => {
-  if (!map.getSource('pickup') && !map.getSource('dropoff')){
+export const addTerminalPinSources = map => {
+  if (!map.getSource('pickup') && !map.getSource('dropoff')) {
     map.addSource('pickup', {
-      'type': 'geojson',
-      'data': {
-        'type': 'FeatureCollection',
-        'features': []
-      }
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: [],
+      },
     });
     map.addLayer({
-      'id': 'pickup',
-      'type': 'symbol',
-      'source': 'pickup',
-      'minzoom': 10,
-      'layout': {
+      id: 'pickup',
+      type: 'symbol',
+      source: 'pickup',
+      minzoom: 10,
+      layout: {
         'icon-image': 'pickup',
         'icon-allow-overlap': true,
-        'icon-ignore-placement': true
-      }
+        'icon-ignore-placement': true,
+      },
     });
     map.addSource('dropoff', {
-      'type': 'geojson',
-      'data': {
-        'type': 'FeatureCollection',
-        'features': []
-      }
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: [],
+      },
     });
     map.addLayer({
-      'id': 'dropoff',
-      'type': 'symbol',
-      'source': 'dropoff',
-      'minzoom': 10,
-      'layout': {
+      id: 'dropoff',
+      type: 'symbol',
+      source: 'dropoff',
+      minzoom: 10,
+      layout: {
         'icon-image': 'dropoff',
         'icon-allow-overlap': true,
-        'icon-ignore-placement': true
-      }
+        'icon-ignore-placement': true,
+      },
     });
   }
 };

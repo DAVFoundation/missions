@@ -9,12 +9,12 @@ const initStore = () => {
   const store = createStore(
     reducers,
     persistedState,
-    composeWithDevTools(applyMiddleware(promiseMiddleware()))
+    composeWithDevTools(applyMiddleware(promiseMiddleware())),
   );
 
   store.subscribe(() => {
     saveState({
-      settings: store.getState().settings
+      settings: store.getState().settings,
     });
   });
 
