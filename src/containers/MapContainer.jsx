@@ -24,8 +24,8 @@ const matchStateToProps = (state) => {
   if (state.mission) {
     props.missionStatus = state.mission.status;
     if (props.missionStatus === 'in_progress'){
-      props.dropoff = {long: state.mission.dropoff_long, lat:state.mission.dropoff_lat};
-      props.pickup = {long: state.mission.pickup_long, lat: state.mission.pickup_lat};
+      props.dropoff = {long: state.mission.dropoff_longitude, lat:state.mission.dropoff_latitude};
+      props.pickup = {long: state.mission.pickup_longitude, lat: state.mission.pickup_latitude};
     }
   }
   props.appPath = state.app.path;
