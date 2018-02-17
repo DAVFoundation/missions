@@ -14,7 +14,7 @@ class MissionScreen extends Component {
   }
 
   render() {
-    if (this.state.missionComplete) {
+    if (this.props.missionComplete) {
       return (
         <div className="mission-info">
           <div className="mission-info-summary">
