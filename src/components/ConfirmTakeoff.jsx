@@ -49,22 +49,22 @@ class ConfirmTakeoff extends Component {
       </div>
     </div>))
       || !this.state.alertHidden && (<div id="confirm-takeoff-screen" className="screen">
-        <div className="screen-background--dark"/>
-        <div className="modal-container">
-          <div className="modal-box alert-box confirm-takeoff">
-            <h1>Drone will take off immediately</h1>
-            <p>Are you sure the package is secure and the area around the drone is clear?</p>
-            <div className="alert-button-container">
-              <button onClick={this.toggleAlert.bind(this)} className="alert-button-cancel" disabled={this.state.buttonsDisabled}>
-                CANCEL
-              </button>
-              <button onClick={this.props.confirmTakeoff} className="alert-button-confirm" disabled={this.state.buttonsDisabled}>
-                CONFIRM
-              </button>
-            </div>
+      <div className="screen-background--dark"/>
+      <div className="modal-container">
+        <div className="modal-box alert-box confirm-takeoff">
+          <h1>Drone will take off immediately</h1>
+          <p>Are you sure the package is secure and the area around the drone is clear?</p>
+          <div className="alert-button-container">
+            <button onClick={this.toggleAlert.bind(this)} className="alert-button-cancel" disabled={this.state.buttonsDisabled}>
+              CANCEL
+            </button>
+            <button onClick={this.props.confirmTakeoff} className="alert-button-confirm" disabled={this.state.buttonsDisabled}>
+              CONFIRM
+            </button>
           </div>
         </div>
-      </div>);
+      </div>
+    </div>);
   }
 }
 
