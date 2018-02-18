@@ -15,7 +15,3 @@ It demonstrates how a third party might build their own product, while integrati
 As an organization committed to extreme transparency, collaboration, and open-sourcing all of our work, we welcome participation from anyone willing to devote some time and energy to help shape DAV - whether you are a first time contributor, a veteran open-sourcerer, or just looking to suggest some ideas.
 
 For help in getting started, please be sure to read our [contribution guidelines](https://github.com/DAVFoundation/missions/blob/master/CONTRIBUTING.md).
-
-### License
-
-Licensed under [MIT](https://github.com/DAVFoundation/missioncontrol/blob/master/LICENSE).
