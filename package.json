@@ -14,7 +14,8 @@
   },
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "start": "webpack-dev-server --config webpack.dev.js"
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "test": "jest"
   },
   "dependencies": {
     "@turf/turf": "^5.1.6",
@@ -46,11 +47,17 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "html-webpack-plugin": "^2.30.1",
+    "jest": "^22.3.0",
     "style-loader": "^0.20.1",
     "uglifyjs-webpack-plugin": "^1.1.8",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1",
     "webpack-merge": "^4.1.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|jpg|png|svg)$": "<rootDir>/empty-module.js"
+    }
   }
 }
