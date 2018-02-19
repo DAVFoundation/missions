@@ -1,8 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { 
-  updateStatusFulfilled, 
-  confirmTakeoffFulfilled 
-} from '../actions';
+import { updateStatusFulfilled, confirmTakeoffFulfilled } from '../actions';
 
 const defaultState = {};
 
