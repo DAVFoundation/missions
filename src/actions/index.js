@@ -3,6 +3,7 @@ import {
   fetchStatus as apiFetchStatus,
   createNeed as apiCreateNeed,
   fetchBids as apiFetchBids,
+  fetchVehicles as apiUpdateVehicles,
   chooseBid as apiChooseBid,
   confirmTakeoff as apiConfirmTakeoff
 } from '../lib/api';
@@ -26,6 +27,10 @@ export const createNeedFulfilled = createAction('CREATE_NEED_FULFILLED');
 export const updateBids = createAction('UPDATE_BIDS', apiFetchBids);
 
 export const updateBidsFulfilled = createAction('UPDATE_BIDS_FULFILLED');
+
+export const updateVehicles = createAction('UPDATE_VEHICLES', apiUpdateVehicles);
+
+export const updateVehiclesFulfilled = createAction('UPDATE_VEHICLES_FULFILLED');
 
 export const chooseBid = createAction('CHOOSE_BID', apiChooseBid);
 

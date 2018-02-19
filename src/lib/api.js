@@ -20,6 +20,14 @@ export const fetchBids = ({needId}) => {
   return fetchWithUserId(url);
 };
 
+export const fetchVehicles = ({lat, long, needId}) => {
+  let url = new URL(`/vehicles`, apiRoot);
+  lat && url.searchParams.set('lat', lat); // Don't stand on the equator or you'll break this
+  long && url.searchParams.set('long', long);
+  needId && url.searchParams.set('needId', needId);
+  return fetchWithUserId(url);
+};
+
 export const createNeed = ({pickup, dropoff, pickup_at, size, weight}) => {
   pickup_at = moment(pickup_at, 'HH:mm').format('x');
   let url = new URL(`/needs`, apiRoot);
