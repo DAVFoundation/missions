@@ -1,10 +1,10 @@
 import store from '../store';
-import { packageSizeOptions } from '../lib/utils';
+import {packageSizeOptions} from '../lib/utils';
 import moment from 'moment';
 
 const apiRoot = process.env.MISSION_CONTROL_HOST;
 
-export const fetchStatus = ({ id, lat, long, needId }) => {
+export const fetchStatus = ({id, lat, long, needId}) => {
   const missionId = store.getState().mission.id;
   let url = new URL(`/status`, apiRoot);
   id && url.searchParams.set('id', id);
@@ -15,7 +15,12 @@ export const fetchStatus = ({ id, lat, long, needId }) => {
   return fetchWithUserId(url);
 };
 
-export const createNeed = ({ pickup, dropoff, pickup_at, size, weight }) => {
+export const fetchBids = ({needId}) => {
+  let url = new URL(`/bids/${needId}`, apiRoot);
+  return fetchWithUserId(url);
+};
+
+export const createNeed = ({pickup, dropoff, pickup_at, size, weight}) => {
   pickup_at = moment(pickup_at, 'HH:mm').format('x');
   let url = new URL(`/needs`, apiRoot);
   const sizeOption = packageSizeOptions.find(
@@ -42,7 +47,7 @@ export const chooseBid = bid_id => {
 export const cancelNeed = () => {
   const needId = store.getState().order.needId;
   let url = new URL(`/needs/${needId}`, apiRoot);
-  return fetchWithUserId(url, 'DELETE');
+  return fetchWithUserId(url);
 };
 
 export const confirmTakeoff = () => {
