@@ -153,7 +153,7 @@ export const initiateZoomTransition = (map, pickup, dropoff) => {
       turf.point([dropoff.long, dropoff.lat]),
     ]);
     let bbox = turf.bbox(collection);
-    map.fitBounds(bbox, { padding: 100 });
+    map.fitBounds(bbox, { padding: {top:100,bottom:300,left:50,right:50}  });
   });
 };
 
