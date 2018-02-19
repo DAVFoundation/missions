@@ -20,17 +20,18 @@
   "dependencies": {
     "@turf/turf": "^5.1.6",
     "mapbox-gl": "^0.44.0",
+    "moment": "^2.20.1",
     "randomstring": "^1.1.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-geosuggest": "^2.7.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-promise-middleware": "5.0.0",
-    "turf": "^3.0.14",
-    "moment": "^2.20.1"
+    "turf": "^3.0.14"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
