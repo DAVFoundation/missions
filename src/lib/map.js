@@ -146,14 +146,14 @@ const pickupAndDropoffPresent = (map, pickup, dropoff) => {
   );
 };
 
-export const initiateZoomTransition = (map, pickup, dropoff) => {
+export const initiateZoomTransition = (map, pickup, dropoff,options) => {
   handleMapUpdate(map, () => {
     const collection = turf.featureCollection([
       turf.point([pickup.long, pickup.lat]),
       turf.point([dropoff.long, dropoff.lat]),
     ]);
     let bbox = turf.bbox(collection);
-    map.fitBounds(bbox, { padding: {top:100,bottom:300,left:50,right:50}  });
+    map.fitBounds(bbox, {...options, padding: {top:100,bottom:300,left:50,right:50}  });
   });
 };
 
