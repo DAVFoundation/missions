@@ -1,13 +1,15 @@
+BUCKET=s3://missions.io/
+
 all:
 
 setup:
-	@npm i
+	@ npm i
 
 start: setup
-	@npm start
+	@ npm start
 
 build: setup
-	@npm run build
+	@ npm run build
 
 publish: build
-  @aws s3 cp dist/ s3://missions.io/ --recursive --acl public-read
+	@ aws s3 cp --recursive --acl public-read dist/ ${BUCKET}
