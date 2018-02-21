@@ -22,7 +22,7 @@ const VehicleBid = ({bid, vehicle, shown, chooseBid}) => {
         <dt>Estimated delivery time:</dt>
         <dd>{Math.ceil(bid.time_to_dropoff/60000)} minutes</dd>
         <dt>Cost for delivery:</dt>
-        <dd>{parseFloat(bid.price).toFixed(2)} <img src={currencyImage} className="currency-symbol" alt="DAV"/></dd>
+        <dd>{parseFloat(bid.price/1000000000000000000).toFixed(2)}<img src={currencyImage} className="currency-symbol" alt="DAV"/></dd>
       </dl>
     </div>
   );
