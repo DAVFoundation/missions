@@ -1,13 +1,13 @@
 import { handleActions } from 'redux-actions';
-import { updateStatusFulfilled, confirmTakeoffFulfilled } from '../actions';
+import { updateVehiclesFulfilled, confirmTakeoffFulfilled } from '../actions';
 
 const defaultState = {};
 
 export default handleActions(
   {
-    [updateStatusFulfilled]: (state, { payload: { vehicles } }) => {
+    [updateVehiclesFulfilled]: (state, { payload }) => {
       let nextState = {};
-      vehicles.forEach(vehicle => {
+      payload.forEach(vehicle => {
         nextState[vehicle.id] = vehicle;
       });
       return nextState;
