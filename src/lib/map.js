@@ -158,10 +158,12 @@ export const initiateZoomTransition = (map, pickup, dropoff,options) => {
 };
 
 export const clearPins = map => {
-  map.removeLayer('pickup');
-  map.removeLayer('dropoff');
-  map.removeSource('pickup');
-  map.removeSource('dropoff');
+  if (map.getSource('pickup') && map.getSource('dropoff')){
+    map.removeLayer('pickup');
+    map.removeLayer('dropoff');
+    map.removeSource('pickup');
+    map.removeSource('dropoff');
+  }
 };
 
 export const addTerminalPinSources = map => {

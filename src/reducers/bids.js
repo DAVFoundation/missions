@@ -1,19 +1,18 @@
-import { handleActions } from 'redux-actions';
-import { updateStatusFulfilled } from '../actions';
+import {handleActions} from 'redux-actions';
+import {updateBidsFulfilled} from '../actions';
 
 const defaultState = {};
 
-export default handleActions(
-  {
-    [updateStatusFulfilled]: (state, { payload: { bids = [] } }) => {
-      let nextState = {};
-      bids.forEach(bid => {
-        nextState[bid.id] = bid;
-      });
-      return nextState;
-    },
-  },
-  defaultState,
-);
+export default handleActions({
 
-export const getBidArray = state => Object.entries(state).map(([, bid]) => bid);
+  [updateBidsFulfilled]: (state, { payload = [] }) => {
+    let nextState = {};
+    payload.forEach(bid => {
+      nextState[bid.id] = bid;
+    });
+    return nextState;
+  },
+
+}, defaultState);
+
+export const getBidArray = (state) => Object.entries(state).map(([, bid]) => bid);

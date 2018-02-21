@@ -23,7 +23,7 @@ class Map extends Component {
       addTerminalPinSources(this.map);
     }
 
-    if(this.props.missionStatus === 'completed' && nextProps.orderStage === 'draft') {
+    if (nextProps.missionStatus === 'completed') {
       clearPins(this.map);
     }
 
