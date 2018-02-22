@@ -54,9 +54,14 @@ class BidSelectionHeader extends Component {
     this.props.handleSortingOptionChange(e.target.title);
 
     this.setState({
-      sortOptionSelected: e.target.title,
-      sortOptionsOpen: !this.state.sortOptionsOpen
+      sortOptionSelected: e.target.title
     });
+      
+    setTimeout(() => {
+      this.setState({
+        sortOptionsOpen: !this.state.sortOptionsOpen
+      });
+    }, 100); 
   }
 
   render() {
