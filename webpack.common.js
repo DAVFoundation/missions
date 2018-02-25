@@ -22,7 +22,7 @@ module.exports = (env = 'development') => {
     output: {
       path: path.resolve(__dirname, 'dist'),
       publicPath: '/',
-      filename: '[name].bundle.js',
+      filename: '[name].bundle.[chunkhash:8].js',
       sourceMapFilename: '[file].map',
     },
     module: {
@@ -65,7 +65,7 @@ module.exports = (env = 'development') => {
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
-        filename: 'vendor.bundle.js',
+        filename: 'vendor.bundle.[chunkhash:8].js',
       }),
     ],
   };
