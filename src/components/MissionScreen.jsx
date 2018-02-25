@@ -56,7 +56,8 @@ MissionScreen.propTypes = {
   vehicleStatus: PropTypes.string,
   missionComplete: PropTypes.bool.isRequired,
   leg: PropTypes.string,
-  timeLeftInLeg: PropTypes.number
+  timeLeftInLeg: PropTypes.number,
+  price: PropTypes.number
 };
 
 export default MissionScreen;
