@@ -30,6 +30,9 @@ const matchStateToProps = (state) => {
   }
 
   props.missionComplete = mission.status === 'completed';
+
+  props.price = mission.price;
+
   return props;
 };
 

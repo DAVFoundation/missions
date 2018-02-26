@@ -20,7 +20,7 @@ class MissionScreen extends Component {
           <div className="mission-info-summary">
             <h1>Delivery completed successfully</h1>
             <p>Cost for delivery:</p>
-            <h1>20 <img src={currencyImage} className="currency-symbol" alt="DAV"/></h1>
+            <h1>{(this.props.price/1000000000000000000).toFixed(2)} <img src={currencyImage} className="currency-symbol" alt="DAV"/></h1>
             <Link to="/" className="big-button close">Close</Link>
           </div>
         </div>
@@ -56,7 +56,8 @@ MissionScreen.propTypes = {
   vehicleStatus: PropTypes.string,
   missionComplete: PropTypes.bool.isRequired,
   leg: PropTypes.string,
-  timeLeftInLeg: PropTypes.number
+  timeLeftInLeg: PropTypes.number,
+  price: PropTypes.number
 };
 
 export default MissionScreen;
