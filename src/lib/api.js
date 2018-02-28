@@ -15,6 +15,11 @@ export const fetchStatus = ({ id, lat, long, needId }) => {
   return fetchWithUserId(url);
 };
 
+export const fetchBids = ({needId}) => {
+  let url = new URL(`/bids/${needId}`, apiRoot);
+  return fetchWithUserId(url);
+};
+
 export const createNeed = ({ pickup, dropoff, pickup_at, size, weight }) => {
   pickup_at = moment(pickup_at, 'HH:mm').format('x');
   let url = new URL(`/needs`, apiRoot);
@@ -33,10 +38,9 @@ export const createNeed = ({ pickup, dropoff, pickup_at, size, weight }) => {
   return fetchWithUserId(url, 'POST', body);
 };
 
-export const chooseBid = bid_id => {
-  let url = new URL(`/choose_bid`, apiRoot);
-  url.searchParams.set('bid_id', bid_id);
-  return fetchWithUserId(url);
+export const chooseBid = bidId => {
+  let url = new URL(`/bids/${bidId}/choose`, apiRoot);
+  return fetchWithUserId(url, 'PUT');
 };
 
 export const cancelNeed = () => {

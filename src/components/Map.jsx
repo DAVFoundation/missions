@@ -19,12 +19,12 @@ class Map extends Component {
     updateMap(this.map, nextProps.vehicles, terminals);
 
     if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
-      initiateZoomTransition(this.map, nextProps.pickup, nextProps.pickup);
-      this.map.easeTo({
-        zoom: 14,   // zoom to level 14
-        curve: 1.5  // speed of zoom
-      });
+      initiateZoomTransition(this.map, nextProps.pickup, nextProps.pickup,{maxZoom:14});
       addTerminalPinSources(this.map);
+    }
+
+    if (nextProps.missionStatus === 'completed') {
+      clearPins(this.map);
     }
 
     if(['searching', 'choosing', 'signing'].includes(this.props.orderStage) && nextProps.orderStage === 'draft') {

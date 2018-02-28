@@ -146,22 +146,24 @@ const pickupAndDropoffPresent = (map, pickup, dropoff) => {
   );
 };
 
-export const initiateZoomTransition = (map, pickup, dropoff) => {
+export const initiateZoomTransition = (map, pickup, dropoff,options) => {
   handleMapUpdate(map, () => {
     const collection = turf.featureCollection([
       turf.point([pickup.long, pickup.lat]),
       turf.point([dropoff.long, dropoff.lat]),
     ]);
     let bbox = turf.bbox(collection);
-    map.fitBounds(bbox, { padding: 100 });
+    map.fitBounds(bbox, {...options, padding: {top:100,bottom:300,left:50,right:50}  });
   });
 };
 
 export const clearPins = map => {
-  map.removeLayer('pickup');
-  map.removeLayer('dropoff');
-  map.removeSource('pickup');
-  map.removeSource('dropoff');
+  if (map.getSource('pickup') && map.getSource('dropoff')){
+    map.removeLayer('pickup');
+    map.removeLayer('dropoff');
+    map.removeSource('pickup');
+    map.removeSource('dropoff');
+  }
 };
 
 export const addTerminalPinSources = map => {

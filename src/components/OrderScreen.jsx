@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from '../containers/LinkContainer.jsx';
-import { getShortCoordsString, coordsFromString } from '../lib/utils';
 import './OrderScreen.css';
 import arrow from '../images/arrow-left.svg';
 import IconSelector from './IconSelector.jsx';
 import getConfig from '../config';
 import { packageSizeOptions } from '../lib/utils';
+import Geosuggest from 'react-geosuggest';
 
 class OrderScreen extends Component {
   constructor(props) {
@@ -35,13 +35,15 @@ class OrderScreen extends Component {
 
   createOrderDetailsObject() {
     const { userCoords, defaultDropoff } = this.props;
+    const { pickup, dropoff, packageSize } = this.state;
     return {
-      pickup: coordsFromString(this.pickupNode.value) || {
-        lat: userCoords.lat,
-        long: userCoords.long
-      },
-      dropoff: coordsFromString(this.dropoffNode.value) || defaultDropoff,
-      size: this.state.packageSize || undefined,
+      pickup: pickup ?
+        { lat: pickup.lat, long: pickup.lng } :
+        { lat: userCoords.lat, long: userCoords.long },
+      dropoff: dropoff ?
+        { lat: dropoff.lat, long: dropoff.lng } :
+        defaultDropoff,
+      size: packageSize || undefined,
       weight: this.weightNode.value || undefined,
       pickup_at: this.pickupTimeNode.value || undefined
     };
@@ -71,15 +73,9 @@ class OrderScreen extends Component {
   getSizeContainer() { }
 
   render() {
-    const { userCoords, defaultDropoff, pickup, weight } = this.props; // size
+    const { weight } = this.props; // size
     const pickup_at =
       this.props.pickup_at || new Date().toTimeString().slice(0, 5);
-    const userCoordsString = getShortCoordsString(userCoords);
-    const pickupPlaceholder = userCoordsString
-      ? `Your current location (${userCoordsString})`
-      : '';
-    const pickupCoordsString = getShortCoordsString(pickup);
-    const dropoffCoordsString = defaultDropoff ? getShortCoordsString(defaultDropoff) : '';
     return (
       <div id="order-screen" className="screen">
         <Link to="/" className="back-button" onClick={this.cancelForm}>
@@ -88,26 +84,32 @@ class OrderScreen extends Component {
         <h1>Order Pickup</h1>
         <div className="form-field">
           <label htmlFor="pickup-location">Set pickup location</label>
-          <input
+          <Geosuggest
             type="text"
             id="pickup-location"
-            placeholder={pickupPlaceholder}
-            defaultValue={pickupCoordsString}
-            ref={node => {
-              this.pickupNode = node;
-            }}
+            placeholder="Type the address of the pickup location"
+            onSuggestSelect={
+              geo => {
+                if (geo) {
+                  this.setState({ pickup: geo.location });
+                }
+              }
+            }
           />
         </div>
         <div className="form-field">
           <label htmlFor="dropoff-location">Set dropoff location</label>
-          <input
+          <Geosuggest
             type="text"
             id="dropoff-location"
-            placeholder={dropoffCoordsString}
-            defaultValue={dropoffCoordsString}
-            ref={node => {
-              this.dropoffNode = node;
-            }}
+            placeholder="Type the address of the dropoff location"
+            onSuggestSelect={
+              geo => {
+                if (geo) {
+                  this.setState({ dropoff: geo.location });
+                }
+              }
+            }
           />
         </div>
 
