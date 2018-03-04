@@ -38,8 +38,8 @@ class OrderScreen extends Component {
     const { pickup, dropoff, packageSize } = this.state;
     return {
       pickup: pickup ?
-        { lat: pickup.lat, long: pickup.lng } :
-        { lat: userCoords.lat, long: userCoords.long },
+        { address: pickup.description, lat: pickup.location.lat, long: pickup.location.lng } :
+        { lat: userCoords.location.lat, long: userCoords.location.long },
       dropoff: dropoff ?
         { lat: dropoff.lat, long: dropoff.lng } :
         defaultDropoff,
@@ -91,7 +91,7 @@ class OrderScreen extends Component {
             onSuggestSelect={
               geo => {
                 if (geo) {
-                  this.setState({ pickup: geo.location });
+                  this.setState({ pickup: geo});
                 }
               }
             }
