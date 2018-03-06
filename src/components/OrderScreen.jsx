@@ -18,8 +18,6 @@ class OrderScreen extends Component {
 
     this.state = {
       packageSize: getConfig('default_package_size'),
-      disableSearchPickup: true,
-      disableSearchDropoff: true,
     };
 
     // Options should be read from some kind of configuration
@@ -94,7 +92,6 @@ class OrderScreen extends Component {
               geo => {
                 if (geo) {
                   this.setState({ pickup: geo });
-                  this.setState({ disableSearchPickup: false });                  
                 }
               }
             }
@@ -110,7 +107,6 @@ class OrderScreen extends Component {
               geo => {
                 if (geo) {
                   this.setState({ dropoff: geo.location });
-                  this.setState({ disableSearchDropoff: false });                  
                 }
               }
             }
@@ -152,7 +148,7 @@ class OrderScreen extends Component {
             }}
           />
         </div>
-        {(this.state.disableSearchPickup === false && this.state.disableSearchDropoff === false) ? <Link
+        {(this.state.pickup !== undefined  && this.state.dropoff !== undefined) ? <Link
           to="/searching"
           className="big-button form-submit-button"
           onClick={this.submitForm}
