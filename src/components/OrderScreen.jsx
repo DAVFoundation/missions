@@ -148,13 +148,14 @@ class OrderScreen extends Component {
             }}
           />
         </div>
-        {(this.state.pickup !== undefined  && this.state.dropoff !== undefined) ? <Link
+        <Link
           to="/searching"
-          className="big-button form-submit-button"
+          className={(this.state.pickup !== undefined  && this.state.dropoff !== undefined) ? 'big-button form-submit-button': 'disabled-button form-submit-button'}
           onClick={this.submitForm}
+          disabled
         >
           Find drones
-        </Link> : ''}
+        </Link>
       </div>
     );
   }
