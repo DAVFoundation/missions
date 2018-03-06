@@ -39,7 +39,7 @@ class ConfirmTakeoff extends Component {
           <div className="modal-container">
             <div className="modal-box confirm-takeoff">
               <h1>Ready for Pickup</h1>
-              <p>Drone has arrived at <br/><b>{this.props.coords.lat}, {this.props.coords.long}</b></p>
+              <p>Drone has arrived at <br/><b>{this.props.address}</b></p>
               <p>
                 <i>Please slide the package into the compartment at the bottom of the drone. Package should click into place when secured.</i>
               </p>
@@ -76,7 +76,7 @@ class ConfirmTakeoff extends Component {
 
 ConfirmTakeoff.propTypes = {
   history: PropTypes.object.isRequired,
-  coords: PropTypes.object,
+  address: PropTypes.string,
   status: PropTypes.string,
   appPath: PropTypes.string,
   confirmTakeoff: PropTypes.func.isRequired

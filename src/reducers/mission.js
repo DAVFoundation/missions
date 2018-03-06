@@ -19,6 +19,7 @@ export default handleActions(
         time_to_dropoff,
         pickup_latitude,
         pickup_longitude,
+        pickup_address,
         dropoff_latitude,
         dropoff_longitude,
         pickup_at,
@@ -33,6 +34,7 @@ export default handleActions(
         timeToPickup: parseFloat(time_to_pickup),
         timeToDropoff: parseFloat(time_to_dropoff),
         pickup: {
+          address: pickup_address,
           lat: parseFloat(pickup_latitude),
           long: parseFloat(pickup_longitude),
         },

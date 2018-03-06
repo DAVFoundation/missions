@@ -17,7 +17,7 @@ class OrderScreen extends Component {
     this.createOrderDetailsObject = this.createOrderDetailsObject.bind(this);
 
     this.state = {
-      packageSize: getConfig('default_package_size')
+      packageSize: getConfig('default_package_size'),
     };
 
     // Options should be read from some kind of configuration
@@ -34,15 +34,15 @@ class OrderScreen extends Component {
   }
 
   createOrderDetailsObject() {
-    const { userCoords, defaultDropoff } = this.props;
+    // const { userCoords, defaultDropoff } = this.props;
     const { pickup, dropoff, packageSize } = this.state;
     return {
       pickup: pickup ?
-        { lat: pickup.lat, long: pickup.lng } :
-        { lat: userCoords.lat, long: userCoords.long },
+        { address: pickup.description, lat: pickup.location.lat, long: pickup.location.lng } : undefined,
+      // { lat: userCoords.location.lat, long: userCoords.location.long },
       dropoff: dropoff ?
-        { lat: dropoff.lat, long: dropoff.lng } :
-        defaultDropoff,
+        { lat: dropoff.lat, long: dropoff.lng } : undefined,
+      // defaultDropoff,
       size: packageSize || undefined,
       weight: this.weightNode.value || undefined,
       pickup_at: this.pickupTimeNode.value || undefined
@@ -91,7 +91,7 @@ class OrderScreen extends Component {
             onSuggestSelect={
               geo => {
                 if (geo) {
-                  this.setState({ pickup: geo.location });
+                  this.setState({ pickup: geo });
                 }
               }
             }
@@ -150,8 +150,9 @@ class OrderScreen extends Component {
         </div>
         <Link
           to="/searching"
-          className="big-button form-submit-button"
+          className={(this.state.pickup !== undefined  && this.state.dropoff !== undefined) ? 'big-button form-submit-button': 'disabled-button form-submit-button'}
           onClick={this.submitForm}
+          disabled
         >
           Find drones
         </Link>

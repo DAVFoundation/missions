@@ -30,6 +30,7 @@ export const createNeed = ({ pickup, dropoff, pickup_at, size, weight }) => {
     pickup_at: pickup_at,
     pickup_latitude: pickup.lat,
     pickup_longitude: pickup.long,
+    pickup_address: pickup.address,
     dropoff_latitude: dropoff.lat,
     dropoff_longitude: dropoff.long,
     cargo_type: sizeOption.cargoType,

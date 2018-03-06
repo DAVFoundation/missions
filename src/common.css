@@ -115,6 +115,18 @@ h1 {
   padding: 20px 20px;
 }
 
+.disabled-button {
+  border-radius: 5px 5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 700;
+  font-size: 17px;
+  background-color: #d8ffed;
+  pointer-events: none;
+  padding: 20px 20px;
+}
+
 .med-button {
   border-radius: 5px 5px;
   text-decoration: none;
