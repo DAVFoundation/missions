@@ -87,7 +87,11 @@ class OrderScreen extends Component {
           <Geosuggest
             type="text"
             id="pickup-location"
+            ignoreTab={true}
             placeholder="Type the address of the pickup location"
+            onChange={
+              () => this.setState({ pickup: undefined })
+            }
             onSuggestSelect={
               geo => {
                 if (geo) {
@@ -102,7 +106,11 @@ class OrderScreen extends Component {
           <Geosuggest
             type="text"
             id="dropoff-location"
+            ignoreTab={true}
             placeholder="Type the address of the dropoff location"
+            onChange={
+              () => this.setState({ dropoff: undefined })
+            }
             onSuggestSelect={
               geo => {
                 if (geo) {
