@@ -87,7 +87,11 @@ class OrderScreen extends Component {
           <Geosuggest
             type="text"
             id="pickup-location"
+            ignoreTab={true}
             placeholder="Type the address of the pickup location"
+            onChange={
+              () => this.setState({ pickup: undefined })
+            }
             onSuggestSelect={
               geo => {
                 if (geo) {
@@ -102,7 +106,11 @@ class OrderScreen extends Component {
           <Geosuggest
             type="text"
             id="dropoff-location"
+            ignoreTab={true}
             placeholder="Type the address of the dropoff location"
+            onChange={
+              () => this.setState({ dropoff: undefined })
+            }
             onSuggestSelect={
               geo => {
                 if (geo) {
@@ -150,7 +158,7 @@ class OrderScreen extends Component {
         </div>
         <Link
           to="/searching"
-          className={(this.state.pickup !== undefined  && this.state.dropoff !== undefined) ? 'big-button form-submit-button': 'disabled-button form-submit-button'}
+          className={(this.state.pickup !== undefined && this.state.pickup.location !== undefined && this.state.dropoff !== undefined) ? 'big-button form-submit-button': 'disabled-button form-submit-button'}
           onClick={this.submitForm}
           disabled
         >
