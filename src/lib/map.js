@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { makeImage } from './utils';
 import droneIcon from '../images/icon_drone.png';
 import pickupIcon from '../images/pin-pickup.svg';
@@ -49,7 +50,7 @@ export const createMap = ({
 }) => {
   // Add support for right-to-left languages
   mapboxgl.setRTLTextPlugin(
-    'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.1/mapbox-gl-rtl-text.js',
+    'lib/mapbox-gl-rtl-text.js.min',
   );
 
   // Create the map

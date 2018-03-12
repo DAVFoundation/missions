@@ -39,7 +39,6 @@ module.exports = (env = 'development') => {
         },
         {
           test: /\.css$/,
-          exclude: /node_modules/,
           use: env === 'production'
             ? ExtractTextPlugin.extract(
               {

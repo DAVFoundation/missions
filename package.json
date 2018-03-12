@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@turf/turf": "^5.1.6",
-    "mapbox-gl": "^0.44.1",
+    "mapbox-gl": "~0.44.1",
     "moment": "^2.20.1",
     "randomstring": "^1.1.5",
     "react": "^16.2.0",
