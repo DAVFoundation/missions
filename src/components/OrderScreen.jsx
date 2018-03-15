@@ -34,15 +34,12 @@ class OrderScreen extends Component {
   }
 
   createOrderDetailsObject() {
-    // const { userCoords, defaultDropoff } = this.props;
     const { pickup, dropoff, packageSize } = this.state;
     return {
       pickup: pickup ?
         { address: pickup.description, lat: pickup.location.lat, long: pickup.location.lng } : undefined,
-      // { lat: userCoords.location.lat, long: userCoords.location.long },
       dropoff: dropoff ?
         { lat: dropoff.lat, long: dropoff.lng } : undefined,
-      // defaultDropoff,
       size: packageSize || undefined,
       weight: this.weightNode.value || undefined,
       pickup_at: this.pickupTimeNode.value || undefined
