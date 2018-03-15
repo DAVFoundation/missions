@@ -17,7 +17,7 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        MISSION_CONTROL_HOST: JSON.stringify('https://ctrl.missions.io'),
+        MISSION_CONTROL_HOST: JSON.stringify('http://missioncontrol-stg.us-east-1.elasticbeanstalk.com'),
       },
     }),
     new HtmlWebpackPlugin({
