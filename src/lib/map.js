@@ -207,3 +207,35 @@ export const addTerminalPinSources = map => {
     });
   }
 };
+
+export const addLineDropoffPickup = (map, { pickup, dropoff } = {}) => {
+  handleMapUpdate(map, () => {
+    map.addLayer({
+      id: 'lines',
+      type: 'line',
+      source: {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: [{
+            type: 'Feature',
+            properties: {
+              color: '#684BF1'
+            },
+            geometry: {
+              type: 'LineString',
+              coordinates: [
+                [pickup.lang, pickup.lat],
+                [dropoff.lang, dropoff.lat]
+              ]
+            }
+          }]
+        }
+      },
+      paint: {
+        'line-width': 3,
+        'line-color': ['get', 'color']
+      }
+    });
+  });
+};
