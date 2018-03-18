@@ -243,7 +243,6 @@ export const addTerminalPinSources = map => {
 export const addLineDropoffPickup = (map, { pickup, dropoff } = {}) => { 
   handleMapUpdate(map, () => {
     if (pickupAndDropoffPresent(map, pickup, dropoff) && map.getSource('line')) {
-      console.log(pickup, dropoff);
       map.getSource('line').setData(turf.lineString([
         [pickup.long, pickup.lat],
         [dropoff.long, dropoff.lat],

@@ -19,7 +19,6 @@ class Map extends Component {
     updateMap(this.map, nextProps.vehicles, terminals);
     addLineDropoffPickup(this.map, terminals);
 
-    console.log(nextProps.missionStatus);
 
     if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
       initiateZoomTransition(this.map, nextProps.pickup, nextProps.pickup,{maxZoom:14});
