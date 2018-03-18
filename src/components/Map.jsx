@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createMap, updateMap, initiateZoomTransition, clearPins, addTerminalPinSources} from '../lib/map';
+import { createMap, updateMap, initiateZoomTransition, clearPins, addTerminalPinSources, addLineDropoffPickup, clearLine, addTerminalLineSource } from '../lib/map';
 import './Map.css';
 
 class Map extends Component {
@@ -17,10 +17,14 @@ class Map extends Component {
     };
 
     updateMap(this.map, nextProps.vehicles, terminals);
+    addLineDropoffPickup(this.map, terminals);
+
+    console.log(nextProps.missionStatus);
 
     if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
       initiateZoomTransition(this.map, nextProps.pickup, nextProps.pickup,{maxZoom:14});
       addTerminalPinSources(this.map);
+      addTerminalLineSource(this.map);
     }
 
     if (nextProps.missionStatus === 'completed') {
@@ -29,12 +33,15 @@ class Map extends Component {
 
     if(['searching', 'choosing', 'signing'].includes(this.props.orderStage) && nextProps.orderStage === 'draft') {
       clearPins(this.map);
+      clearLine(this.map);
     } else {
       addTerminalPinSources(this.map);
+      addTerminalLineSource(this.map);
     }
 
     if (nextProps.orderStage === 'in_mission') {
       initiateZoomTransition(this.map, nextProps.pickup, nextProps.dropoff);
+      clearLine(this.map);
       if (this.props.vehicles.length > 0 && nextProps.vehicles[0].status === 'waiting_pickup') {
         this.props.history.push(this.props.appPath+'/confirm-takeoff');
       } else {

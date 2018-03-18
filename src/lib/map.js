@@ -167,6 +167,38 @@ export const clearPins = map => {
   }
 };
 
+export const clearLine = map => {
+  if (map.getSource('line')) {
+    map.removeLayer('teste');
+    map.removeSource('line');
+  }
+};
+
+export const addTerminalLineSource = map => {
+  if (!map.getSource('line')) {
+    map.addSource('line', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: [],
+      },
+    });
+    map.addLayer({
+      id: 'teste',
+      type: 'line',
+      source: 'line',
+      layout: {
+        //'line-join': '',
+        //'line-cap': ''
+      },
+      paint: {
+        'line-width': 2,
+        'line-color': '#684BF1'
+      }
+    });
+  }
+};
+
 export const addTerminalPinSources = map => {
   if (!map.getSource('pickup') && !map.getSource('dropoff')) {
     map.addSource('pickup', {
@@ -204,38 +236,18 @@ export const addTerminalPinSources = map => {
         'icon-allow-overlap': true,
         'icon-ignore-placement': true,
       },
-    });
+    }); 
   }
 };
 
-export const addLineDropoffPickup = (map, { pickup, dropoff } = {}) => {
+export const addLineDropoffPickup = (map, { pickup, dropoff } = {}) => { 
   handleMapUpdate(map, () => {
-    map.addLayer({
-      id: 'lines',
-      type: 'line',
-      source: {
-        type: 'geojson',
-        data: {
-          type: 'FeatureCollection',
-          features: [{
-            type: 'Feature',
-            properties: {
-              color: '#684BF1'
-            },
-            geometry: {
-              type: 'LineString',
-              coordinates: [
-                [pickup.lang, pickup.lat],
-                [dropoff.lang, dropoff.lat]
-              ]
-            }
-          }]
-        }
-      },
-      paint: {
-        'line-width': 3,
-        'line-color': ['get', 'color']
-      }
-    });
+    if (pickupAndDropoffPresent(map, pickup, dropoff) && map.getSource('line')) {
+      console.log(pickup, dropoff);
+      map.getSource('line').setData(turf.lineString([
+        [pickup.long, pickup.lat],
+        [dropoff.long, dropoff.lat],
+      ], {name: 'line'}));
+    }
   });
 };
