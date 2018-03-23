@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="19px" height="20px" viewBox="0 0 19 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
     <title>arrow-left</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Order-Pick-Up-screen" transform="translate(-18.000000, -32.000000)" fill="#664BF1">
-            <g id="arrow-left" transform="translate(18.000000, 32.000000)">
+        <g id="Bid-selection-screen" transform="translate(-16.000000, -32.000000)" fill="#FE6B48">
+            <g id="arrow-left" transform="translate(16.000000, 32.000000)">
                 <polyline id="Fill-26" points="10.342 19.658 0.685 10 10.342 0.342 11.658 1.658 3.315 10 11.658 18.342 10.342 19.658"></polyline>
                 <polygon id="Fill-27" points="2 9 19 9 19 11 2 11"></polygon>
             </g>
