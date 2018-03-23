@@ -20,7 +20,7 @@
 
 .selected {
   transition: background-color 0.3s ease;
-  background-color: rgba(116, 67, 250, 1);
+  background-color: #FF6A46;
 }
 
 .svgSelected {
