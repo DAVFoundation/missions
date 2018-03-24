@@ -167,6 +167,38 @@ export const clearPins = map => {
   }
 };
 
+export const clearLine = map => {
+  if (map.getSource('line')) {
+    map.removeLayer('teste');
+    map.removeSource('line');
+  }
+};
+
+export const addTerminalLineSource = map => {
+  if (!map.getSource('line')) {
+    map.addSource('line', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: [],
+      },
+    });
+    map.addLayer({
+      id: 'teste',
+      type: 'line',
+      source: 'line',
+      layout: {
+        //'line-join': '',
+        //'line-cap': ''
+      },
+      paint: {
+        'line-width': 2,
+        'line-color': '#FF6A46'
+      }
+    });
+  }
+};
+
 export const addTerminalPinSources = map => {
   if (!map.getSource('pickup') && !map.getSource('dropoff')) {
     map.addSource('pickup', {
@@ -204,6 +236,17 @@ export const addTerminalPinSources = map => {
         'icon-allow-overlap': true,
         'icon-ignore-placement': true,
       },
-    });
+    }); 
   }
+};
+
+export const addLineDropoffPickup = (map, { pickup, dropoff } = {}) => { 
+  handleMapUpdate(map, () => {
+    if (pickupAndDropoffPresent(map, pickup, dropoff) && map.getSource('line')) {
+      map.getSource('line').setData(turf.lineString([
+        [pickup.long, pickup.lat],
+        [dropoff.long, dropoff.lat],
+      ], {name: 'line'}));
+    }
+  });
 };

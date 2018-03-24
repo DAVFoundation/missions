@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createMap, updateMap, initiateZoomTransition, clearPins, addTerminalPinSources} from '../lib/map';
+import { createMap, updateMap, initiateZoomTransition, clearPins, addTerminalPinSources, addLineDropoffPickup, clearLine, addTerminalLineSource } from '../lib/map';
 import './Map.css';
 
 class Map extends Component {
@@ -17,6 +17,7 @@ class Map extends Component {
     };
 
     updateMap(this.map, nextProps.vehicles, terminals);
+    addLineDropoffPickup(this.map, terminals);
 
     if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
       initiateZoomTransition(this.map, nextProps.pickup, nextProps.pickup,{maxZoom:14});
@@ -25,6 +26,14 @@ class Map extends Component {
 
     if (nextProps.missionStatus === 'completed') {
       clearPins(this.map);
+    }
+
+    if (this.props.missionStatus === 'in_progress' && nextProps.missionStatus === 'completed') {
+      addTerminalLineSource(this.map);
+    }
+
+    if (this.props.orderStage === 'in_mission' && nextProps.orderStage === 'draft') {
+      clearLine(this.map);
     }
 
     if(['searching', 'choosing', 'signing'].includes(this.props.orderStage) && nextProps.orderStage === 'draft') {
