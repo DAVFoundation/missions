@@ -193,7 +193,7 @@ export const addTerminalLineSource = map => {
       },
       paint: {
         'line-width': 2,
-        'line-color': '#684BF1'
+        'line-color': '#FF6A46'
       }
     });
   }
