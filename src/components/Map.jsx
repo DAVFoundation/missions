@@ -19,28 +19,31 @@ class Map extends Component {
     updateMap(this.map, nextProps.vehicles, terminals);
     addLineDropoffPickup(this.map, terminals);
 
-
     if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
       initiateZoomTransition(this.map, nextProps.pickup, nextProps.pickup,{maxZoom:14});
       addTerminalPinSources(this.map);
-      addTerminalLineSource(this.map);
     }
 
     if (nextProps.missionStatus === 'completed') {
       clearPins(this.map);
     }
 
+    if (this.props.missionStatus === 'in_progress' && nextProps.missionStatus === 'completed') {
+      addTerminalLineSource(this.map);
+    }
+
+    if (this.props.orderStage === 'in_mission' && nextProps.orderStage === 'draft') {
+      clearLine(this.map);
+    }
+
     if(['searching', 'choosing', 'signing'].includes(this.props.orderStage) && nextProps.orderStage === 'draft') {
       clearPins(this.map);
-      clearLine(this.map);
     } else {
       addTerminalPinSources(this.map);
-      addTerminalLineSource(this.map);
     }
 
     if (nextProps.orderStage === 'in_mission') {
       initiateZoomTransition(this.map, nextProps.pickup, nextProps.dropoff);
-      clearLine(this.map);
       if (this.props.vehicles.length > 0 && nextProps.vehicles[0].status === 'waiting_pickup') {
         this.props.history.push(this.props.appPath+'/confirm-takeoff');
       } else {
