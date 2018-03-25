@@ -158,7 +158,7 @@ export const initiateZoomTransition = (map, pickup, dropoff,options) => {
   });
 };
 
-export const clearPins = map => {
+export const clearTerminals = map => {
   if (map.getSource('pickup') && map.getSource('dropoff')){
     map.removeLayer('pickup');
     map.removeLayer('dropoff');
@@ -167,7 +167,7 @@ export const clearPins = map => {
   }
 };
 
-export const addTerminalPinSources = map => {
+export const addTerminals = map => {
   if (!map.getSource('pickup') && !map.getSource('dropoff')) {
     map.addSource('pickup', {
       type: 'geojson',
