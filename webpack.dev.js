@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 process.env.NODE_ENV = 'development';
 
 module.exports = merge(getCommon(process.env.NODE_ENV), {
+  mode: 'development',
   devtool: 'eval-source-map',
   devServer: {
     inline: true,

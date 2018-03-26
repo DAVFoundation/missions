@@ -11,6 +11,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 process.env.NODE_ENV = 'production';
 
 module.exports = merge(getCommon(process.env.NODE_ENV), {
+  mode: 'production',
   devtool: 'cheap-module-source-map',
   plugins: [
     new CleanWebpackPlugin(['dist']),
