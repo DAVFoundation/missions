@@ -1,6 +1,7 @@
 import store from '../store';
 import { packageSizeOptions } from '../lib/utils';
 import moment from 'moment';
+import { createMissionTransaction } from '../actions';
 
 const apiRoot = process.env.MISSION_CONTROL_URL;
 
@@ -39,7 +40,8 @@ export const createNeed = ({ pickup, dropoff, pickup_at, size, weight }) => {
   return fetchWithUserId(url, 'POST', body);
 };
 
-export const chooseBid = bidId => {
+export const chooseBid = (bidId, vehicle_id, price) => {
+  store.dispatch(createMissionTransaction(vehicle_id, price));
   let url = new URL(`/bids/${bidId}/choose`, apiRoot);
   return fetchWithUserId(url, 'PUT');
 };

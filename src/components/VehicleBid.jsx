@@ -6,7 +6,7 @@ import currencyImage from '../images/dav.svg';
 const VehicleBid = ({bid, vehicle, shown, chooseBid}) => {
   const clickChooseBid = (e) => {
     e.preventDefault();
-    chooseBid(bid.id);
+    chooseBid(bid.id, bid.dav_id, bid.price);
   };
 
   let classNames = ['vehicle-bid-card'];
