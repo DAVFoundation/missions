@@ -7,6 +7,7 @@ import IconSelector from './IconSelector.jsx';
 import getConfig from '../config';
 import { packageSizeOptions } from '../lib/utils';
 import Geosuggest from 'react-geosuggest';
+import x_button from '../images/x_button.svg';
 
 class OrderScreen extends Component {
   constructor(props) {
@@ -33,6 +34,12 @@ class OrderScreen extends Component {
     this.props.onMount();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.registration_step === 'register_fulfilled') {
+      this.submitForm();
+    }
+  }
+
   createOrderDetailsObject() {
     const { pickup, dropoff, packageSize } = this.state;
     return {
@@ -56,9 +63,10 @@ class OrderScreen extends Component {
   }
 
   submitForm() {
-    this.updateStoreFromForm({ stage: 'searching' });
+    this.updateStoreFromForm({ stage: 'searching', registration_step: 'registered' });
     let needDetails = this.createOrderDetailsObject();
     this.props.createNeed(needDetails);
+    this.props.history.push(this.props.appPath+'/searching');
   }
 
   selectPackageSize(size) {
@@ -69,10 +77,63 @@ class OrderScreen extends Component {
 
   getSizeContainer() { }
 
+  dismissDialog() { 
+    this.props.closeWalletDialog();
+  }
+
+  verifyIdentity() {
+    this.props.verifyIdentity();
+  }
+
+  registerIdentity() {
+    this.props.registerIdentity();
+  }
+
   render() {
     const { weight } = this.props; // size
     const pickup_at =
       this.props.pickup_at || new Date().toTimeString().slice(0, 5);
+    let showSignInToWalletDialog = this.props.registration_step === 'unlock_wallet';
+    const signInToWalletDialog = (
+      <div id="wallet-dialog-screen" className="screen">
+        <div className="screen-background--dark"/>
+        <div className="modal-container">
+          <div className="modal-box wallet-dialog">
+            <h1>Please Sign in To A Wallet</h1>
+            <p>It seems that you are not signed in to<br/> 
+            an existing wallet in your browser.<br/> 
+            Please sign in, or create a new wallet.</p>
+            <button onClick={this.dismissDialog.bind(this)} className="big-button">
+              OK
+            </button>
+          </div>
+        </div>
+      </div>);
+
+    let showRegisterDavIdDialog = this.props.registration_step === 'register_id';
+    const registerDavIdDialog = (
+      <div id="wallet-dialog-screen" className="screen">
+        <div className="screen-background--dark"/>
+        <div className="modal-container">
+          <div className="modal-box wallet-dialog">
+            <div
+              onClick={this.dismissDialog.bind(this)}
+              className="sort-options__close-button">
+              <img src={x_button} alt="close button" />
+            </div>
+            <h1>Missing DAV ID</h1>
+            <p>This wallet is not connected to a DAV ID</p>
+            <button onClick={this.registerIdentity.bind(this)} className="big-button">
+              CREATE DAV ID
+            </button>
+            <span>
+              Note: This is an Ethereum transaction that will<br/> 
+              cost you some Gas
+            </span>
+          </div>
+        </div>
+      </div>);
+    
     return (
       <div id="order-screen" className="screen">
         <Link to="/" className="back-button" onClick={this.cancelForm}>
@@ -153,20 +214,19 @@ class OrderScreen extends Component {
             }}
           />
         </div>
-        <Link
-          to="/searching"
-          className={(this.state.pickup !== undefined && this.state.pickup.location !== undefined && this.state.dropoff !== undefined) ? 'big-button form-submit-button': 'disabled-button form-submit-button'}
-          onClick={this.submitForm}
-          disabled
-        >
+        <button onClick={this.verifyIdentity.bind(this)} className={(this.state.pickup !== undefined && this.state.pickup.location !== undefined && this.state.dropoff !== undefined) ? 'big-button form-submit-button': 'disabled-button form-submit-button'} >
           Find drones
-        </Link>
+        </button>
+        { showSignInToWalletDialog === false ? (<div/>) : signInToWalletDialog }
+        { showRegisterDavIdDialog === false ? (<div/>) : registerDavIdDialog}
       </div>
     );
   }
 }
 
 OrderScreen.propTypes = {
+  history: PropTypes.object.isRequired,
+  appPath: PropTypes.string,
   userCoords: PropTypes.object,
   defaultDropoff: PropTypes.object,
   pickup: PropTypes.object,
@@ -174,9 +234,14 @@ OrderScreen.propTypes = {
   pickup_at: PropTypes.string,
   size: PropTypes.string,
   weight: PropTypes.string,
+  registration_step: PropTypes.string.isRequired,
+  fetching: PropTypes.bool.isRequired,
   updateOrderDetails: PropTypes.func.isRequired,
   createNeed: PropTypes.func.isRequired,
-  onMount: PropTypes.func.isRequired
+  onMount: PropTypes.func.isRequired,
+  verifyIdentity: PropTypes.func.isRequired,
+  registerIdentity: PropTypes.func.isRequired,
+  closeWalletDialog: PropTypes.func.isRequired,
 };
 
 export default OrderScreen;

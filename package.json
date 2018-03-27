@@ -21,6 +21,7 @@
   "dependencies": {
     "@davfoundation/dav-js": "^0.1.8",
     "@turf/turf": "^5.1.6",
+    "callback-timeout": "^3.0.1",
     "mapbox-gl": "~0.44.1",
     "moment": "^2.20.1",
     "randomstring": "^1.1.5",

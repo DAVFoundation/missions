@@ -1,12 +1,15 @@
 import {handleActions} from 'redux-actions';
 import {
   updateOrderDetails, createNeedFulfilled, updateStatusFulfilled,
-  resetOrderDetails, chooseBidPending, updateBidsFulfilled
+  resetOrderDetails, chooseBidPending, updateBidsFulfilled,
+  unlockWallet, unregisteredDavId, registerDavIdFulfilled, closeWalletDialog
 } from '../actions';
 import getConfig from '../config';
 
 const defaultState = {
   stage: 'draft', // draft | searching | choosing | signing | in_mission
+  registration_step: 'none', // none | unlock_wallet | register_id | register_fulfilled | registered
+  fetching: false,
   pickup: undefined,
   dropoff: undefined,
   pickup_at: undefined,
@@ -16,6 +19,18 @@ const defaultState = {
 
 export default handleActions({
 
+  [unlockWallet]: (state) => {
+    return {...state, registration_step: 'unlock_wallet', fetching: false};
+  },
+  [unregisteredDavId]: (state) => {
+    return {...state, registration_step: 'register_id', fetching: false};
+  },
+  [registerDavIdFulfilled]: (state) => {
+    return {...state, registration_step: 'register_fulfilled', fetching: false};
+  },
+  [closeWalletDialog]: (state) => {
+    return {...state, registration_step: 'none'};
+  },
   [updateOrderDetails]: (state, {payload}) => {
     return {...state, ...payload};
   },
