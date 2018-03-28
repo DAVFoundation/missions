@@ -2,7 +2,7 @@ import store from '../store';
 import { packageSizeOptions } from '../lib/utils';
 import moment from 'moment';
 
-const apiRoot = process.env.MISSION_CONTROL_HOST;
+const apiRoot = process.env.MISSION_CONTROL_URL;
 
 export const fetchStatus = ({ id, lat, long, needId }) => {
   const missionId = store.getState().mission.id;
@@ -39,7 +39,7 @@ export const createNeed = ({ pickup, dropoff, pickup_at, size, weight }) => {
   return fetchWithUserId(url, 'POST', body);
 };
 
-export const chooseBid = bidId => {
+export const chooseBid = (bidId) => {
   let url = new URL(`/bids/${bidId}/choose`, apiRoot);
   return fetchWithUserId(url, 'PUT');
 };

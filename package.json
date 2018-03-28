@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@turf/turf": "^5.1.6",
+    "callback-timeout": "^3.0.1",
     "mapbox-gl": "~0.44.1",
     "moment": "^2.20.1",
     "randomstring": "^1.1.5",
@@ -32,7 +33,9 @@
     "redux-actions": "^2.2.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-promise-middleware": "5.0.0",
-    "turf": "^3.0.14"
+    "truffle-contract": "^3.0.4",
+    "turf": "^3.0.14",
+    "web3": "^1.0.0-beta.33"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

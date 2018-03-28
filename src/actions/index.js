@@ -7,13 +7,23 @@ import {
   confirmTakeoff as apiConfirmTakeoff,
 } from '../lib/api';
 
+import { 
+  initWeb3, 
+  registerDavId as davRegisterDavId,
+  createMissionTransaction as davCreateMissionTransaction 
+} from '../lib/dav';
+
 export const updateApp = createAction('UPDATE_APP');
 
 export const updateStatus = createAction('UPDATE_STATUS', apiFetchStatus);
 
 export const updateStatusFulfilled = createAction('UPDATE_STATUS_FULFILLED');
 
+export const verifyDavId = createAction('VERIFY_DAV_ID', initWeb3);
+
 export const updateDavId = createAction('UPDATE_DAV_ID');
+
+export const registerDavId = createAction('REGISTER_DAV_ID', davRegisterDavId);
 
 export const registerDavIdFulfilled = createAction('REGISTER_DAV_ID_FULFILLED');
 
@@ -42,6 +52,12 @@ export const chooseBid = createAction('CHOOSE_BID', apiChooseBid);
 export const chooseBidPending = createAction('CHOOSE_BID_PENDING');
 
 export const chooseBidFulfilled = createAction('CHOOSE_BID_FULFILLED');
+
+export const createMissionTransaction = createAction('CREATE_MISSION_TRANSACTION', davCreateMissionTransaction);
+
+export const createMissionTransactionFulfilled = createAction('CREATE_MISSION_TRANSACTION_FULFILLED');
+
+export const createMissionTransactionFailed = createAction('CREATE_MISSION_TRANSACTION_FAILED');
 
 export const confirmTakeoff = createAction(
   'CONFIRM_TAKEOFF',

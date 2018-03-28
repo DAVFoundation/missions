@@ -2,12 +2,12 @@ import { connect } from 'react-redux';
 import { getBidArray } from '../reducers/bids';
 import { getVehicleOnMission } from '../reducers/vehicles';
 import SearchingScreen from '../components/SearchingScreen.jsx';
-import { resetOrderDetails, chooseBid } from '../actions';
+import { resetOrderDetails, createMissionTransaction } from '../actions';
 import { cancelNeed } from '../lib/api';
 
 const mapDispatchToProps = (dispatch) => ({
   cancelSearch: () => cancelNeed().then(dispatch(resetOrderDetails())),
-  chooseBid: (bidId) => dispatch(chooseBid(bidId)),
+  chooseBid: (bidId, vehicle_id, price) => dispatch(createMissionTransaction(bidId, vehicle_id, price)),
 });
 
 export default connect(
