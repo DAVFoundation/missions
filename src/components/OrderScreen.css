@@ -68,34 +68,3 @@ a.form-submit-button {
 .geosuggest__item__matched-text {
   font-weight: bold;
 }
-
-.swallet-dialog__close-button {
-  position: absolute;
-  top: 10px;
-  right: 19px;
-}
-
-.wallet-dialog {
-  text-align: center;
-}
-
-.wallet-dialog p {
-  text-align:center;
-  margin: 25px;
-}
-
-.wallet-dialog h1 {
-  font-size: 20px;
-}
-
-.wallet-dialog span {
-  display: block;
-  font-size: 12px;
-  margin: 10px;
-}
-
-.wallet-dialog button.big-button {
-  font-weight: normal;
-  padding: 15px 80px;
-  margin: auto;
-}
