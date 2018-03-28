@@ -7,21 +7,15 @@ import {
   confirmTakeoff as apiConfirmTakeoff,
 } from '../lib/api';
 
-import { initWeb3, registeredDavId } from '../lib/dav';
-
 export const updateApp = createAction('UPDATE_APP');
 
 export const updateStatus = createAction('UPDATE_STATUS', apiFetchStatus);
 
 export const updateStatusFulfilled = createAction('UPDATE_STATUS_FULFILLED');
 
-export const verifyDavId = createAction('VERIFY_DAV_ID', initWeb3);
-
 export const updateDavId = createAction('UPDATE_DAV_ID');
 
 export const registerDavIdFulfilled = createAction('REGISTER_DAV_ID_FULFILLED');
-
-export const registerDavId = createAction('REGISTER_DAV_ID', registeredDavId);
 
 export const unregisteredDavId = createAction('UNREGISTERED_DAV_ID');
 
