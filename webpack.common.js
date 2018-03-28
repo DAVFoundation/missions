@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (env = 'development') => {
   return {
@@ -6,7 +8,6 @@ module.exports = (env = 'development') => {
       drone_simulation: './src/apps/drone_simulation/Main.jsx',
       delivery_drones: './src/apps/delivery_drones/Main.jsx',
       vendor: [
-        '@davfoundation/dav-js',
         'mapbox-gl',
         'react',
         'react-dom',
@@ -25,32 +26,27 @@ module.exports = (env = 'development') => {
       sourceMapFilename: '[file].map',
     },
     module: {
-      rules: [
+      loaders: [
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
-          use: [
-            { loader: 'babel-loader' },
-          ]
+          loader: 'babel-loader',
         },
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
-          use: [
-            { loader: 'eslint-loader', }
-          ]
+          loader: 'eslint-loader',
         },
         {
           test: /\.css$/,
-          use: [
-            { loader: 'style-loader', },
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: env === 'production' ? true : false
+          use: env === 'production'
+            ? ExtractTextPlugin.extract(
+              {
+                fallback: 'style-loader',
+                use: [{ loader: 'css-loader', options: { minimize: true } }],
               }
-            }
-          ]
+            )
+            : ['style-loader', 'css-loader'],
         },
         {
           test: /\.(png|jpg|gif|svg)$/,
@@ -65,14 +61,11 @@ module.exports = (env = 'development') => {
         },
       ],
     },
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          vendor: {
-            filename: 'vendor.bundle.[chunkhash:8].js',
-          }
-        }
-      },
-    },
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        filename: 'vendor.bundle.[chunkhash:8].js',
+      }),
+    ],
   };
 };

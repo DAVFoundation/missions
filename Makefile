@@ -1,10 +1,6 @@
 BUCKET=s3://missions.io/
 ## deploy to staging
 STG_BUCKET=s3://missions-stg/
-
-link-dav-js:
-	npm link ../dav-js
-	
 all:
 
 setup:
