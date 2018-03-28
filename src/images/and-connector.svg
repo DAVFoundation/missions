@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="30px" height="105px" viewBox="0 0 30 105" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
-    <title>Group 11</title>
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>and</title>
     <desc>Created with Sketch.</desc>
     <defs>
-        <rect id="path-1" x="0" y="0" width="30" height="17" rx="8.5"></rect>
+        <rect id="path-1" x="0" y="43" width="30" height="17" rx="8.5"></rect>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Contract-signing-screen_anim" transform="translate(-41.000000, -275.000000)">
-            <g id="Group-9" transform="translate(18.000000, 149.000000)">
-                <g id="Group-11" transform="translate(23.000000, 126.000000)">
-                    <path d="M15,0 L15,105.5" id="connect" stroke="#664BF1" stroke-dasharray="3"></path>
-                    <g id="and" transform="translate(0.000000, 43.000000)">
-                        <g id="Rectangle-2">
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
-                            <rect stroke="#664BF1" stroke-width="1" x="0.5" y="0.5" width="29" height="16" rx="8"></rect>
-                        </g>
-                        <text id="AND" font-family="Roboto-Medium, Roboto" font-size="9" font-weight="400" fill="#664BF1">
-                            <tspan x="6" y="11">AND</tspan>
-                        </text>
-                    </g>
+        <g id="Contract-signing-screen" transform="translate(-41.000000, -275.000000)">
+            <g id="and" transform="translate(41.000000, 275.000000)">
+                <path d="M15,0 L15,105.5" id="connect" stroke="#45474E" stroke-dasharray="3"></path>
+                <g id="Rectangle-2">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <rect stroke="#FE6B48" stroke-width="1" x="0.5" y="43.5" width="29" height="16" rx="8"></rect>
                 </g>
+                <text id="AND" font-family=".AppleSystemUIFont" font-size="9" font-weight="normal" fill="#FE6B48">
+                    <tspan x="6" y="55">AND</tspan>
+                </text>
             </g>
         </g>
     </g>
