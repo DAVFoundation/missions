@@ -37,9 +37,9 @@ class OrderScreen extends Component {
     const { pickup, dropoff, packageSize } = this.state;
     return {
       pickup: pickup ?
-        { address: pickup.description, lat: pickup.location.lat, long: pickup.location.lng } : undefined,
+        { address: pickup.description, lat: 47.397669, long: 8.5444809 } : undefined,
       dropoff: dropoff ?
-        { lat: dropoff.lat, long: dropoff.lng } : undefined,
+        { lat: 47.3982004, long: 8.5448531 } : undefined,
       size: packageSize || undefined,
       weight: this.weightNode.value || undefined,
       pickup_at: this.pickupTimeNode.value || undefined
