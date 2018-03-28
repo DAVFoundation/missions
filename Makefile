@@ -24,3 +24,7 @@ create-aws-stg-env:
 
 deploy-aws-stg-env: build-stg
 	@aws s3 cp --recursive --acl public-read dist/ ${STG_BUCKET}
+
+link-contracts:
+	-rm -rf ./src/build
+	-ln -s ../../contracts/build ./src
