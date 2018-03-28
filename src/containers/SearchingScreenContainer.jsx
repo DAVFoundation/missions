@@ -7,7 +7,7 @@ import { cancelNeed } from '../lib/api';
 
 const mapDispatchToProps = (dispatch) => ({
   cancelSearch: () => cancelNeed().then(dispatch(resetOrderDetails())),
-  chooseBid: (bidId, vehicle_id, price) => dispatch(chooseBid(bidId, vehicle_id, price)),
+  chooseBid: (bidId) => dispatch(chooseBid(bidId)),
 });
 
 export default connect(

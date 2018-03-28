@@ -4,8 +4,7 @@ import {
   updateDavId, 
   unlockWallet,
   unregisteredDavId,
-  registerDavIdFulfilled,
-  createMissionTransactionFulfilled
+  registerDavIdFulfilled
 } from '../actions';
 import { davJS, web3 } from '@davfoundation/dav-js';
 
@@ -50,24 +49,11 @@ export const isRegistered = (davId) => {
   });
 };
 
-export const registerDavId = () => {
+export const registeredDavId = () => {
   davSDK.registerSimple().then((isRegistered) => {
     if(isRegistered === true) {
       store.dispatch(registerDavIdFulfilled());
     }
-  }).catch(err => {
-    console.log(err);
-  });
-};
-
-export const createMissionTransaction = (vehicle_id, price) => {
-  if(process.env.BLOCKCHAIN_TYPE === 'NONE') {
-    store.dispatch(createMissionTransactionFulfilled());
-    return Promise.resolve('Blockchain is disabled');
-  }
-  davSDK.createMissionTransaction(vehicle_id, price).then((response) => {
-    console.log(response);
-    store.dispatch(createMissionTransactionFulfilled());
   }).catch(err => {
     console.log(err);
   });
