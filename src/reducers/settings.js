@@ -11,7 +11,7 @@ const defaultState = {
 export default handleActions({
 
   [updateDavId]: (state, {payload: { davId }}) => {
-    return {...state, user_id: davId};
+    return {...state, user_id: davId.toLowerCase()};
   },
 
 }, defaultState);
