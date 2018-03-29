@@ -4,13 +4,17 @@ import gpsPointIcon from '../images/gps_point.svg';
 import timeIcon from '../images/time.svg';
 import currencyImage from '../images/dav.svg';
 import PropTypes from 'prop-types';
-import Link from '../containers/LinkContainer.jsx';
 import {humanReadableVehicleStatus} from '../lib/utils';
 
 class MissionScreen extends Component {
 
   constructor(props) {
     super(props);
+  }
+
+  approveCompletedMission() {
+    this.props.approveCompletedMission();
+    this.props.history.push(this.props.appPath+'/');
   }
 
   render() {
@@ -21,7 +25,9 @@ class MissionScreen extends Component {
             <h1>Delivery completed successfully</h1>
             <p>Cost for delivery:</p>
             <h1>{(this.props.price/1000000000000000000).toFixed(2)} <img src={currencyImage} className="currency-symbol" alt="DAV"/></h1>
-            <Link to="/" className="big-button close">Close</Link>
+            <button onClick={this.approveCompletedMission.bind(this)} className="big-button close" >
+              Close
+            </button>
           </div>
         </div>
       );
@@ -53,11 +59,14 @@ class MissionScreen extends Component {
 }
 
 MissionScreen.propTypes = {
+  history: PropTypes.object.isRequired,
+  appPath: PropTypes.string,
   vehicleStatus: PropTypes.string,
   missionComplete: PropTypes.bool.isRequired,
   leg: PropTypes.string,
   timeLeftInLeg: PropTypes.number,
-  price: PropTypes.number
+  price: PropTypes.number,
+  approveCompletedMission: PropTypes.func.isRequired,
 };
 
 export default MissionScreen;

@@ -10,7 +10,8 @@ import {
 import { 
   initWeb3, 
   registerDavId as davRegisterDavId,
-  createMissionTransaction as davCreateMissionTransaction 
+  createMissionTransaction as davCreateMissionTransaction,
+  approveCompletedMission as davApproveCompletedMission 
 } from '../lib/dav';
 
 export const updateApp = createAction('UPDATE_APP');
@@ -22,6 +23,8 @@ export const updateStatusFulfilled = createAction('UPDATE_STATUS_FULFILLED');
 export const verifyDavId = createAction('VERIFY_DAV_ID', initWeb3);
 
 export const updateDavId = createAction('UPDATE_DAV_ID');
+
+export const updateContractMissionIdMissionId = createAction('UPDATE_CONTRACT_MISSION_ID');
 
 export const registerDavId = createAction('REGISTER_DAV_ID', davRegisterDavId);
 
@@ -58,6 +61,8 @@ export const createMissionTransaction = createAction('CREATE_MISSION_TRANSACTION
 export const createMissionTransactionFulfilled = createAction('CREATE_MISSION_TRANSACTION_FULFILLED');
 
 export const createMissionTransactionFailed = createAction('CREATE_MISSION_TRANSACTION_FAILED');
+
+export const approveCompletedMission = createAction('APPROVE_COMPLETED_MISSION', davApproveCompletedMission);
 
 export const confirmTakeoff = createAction(
   'CONFIRM_TAKEOFF',

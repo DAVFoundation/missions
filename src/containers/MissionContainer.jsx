@@ -1,6 +1,12 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import MissionScreen from '../components/MissionScreen.jsx';
 import { getVehicleArray } from '../reducers/vehicles';
+import { approveCompletedMission } from '../actions';
+
+const mapDispatchToProps = (dispatch) => ({
+  approveCompletedMission: () => dispatch(approveCompletedMission())
+});
 
 const matchStateToProps = (state) => {
   const vehicles = getVehicleArray(state.vehicles);
@@ -32,6 +38,7 @@ const matchStateToProps = (state) => {
   props.missionComplete = mission.status === 'completed';
 
   props.price = parseFloat(mission.price);
+  props.appPath = state.app.path;
 
   return props;
 };
@@ -40,5 +47,5 @@ const matchStateToProps = (state) => {
 
 export default connect(
   matchStateToProps,
-  () => ({})
-)(MissionScreen);
+  mapDispatchToProps
+)(withRouter(MissionScreen));

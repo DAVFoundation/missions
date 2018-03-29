@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 import {
   chooseBidFulfilled,
+  updateContractMissionIdMissionId,
   confirmTakeoffPending,
   confirmTakeoffFulfilled,
   updateStatusFulfilled,
@@ -48,6 +49,10 @@ export default handleActions(
         signedAt: parseInt(signed_at),
       };
       return { ...state, ...mission };
+    },
+
+    [updateContractMissionIdMissionId]: (state, {payload: { contractMissionId }}) => {
+      return { ...state, contractMissionId: contractMissionId };
     },
 
     [confirmTakeoffPending]: state => ({
