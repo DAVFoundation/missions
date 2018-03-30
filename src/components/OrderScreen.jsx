@@ -77,7 +77,7 @@ class OrderScreen extends Component {
 
   getSizeContainer() { }
 
-  dismissDialog() { 
+  dismissDialog() {
     this.props.closeWalletDialog();
   }
 
@@ -100,8 +100,8 @@ class OrderScreen extends Component {
         <div className="modal-container">
           <div className="modal-box wallet-dialog">
             <h1>Please Sign in To A Wallet</h1>
-            <p>It seems that you are not signed in to<br/> 
-            an existing wallet in your browser.<br/> 
+            <p>It seems that you are not signed in to<br/>
+            an existing wallet in your browser.<br/>
             Please sign in, or create a new wallet.</p>
             <button onClick={this.dismissDialog.bind(this)} className="big-button">
               OK
@@ -127,13 +127,13 @@ class OrderScreen extends Component {
               CREATE DAV ID
             </button>
             <span>
-              Note: This is an Ethereum transaction that will<br/> 
+              Note: This is an Ethereum transaction that will<br/>
               cost you some Gas
             </span>
           </div>
         </div>
       </div>);
-    
+
     return (
       <div id="order-screen" className="screen">
         <Link to="/" className="back-button" onClick={this.cancelForm}>
