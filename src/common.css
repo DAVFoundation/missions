@@ -193,7 +193,7 @@ input, select {
 }
 
 img.currency-symbol {
-  height: 13px;
-  margin-bottom: -4px;
-  margin-left: 3px;
+  height: 20px;
+  margin-bottom: -5px;
+  margin-left: 5px;
 }
