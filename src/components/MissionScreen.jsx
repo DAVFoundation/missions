@@ -21,7 +21,7 @@ class MissionScreen extends Component {
             <h1>Delivery completed successfully</h1>
             <p>Cost for delivery:</p>
             <h1>{(this.props.price/1000000000000000000).toFixed(2)} <img src={currencyImage} className="currency-symbol" alt="DAV"/></h1>
-            <Link to="/" className="big-button close">Close</Link>
+            <Link to="/" className="big-button close">Confirm</Link>
           </div>
         </div>
       );
