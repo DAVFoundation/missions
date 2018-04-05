@@ -53,6 +53,8 @@ class Map extends Component {
     }
   }
 
+
+
   componentDidMount() {
     this.map = createMap({
       'containerId': 'map',

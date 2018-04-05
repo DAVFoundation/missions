@@ -3,10 +3,13 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import {makeImage} from './utils';
 import droneIcon from '../images/icon_drone.png';
 import locationIcon from '../images/icon_location.png';
+import chargingStationIcon from '../images/icon_charging_station.png';
 import pickupIcon from '../images/pin-pickup.svg';
 import dropoffIcon from '../images/pin-dropoff.svg';
 import mapStyle from './map_style.json';
 import turf from 'turf';
+
+const icons = {droneIcon, locationIcon, chargingStationIcon, pickupIcon, dropoffIcon};
 
 const createGeoJson = (features = []) => {
   return {
@@ -87,10 +90,11 @@ export const createMap = ({
 
   // add images, sources, and layers on load
   map.on('load', () => {
-    makeImage(droneIcon).then(img => map.addImage('drone', img));
-    makeImage(pickupIcon).then(img => map.addImage('pickup', img));
-    makeImage(dropoffIcon).then(img => map.addImage('dropoff', img));
-    makeImage(locationIcon).then(img => map.addImage('location', img));
+    Object.keys(icons).forEach((key) => {
+      const imgId = key.replace('Icon', '');
+      makeImage(icons[key]).then(img => map.addImage(imgId, img));
+    });
+
     map.addSource('vehicles', {
       type: 'geojson',
       data: {
@@ -109,6 +113,27 @@ export const createMap = ({
         'icon-ignore-placement': true,
       },
     });
+
+    map.addSource('chargingStations', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: [],
+      },
+    });
+
+    map.addLayer({
+      id: 'chargingStations',
+      type: 'symbol',
+      source: 'chargingStations',
+      minzoom: 10,
+      layout: {
+        'icon-image': 'chargingStation',
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
+      },
+    });
+
     map.on('click', 'vehicles', e =>
       onVehicleClick(e.features[0].properties.id),
     );
@@ -125,21 +150,29 @@ export const createMap = ({
     .then(getUserLocation)
     .then(({coords}) => {
       addUserLocationIcon(map, coords);
+      let chargingStations = addControls ? [] : generateRandomChargingStations(coords);
+      addChargingStations(map, chargingStations);
       return map.setCenter([coords.longitude, coords.latitude]);
     })
-    .catch(() => {});
+    .catch(() => {
+    });
 
   return map;
 };
 
-export const updateMap = (map, vehicles = [], {pickup, dropoff} = {}) => {
+export const updateMap = (map, vehicles = [], {pickup, dropoff} = {}, chargingStations = []) => {
   handleMapUpdate(map, () => {
     if (vehicles) map.getSource('vehicles').setData(createGeoJson(vehicles));
     if (pickupAndDropoffPresent(map, pickup, dropoff)) {
       map.getSource('pickup').setData(turf.point([pickup.long, pickup.lat]));
       map.getSource('dropoff').setData(turf.point([dropoff.long, dropoff.lat]));
     }
+    addChargingStations(map, chargingStations);
   });
+};
+
+const addChargingStations = (map, chargingStations) => {
+  if (chargingStations) map.getSource('chargingStations').setData(createGeoJson(chargingStations));
 };
 
 const handleMapUpdate = (map, update) => {
@@ -241,4 +274,28 @@ export const addTerminals = map => {
       },
     });
   }
+};
+
+
+// generate random charging stations just for viewing/testing purposes
+const generateRandomChargingStations = (coords) => {
+  let chargingStations = [];
+  for (let i = 0; i < 4; i++) {
+    chargingStations.push({coords: randomCoords({coords, radius: 1000})});
+  }
+  return chargingStations;
+};
+
+const randomCoords = ({ coords, radius }) => {
+  const angle = Math.random() * 2 * Math.PI;
+  const distance = Math.random() * radius;
+  const longDegreesPerMeter = 1 / 111321.377778; // longitude degrees per meter
+  const latDegreesPerMeter = 1 / 111134.86111; // latitude degrees per meter
+  const x = parseFloat(
+    (coords.latitude + latDegreesPerMeter * distance * Math.cos(angle)).toFixed(6),
+  );
+  const y = parseFloat(
+    (coords.longitude + longDegreesPerMeter * distance * Math.sin(angle)).toFixed(6),
+  );
+  return { lat: x, long: y };
 };
