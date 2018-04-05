@@ -90,7 +90,8 @@ Map.propTypes = {
   missionStatus: PropTypes.string,
   pickup: PropTypes.object,
   dropoff: PropTypes.object,
-  appPath: PropTypes.string
+  appPath: PropTypes.string,
+  addControls: PropTypes.bool
 };
 
 export default Map;

@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Map />
+          <Map addControls={true}/>
 
           <Route exact path="/delivery_drones/" component={ MainScreenContainer } />
 

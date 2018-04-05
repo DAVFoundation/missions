@@ -27,6 +27,12 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
       template: path.resolve(__dirname, 'src/index.html'),
       favicon: path.resolve(__dirname, 'src/favicon.ico'),
     }),
+    new HtmlWebpackPlugin({
+      filename: 'drone_charging/index.html',
+      chunks: ['vendor', 'drone_charging'],
+      template: path.resolve(__dirname, 'src/index.html'),
+      favicon: path.resolve(__dirname, 'src/favicon.ico'),
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),

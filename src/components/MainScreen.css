@@ -11,13 +11,22 @@ div#user-controls, a.order-button {
   pointer-events: all;
 }
 
+div#header {
+  margin: 15px auto 0;
+}
+
 div#logo {
   margin: 15px auto 0;
   width: 116px;
 }
+
 div#logo img {
   width: 116px;
   height: 46px;
+}
+
+span.logo-subtext {
+  text-align: center;
 }
 
 div#user-controls {

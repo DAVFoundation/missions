@@ -2,6 +2,7 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { makeImage } from './utils';
 import droneIcon from '../images/icon_drone.png';
+import locationIcon from '../images/icon_location.png';
 import pickupIcon from '../images/pin-pickup.svg';
 import dropoffIcon from '../images/pin-dropoff.svg';
 import mapStyle from './map_style.json';
@@ -47,6 +48,7 @@ export const createMap = ({
   coords,
   onVehicleClick,
   onMoveEnd,
+  addControls
 }) => {
   // Add support for right-to-left languages
   mapboxgl.setRTLTextPlugin(
@@ -62,29 +64,34 @@ export const createMap = ({
     attributionControl: false,
   });
 
-  // Add controls to geolocate the user
-  map.addControl(
-    new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true,
-      },
-      trackUserLocation: true,
-    }),
-    'bottom-left',
-  );
 
-  // Add minimal attribution controls
-  map.addControl(
-    new mapboxgl.AttributionControl({
-      compact: true,
-    }),
-  );
+  if (addControls){
+    // Add controls to geolocate the user
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        trackUserLocation: true,
+      }),
+      'bottom-left',
+    );
+
+    // Add minimal attribution controls
+    map.addControl(
+      new mapboxgl.AttributionControl({
+        compact: true,
+      }),
+    );
+  }
 
   // add images, sources, and layers on load
   map.on('load', () => {
+    addUserLocationIcon(map, coords);
     makeImage(droneIcon).then(img => map.addImage('drone', img));
     makeImage(pickupIcon).then(img => map.addImage('pickup', img));
     makeImage(dropoffIcon).then(img => map.addImage('dropoff', img));
+    makeImage(locationIcon).then(img => map.addImage('location', img));
     map.addSource('vehicles', {
       type: 'geojson',
       data: {
@@ -165,6 +172,31 @@ export const clearTerminals = map => {
     map.removeSource('pickup');
     map.removeSource('dropoff');
   }
+};
+
+const addUserLocationIcon = (map, coords) => {
+  if (!map.getSource('location')){
+    map.addSource('location', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: [],
+      }
+    });
+    map.addLayer({
+      id: 'location',
+      type: 'symbol',
+      source: 'location',
+      minzoom: 10,
+      layout: {
+        'icon-image': 'location',
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
+      },
+    });
+  }
+
+  map.getSource('location').setData(turf.point([coords.long, coords.lat]));
 };
 
 export const addTerminals = map => {
