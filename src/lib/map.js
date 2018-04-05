@@ -1,6 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { makeImage } from './utils';
+import {makeImage} from './utils';
 import droneIcon from '../images/icon_drone.png';
 import locationIcon from '../images/icon_location.png';
 import pickupIcon from '../images/pin-pickup.svg';
@@ -39,7 +39,7 @@ const hasGeolocationPermission = () =>
   new Promise((resolve, reject) => {
     if (!navigator.permissions) reject();
     navigator.permissions
-      .query({ name: 'geolocation' })
+      .query({name: 'geolocation'})
       .then(result => (result.state === 'granted' ? resolve() : reject()));
   });
 
@@ -65,7 +65,7 @@ export const createMap = ({
   });
 
 
-  if (addControls){
+  if (addControls) {
     // Add controls to geolocate the user
     map.addControl(
       new mapboxgl.GeolocateControl({
@@ -87,7 +87,6 @@ export const createMap = ({
 
   // add images, sources, and layers on load
   map.on('load', () => {
-    addUserLocationIcon(map, coords);
     makeImage(droneIcon).then(img => map.addImage('drone', img));
     makeImage(pickupIcon).then(img => map.addImage('pickup', img));
     makeImage(dropoffIcon).then(img => map.addImage('dropoff', img));
@@ -117,20 +116,23 @@ export const createMap = ({
 
   map.on('moveend', () => {
     const mapCenter = map.getCenter();
-    onMoveEnd({ lat: mapCenter.lat, long: mapCenter.lng });
+    onMoveEnd({lat: mapCenter.lat, long: mapCenter.lng});
   });
 
   // Check if user has already granted permission to access geolocation
   // If permission was granted, get user location and center map on them
   hasGeolocationPermission()
     .then(getUserLocation)
-    .then(({ coords }) => map.setCenter([coords.longitude, coords.latitude]))
-    .catch(() => {});
+    .then(({coords}) => {
+      addUserLocationIcon(map, coords);
+      return map.setCenter([coords.longitude, coords.latitude]);
+    })
+    .catch((err) => {console.log(err);});
 
   return map;
 };
 
-export const updateMap = (map, vehicles = [], { pickup, dropoff } = {}) => {
+export const updateMap = (map, vehicles = [], {pickup, dropoff} = {}) => {
   handleMapUpdate(map, () => {
     if (vehicles) map.getSource('vehicles').setData(createGeoJson(vehicles));
     if (pickupAndDropoffPresent(map, pickup, dropoff)) {
@@ -154,19 +156,19 @@ const pickupAndDropoffPresent = (map, pickup, dropoff) => {
   );
 };
 
-export const initiateZoomTransition = (map, pickup, dropoff,options) => {
+export const initiateZoomTransition = (map, pickup, dropoff, options) => {
   handleMapUpdate(map, () => {
     const collection = turf.featureCollection([
       turf.point([pickup.long, pickup.lat]),
       turf.point([dropoff.long, dropoff.lat]),
     ]);
     let bbox = turf.bbox(collection);
-    map.fitBounds(bbox, {...options, padding: {top:100,bottom:300,left:50,right:50}  });
+    map.fitBounds(bbox, {...options, padding: {top: 100, bottom: 300, left: 50, right: 50}});
   });
 };
 
 export const clearTerminals = map => {
-  if (map.getSource('pickup') && map.getSource('dropoff')){
+  if (map.getSource('pickup') && map.getSource('dropoff')) {
     map.removeLayer('pickup');
     map.removeLayer('dropoff');
     map.removeSource('pickup');
@@ -175,7 +177,7 @@ export const clearTerminals = map => {
 };
 
 const addUserLocationIcon = (map, coords) => {
-  if (!map.getSource('location')){
+  if (!map.getSource('location')) {
     map.addSource('location', {
       type: 'geojson',
       data: {
@@ -183,20 +185,21 @@ const addUserLocationIcon = (map, coords) => {
         features: [],
       }
     });
-    map.addLayer({
-      id: 'location',
-      type: 'symbol',
-      source: 'location',
-      minzoom: 10,
-      layout: {
-        'icon-image': 'location',
-        'icon-allow-overlap': true,
-        'icon-ignore-placement': true,
-      },
-    });
   }
 
-  map.getSource('location').setData(turf.point([coords.long, coords.lat]));
+  map.addLayer({
+    id: 'location',
+    type: 'symbol',
+    source: 'location',
+    minzoom: 10,
+    layout: {
+      'icon-image': 'location',
+      'icon-allow-overlap': true,
+      'icon-ignore-placement': true,
+    },
+  });
+
+  map.getSource('location').setData(turf.point([coords.longitude, coords.latitude]));
 };
 
 export const addTerminals = map => {
