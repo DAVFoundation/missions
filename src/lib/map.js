@@ -127,7 +127,7 @@ export const createMap = ({
       addUserLocationIcon(map, coords);
       return map.setCenter([coords.longitude, coords.latitude]);
     })
-    .catch((err) => {console.log(err);});
+    .catch(() => {});
 
   return map;
 };

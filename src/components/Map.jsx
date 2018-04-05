@@ -58,7 +58,8 @@ class Map extends Component {
       'containerId': 'map',
       'coords': this.props.coords,
       'onVehicleClick': this.onVehicleClick,
-      'onMoveEnd': this.props.onMoveEnd
+      'onMoveEnd': this.props.onMoveEnd,
+      'addControls': this.props.addControls
     });
     const terminals = {
       pickup: this.props.pickup,
