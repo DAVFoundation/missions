@@ -4,25 +4,10 @@ import * as utils from '../../src/lib/utils';
 describe('shiftCoords function', () => {
 
   const coordinates = { lat: 19.14641, long: 73.1424 };
-  let shiftCoordsSpy;
 
-  beforeAll(() => {
-    shiftCoordsSpy = jest.spyOn(utils, 'shiftCoords');
-  });
-
-  afterAll(() => {
-    shiftCoordsSpy.mockClear();
-  });
-
-  it('should receive one object', () => {
-    utils.shiftCoords(coordinates);
-    expect(shiftCoordsSpy.mock.calls[0].length).toBe(1);
-    expect(typeof shiftCoordsSpy.mock.calls[0][0]).toBe('object');
-  });
-
-  it('input object should be a coordinate', () => {
-    utils.shiftCoords(coordinates);
-    expect(Object.keys(shiftCoordsSpy.mock.calls[0][0])).toEqual(expect.arrayContaining(['lat', 'long']));
+  it('return undefined if input object is not a coordinate', () => {
+    const output = utils.shiftCoords({ other : 'than', a : 'coordinate' });
+    expect(output).toEqual(undefined);
   });
 
   it('should return one object', () => {
