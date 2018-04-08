@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import VehicleDetailsContainer from '../containers/VehicleDetailsContainer.jsx';
+import MapItemDetailsContainer from '../containers/MapItemDetailsContainer.jsx';
 
-class VehicleDetailsScreen extends Component {
+class MapItemDetailsScreen extends Component {
 
   constructor(props){
     super(props);
@@ -20,7 +20,7 @@ class VehicleDetailsScreen extends Component {
         <div className="modal-container">
           <div className="modal-box">
             <button onClick={this.goBack} className="modal-close-button">x</button>
-            <VehicleDetailsContainer vehicleUid={this.props.match.params.uid} />
+            <MapItemDetailsContainer id={this.props.match.params.id} mapItemType={this.props.match.params.mapItemType}/>
           </div>
         </div>
       </div>
@@ -28,9 +28,9 @@ class VehicleDetailsScreen extends Component {
   }
 }
 
-VehicleDetailsScreen.propTypes = {
+MapItemDetailsScreen.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired
 };
 
-export default VehicleDetailsScreen;
+export default MapItemDetailsScreen;

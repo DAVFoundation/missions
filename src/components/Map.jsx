@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { createMap, updateMap, initiateZoomTransition, clearTerminals, addTerminals} from '../lib/map';
+import {createMap, updateMap, initiateZoomTransition, clearTerminals, addTerminals} from '../lib/map';
 import './Map.css';
 
 class Map extends Component {
   constructor(props) {
     super(props);
     this.map = null;
-    this.onVehicleClick = this.onVehicleClick.bind(this);
+    this.onMapItemClick = this.onMapItemClick.bind(this);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -18,8 +18,8 @@ class Map extends Component {
 
     updateMap(this.map, nextProps.vehicles, terminals);
 
-    if(this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
-      initiateZoomTransition(this.map, nextProps.pickup, nextProps.pickup,{maxZoom:14});
+    if (this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
+      initiateZoomTransition(this.map, nextProps.pickup, nextProps.pickup, {maxZoom: 14});
       addTerminals(this.map);
     }
 
@@ -27,7 +27,7 @@ class Map extends Component {
       clearTerminals(this.map);
     }
 
-    if(['searching', 'choosing', 'signing'].includes(this.props.orderStage) && nextProps.orderStage === 'draft') {
+    if (['searching', 'choosing', 'signing'].includes(this.props.orderStage) && nextProps.orderStage === 'draft') {
       clearTerminals(this.map);
     } else {
       addTerminals(this.map);
@@ -36,30 +36,29 @@ class Map extends Component {
     if (nextProps.orderStage === 'in_mission') {
       initiateZoomTransition(this.map, nextProps.pickup, nextProps.dropoff);
       if (this.props.vehicles.length > 0 && nextProps.vehicles[0].status === 'waiting_pickup') {
-        this.props.history.push(this.props.appPath+'/confirm-takeoff');
+        this.props.history.push(this.props.appPath + '/confirm-takeoff');
       } else {
-        this.props.history.push(this.props.appPath+'/mission');
+        this.props.history.push(this.props.appPath + '/mission');
       }
     }
 
     return false;
   }
 
-  onVehicleClick(id) {
-    if (this.props.orderStage == 'in_mission'){
-      this.props.history.push(this.props.appPath+'/mission/vehicle/'+id);
+  onMapItemClick({id, mapItemType}) {
+    if (this.props.orderStage == 'in_mission') {
+      this.props.history.push(this.props.appPath + `/mission/${mapItemType}/` + id);
     } else {
-      this.props.history.push(this.props.appPath+'/vehicle/'+id);
+      this.props.history.push(this.props.appPath + `/${mapItemType}/` + id);
     }
   }
-
 
 
   componentDidMount() {
     this.map = createMap({
       'containerId': 'map',
       'coords': this.props.coords,
-      'onVehicleClick': this.onVehicleClick,
+      'onMapItemClick': this.onMapItemClick,
       'onMoveEnd': this.props.onMoveEnd,
       'addControls': this.props.addControls
     });
@@ -73,8 +72,8 @@ class Map extends Component {
   render() {
     return (
       <div>
-        <div id="map" />
-        <div id="map-overlay" />
+        <div id="map"/>
+        <div id="map-overlay"/>
       </div>
     );
   }

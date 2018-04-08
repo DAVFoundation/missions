@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Link from '../containers/LinkContainer.jsx';
 import VehicleBid from './VehicleBid.jsx';
 import VehicleBidPreview from './VehicleBidPreview.jsx';
-import VehicleCard from './VehicleCard.jsx';
+import MapItemCard from './MapItemCard.jsx';
 import UserCardContainer from '../containers/UserCardContainer.jsx';
 import BidSelectionHeader from '../components/BidSelectionHeader.jsx';
 import './SearchingScreen.css';
@@ -165,7 +165,7 @@ class SearchingScreen extends Component {
               <div id="signing-box" className="modal-box">
                 <h2>Initiating DAV Transaction</h2>
                 <p>Signing secure smart contract between:</p>
-                <VehicleCard
+                <MapItemCard
                   icon={vehicleOnMission.icon}
                   id={vehicleOnMission.id}
                   model={vehicleOnMission.model}

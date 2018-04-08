@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import VehicleCard from './VehicleCard.jsx';
+import MapItemCard from './MapItemCard.jsx';
 
 const VehicleBidPreview = ({vehicle}) => (
   <div className="vehicle-bid-card vehicle-bid-card--small">
-    <VehicleCard icon={vehicle.icon} model={vehicle.model} id={vehicle.id} />
+    <MapItemCard icon={vehicle.icon} model={vehicle.model} id={vehicle.id} />
   </div>
 );
 

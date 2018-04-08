@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import VehicleDetailsScreen from '../components/VehicleDetailsScreen.jsx';
+import MapItemDetailsScreen from '../components/MapItemDetailsScreen.jsx';
 
 
 
 export default connect(
   () => ({}),
-)(withRouter(VehicleDetailsScreen));
+)(withRouter(MapItemDetailsScreen));

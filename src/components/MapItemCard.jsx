@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const VehicleCard = ({ id, icon, model, buttonText, buttonOnClick, buttonClass }) => {
+const MapItemCard = ({ id, icon, model, buttonText, buttonOnClick, buttonClass }) => {
   let buttonClasses = ['med-button'];
   if (buttonClass) buttonClasses.push(buttonClass);
   return (
@@ -18,7 +18,7 @@ const VehicleCard = ({ id, icon, model, buttonText, buttonOnClick, buttonClass }
   );
 };
 
-VehicleCard.propTypes = {
+MapItemCard.propTypes = {
   id: PropTypes.string,
   icon: PropTypes.string.isRequired,
   model: PropTypes.string.isRequired,
@@ -27,4 +27,4 @@ VehicleCard.propTypes = {
   buttonClass: PropTypes.string,
 };
 
-export default VehicleCard;
+export default MapItemCard;

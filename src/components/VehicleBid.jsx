@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import VehicleCard from './VehicleCard.jsx';
+import MapItemCard from './MapItemCard.jsx';
 import currencyImage from '../images/dav.svg';
 
 const VehicleBid = ({bid, vehicle, shown, chooseBid}) => {
@@ -15,7 +15,7 @@ const VehicleBid = ({bid, vehicle, shown, chooseBid}) => {
   }
   return (
     <div className={classNames.join(' ')}>
-      <VehicleCard icon={vehicle.icon} buttonClass={'choose-bid-button'} buttonOnClick={clickChooseBid} buttonText="Order" model={vehicle.model} id={vehicle.id} />
+      <MapItemCard icon={vehicle.icon} buttonClass={'choose-bid-button'} buttonOnClick={clickChooseBid} buttonText="Order" model={vehicle.model} id={vehicle.id} />
       <dl className="bid-details">
         <dt>Estimated pickup time:</dt>
         <dd>in {Math.ceil(bid.time_to_pickup/60000)} minutes</dd>

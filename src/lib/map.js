@@ -49,7 +49,7 @@ const hasGeolocationPermission = () =>
 export const createMap = ({
   containerId,
   coords,
-  onVehicleClick,
+  onMapItemClick,
   onMoveEnd,
   addControls
 }) => {
@@ -134,9 +134,11 @@ export const createMap = ({
       },
     });
 
-    map.on('click', 'vehicles', e =>
-      onVehicleClick(e.features[0].properties.id),
-    );
+    ['vehicles', 'chargingStations'].forEach((mapItemType) => {
+      map.on('click', mapItemType, e =>
+        onMapItemClick({id: e.features[0].properties.id, mapItemType: mapItemType}),
+      );
+    });
   });
 
   map.on('moveend', () => {
@@ -286,7 +288,7 @@ const generateRandomChargingStations = (coords) => {
   return chargingStations;
 };
 
-const randomCoords = ({ coords, radius }) => {
+const randomCoords = ({coords, radius}) => {
   const angle = Math.random() * 2 * Math.PI;
   const distance = Math.random() * radius;
   const longDegreesPerMeter = 1 / 111321.377778; // longitude degrees per meter
@@ -297,5 +299,5 @@ const randomCoords = ({ coords, radius }) => {
   const y = parseFloat(
     (coords.longitude + longDegreesPerMeter * distance * Math.sin(angle)).toFixed(6),
   );
-  return { lat: x, long: y };
+  return {lat: x, long: y};
 };

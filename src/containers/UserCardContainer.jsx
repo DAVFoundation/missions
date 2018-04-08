@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import VehicleCard from '../components/VehicleCard.jsx';
+import MapItemCard from '../components/MapItemCard.jsx';
 
 export default connect(
   (state) => ({
@@ -7,4 +7,4 @@ export default connect(
     icon: state.settings['user_icon'],
     model: 'You',
   })
-)(VehicleCard);
+)(MapItemCard);
