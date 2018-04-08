@@ -13,6 +13,7 @@ div#user-controls, a.order-button {
 
 div#header {
   margin: 15px auto 0;
+  position: relative;
 }
 
 div#logo {
@@ -39,4 +40,26 @@ div#user-controls {
 
 a.order-button {
   margin: 0 auto 10px;
+}
+
+/* */
+
+.profile {
+  position: absolute;
+  top: 15px;
+  right: -10px;
+}
+
+.user-location {
+  margin-top: auto;
+  padding: 30px;
+}
+
+.user-location h3 {
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.user-location p {
+  color: #807B9C;
 }
