@@ -28,7 +28,9 @@ export const getShortCoordsString = (
 ) => {
   const { lat, long } = coords;
   return (
-    lat && long && lat.toFixed(precision) + separator + long.toFixed(precision)
+    (lat || lat === 0) &&
+    (long || long === 0) &&
+    `${lat.toFixed(precision)}${separator}${long.toFixed(precision)}`
   );
 };
 
