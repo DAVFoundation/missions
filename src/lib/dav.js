@@ -1,8 +1,8 @@
 import store from '../store';
 import timeout from 'callback-timeout';
-import { 
+import {
   chooseBid,
-  updateDavId, 
+  updateDavId,
   updateContractMissionIdMissionId,
   unlockWallet,
   unregisteredDavId,
@@ -19,7 +19,7 @@ let web3Provider = null;
 // Use injected web3 instance
 if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
   web3Provider = window.web3.currentProvider;
-} else if(BLOCKCHAIN_TYPE === 'ETH_LOCAL_TESTNET') {
+} else if (BLOCKCHAIN_TYPE === 'ETH_LOCAL_TESTNET') {
   // If no injected web3 instance is detected, fall back to Ganache
   web3Provider = new Web3
     .providers
@@ -29,7 +29,7 @@ if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
 let web3 = new Web3(web3Provider);
 let davSDK;
 
-const DavContracts = function() {
+const DavContracts = function () {
   let contracts = {
     identity: {
       artifact: TruffleContract(require('../build/contracts/Identity.json')),
@@ -45,9 +45,9 @@ const DavContracts = function() {
     }
   };
 
-  this.getInstance = function(contract) {
-    return new Promise (function (resolve, reject) {
-      if(contracts[contract].instance) {
+  this.getInstance = function (contract) {
+    return new Promise(function (resolve, reject) {
+      if (contracts[contract].instance) {
         resolve(contracts[contract].instance);
       } else {
         contracts[contract].artifact.setProvider(web3.currentProvider);
@@ -55,7 +55,7 @@ const DavContracts = function() {
           .then(function (instance) {
             contracts[contract].instance = instance;
             resolve(contracts[contract].instance);
-          }).catch(function(err) {
+          }).catch(function (err) {
             reject(err);
           });
       }
@@ -63,7 +63,7 @@ const DavContracts = function() {
   };
 };
 
-let davJS = function(davId, wallet) {
+let davJS = function (davId, wallet) {
   this.davId = davId;
   this.wallet = wallet;
   this.davContracts = new DavContracts();
@@ -81,7 +81,7 @@ let davJS = function(davId, wallet) {
     if (process.env.NODE_ENV === 'development' && BLOCKCHAIN_TYPE === 'NONE') {
       return Promise.resolve({});
     }
-  
+
     return new Promise(function (resolve, reject) {
       return dav.davContracts.getInstance('identity')
         .then(function (identityContractInstance) {
@@ -94,19 +94,19 @@ let davJS = function(davId, wallet) {
             .catch(function (err) {
               reject(err);
             });
-          
+
         }).catch(function (err) {
           reject(err);
         });
     });
   };
 
-  this.createMissionTransaction = function (vehicleId, missionCost) {
+  this.createMissionTransaction = function (bidId, vehicleId, missionCost) {
     let dav = this;
     if (process.env.NODE_ENV === 'development' && BLOCKCHAIN_TYPE === 'NONE') {
       return Promise.resolve(true);
     }
-  
+
     var tokenContractInstance;
     var missionContractInstance;
     return dav.davContracts.getInstance('token')
@@ -118,7 +118,7 @@ let davJS = function(davId, wallet) {
             return tokenContractInstance.approve(missionContractInstance.address, missionCost, { from: dav.wallet });
           })
           .then(() => {
-            return missionContractInstance.create(vehicleId, dav.davId, missionCost, { from: dav.wallet });
+            return missionContractInstance.create(bidId, vehicleId, dav.davId, missionCost, { from: dav.wallet });
           });
       });
   };
@@ -128,7 +128,7 @@ let davJS = function(davId, wallet) {
     if (process.env.NODE_ENV === 'development' && BLOCKCHAIN_TYPE === 'NONE') {
       return Promise.resolve(true);
     }
-  
+
     return dav.davContracts.getInstance('mission')
       .then((instance) => {
         return instance.fulfilled(missionId, dav.davId, { from: dav.wallet });
@@ -137,17 +137,17 @@ let davJS = function(davId, wallet) {
 };
 
 export const initWeb3 = () => {
-  if(process.env.BLOCKCHAIN_TYPE === 'NONE') {
+  if (process.env.BLOCKCHAIN_TYPE === 'NONE') {
     store.dispatch(registerDavIdFulfilled());
     return Promise.resolve('Blockchain is disabled');
   }
-  return new Promise (function (resolve, reject) {
+  return new Promise(function (resolve, reject) {
     web3.eth.getAccounts(timeout((error, accounts) => {
-      if(error) {
+      if (error) {
         console.log(error);
         store.dispatch(unlockWallet());
         resolve(error);
-      } else if(accounts.length > 0) {
+      } else if (accounts.length > 0) {
         let davId = accounts[0];
         store.dispatch(updateDavId({ davId }));
         return isRegistered(davId);
@@ -165,7 +165,7 @@ export const initWeb3 = () => {
 export const isRegistered = (davId) => {
   davSDK = new davJS(davId, davId);
   davSDK.isRegistered().then((isRegistered) => {
-    if(isRegistered) {
+    if (isRegistered) {
       store.dispatch(registerDavIdFulfilled());
     } else {
       store.dispatch(unregisteredDavId());
@@ -177,7 +177,7 @@ export const isRegistered = (davId) => {
 
 export const registerDavId = () => {
   davSDK.registerSimple().then((isRegistered) => {
-    if(isRegistered === true) {
+    if (isRegistered === true) {
       store.dispatch(registerDavIdFulfilled());
     }
   }).catch(err => {
@@ -186,12 +186,12 @@ export const registerDavId = () => {
 };
 
 export const createMissionTransaction = (bidId, vehicle_id, price) => {
-  if(process.env.BLOCKCHAIN_TYPE === 'NONE') {
+  if (process.env.BLOCKCHAIN_TYPE === 'NONE') {
     store.dispatch(createMissionTransactionFulfilled());
     return Promise.resolve('Blockchain is disabled');
   }
-  davSDK.createMissionTransaction(vehicle_id, price).then((response) => {
-    if(response.logs.length > 0) {
+  davSDK.createMissionTransaction(bidId, vehicle_id, price).then((response) => {
+    if (response.logs.length > 0) {
       let contractMissionId = response.logs[0].args.id;
       console.log(contractMissionId);
       store.dispatch(updateContractMissionIdMissionId({ contractMissionId }));
@@ -206,7 +206,7 @@ export const createMissionTransaction = (bidId, vehicle_id, price) => {
 
 export const approveCompletedMission = () => {
   let contractMissionId = store.getState().mission.contractMissionId;
-  
+
   davSDK.approveCompletedMission(contractMissionId).then((response) => {
     console.log(response.logs[0]);
   }).catch(err => {
