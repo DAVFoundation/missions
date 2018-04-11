@@ -22,14 +22,14 @@ class App extends Component {
         <div>
           <Map addControls={true}/>
 
-          <Route exact path="/delivery_drones/" component={ MainScreenContainer } />
+          <Route exact path="/delivery_drones/" component={ MainScreenContainer('DeliveryMainScreen') } />
 
           <Route path="/delivery_drones/welcome" component={ Welcome } />
 
-          <Route path="/delivery_drones/:mapItemType/:id" component={ MainScreenContainer } />
+          <Route path="/delivery_drones/:mapItemType/:id" component={ MainScreenContainer('DeliveryMainScreen') } />
           <Route path="/delivery_drones/:mapItemType/:id" component={ MapItemDetailsScreenContainer } />
 
-          <Route path="/delivery_drones/order" component={ OrderScreenContainer } />
+          <Route path="/delivery_drones/order" component={ OrderScreenContainer('DeliveryOrderScreen')  } />
 
           <Route path="/delivery_drones/searching" component={ SearchingScreenContainer } />
 

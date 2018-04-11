@@ -22,14 +22,14 @@ class App extends Component {
         <div>
           <Map />
 
-          <Route exact path="/" component={ MainScreenContainer } />
+          <Route exact path="/" component={ MainScreenContainer('DeliveryMainScreen') } />
 
           <Route path="/welcome" component={ Welcome } />
 
-          <Route path="/vehicles/:id" component={ MainScreenContainer } />
+          <Route path="/vehicles/:id" component={ MainScreenContainer('DeliveryMainScreen') } />
           <Route path="/vehicles/:id" component={ MapItemDetailsScreenContainer } />
 
-          <Route path="/order" component={ OrderScreenContainer } />
+          <Route path="/order" component={ OrderScreenContainer('DeliveryOrderScreen') } />
 
           <Route path="/searching" component={ SearchingScreenContainer } />
 

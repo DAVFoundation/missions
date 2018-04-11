@@ -1,12 +1,20 @@
 import { connect } from 'react-redux';
-import MainScreen from '../components/MainScreen.jsx';
 import { resetOrderDetails } from '../actions';
+
+let Components = {};
+
+Components['ChargingMainScreen'] = require('../components/drone_charging/MainScreen.jsx').default;
+Components['DeliveryMainScreen'] = require('../components/MainScreen.jsx').default;
+
 
 const mapDispatchToProps = (dispatch) => ({
   onMount: () => dispatch(resetOrderDetails()),
 });
 
-export default connect(
-  () => ({}),
-  mapDispatchToProps
-)(MainScreen);
+const MainScreenContainer = (componentName) => {
+  const MainScreen = Components[componentName];
+  return connect(() => ({}),mapDispatchToProps)(MainScreen);
+};
+
+
+export default MainScreenContainer;

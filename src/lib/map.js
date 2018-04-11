@@ -162,14 +162,14 @@ export const createMap = ({
   return map;
 };
 
-export const updateMap = (map, vehicles = [], {pickup, dropoff} = {}, chargingStations = []) => {
+export const updateMap = (map, vehicles = [], {pickup, dropoff} = {}) => {
   handleMapUpdate(map, () => {
     if (vehicles) map.getSource('vehicles').setData(createGeoJson(vehicles));
     if (pickupAndDropoffPresent(map, pickup, dropoff)) {
       map.getSource('pickup').setData(turf.point([pickup.long, pickup.lat]));
       map.getSource('dropoff').setData(turf.point([dropoff.long, dropoff.lat]));
     }
-    addChargingStations(map, chargingStations);
+    // addChargingStations(map, chargingStations);
   });
 };
 
@@ -283,7 +283,7 @@ export const addTerminals = map => {
 const generateRandomChargingStations = (coords) => {
   let chargingStations = [];
   for (let i = 0; i < 4; i++) {
-    chargingStations.push({coords: randomCoords({coords, radius: 1000})});
+    chargingStations.push({id: i, coords: randomCoords({coords, radius: 1000})});
   }
   return chargingStations;
 };
