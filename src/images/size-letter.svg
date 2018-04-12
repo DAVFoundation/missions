@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>mail</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Order-Pick-Up-screen" transform="translate(-30.000000, -299.000000)">
+            <g id="mail" transform="translate(31.000000, 300.000000)">
+                <g id="Group-5">
+                    <path d="M11.0039143,1.23882857 C9.9222,0.158828571 8.15391429,0.158828571 7.07305714,1.24054286 L0.428485714,6.97311429 L0.428485714,15.0868286 C0.428485714,16.4239714 1.52134286,17.5168286 2.85848571,17.5168286 L15.2382,17.5168286 C16.5753429,17.5168286 17.6682,16.4239714 17.6682,15.0868286 L17.6682,6.97311429 L11.0039143,1.23882857 Z" id="Stroke-1" stroke="#FE6B48"></path>
+                    <polyline id="Fill-3" fill="#FFFFFF" points="2.99179075 8.0380099 2.99179075 3.30013267 14.7495235 3.30013267 14.7495235 8.22380901 8.87065714 11.9153559"></polyline>
+                    <polyline id="Stroke-5" stroke="#FE6B48" points="2.99179075 8.0380099 2.99179075 3.30013267 14.7495235 3.30013267 14.7495235 8.22380901"></polyline>
+                    <polyline id="Stroke-7" stroke="#FE6B48" points="0.428571429 6.97345714 9.08485714 11.9140286 17.6682857 6.97345714"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

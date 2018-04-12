@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="22px" height="68px" viewBox="0 0 22 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
-    <title>Group 11</title>
+<svg width="22px" height="37px" viewBox="0 0 22 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 7</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Main-screen-during-mission" transform="translate(-115.000000, -377.000000)">
-            <g id="Group-11" transform="translate(115.000000, 377.000000)">
-                <circle id="point_red" fill="#684BF1" cx="11" cy="34" r="4"></circle>
-                <g id="Group-7">
-                    <g id="location">
-                        <path d="M11,30 L10.3993813,29.3201133 C9.97486466,28.8399021 0,17.4749031 0,10.6686102 C0,4.78643527 4.93426141,0 11,0 C17.0657386,0 22,4.78643527 22,10.6686102 C22,17.4749031 12.0251353,28.8399021 11.6006187,29.3201133 L11,30 L11,30 Z" id="Fill-55" fill="#B1A3F8"></path>
-                        <ellipse id="Oval" fill="#FFFFFF" cx="11.0595514" cy="10.7345957" rx="8.63184901" ry="8.37180298"></ellipse>
-                    </g>
-                    <g id="Group-6" transform="translate(11.000000, 10.500000) rotate(-180.000000) translate(-11.000000, -10.500000) translate(6.000000, 5.000000)" fill="#B1A3F8">
-                        <polyline id="Fill-74" points="8.22927809 5.32839589 4.66701342 2.04015158 1.10474875 5.32839589 0.228683657 4.51848956 4.66701342 0.421569783 9.10534318 4.51848956 8.22927809 5.32839589"></polyline>
-                        <polygon id="Fill-75" points="4.00029721 1.23086068 5.33372962 1.23086068 5.33372962 11 4.00029721 11"></polygon>
-                    </g>
+        <g id="Main-screen-during-mission" transform="translate(-103.000000, -380.000000)">
+            <g id="Group-7" transform="translate(103.000000, 380.000000)">
+                <g id="location">
+                    <path d="M11,30 L10.3993813,29.3201133 C9.97486466,28.8399021 0,17.4749031 0,10.6686102 C0,4.78643527 4.93426141,0 11,0 C17.0657386,0 22,4.78643527 22,10.6686102 C22,17.4749031 12.0251353,28.8399021 11.6006187,29.3201133 L11,30 L11,30 Z" id="Fill-55" fill="#FFB09E"></path>
+                    <ellipse id="Oval" fill="#FFFFFF" cx="11.0595514" cy="10.7345957" rx="8.63184901" ry="8.37180298"></ellipse>
                 </g>
+                <g id="Group-6" transform="translate(11.000000, 10.500000) rotate(-180.000000) translate(-11.000000, -10.500000) translate(6.000000, 5.000000)" fill="#FFB09E">
+                    <polyline id="Fill-74" points="8.22927809 5.32839589 4.66701342 2.04015158 1.10474875 5.32839589 0.228683657 4.51848956 4.66701342 0.421569783 9.10534318 4.51848956 8.22927809 5.32839589"></polyline>
+                    <polygon id="Fill-75" points="4.00029721 1.23086068 5.33372962 1.23086068 5.33372962 11 4.00029721 11"></polygon>
+                </g>
+                <circle id="point_red" fill="#45474E" cx="11.5" cy="33.5" r="3.5"></circle>
             </g>
         </g>
     </g>

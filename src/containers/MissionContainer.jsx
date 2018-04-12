@@ -15,13 +15,13 @@ const matchStateToProps = (state) => {
     case 'dropoff': {
       const travellingDropoffAt = parseInt(mission.travelling_dropoff_at);
       const timeToDropoff = parseInt(mission.time_to_dropoff);
-      timeLeftInLeg = (travellingDropoffAt + timeToDropoff - Date.now())/60000;
+      timeLeftInLeg = (travellingDropoffAt + timeToDropoff - Date.now()) / 60000;
       break;
     }
     case 'pickup': {
       const vehicleSignedAt = parseInt(mission.vehicle_signed_at);
       const timeToPickup = parseInt(mission.time_to_pickup);
-      timeLeftInLeg = (vehicleSignedAt + timeToPickup - Date.now())/60000;
+      timeLeftInLeg = (vehicleSignedAt + timeToPickup - Date.now()) / 60000;
       break;
     }
     }
@@ -31,7 +31,7 @@ const matchStateToProps = (state) => {
 
   props.missionComplete = mission.status === 'completed';
 
-  props.price = mission.price;
+  props.price = parseFloat(mission.price);
 
   return props;
 };

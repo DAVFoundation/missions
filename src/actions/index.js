@@ -13,6 +13,16 @@ export const updateStatus = createAction('UPDATE_STATUS', apiFetchStatus);
 
 export const updateStatusFulfilled = createAction('UPDATE_STATUS_FULFILLED');
 
+export const updateDavId = createAction('UPDATE_DAV_ID');
+
+export const registerDavIdFulfilled = createAction('REGISTER_DAV_ID_FULFILLED');
+
+export const unregisteredDavId = createAction('UNREGISTERED_DAV_ID');
+
+export const unlockWallet = createAction('UNLOCK_WALLET');
+
+export const closeWalletDialog = createAction('CLOSE_WALLET_DIALOG');
+
 export const updateMapCoords = createAction('UPDATE_MAP_COORDS');
 
 export const updateOrderDetails = createAction('UPDATE_ORDER_DETAILS');

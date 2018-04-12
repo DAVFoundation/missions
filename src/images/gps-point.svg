@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="20px" viewBox="0 0 14 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>gps_point</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Main-screen-during-mission" transform="translate(-20.000000, -507.000000)" fill="#FE6B48">
+            <path d="M27,516.5 C25.62,516.5 24.5,515.38 24.5,514 C24.5,512.62 25.62,511.5 27,511.5 C28.38,511.5 29.5,512.62 29.5,514 C29.5,515.38 28.38,516.5 27,516.5 M27,507 C23.13,507 20,510.13 20,514 C20,519.25 27,527 27,527 C27,527 34,519.25 34,514 C34,510.13 30.87,507 27,507" id="gps_point"></path>
+        </g>
+    </g>
+</svg>
