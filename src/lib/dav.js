@@ -1,7 +1,6 @@
 import store from '../store';
 import timeout from 'callback-timeout';
-import { 
-  chooseBid,
+import {
   updateDavId, 
   updateContractMissionIdMissionId,
   unlockWallet,
@@ -101,7 +100,7 @@ let davJS = function(davId, wallet) {
     });
   };
 
-  this.createMissionTransaction = function (vehicleId, missionCost) {
+  this.createMissionTransaction = function (bidId, vehicleId, missionCost) {
     let dav = this;
     if (process.env.NODE_ENV === 'development' && BLOCKCHAIN_TYPE === 'NONE') {
       return Promise.resolve(true);
@@ -118,7 +117,7 @@ let davJS = function(davId, wallet) {
             return tokenContractInstance.approve(missionContractInstance.address, missionCost, { from: dav.wallet });
           })
           .then(() => {
-            return missionContractInstance.create(vehicleId, dav.davId, missionCost, { from: dav.wallet });
+            return missionContractInstance.create(bidId, vehicleId, dav.davId, missionCost, { from: dav.wallet });
           });
       });
   };
@@ -190,14 +189,13 @@ export const createMissionTransaction = (bidId, vehicle_id, price) => {
     store.dispatch(createMissionTransactionFulfilled());
     return Promise.resolve('Blockchain is disabled');
   }
-  davSDK.createMissionTransaction(vehicle_id, price).then((response) => {
+  davSDK.createMissionTransaction(bidId, vehicle_id, price).then((response) => {
     if(response.logs.length > 0) {
       let contractMissionId = response.logs[0].args.id;
       console.log(contractMissionId);
       store.dispatch(updateContractMissionIdMissionId({ contractMissionId }));
     }
     store.dispatch(createMissionTransactionFulfilled(response));
-    store.dispatch(chooseBid(bidId));
   }).catch(err => {
     console.log(err);
     store.dispatch(createMissionTransactionFailed(err));
