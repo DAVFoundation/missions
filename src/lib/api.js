@@ -1,10 +1,10 @@
 import store from '../store';
-import { packageSizeOptions } from '../lib/utils';
+import {packageSizeOptions} from '../lib/utils';
 import moment from 'moment';
 
 const apiRoot = process.env.MISSION_CONTROL_URL;
 
-export const fetchStatus = ({ id, lat, long, needId }) => {
+export const fetchStatus = ({id, lat, long, needId}) => {
   const missionId = store.getState().mission.id;
   let url = new URL(`/status`, apiRoot);
   id && url.searchParams.set('id', id);
@@ -16,19 +16,34 @@ export const fetchStatus = ({ id, lat, long, needId }) => {
 };
 
 export const fetchBids = ({needId}) => {
-  let url = new URL(`/bids/${needId}`, apiRoot);
-  return fetchWithUserId(url);
-};
-
-export const createNeed = (needDetails, needType = 'delivery_drones') => {
-  if (needType === 'delivery_drones'){
-    createDeliveryNeed(needDetails);
+  // TODO: implement actual bid fetching
+  if (needId === '5673920') {
+    const droneLocation = store.getState().order.droneLocation;
+    return new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
+      resolve([{
+        need_id: '5673920',
+        manufacturer: 'GeoCharge',
+        model: 'gc2910',
+        id: '0x',
+        latitude: parseFloat(droneLocation.lat) + 0.018,
+        longitude: parseFloat(droneLocation.long) + 0.018
+      }]);
+    });
   } else {
-    createChargingNeed(needDetails);
+    let url = new URL(`/bids/${needId}`, apiRoot);
+    return fetchWithUserId(url);
   }
 };
 
-const createDeliveryNeed = ({ pickup, dropoff, pickup_at, size, weight}) => {
+export const createNeed = (needDetails, needType = 'delivery_drones') => {
+  if (needType === 'delivery_drones') {
+    return createDeliveryNeed(needDetails);
+  } else {
+    return createChargingNeed(needDetails);
+  }
+};
+
+const createDeliveryNeed = ({pickup, dropoff, pickup_at, size, weight}) => {
   pickup_at = moment(pickup_at, 'HH:mm').format('x');
   let url = new URL(`/needs`, apiRoot);
   const sizeOption = packageSizeOptions.find(
@@ -82,7 +97,7 @@ const fetchWithUserId = (url, method = 'GET', body) => {
   headers.append('Accept', 'application/json');
   headers.append('Content-Type', 'application/json');
 
-  const options = { method, headers };
+  const options = {method, headers};
   if (body) options.body = JSON.stringify(body);
   return fetch(url, options).then(response => response.json());
 };
