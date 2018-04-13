@@ -97,7 +97,8 @@ class SearchingScreen extends Component {
       cancelSearch,
       chooseBid,
       vehicleOnMission,
-      missionId
+      missionId,
+      appPath
     } = this.props;
 
     let screenClassNames = ['screen'];
@@ -114,7 +115,7 @@ class SearchingScreen extends Component {
       >
         {stage === 'searching' && (
           <div>
-            <h1>Matching you with autonomous vehicles</h1>
+            <h1>Matching you with {appPath === '/drone_charging' ? 'charging stations' : 'autonomous vehicles'}</h1>
             <Link
               to="/"
               className="med-button cancel-button"
@@ -192,6 +193,7 @@ SearchingScreen.propTypes = {
   missionId: PropTypes.number,
   bids: PropTypes.array.isRequired,
   stage: PropTypes.string.isRequired,
+  appPath: PropTypes.string.isRequired,
   cancelSearch: PropTypes.func.isRequired,
   chooseBid: PropTypes.func.isRequired
 };

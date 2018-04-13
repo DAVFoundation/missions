@@ -169,7 +169,7 @@ class OrderScreen extends Component {
             ref={node => {
               this.currentChargeNode = node;
             }}
-            style={{maxWidth: '15%'}}
+            style={{maxWidth: '15%', display: 'inline-block', marginRight: '10px'}}
           />%
         </div>
         <div className="form-field">

@@ -20,7 +20,15 @@ export const fetchBids = ({needId}) => {
   return fetchWithUserId(url);
 };
 
-export const createNeed = ({ pickup, dropoff, pickup_at, size, weight }) => {
+export const createNeed = (needDetails, needType = 'delivery_drones') => {
+  if (needType === 'delivery_drones'){
+    createDeliveryNeed(needDetails);
+  } else {
+    createChargingNeed(needDetails);
+  }
+};
+
+const createDeliveryNeed = ({ pickup, dropoff, pickup_at, size, weight}) => {
   pickup_at = moment(pickup_at, 'HH:mm').format('x');
   let url = new URL(`/needs`, apiRoot);
   const sizeOption = packageSizeOptions.find(
@@ -37,6 +45,13 @@ export const createNeed = ({ pickup, dropoff, pickup_at, size, weight }) => {
     weight: parseFloat(weight),
   };
   return fetchWithUserId(url, 'POST', body);
+};
+
+const createChargingNeed = (needDetails) => { // eslint-disable-line no-unused-vars
+  // TODO: implement actual API call
+  return new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
+    resolve({needId: '5673920'});
+  });
 };
 
 export const chooseBid = (bidId) => {

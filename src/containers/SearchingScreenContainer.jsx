@@ -17,6 +17,7 @@ export default connect(
     stage: state.order.stage,
     vehicleOnMission: getVehicleOnMission(state),
     missionId: state.mission.id,
+    appPath: state.app.path
   }),
   mapDispatchToProps
 )(SearchingScreen);

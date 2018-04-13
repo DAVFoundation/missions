@@ -18,7 +18,7 @@ const createGeoJson = (features = []) => {
       type: 'Feature',
       geometry: {
         type: 'Point',
-        coordinates: [feature.coords.long, feature.coords.lat],
+        coordinates: [feature.long || feature.coords.long, feature.lat || feature.coords.lat],
       },
       properties: {
         id: feature.id,
@@ -51,7 +51,8 @@ export const createMap = ({
   coords,
   onMapItemClick,
   onMoveEnd,
-  addControls
+  addControls,
+  appPath
 }) => {
   // Add support for right-to-left languages
   mapboxgl.setRTLTextPlugin(
@@ -152,8 +153,11 @@ export const createMap = ({
     .then(getUserLocation)
     .then(({coords}) => {
       addUserLocationIcon(map, coords);
-      let chargingStations = addControls ? [] : generateRandomChargingStations(coords);
-      addChargingStations(map, chargingStations);
+      if (appPath === '/drone_charging') {
+        // TODO: remove this/get actual charging stations
+        let chargingStations = addControls ? [] : generateRandomChargingStations(coords);
+        addChargingStations(map, chargingStations);
+      }
       return map.setCenter([coords.longitude, coords.latitude]);
     })
     .catch(() => {
@@ -162,9 +166,10 @@ export const createMap = ({
   return map;
 };
 
-export const updateMap = (map, vehicles = [], {pickup, dropoff} = {}) => {
+export const updateMap = (map, vehicles = [], {pickup, dropoff, droneLocation}) => {
   handleMapUpdate(map, () => {
     if (vehicles) map.getSource('vehicles').setData(createGeoJson(vehicles));
+    if (droneLocation) map.getSource('vehicles').setData(createGeoJson([droneLocation]));
     if (pickupAndDropoffPresent(map, pickup, dropoff)) {
       map.getSource('pickup').setData(turf.point([pickup.long, pickup.lat]));
       map.getSource('dropoff').setData(turf.point([dropoff.long, dropoff.lat]));
@@ -191,12 +196,14 @@ const pickupAndDropoffPresent = (map, pickup, dropoff) => {
   );
 };
 
-export const initiateZoomTransition = (map, pickup, dropoff, options) => {
+export const initiateZoomTransition = (map, terminals, options) => {
+  let collection;
+  let features = Object.keys(terminals).map((key) => {
+    const terminal = terminals[key];
+    return turf.point([terminal.long, terminal.lat]);
+  });
   handleMapUpdate(map, () => {
-    const collection = turf.featureCollection([
-      turf.point([pickup.long, pickup.lat]),
-      turf.point([dropoff.long, dropoff.lat]),
-    ]);
+    collection = turf.featureCollection(features);
     let bbox = turf.bbox(collection);
     map.fitBounds(bbox, {...options, padding: {top: 100, bottom: 300, left: 50, right: 50}});
   });

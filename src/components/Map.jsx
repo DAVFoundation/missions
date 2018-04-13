@@ -11,15 +11,16 @@ class Map extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const terminals = {
-      pickup: nextProps.pickup,
-      dropoff: nextProps.dropoff
-    };
+    const terminals = {};
+
+    if (nextProps.pickup) terminals.pickup = nextProps.pickup;
+    if (nextProps.dropoff) terminals.dropoff = nextProps.dropoff;
+    if (nextProps.droneLocation) terminals.droneLocation = nextProps.droneLocation;
 
     updateMap(this.map, nextProps.vehicles, terminals);
 
     if (this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
-      initiateZoomTransition(this.map, nextProps.pickup, nextProps.pickup, {maxZoom: 14});
+      initiateZoomTransition(this.map, terminals, {maxZoom: 14});
       addTerminals(this.map);
     }
 
@@ -60,7 +61,8 @@ class Map extends Component {
       'coords': this.props.coords,
       'onMapItemClick': this.onMapItemClick,
       'onMoveEnd': this.props.onMoveEnd,
-      'addControls': this.props.addControls
+      'addControls': this.props.addControls,
+      'appPath': this.props.appPath
     });
     const terminals = {
       pickup: this.props.pickup,
@@ -92,6 +94,7 @@ Map.propTypes = {
   missionStatus: PropTypes.string,
   pickup: PropTypes.object,
   dropoff: PropTypes.object,
+  droneLocation: PropTypes.object,
   appPath: PropTypes.string,
   addControls: PropTypes.bool
 };
