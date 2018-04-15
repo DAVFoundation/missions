@@ -170,8 +170,8 @@ class ChargingBidSelectionHeader extends Component {
 }
 
 ChargingBidSelectionHeader.propTypes = {
-  vehicles: PropTypes.object.isRequired,
-  vehicleOnMission: PropTypes.object,
+  chargers: PropTypes.object.isRequired,
+  chargerOnMission: PropTypes.object,
   missionId: PropTypes.number,
   bids: PropTypes.array.isRequired,
   stage: PropTypes.string.isRequired,

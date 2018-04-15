@@ -13,7 +13,6 @@ const testCharger = {   // TODO: Remove this
 
 export const fetchStatus = ({id, lat, long, needId}) => {
   if (needId === '5673920') {
-    console.log('hahah');
     const chargers = [testCharger];
     return new Promise(resolve => resolve({status: 'idle', chargers}));
   } else {
