@@ -40,7 +40,6 @@ export default handleActions({
   },
 
   [updateBidsFulfilled]: (state, {payload}) => {
-    console.log(payload);
     // If searching, and at least 10 bids received OR searched for over 10 seconds change state
     if (state.stage === 'searching') {
       const time = Date.now();

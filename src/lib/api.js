@@ -3,16 +3,29 @@ import {packageSizeOptions} from '../lib/utils';
 import moment from 'moment';
 
 const apiRoot = process.env.MISSION_CONTROL_URL;
+const testCharger = {   // TODO: Remove this
+  id: 1,
+  icon: `https://lorempixel.com/100/100/abstract/?5673920`,
+  manufacturer: 'GeoCharge',
+  model: 'gc2910',
+  max_charging_velocity: '30Ah'
+};
 
 export const fetchStatus = ({id, lat, long, needId}) => {
-  const missionId = store.getState().mission.id;
-  let url = new URL(`/status`, apiRoot);
-  id && url.searchParams.set('id', id);
-  lat && url.searchParams.set('lat', lat); // Don't stand on the equator or you'll break this
-  long && url.searchParams.set('long', long);
-  needId && url.searchParams.set('needId', needId);
-  missionId && url.searchParams.set('missionId', missionId);
-  return fetchWithUserId(url);
+  if (needId === '5673920') {
+    console.log('hahah');
+    const chargers = [testCharger];
+    return new Promise(resolve => resolve({status: 'idle', chargers}));
+  } else {
+    const missionId = store.getState().mission.id;
+    let url = new URL(`/status`, apiRoot);
+    id && url.searchParams.set('id', id);
+    lat && url.searchParams.set('lat', lat); // Don't stand on the equator or you'll break this
+    long && url.searchParams.set('long', long);
+    needId && url.searchParams.set('needId', needId);
+    missionId && url.searchParams.set('missionId', missionId);
+    return fetchWithUserId(url);
+  }
 };
 
 export const fetchBids = ({needId}) => {
@@ -25,8 +38,12 @@ export const fetchBids = ({needId}) => {
         manufacturer: 'GeoCharge',
         model: 'gc2910',
         id: '0x',
+        distance: '10km',
         latitude: parseFloat(droneLocation.lat) + 0.018,
-        longitude: parseFloat(droneLocation.long) + 0.018
+        longitude: parseFloat(droneLocation.long) + 0.018,
+        price: 20000000000000000000,
+        charger_id: testCharger.id,
+        charger: testCharger
       }]);
     });
   } else {

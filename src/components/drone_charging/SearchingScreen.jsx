@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Link from '../containers/LinkContainer.jsx';
-import VehicleBid from './VehicleBid.jsx';
-import MapItemBidPreview from './MapItemBidPreview.jsx';
-import MapItemCard from './MapItemCard.jsx';
-import UserCardContainer from '../containers/UserCardContainer.jsx';
-import BidSelectionHeader from '../components/BidSelectionHeader.jsx';
-import './SearchingScreen.css';
-import radar from '../images/radar.png';
+import Link from '../../containers/LinkContainer.jsx';
+import MapItemBidPreview from '../MapItemBidPreview.jsx';
+import MapItemCard from '../MapItemCard.jsx';
+import UserCardContainer from '../../containers/UserCardContainer.jsx';
+import BidSelectionHeader from '../../components/BidSelectionHeader.jsx';
+import '../SearchingScreen.css';
+import radar from '../../images/radar.png';
+import ChargingStationBid from './ChargingStationBid.jsx';
 
 class SearchingScreen extends Component {
   constructor(props) {
@@ -92,11 +92,11 @@ class SearchingScreen extends Component {
   render() {
     const {
       bids,
-      vehicles,
+      chargers,
+      chargerOnMission,
       stage,
       cancelSearch,
       chooseBid,
-      vehicleOnMission,
       missionId
     } = this.props;
 
@@ -114,7 +114,7 @@ class SearchingScreen extends Component {
       >
         {stage === 'searching' && (
           <div>
-            <h1>Matching you with autonomous vehicles</h1>
+            <h1>Matching you with charging sations</h1>
             <Link
               to="/"
               className="med-button cancel-button"
@@ -126,10 +126,10 @@ class SearchingScreen extends Component {
             <div id="vehicle-bid-preview-cards">
               {bids.map(
                 bid =>
-                  vehicles[bid.vehicle_id] && (
+                  chargers[bid.charger_id] && (
                     <MapItemBidPreview
                       key={bid.id}
-                      mapItem={vehicles[bid.vehicle_id]}
+                      mapItem={chargers[bid.charger_id]}
                     />
                   )
               )}
@@ -146,11 +146,11 @@ class SearchingScreen extends Component {
           )}
           {this.state.sortedBids.map(
             bid =>
-              vehicles[bid.vehicle_id] && (
-                <VehicleBid
+              chargers[bid.charger_id] && (
+                <ChargingStationBid
                   key={bid.id}
                   bid={bid}
-                  vehicle={vehicles[bid.vehicle_id]}
+                  charger={chargers[bid.charger_id]}
                   shown={stage === 'choosing'}
                   chooseBid={chooseBid}
                 />
@@ -160,15 +160,15 @@ class SearchingScreen extends Component {
 
         <div className="screen-background--dark">
           {stage === 'signing' &&
-          vehicleOnMission && (
+          chargerOnMission && (
             <div className="modal-container">
               <div id="signing-box" className="modal-box">
                 <h2>Initiating DAV Transaction</h2>
                 <p>Signing secure smart contract between:</p>
                 <MapItemCard
-                  icon={vehicleOnMission.icon}
-                  id={vehicleOnMission.id}
-                  model={vehicleOnMission.model}
+                  icon={chargerOnMission.icon}
+                  id={chargerOnMission.id}
+                  model={chargerOnMission.model}
                 />
                 <div id="sign-here">
                   <img
@@ -187,8 +187,8 @@ class SearchingScreen extends Component {
 }
 
 SearchingScreen.propTypes = {
-  vehicles: PropTypes.object.isRequired,
-  vehicleOnMission: PropTypes.object,
+  chargers: PropTypes.object.isRequired,
+  chargerOnMission: PropTypes.object,
   missionId: PropTypes.number,
   bids: PropTypes.array.isRequired,
   stage: PropTypes.string.isRequired,

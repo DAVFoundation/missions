@@ -5,7 +5,7 @@ const defaultState = {};
 
 export default handleActions(
   {
-    [updateStatusFulfilled]: (state, { payload: { vehicles } }) => {
+    [updateStatusFulfilled]: (state, { payload: { vehicles = [] } }) => {
       let nextState = {};
       vehicles.forEach(vehicle => {
         nextState[vehicle.id] = vehicle;

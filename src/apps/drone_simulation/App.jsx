@@ -31,7 +31,7 @@ class App extends Component {
 
           <Route path="/order" component={ OrderScreenContainer('DeliveryOrderScreen') } />
 
-          <Route path="/searching" component={ SearchingScreenContainer } />
+          <Route path="/searching" component={ SearchingScreenContainer('DeliverySearchingScreen') } />
 
           <Route path="/mission" component= { MissionContainer } />
           <Route path="/mission/vehicles/:id" component={ MapItemDetailsScreenContainer } />

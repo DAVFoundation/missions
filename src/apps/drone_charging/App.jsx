@@ -24,7 +24,7 @@ class App extends Component {
           <Route path="/drone_charging/:mapItemType/:id" component={ MapItemDetailsScreenContainer } />
           <Route path="/drone_charging/order" component={ OrderScreenContainer('ChargingOrderScreen')  } />
 
-          <Route path="/drone_charging/searching" component={ SearchingScreenContainer } />
+          <Route path="/drone_charging/searching" component={ SearchingScreenContainer('ChargingSearchingScreen') } />
         </div>
       </Router>
     );
