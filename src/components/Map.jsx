@@ -17,7 +17,7 @@ class Map extends Component {
     if (nextProps.dropoff) terminals.dropoff = nextProps.dropoff;
     if (nextProps.droneLocation) terminals.droneLocation = nextProps.droneLocation;
 
-    updateMap(this.map, nextProps.vehicles, terminals);
+    updateMap(this.map, nextProps.mapItems, nextProps.mapItemType, terminals);
 
     if (this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
       initiateZoomTransition(this.map, terminals, {maxZoom: 14});
@@ -36,7 +36,7 @@ class Map extends Component {
 
     if (nextProps.orderStage === 'in_mission') {
       initiateZoomTransition(this.map, nextProps.pickup, nextProps.dropoff);
-      if (this.props.vehicles.length > 0 && nextProps.vehicles[0].status === 'waiting_pickup') {
+      if (this.props.mapItems.length > 0 && nextProps.mapItems[0].status === 'waiting_pickup') {
         this.props.history.push(this.props.appPath + '/confirm-takeoff');
       } else {
         this.props.history.push(this.props.appPath + '/mission');
@@ -61,14 +61,13 @@ class Map extends Component {
       'coords': this.props.coords,
       'onMapItemClick': this.onMapItemClick,
       'onMoveEnd': this.props.onMoveEnd,
-      'addControls': this.props.addControls,
-      'appPath': this.props.appPath
+      'addControls': this.props.addControls
     });
     const terminals = {
       pickup: this.props.pickup,
       dropoff: this.props.dropoff
     };
-    updateMap(this.map, this.props.vehicles, terminals);
+    updateMap(this.map, this.props.mapItems, this.props.mapItemType, terminals);
   }
 
   render() {
@@ -86,7 +85,8 @@ Map.defaultProps = {
 };
 
 Map.propTypes = {
-  vehicles: PropTypes.array.isRequired,
+  mapItems: PropTypes.array.isRequired,
+  mapItemType: PropTypes.string.isRequired,
   coords: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   onMoveEnd: PropTypes.func.isRequired,

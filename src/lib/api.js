@@ -3,16 +3,24 @@ import {packageSizeOptions} from '../lib/utils';
 import moment from 'moment';
 
 const apiRoot = process.env.MISSION_CONTROL_URL;
-const testCharger = {   // TODO: Remove this
+const testCharger = {
   id: '1',
   icon: `https://lorempixel.com/100/100/abstract/?5673920`,
   manufacturer: 'GeoCharge',
   model: 'gc2910',
-  max_charging_velocity: 30
+  max_charging_velocity: 30,
 };
 
 export const fetchStatus = ({id, lat, long, needId}) => {
-  if (needId === '5673920') {
+  // TODO: implement actual status fetching for chargers
+
+  if ((store.getState().order.stage === 'draft') && (store.getState().app.path === '/drone_charging')) {
+    const chargers = generateRandomChargers({lat, long});
+    return new Promise(resolve => resolve({status: 'idle', chargers}));
+  } else if (needId === '5673920') {
+    testCharger.coords = {};
+    testCharger.coords.lat = parseFloat(lat) + 0.018;
+    testCharger.coords.long = parseFloat(long) + 0.018;
     const chargers = [testCharger];
     return new Promise(resolve => resolve({status: 'idle', chargers}));
   } else {
@@ -32,14 +40,18 @@ export const fetchBids = ({needId}) => {
   if (needId === '5673920') {
     const droneLocation = store.getState().order.droneLocation;
     return new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
+      testCharger.coords = {};
+      testCharger.coords.lat = parseFloat(droneLocation.lat) + 0.018;
+      testCharger.coords.long = parseFloat(droneLocation.long) + 0.018;
+
       resolve([{
         need_id: '5673920',
         manufacturer: 'GeoCharge',
         model: 'gc2910',
         id: '0x',
         distance: 10,
-        latitude: parseFloat(droneLocation.lat) + 0.018,
-        longitude: parseFloat(droneLocation.long) + 0.018,
+        lat: parseFloat(droneLocation.lat) + 0.018,
+        long: parseFloat(droneLocation.long) + 0.018,
         price: 20000000000000000000,
         charger_id: testCharger.id,
         charger: testCharger
@@ -116,4 +128,27 @@ const fetchWithUserId = (url, method = 'GET', body) => {
   const options = {method, headers};
   if (body) options.body = JSON.stringify(body);
   return fetch(url, options).then(response => response.json());
+};
+
+
+const generateRandomChargers = (coords) => {
+  let chargers = [];
+  for (let i = 1; i < 5; i++) {
+    chargers.push({id: i, coords: randomCoords({id: i, coords, radius: 1000})});
+  }
+  return chargers;
+};
+
+const randomCoords = ({id, coords, radius}) => {
+  const angle = id/10 * 2 * Math.PI;
+  const distance = ((id+1)/10) * radius;
+  const longDegreesPerMeter = 1 / 111321.377778; // longitude degrees per meter
+  const latDegreesPerMeter = 1 / 111134.86111; // latitude degrees per meter
+  const x = parseFloat(
+    (coords.lat+ latDegreesPerMeter * distance * Math.cos(angle)).toFixed(6),
+  );
+  const y = parseFloat(
+    (coords.long+ longDegreesPerMeter * distance * Math.sin(angle)).toFixed(6),
+  );
+  return {lat: x, long: y};
 };

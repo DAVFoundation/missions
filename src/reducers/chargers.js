@@ -8,7 +8,6 @@ export default handleActions(
     [updateStatusFulfilled]: (state, { payload: { chargers = []} }) => {
       let nextState = {};
       chargers.forEach(charger => {
-        console.log(charger);
         nextState[charger.id] = charger;
       });
       return nextState;
