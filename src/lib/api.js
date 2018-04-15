@@ -1,5 +1,6 @@
 import store from '../store';
-import {packageSizeOptions} from '../lib/utils';
+import { packageSizeOptions } from '../lib/utils';
+import { createMissionTransaction } from '../actions';
 import moment from 'moment';
 
 const apiRoot = process.env.MISSION_CONTROL_URL;
@@ -59,7 +60,7 @@ export const createNeed = (needDetails, needType = 'delivery_drones') => {
   }
 };
 
-const createDeliveryNeed = ({pickup, dropoff, pickup_at, size, weight}) => {
+const createDeliveryNeed = ({ pickup, dropoff, pickup_at, size, weight, need_type }) => {
   pickup_at = moment(pickup_at, 'HH:mm').format('x');
   let url = new URL(`/needs`, apiRoot);
   const sizeOption = packageSizeOptions.find(
@@ -74,6 +75,7 @@ const createDeliveryNeed = ({pickup, dropoff, pickup_at, size, weight}) => {
     dropoff_longitude: dropoff.long,
     cargo_type: sizeOption.cargoType,
     weight: parseFloat(weight),
+    need_type: need_type
   };
   return fetchWithUserId(url, 'POST', body);
 };
@@ -85,9 +87,12 @@ const createChargingNeed = (needDetails) => { // eslint-disable-line no-unused-v
   });
 };
 
-export const chooseBid = (bidId) => {
+export const chooseBid = (bidId, vehicle_id, price) => {
   let url = new URL(`/bids/${bidId}/choose`, apiRoot);
-  return fetchWithUserId(url, 'PUT');
+  return fetchWithUserId(url, 'PUT').then(response => {
+    store.dispatch(createMissionTransaction(bidId, vehicle_id, price));
+    return response;
+  });
 };
 
 export const cancelNeed = () => {

@@ -49,7 +49,8 @@ class OrderScreen extends Component {
         { lat: 47.3982004, long: 8.5448531 } : undefined,
       size: packageSize || undefined,
       weight: this.weightNode.value || undefined,
-      pickup_at: this.pickupTimeNode.value || undefined
+      pickup_at: this.pickupTimeNode.value || undefined,
+      need_type: 'drone_delivery'
     };
   }
 

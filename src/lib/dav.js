@@ -1,7 +1,6 @@
 import store from '../store';
 import timeout from 'callback-timeout';
 import {
-  chooseBid,
   updateDavId,
   updateContractMissionIdMissionId,
   unlockWallet,
@@ -191,13 +190,12 @@ export const createMissionTransaction = (bidId, vehicle_id, price) => {
     return Promise.resolve('Blockchain is disabled');
   }
   davSDK.createMissionTransaction(bidId, vehicle_id, price).then((response) => {
-    if (response.logs.length > 0) {
+    if(response.logs.length > 0) {
       let contractMissionId = response.logs[0].args.id;
       console.log(contractMissionId);
       store.dispatch(updateContractMissionIdMissionId({ contractMissionId }));
     }
     store.dispatch(createMissionTransactionFulfilled(response));
-    store.dispatch(chooseBid(bidId));
   }).catch(err => {
     console.log(err);
     store.dispatch(createMissionTransactionFailed(err));
