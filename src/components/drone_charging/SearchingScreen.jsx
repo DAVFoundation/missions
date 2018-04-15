@@ -4,10 +4,10 @@ import Link from '../../containers/LinkContainer.jsx';
 import MapItemBidPreview from '../MapItemBidPreview.jsx';
 import MapItemCard from '../MapItemCard.jsx';
 import UserCardContainer from '../../containers/UserCardContainer.jsx';
-import BidSelectionHeader from '../../components/BidSelectionHeader.jsx';
 import '../SearchingScreen.css';
 import radar from '../../images/radar.png';
 import ChargingStationBid from './ChargingStationBid.jsx';
+import ChargingBidSelectionHeader from './ChargingBidSelectionHeader.jsx';
 
 class SearchingScreen extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class SearchingScreen extends Component {
     }
   }
 
-  // This function is called from BidSelectionHeader when a
+  // This function is called from ChargingBidSelectionHeader when a
   // sorting option is chosen.
   handleSortingOptionChange(option) {
     this.setState({
@@ -47,34 +47,33 @@ class SearchingScreen extends Component {
 
     switch (option) {
       case 'Best match': {
-        // sort on 'time_to_pickup', if bids have similar pickup time, show
+        // sort on distance, if bids have similar distance show
         // the lowest price first
         return this.props.bids.sort((a, b) => {
-          //convert 'time_to_pickup' to minutes
-          let timeToPickupMinutes_A = Math.ceil(a.time_to_pickup / 60000);
-          let timeToPickupMinutes_B = Math.ceil(b.time_to_pickup / 60000);
+          let distanceA = a.distance;
+          let distanceB = b.distance;
 
-          if (timeToPickupMinutes_A < timeToPickupMinutes_B) {
+          if (distanceA < distanceB) {
             return -1;
-          } else if (timeToPickupMinutes_A > timeToPickupMinutes_B) {
+          } else if (distanceA > distanceB) {
             return 1;
           } else {
-            //time to pickup in minutes is equal - compare by price
+            //distance is equal - compare by price
             return parseFloat(a.price) - parseFloat(b.price);
           }
         });
       }
-      case 'Fastest pickup': {
-        //sort on 'time_to_pickup'
+      case 'Shortest Distance': {
+        //sort on 'distance'
         return this.props.bids.sort(
-          (a, b) => parseFloat(a.time_to_pickup) - parseFloat(b.time_to_pickup)
+          (a, b) => parseFloat(a.distance) - parseFloat(b.distance)
         );
       }
-      case 'Fastest delivery': {
-        //sort on 'time_to_dropoff'
+      case 'Highest charging velocity': {
+        //sort on 'max_charging_velocity'
         return this.props.bids.sort(
           (a, b) =>
-            parseFloat(a.time_to_dropoff) - parseFloat(b.time_to_dropoff)
+            parseFloat(b.charger.max_charging_velocity) - parseFloat(a.charger.max_charging_velocity)
         );
       }
       case 'Lowest cost': {
@@ -139,7 +138,7 @@ class SearchingScreen extends Component {
 
         <div id="vehicle-bid-cards">
           {stage === 'choosing' && (
-            <BidSelectionHeader
+            <ChargingBidSelectionHeader
               {...this.props}
               handleSortingOptionChange={this.handleSortingOptionChange}
             />

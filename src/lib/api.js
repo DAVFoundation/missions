@@ -4,11 +4,11 @@ import moment from 'moment';
 
 const apiRoot = process.env.MISSION_CONTROL_URL;
 const testCharger = {   // TODO: Remove this
-  id: 1,
+  id: '1',
   icon: `https://lorempixel.com/100/100/abstract/?5673920`,
   manufacturer: 'GeoCharge',
   model: 'gc2910',
-  max_charging_velocity: '30Ah'
+  max_charging_velocity: 30
 };
 
 export const fetchStatus = ({id, lat, long, needId}) => {
@@ -38,7 +38,7 @@ export const fetchBids = ({needId}) => {
         manufacturer: 'GeoCharge',
         model: 'gc2910',
         id: '0x',
-        distance: '10km',
+        distance: 10,
         latitude: parseFloat(droneLocation.lat) + 0.018,
         longitude: parseFloat(droneLocation.long) + 0.018,
         price: 20000000000000000000,

@@ -20,7 +20,7 @@ const ChargingStationBid = ({bid, charger, shown, chooseBid}) => {
         <dt>Distance from station:</dt>
         <dd>{bid.distance} km</dd>
         <dt>Max charging velocity</dt>
-        <dd>{charger.max_charging_velocity}</dd>
+        <dd>{charger.max_charging_velocity} Ah</dd>
         <dt>Cost for charging:</dt>
         <dd>{parseFloat(bid.price/1000000000000000000).toFixed(2)}<img src={currencyImage} className="currency-symbol" alt="DAV"/></dd>
       </dl>
