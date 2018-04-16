@@ -5,6 +5,7 @@ let Components = {};
 
 Components['ChargingMainScreen'] = require('../components/drone_charging/MainScreen.jsx').default;
 Components['DeliveryMainScreen'] = require('../components/MainScreen.jsx').default;
+Components['RoutePlanMainScreen'] = require('../components/route_plan/MainScreen.jsx').default;
 
 
 const mapDispatchToProps = (dispatch) => ({

@@ -38,6 +38,12 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
       template: path.resolve(__dirname, 'src/index.html'),
       favicon: path.resolve(__dirname, 'src/favicon.ico'),
     }),
+    new HtmlWebpackPlugin({
+      filename: 'route_plan.html',
+      chunks: ['vendor', 'route_plan'],
+      template: path.resolve(__dirname, 'src/index.html'),
+      favicon: path.resolve(__dirname, 'src/favicon.ico'),
+    }),
     new CopyWebpackPlugin([
       { from: 'src/images', to: 'images' },
       { from: 'src/browserconfig.xml' },

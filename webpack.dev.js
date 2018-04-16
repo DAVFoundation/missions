@@ -33,6 +33,12 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
       template: path.resolve(__dirname, 'src/index.html'),
       favicon: path.resolve(__dirname, 'src/favicon.ico'),
     }),
+    new HtmlWebpackPlugin({
+      filename: 'route_plan/index.html',
+      chunks: ['vendor', 'route_plan'],
+      template: path.resolve(__dirname, 'src/index.html'),
+      favicon: path.resolve(__dirname, 'src/favicon.ico'),
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),

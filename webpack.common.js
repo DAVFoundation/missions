@@ -8,6 +8,7 @@ module.exports = (env = 'development') => {
       drone_simulation: './src/apps/drone_simulation/Main.jsx',
       delivery_drones: './src/apps/delivery_drones/Main.jsx',
       drone_charging: './src/apps/drone_charging/Main.jsx',
+      route_plan: './src/apps/route_plan/Main.jsx',
       vendor: [
         'mapbox-gl',
         'react',
