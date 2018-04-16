@@ -4,8 +4,9 @@ import { updateBids, updateStatus } from '../actions';
 const _updateStatusAndDispatch = () => {
   const coords = store.getState().map.coords;
   if (!coords.lat || !coords.long) return;
-  const { lat, long } = coords;
-  const needId = store.getState().order.needId;
+  const order =  store.getState().order;
+  const { lat, long } = order.droneLocation ? order.droneLocation : coords;
+  const needId = order.needId;
   store.dispatch(updateStatus({ lat, long, needId }));
 };
 

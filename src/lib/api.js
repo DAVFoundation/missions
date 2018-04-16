@@ -10,6 +10,7 @@ const testCharger = {
   model: 'gc2910',
   max_charging_velocity: 30,
 };
+const testChargerCoordsOffset = 0.005;
 
 export const fetchStatus = ({id, lat, long, needId}) => {
   // TODO: implement actual status fetching for chargers
@@ -19,8 +20,8 @@ export const fetchStatus = ({id, lat, long, needId}) => {
     return new Promise(resolve => resolve({status: 'idle', chargers}));
   } else if (needId === '5673920') {
     testCharger.coords = {};
-    testCharger.coords.lat = parseFloat(lat) + 0.018;
-    testCharger.coords.long = parseFloat(long) + 0.018;
+    testCharger.coords.lat = parseFloat(lat) + testChargerCoordsOffset;
+    testCharger.coords.long = parseFloat(long) + testChargerCoordsOffset;
     const chargers = [testCharger];
     return new Promise(resolve => resolve({status: 'idle', chargers}));
   } else {
@@ -41,8 +42,8 @@ export const fetchBids = ({needId}) => {
     const droneLocation = store.getState().order.droneLocation;
     return new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
       testCharger.coords = {};
-      testCharger.coords.lat = parseFloat(droneLocation.lat) + 0.018;
-      testCharger.coords.long = parseFloat(droneLocation.long) + 0.018;
+      testCharger.coords.lat = parseFloat(droneLocation.lat) + testChargerCoordsOffset;
+      testCharger.coords.long = parseFloat(droneLocation.long) + testChargerCoordsOffset;
 
       resolve([{
         need_id: '5673920',
@@ -50,8 +51,8 @@ export const fetchBids = ({needId}) => {
         model: 'gc2910',
         id: '0x',
         distance: 10,
-        lat: parseFloat(droneLocation.lat) + 0.018,
-        long: parseFloat(droneLocation.long) + 0.018,
+        lat: parseFloat(droneLocation.lat) + testChargerCoordsOffset,
+        long: parseFloat(droneLocation.long) + testChargerCoordsOffset,
         price: 20000000000000000000,
         charger_id: testCharger.id,
         charger: testCharger
@@ -134,7 +135,7 @@ const fetchWithUserId = (url, method = 'GET', body) => {
 const generateRandomChargers = (coords) => {
   let chargers = [];
   for (let i = 1; i < 5; i++) {
-    chargers.push({id: i, coords: randomCoords({id: i, coords, radius: 1000})});
+    chargers.push({id: i.toString(), coords: randomCoords({id: i, coords, radius: 1000})});
   }
   return chargers;
 };

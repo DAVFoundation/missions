@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl';
+import store from '../store';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {makeImage} from './utils';
 import droneIcon from '../images/icon_drone.png';
@@ -152,7 +153,9 @@ export const createMap = ({
     .then(getUserLocation)
     .then(({coords}) => {
       addUserLocationIcon(map, coords);
-      return map.setCenter([coords.longitude, coords.latitude]);
+      if (store.getState().order.stage === 'draft') {
+        return map.setCenter([coords.longitude, coords.latitude]);
+      }
     })
     .catch(() => {
     });

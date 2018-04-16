@@ -30,8 +30,11 @@ class OrderScreen extends Component {
   createOrderDetailsObject() {
     const { droneLocation } = this.state;
     return {
-      droneLocation: droneLocation ?
-        { address: droneLocation.description, lat: 47.397669, long: 8.5444809 } : undefined,
+      droneLocation: {
+        address: droneLocation.description,
+        lat: droneLocation.location.lat,
+        long: droneLocation.location.lng
+      },
       droneType: this.droneTypeNode.value || undefined,
       currentCharge: this.currentChargeNode.value || undefined,
       chargingVelocity: this.chargingVelocityNode.value || undefined,
