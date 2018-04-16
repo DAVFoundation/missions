@@ -1,5 +1,6 @@
 import store from '../store';
 import {packageSizeOptions} from '../lib/utils';
+import { NEED_TYPES } from '../config/needTypes.js';
 import moment from 'moment';
 
 const apiRoot = process.env.MISSION_CONTROL_URL;
@@ -66,8 +67,8 @@ export const fetchBids = ({needId}) => {
   }
 };
 
-export const createNeed = (needDetails, needType = 'delivery_drones') => {
-  if (needType === 'delivery_drones') {
+export const createNeed = (needDetails, needType) => {
+  if (needType === NEED_TYPES.DRONE_DELIVERY) {
     return createDeliveryNeed(needDetails);
   } else {
     return createChargingNeed(needDetails);
@@ -106,11 +107,12 @@ export const chooseBid = (bidId) => {
     return new Promise(resolve => {
       resolve({
         mission: {
+          need_type: NEED_TYPES.DRONE_CHARGING,
           charger_id: '1',
           price: testPrice,
           need_id: testNeedId,
-          'status': 'awaiting_signatures',
-          mission_id: 'charging_demo'
+          status: 'awaiting_signatures',
+          mission_id: '1'
         }
       });
     });

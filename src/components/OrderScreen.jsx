@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Link from '../containers/LinkContainer.jsx';
 import './OrderScreen.css';
 import arrow from '../images/arrow-left.svg';
 import IconSelector from './IconSelector.jsx';
 import getConfig from '../config';
-import { packageSizeOptions } from '../lib/utils';
+import {packageSizeOptions} from '../lib/utils';
 import Geosuggest from 'react-geosuggest';
 import x_button from '../images/x_button.svg';
 
@@ -35,38 +35,39 @@ class OrderScreen extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.registration_step === 'register_fulfilled') {
+    if (nextProps.registration_step === 'register_fulfilled') {
       this.submitForm();
     }
   }
 
   createOrderDetailsObject() {
-    const { pickup, dropoff, packageSize } = this.state;
+    const {pickup, dropoff, packageSize} = this.state;
     return {
       pickup: pickup ?
-        { address: pickup.description, lat: 47.397669, long: 8.5444809 } : undefined,
+        {address: pickup.description, lat: 47.397669, long: 8.5444809} : undefined,
       dropoff: dropoff ?
-        { lat: 47.3982004, long: 8.5448531 } : undefined,
+        {lat: 47.3982004, long: 8.5448531} : undefined,
       size: packageSize || undefined,
       weight: this.weightNode.value || undefined,
-      pickup_at: this.pickupTimeNode.value || undefined
+      pickup_at: this.pickupTimeNode.value || undefined,
+      need_type: this.props.needType
     };
   }
 
   updateStoreFromForm(detailOverride = {}) {
     const details = this.createOrderDetailsObject();
-    this.props.updateOrderDetails({ ...details, ...detailOverride });
+    this.props.updateOrderDetails({...details, ...detailOverride});
   }
 
   cancelForm() {
-    this.updateStoreFromForm({ stage: 'draft', pickup: null, dropoff: null });
+    this.updateStoreFromForm({stage: 'draft', pickup: null, dropoff: null});
   }
 
   submitForm() {
-    this.updateStoreFromForm({ stage: 'searching', registration_step: 'registered' });
+    this.updateStoreFromForm({stage: 'searching', registration_step: 'registered'});
     let needDetails = this.createOrderDetailsObject();
     this.props.createNeed(needDetails);
-    this.props.history.push(this.props.appPath+'/searching');
+    this.props.history.push(this.props.appPath + '/searching');
   }
 
   selectPackageSize(size) {
@@ -75,7 +76,8 @@ class OrderScreen extends Component {
     });
   }
 
-  getSizeContainer() { }
+  getSizeContainer() {
+  }
 
   dismissDialog() {
     this.props.closeWalletDialog();
@@ -90,7 +92,7 @@ class OrderScreen extends Component {
   }
 
   render() {
-    const { weight } = this.props; // size
+    const {weight} = this.props; // size
     const pickup_at =
       this.props.pickup_at || new Date().toTimeString().slice(0, 5);
     let showSignInToWalletDialog = this.props.registration_step === 'unlock_wallet';
@@ -101,8 +103,8 @@ class OrderScreen extends Component {
           <div className="modal-box wallet-dialog">
             <h1>Please Sign in To A Wallet</h1>
             <p>It seems that you are not signed in to<br/>
-            an existing wallet in your browser.<br/>
-            Please sign in, or create a new wallet.</p>
+              an existing wallet in your browser.<br/>
+              Please sign in, or create a new wallet.</p>
             <button onClick={this.dismissDialog.bind(this)} className="big-button">
               OK
             </button>
@@ -119,7 +121,7 @@ class OrderScreen extends Component {
             <div
               onClick={this.dismissDialog.bind(this)}
               className="sort-options__close-button">
-              <img src={x_button} alt="close button" />
+              <img src={x_button} alt="close button"/>
             </div>
             <h1>Missing DAV ID</h1>
             <p>This wallet is not connected to a DAV ID</p>
@@ -137,7 +139,7 @@ class OrderScreen extends Component {
     return (
       <div id="order-screen" className="screen">
         <Link to="/" className="back-button" onClick={this.cancelForm}>
-          <img src={arrow} alt="Back" />
+          <img src={arrow} alt="Back"/>
         </Link>
         <h1>Order Pickup</h1>
         <div className="form-field">
@@ -148,12 +150,12 @@ class OrderScreen extends Component {
             ignoreTab={true}
             placeholder="Type the address of the pickup location"
             onChange={
-              () => this.setState({ pickup: undefined })
+              () => this.setState({pickup: undefined})
             }
             onSuggestSelect={
               geo => {
                 if (geo) {
-                  this.setState({ pickup: geo });
+                  this.setState({pickup: geo});
                 }
               }
             }
@@ -167,12 +169,12 @@ class OrderScreen extends Component {
             ignoreTab={true}
             placeholder="Type the address of the dropoff location"
             onChange={
-              () => this.setState({ dropoff: undefined })
+              () => this.setState({dropoff: undefined})
             }
             onSuggestSelect={
               geo => {
                 if (geo) {
-                  this.setState({ dropoff: geo.location });
+                  this.setState({dropoff: geo.location});
                 }
               }
             }
@@ -214,11 +216,12 @@ class OrderScreen extends Component {
             }}
           />
         </div>
-        <button onClick={this.verifyIdentity.bind(this)} className={(this.state.pickup !== undefined && this.state.pickup.location !== undefined && this.state.dropoff !== undefined) ? 'big-button form-submit-button': 'disabled-button form-submit-button'} >
+        <button onClick={this.verifyIdentity.bind(this)}
+          className={(this.state.pickup !== undefined && this.state.pickup.location !== undefined && this.state.dropoff !== undefined) ? 'big-button form-submit-button' : 'disabled-button form-submit-button'}>
           Find drones
         </button>
-        { showSignInToWalletDialog === false ? (<div/>) : signInToWalletDialog }
-        { showRegisterDavIdDialog === false ? (<div/>) : registerDavIdDialog}
+        {showSignInToWalletDialog === false ? (<div/>) : signInToWalletDialog}
+        {showRegisterDavIdDialog === false ? (<div/>) : registerDavIdDialog}
       </div>
     );
   }
@@ -227,6 +230,7 @@ class OrderScreen extends Component {
 OrderScreen.propTypes = {
   history: PropTypes.object.isRequired,
   appPath: PropTypes.string,
+  needType: PropTypes.string,
   userCoords: PropTypes.object,
   defaultDropoff: PropTypes.object,
   pickup: PropTypes.object,

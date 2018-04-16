@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {shiftCoords} from '../lib/utils';
+import { NEED_TYPES } from '../config/needTypes.js';
 import {
   updateOrderDetails,
   createNeed,
@@ -38,9 +39,10 @@ const OrderScreenContainer = (componentName) => {
       let props = {
         registration_step: state.order.registration_step,
         fetching: state.order.fetching,
-        appPath: state.app.path
+        appPath: state.app.path,
+        needType: state.app.needType
       };
-      if (componentName === 'DeliveryOrderScreen') {
+      if (state.app.needType === NEED_TYPES.DRONE_DELIVERY) {
         props = {
           ...props, ...{
             defaultDropoff,
