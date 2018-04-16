@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Link from '../../containers/LinkContainer.jsx';
 import '../MainScreen.css';
@@ -10,14 +10,16 @@ class MainScreen extends Component {
   componentDidMount() {
     this.props.onMount();
   }
+
   render() {
     return (
       <div id="main-screen" className="screen">
         <div id="header">
           <div id="logo">
-            <img src={logo} alt="Missions powered by DAV" />
+            <img src={logo} alt="Missions powered by DAV"/>
           </div>
-          <span className="logo-subtext">4 charging stations available in viewable area</span>
+          <span
+            className="logo-subtext">{this.props.chargers.length} charging stations available in viewable area</span>
           <span className="profile">
             <img src={iconUser} alt=""/>
           </span>
@@ -35,6 +37,8 @@ class MainScreen extends Component {
 
 MainScreen.propTypes = {
   onMount: PropTypes.func.isRequired,
+  coords: PropTypes.object,
+  chargers: PropTypes.array
 };
 
 
