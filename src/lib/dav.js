@@ -188,6 +188,7 @@ export const registerDavId = () => {
 export const createMissionTransaction = (bidId, vehicle_id, price) => {
   if (process.env.BLOCKCHAIN_TYPE === 'NONE') {
     store.dispatch(createMissionTransactionFulfilled());
+    store.dispatch(chooseBid(bidId));
     return Promise.resolve('Blockchain is disabled');
   }
   davSDK.createMissionTransaction(bidId, vehicle_id, price).then((response) => {
