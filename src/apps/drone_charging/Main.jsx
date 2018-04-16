@@ -6,7 +6,11 @@ import App from './App.jsx';
 import '../../common.css';
 import { updateApp } from '../../actions';
 
-store.dispatch(updateApp({ name: 'Drone Charging', path: '/drone_charging' }));
+store.dispatch(updateApp({ 
+  name: 'Drone Charging', 
+  path: '/drone_charging',
+  needType: 'drone_charging'
+}));
 
 ReactDOM.render(
   <Provider store={store}>

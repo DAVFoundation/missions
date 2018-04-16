@@ -1,6 +1,7 @@
 import store from '../store';
 import { packageSizeOptions } from '../lib/utils';
 import { createMissionTransaction } from '../actions';
+import { NEED_TYPES } from '../config/needTypes.js';
 import moment from 'moment';
 
 const apiRoot = process.env.MISSION_CONTROL_URL;
@@ -52,39 +53,39 @@ export const fetchBids = ({needId}) => {
   }
 };
 
-export const createNeed = (needDetails, needType = 'delivery_drones') => {
-  if (needType === 'delivery_drones') {
-    return createDeliveryNeed(needDetails);
-  } else {
-    return createChargingNeed(needDetails);
+export const createNeed = ({ pickup, dropoff, pickup_at, size, weight, need_type }) => {
+  switch(need_type) {
+  case NEED_TYPES.DRONE_DELIVERY: {
+    pickup_at = moment(pickup_at, 'HH:mm').format('x');
+    let url = new URL(`/needs`, apiRoot);
+    const sizeOption = packageSizeOptions.find(
+      sizeOption => sizeOption.id === size,
+    );
+    const body = {
+      pickup_at: pickup_at,
+      pickup_latitude: pickup.lat,
+      pickup_longitude: pickup.long,
+      pickup_address: pickup.address,
+      dropoff_latitude: dropoff.lat,
+      dropoff_longitude: dropoff.long,
+      cargo_type: sizeOption.cargoType,
+      weight: parseFloat(weight),
+      need_type: need_type
+    };
+    return fetchWithUserId(url, 'POST', body);
   }
-};
-
-const createDeliveryNeed = ({ pickup, dropoff, pickup_at, size, weight, need_type }) => {
-  pickup_at = moment(pickup_at, 'HH:mm').format('x');
-  let url = new URL(`/needs`, apiRoot);
-  const sizeOption = packageSizeOptions.find(
-    sizeOption => sizeOption.id === size,
-  );
-  const body = {
-    pickup_at: pickup_at,
-    pickup_latitude: pickup.lat,
-    pickup_longitude: pickup.long,
-    pickup_address: pickup.address,
-    dropoff_latitude: dropoff.lat,
-    dropoff_longitude: dropoff.long,
-    cargo_type: sizeOption.cargoType,
-    weight: parseFloat(weight),
-    need_type: need_type
-  };
-  return fetchWithUserId(url, 'POST', body);
-};
-
-const createChargingNeed = (needDetails) => { // eslint-disable-line no-unused-vars
-  // TODO: implement actual API call
-  return new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
-    resolve({needId: '5673920'});
-  });
+  case NEED_TYPES.DRONE_CHARGING: {
+    // TODO: implement actual API call
+    return new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
+      resolve({needId: '5673920'});
+    });
+  }
+  default: {
+    return new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
+      resolve({});
+    });
+  }
+  }
 };
 
 export const chooseBid = (bidId, vehicle_id, price) => {

@@ -50,7 +50,7 @@ class OrderScreen extends Component {
       size: packageSize || undefined,
       weight: this.weightNode.value || undefined,
       pickup_at: this.pickupTimeNode.value || undefined,
-      need_type: 'drone_delivery'
+      need_type: this.props.needType
     };
   }
 
@@ -228,6 +228,7 @@ class OrderScreen extends Component {
 OrderScreen.propTypes = {
   history: PropTypes.object.isRequired,
   appPath: PropTypes.string,
+  needType: PropTypes.string,
   userCoords: PropTypes.object,
   defaultDropoff: PropTypes.object,
   pickup: PropTypes.object,
