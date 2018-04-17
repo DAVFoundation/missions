@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {createMap, updateMap, initiateZoomTransition, clearTerminals, addTerminals} from '../lib/map';
 import './Map.css';
+import {NEED_TYPES} from '../config/needTypes';
 
 class Map extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class Map extends Component {
       addTerminals(this.map);
     }
 
-    if (nextProps.orderStage === 'in_mission') {
+    if (nextProps.orderStage === 'in_mission' && this.props.needType === NEED_TYPES.DRONE_DELIVERY) {
       initiateZoomTransition(this.map, nextProps.pickup, nextProps.dropoff);
       if (this.props.mapItems.length > 0 && nextProps.mapItems[0].status === 'waiting_pickup') {
         this.props.history.push(this.props.appPath + '/confirm-takeoff');
@@ -87,6 +88,7 @@ Map.defaultProps = {
 Map.propTypes = {
   mapItems: PropTypes.array.isRequired,
   mapItemType: PropTypes.string.isRequired,
+  needType: PropTypes.string.isRequired,
   coords: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   onMoveEnd: PropTypes.func.isRequired,

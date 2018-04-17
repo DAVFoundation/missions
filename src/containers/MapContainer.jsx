@@ -5,19 +5,21 @@ import {getBidArray} from '../reducers/bids';
 import {updateMapCoords} from '../actions';
 import Map from '../components/Map.jsx';
 import {getChargerArray} from '../reducers/chargers';
+import {NEED_TYPES} from '../config/needTypes';
 
 const matchStateToProps = (state) => {
   const appPath = state.app.path;
-
+  const needType = state.app.needType;
   let props = {
     orderStage: state.order.stage,
     pickup: state.order.pickup,
     dropoff: state.order.dropoff,
     droneLocation: state.order.droneLocation,
-    appPath
+    appPath,
+    needType
   };
 
-  if (appPath === '/drone_charging') {
+  if (needType === NEED_TYPES.DRONE_CHARGING) {
     props.mapItems = getRelevantMapItems('charger', state);
     props.mapItemType = 'charger';
   } else {

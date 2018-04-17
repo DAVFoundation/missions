@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getVehicleArray } from '../reducers/vehicles';
-import { approveCompletedMission } from '../actions';
+import {approveCompletedMission, confirmDroneDocking, completeChargingMission} from '../actions';
 import {NEED_TYPES} from '../config/needTypes';
 
 let Components = {};
@@ -10,7 +10,9 @@ Components['ChargingMissionScreen'] = require('../components/drone_charging/Miss
 Components['DeliveryMissionScreen'] = require('../components/MissionScreen.jsx').default;
 
 const mapDispatchToProps = (dispatch) => ({
-  approveCompletedMission: () => dispatch(approveCompletedMission())
+  approveCompletedMission: () => dispatch(approveCompletedMission()),
+  confirmDroneDocking: () => dispatch(confirmDroneDocking()),
+  completeChargingMission: () => dispatch(completeChargingMission())
 });
 
 const matchStateToProps = (state) => {

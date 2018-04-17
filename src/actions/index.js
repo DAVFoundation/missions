@@ -71,7 +71,12 @@ export const confirmTakeoffPending = createAction('CONFIRM_TAKEOFF_PENDING');
 export const confirmTakeoffFulfilled = createAction('CONFIRM_TAKEOFF_FULFILLED');
 
 
+export const confirmDroneDocking = createAction('CONFIRM_DRONE_DOCKING');
+
+
 // for charging mock purposes
+
+export const completeChargingMission = createAction('COMPLETE_CHARGING_MISSION');
 
 const apiStartChargingMission = (mission) => {
   return new Promise(resolve => resolve({mission}));
