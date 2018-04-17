@@ -5,6 +5,7 @@ import {
   confirmTakeoffPending,
   confirmTakeoffFulfilled,
   updateStatusFulfilled,
+  startChargingMissionFulfilled,
 } from '../actions';
 import {NEED_TYPES} from '../config/needTypes';
 
@@ -75,6 +76,13 @@ export default handleActions(
       }
       return state;
     },
+
+    [startChargingMissionFulfilled]: (state, {payload}) => {
+      if (payload.mission) {
+        return {...state, ...payload.mission, status: 'charger_waiting'};
+      }
+      return state;
+    }
   },
   defaultState,
 );

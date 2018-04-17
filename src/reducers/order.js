@@ -64,6 +64,8 @@ export default handleActions({
   [chooseBidPending]: state => {
     return {...state, stage: 'signing'};
   },
+
+
 },
 defaultState,
 );

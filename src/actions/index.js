@@ -7,11 +7,11 @@ import {
   confirmTakeoff as apiConfirmTakeoff,
 } from '../lib/api';
 
-import { 
-  initWeb3, 
+import {
+  initWeb3,
   registerDavId as davRegisterDavId,
   createMissionTransaction as davCreateMissionTransaction,
-  approveCompletedMission as davApproveCompletedMission 
+  approveCompletedMission as davApproveCompletedMission
 } from '../lib/dav';
 
 export const updateApp = createAction('UPDATE_APP');
@@ -64,13 +64,19 @@ export const createMissionTransactionFailed = createAction('CREATE_MISSION_TRANS
 
 export const approveCompletedMission = createAction('APPROVE_COMPLETED_MISSION', davApproveCompletedMission);
 
-export const confirmTakeoff = createAction(
-  'CONFIRM_TAKEOFF',
-  apiConfirmTakeoff,
-);
+export const confirmTakeoff = createAction('CONFIRM_TAKEOFF', apiConfirmTakeoff);
 
 export const confirmTakeoffPending = createAction('CONFIRM_TAKEOFF_PENDING');
 
-export const confirmTakeoffFulfilled = createAction(
-  'CONFIRM_TAKEOFF_FULFILLED',
-);
+export const confirmTakeoffFulfilled = createAction('CONFIRM_TAKEOFF_FULFILLED');
+
+
+// for charging mock purposes
+
+const apiStartChargingMission = (mission) => {
+  return new Promise(resolve => resolve({mission}));
+};
+
+export const startChargingMission = createAction('START_CHARGING_MISSION', apiStartChargingMission);
+
+export const startChargingMissionFulfilled = createAction('START_CHARGING_MISSION_FULFILLED');
