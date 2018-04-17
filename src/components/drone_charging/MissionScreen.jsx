@@ -25,7 +25,7 @@ class MissionScreen extends Component {
               <img src={currencyImage} className="currency-symbol" alt="DAV"/>
             </h1>
             <button onClick={this.approveCompletedMission.bind(this)} className="big-button close">
-              Close
+              CONFIRM
             </button>
           </div>
         </div>
@@ -47,7 +47,7 @@ class MissionScreen extends Component {
             </div>
           </div>
         </div>);
-    } else {
+    } else if (this.props.missionStatus === 'charger_waiting') {
       return (
         <div id="confirm-takeoff-screen" className="screen">
           <div className="screen-background--dark"/>

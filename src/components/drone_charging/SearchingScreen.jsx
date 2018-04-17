@@ -24,15 +24,12 @@ class SearchingScreen extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.stage === 'signing' && prevProps.stage !== 'signing') {
-      this.screenNode.scrollTop = 0;
-    }
-
-    if (this.props.stage === 'signing') {
       if (this.props.mission) {
         setTimeout(() => {
           this.props.startChargingMission(this.props.mission);
         }, 6000);
       }
+      this.screenNode.scrollTop = 0;
     }
 
     if (this.props.missionStatus === 'charger_waiting' && prevProps.stage === 'signing') {

@@ -1,6 +1,6 @@
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { getVehicleArray } from '../reducers/vehicles';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
+import {getVehicleArray} from '../reducers/vehicles';
 import {approveCompletedMission, confirmDroneDocking, completeChargingMission} from '../actions';
 import {NEED_TYPES} from '../config/needTypes';
 
@@ -20,7 +20,7 @@ const matchStateToProps = (state) => {
   const props = {};
   const mission = state.mission;
 
-  if (needType === NEED_TYPES.DRONE_CHARGING){
+  if (needType === NEED_TYPES.DRONE_CHARGING) {
     props.missionStatus = mission.status;
   } else {
     const vehicles = getVehicleArray(state.vehicles);
