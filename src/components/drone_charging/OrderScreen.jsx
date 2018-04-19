@@ -1,20 +1,31 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Link from '../../containers/LinkContainer.jsx';
-import '../OrderScreen.css';
 import arrow from '../../images/arrow-left.svg';
 import Geosuggest from 'react-geosuggest';
+import Slider from 'react-rangeslider';
+import 'react-rangeslider/lib/index.css';
+import '../OrderScreen.css';
 import x_button from '../../images/x_button.svg';
 
 class OrderScreen extends Component {
   constructor(props) {
     super(props);
     this.updateStoreFromForm = this.updateStoreFromForm.bind(this);
+    this.handleSearchRadiusChange = this.handleSearchRadiusChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.cancelForm = this.cancelForm.bind(this);
     this.createOrderDetailsObject = this.createOrderDetailsObject.bind(this);
 
-    this.state = {};
+    this.state = {
+      searchRadiusValue: 2
+    };
+  }
+
+  handleSearchRadiusChange(value) {
+    this.setState({
+      searchRadiusValue: value
+    });
   }
 
   componentDidMount() {
@@ -22,13 +33,13 @@ class OrderScreen extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.registration_step === 'register_fulfilled') {
+    if (nextProps.registration_step === 'register_fulfilled') {
       this.submitForm();
     }
   }
 
   createOrderDetailsObject() {
-    const { droneLocation } = this.state;
+    const {droneLocation} = this.state;
     return {
       droneLocation: {
         address: droneLocation.description,
@@ -38,24 +49,24 @@ class OrderScreen extends Component {
       droneType: this.droneTypeNode.value || undefined,
       currentCharge: this.currentChargeNode.value || undefined,
       chargingVelocity: this.chargingVelocityNode.value || undefined,
-      searchRadius: this.searchRadiusNode.value || undefined
+      searchRadius: this.state.searchRadiusValue || undefined
     };
   }
 
   updateStoreFromForm(detailOverride = {}) {
     const details = this.createOrderDetailsObject();
-    this.props.updateOrderDetails({ ...details, ...detailOverride });
+    this.props.updateOrderDetails({...details, ...detailOverride});
   }
 
   cancelForm() {
-    this.updateStoreFromForm({ stage: 'draft', droneLocation: null, currentCharge: null });
+    this.updateStoreFromForm({stage: 'draft', droneLocation: null, currentCharge: null});
   }
 
   submitForm() {
-    this.updateStoreFromForm({ stage: 'searching', registration_step: 'registered' });
+    this.updateStoreFromForm({stage: 'searching', registration_step: 'registered'});
     let needDetails = this.createOrderDetailsObject();
     this.props.createNeed(needDetails);
-    this.props.history.push(this.props.appPath+'/searching');
+    this.props.history.push(this.props.appPath + '/searching');
   }
 
   dismissDialog() {
@@ -97,7 +108,7 @@ class OrderScreen extends Component {
             <div
               onClick={this.dismissDialog.bind(this)}
               className="sort-options__close-button">
-              <img src={x_button} alt="close button" />
+              <img src={x_button} alt="close button"/>
             </div>
             <h1>Missing DAV ID</h1>
             <p>This wallet is not connected to a DAV ID</p>
@@ -115,7 +126,7 @@ class OrderScreen extends Component {
     return (
       <div id="order-screen" className="screen">
         <Link to="/" className="back-button" onClick={this.cancelForm}>
-          <img src={arrow} alt="Back" />
+          <img src={arrow} alt="Back"/>
         </Link>
         <h1>Find Charging Station</h1>
         <div className="form-field">
@@ -126,12 +137,12 @@ class OrderScreen extends Component {
             ignoreTab={true}
             placeholder="Type the address of the drone"
             onChange={
-              () => this.setState({ droneLocation: undefined })
+              () => this.setState({droneLocation: undefined})
             }
             onSuggestSelect={
               geo => {
                 if (geo) {
-                  this.setState({ droneLocation: geo });
+                  this.setState({droneLocation: geo});
                 }
               }
             }
@@ -139,15 +150,14 @@ class OrderScreen extends Component {
         </div>
 
         <div className="form-field">
-          <label htmlFor="search-radius">Search radius</label>
-          <input
-            id="search-radius"
-            type="number"
-            defaultValue="1.5"
-            ref={node => {
-              this.searchRadiusNode = node;
-            }}
-          />km
+          <label htmlFor="search-radius">Search radius (km)</label>
+          <Slider
+            maxValue={20}
+            minValue={0}
+            value={this.state.searchRadiusValue}
+            orientation='horizontal'
+            onChange={this.handleSearchRadiusChange}
+          />
         </div>
 
         <div className="form-field">
@@ -188,11 +198,12 @@ class OrderScreen extends Component {
             <option value="30">30Ah</option>
           </select>
         </div>
-        <button onClick={this.verifyIdentity.bind(this)} className={(this.state.droneLocation !== undefined && this.state.droneLocation.location !== undefined) ? 'big-button form-submit-button': 'disabled-button form-submit-button'} >
+        <button onClick={this.verifyIdentity.bind(this)}
+          className={(this.state.droneLocation !== undefined && this.state.droneLocation.location !== undefined) ? 'big-button form-submit-button' : 'disabled-button form-submit-button'}>
           Find Stations
         </button>
-        { showSignInToWalletDialog === false ? (<div/>) : signInToWalletDialog }
-        { showRegisterDavIdDialog === false ? (<div/>) : registerDavIdDialog}
+        {showSignInToWalletDialog === false ? (<div/>) : signInToWalletDialog}
+        {showRegisterDavIdDialog === false ? (<div/>) : registerDavIdDialog}
       </div>
     );
   }

@@ -33,6 +33,7 @@
     "redux-actions": "^2.2.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-promise-middleware": "5.0.0",
+    "react-rangeslider": "^2.2.0",
     "truffle-contract": "^3.0.4",
     "turf": "^3.0.14",
     "web3": "^1.0.0-beta.33"
