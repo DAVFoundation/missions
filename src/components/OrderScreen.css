@@ -106,6 +106,6 @@ a.form-submit-button {
   margin: auto;
 }
 
-.rangeslider__fill, .rangeslider__handle {
+.rangeslider__fill {
   background-color: #FF6A46 !important;
 }
