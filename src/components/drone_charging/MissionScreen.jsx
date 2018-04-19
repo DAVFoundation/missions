@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import '../MissionScreen.css';
 import '../ConfirmTakeoff.css';
 import currencyImage from '../../images/dav.svg';
+import droneWaiting from '../../images/charging_drone_waiting.png';
+import chargingIcon from '../../images/charging_icon.png';
 import PropTypes from 'prop-types';
 
 class MissionScreen extends Component {
@@ -39,7 +41,7 @@ class MissionScreen extends Component {
               <h1>Charging in progress</h1>
               <p>Whenever you would like to end charging, press the ‘Stop Charging’ button</p>
               <p>
-                <i></i>
+                <img src={chargingIcon} alt="charging icon"/>
               </p>
               <button onClick={this.props.completeChargingMission} className="big-button">
                 STOP CHARGING
@@ -56,7 +58,7 @@ class MissionScreen extends Component {
               <h1>Waiting for your drone</h1>
               <p>Once your drone has arrived and docked at the charging station, press the ‘Start Charging’ button</p>
               <p>
-                <i></i>
+                <img src={droneWaiting} alt="Waiting for drone icon"/>
               </p>
               <button onClick={this.props.confirmDroneDocking} className="big-button with-subtext">
                 START CHARGING<br/>

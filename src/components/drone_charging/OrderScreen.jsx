@@ -8,6 +8,7 @@ import 'react-rangeslider/lib/index.css';
 import '../OrderScreen.css';
 import x_button from '../../images/x_button.svg';
 
+
 class OrderScreen extends Component {
   constructor(props) {
     super(props);
