@@ -8,7 +8,7 @@ import pickupIcon from '../images/pin-pickup.svg';
 import dropoffIcon from '../images/pin-dropoff.svg';
 import mapStyle from './map_style.json';
 import turf from 'turf';
-
+ 
 const icons = {droneIcon, locationIcon, chargingStationIcon, pickupIcon, dropoffIcon};
 
 const createGeoJson = (features = []) => {
@@ -27,10 +27,40 @@ const createGeoJson = (features = []) => {
   };
 };
 
-const getUserLocation = () =>
+export const getUserLocation = () =>
   new Promise((resolve, reject) =>
-    navigator.geolocation.getCurrentPosition(resolve, reject),
+    navigator.geolocation.getCurrentPosition(resolve, reject, {maximumAge:60000, timeout: 50000, enableHighAccuracy: false}),
   );
+
+export const getUserLocationPlace = () => {
+  return  hasGeolocationPermission()
+    .then(getUserLocation)
+    .then((resp) => {
+      return new Promise((resolve, reject) => {
+        if (window.google && window.google.maps) {
+          var geocoder = new window.google.maps.Geocoder();
+          geocoder.geocode({
+            location: {
+              lat: resp.coords.latitude,
+              lng: resp.coords.longitude
+            }
+          }, (results, status) => {
+            if (status === 'OK') {
+              if (results[0]) {
+                resolve(results[0].formatted_address);
+              } else {
+                reject('Geocoder: No results found');
+              }
+            } else {
+              reject('Geocoder failed due to: ' + status);
+            }
+          });
+        } else {
+          reject('Google map api was not found in the page.');
+        }
+      });
+    });
+};
 
 /**
  * Returns a promise that resolves only if we can determine that the user has granted geolocation permission
@@ -56,7 +86,7 @@ export const createMap = ({
 }) => {
   // Add support for right-to-left languages
   mapboxgl.setRTLTextPlugin(
-    'lib/mapbox-gl-rtl-text.js.min',
+    '/lib/mapbox-gl-rtl-text.js.min',
   );
 
   // Create the map

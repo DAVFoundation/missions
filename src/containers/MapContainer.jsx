@@ -20,7 +20,10 @@ const matchStateToProps = (state) => {
     orderStage: state.order.stage,
     pickup: state.order.pickup,
     dropoff: state.order.dropoff,
-    droneLocation: state.order.droneLocation
+    droneLocation: state.order.droneLocation,
+    startPosition: state.order.startPosition,
+    endPosition: state.order.endPosition,
+    needType: state.app.needType
   };
   if (state.mission) {
     props.missionStatus = state.mission.status;
