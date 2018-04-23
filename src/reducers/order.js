@@ -2,7 +2,8 @@ import {handleActions} from 'redux-actions';
 import {
   updateOrderDetails, createNeedFulfilled, updateStatusFulfilled,
   resetOrderDetails, chooseBidPending, updateBidsFulfilled,
-  unlockWallet, unregisteredDavId, registerDavIdFulfilled, closeWalletDialog
+  unlockWallet, unregisteredDavId, registerDavIdFulfilled, closeWalletDialog, startChargingMissionFulfilled,
+  confirmDroneDocking
 } from '../actions';
 import getConfig from '../config';
 
@@ -58,12 +59,21 @@ export default handleActions({
     return state;
   },
 
+  [startChargingMissionFulfilled]: state => {
+    return {...state, ...{stage: 'in_mission'}};
+  },
+
+  [confirmDroneDocking]: state => {
+    return {...state, ...{stage: 'in_mission'}};
+  },
 
   [resetOrderDetails]: () => defaultState,
 
   [chooseBidPending]: state => {
     return {...state, stage: 'signing'};
   },
+
+
 },
 defaultState,
 );

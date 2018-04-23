@@ -3,8 +3,9 @@ import {getBidArray} from '../reducers/bids';
 import {getVehicleOnMission} from '../reducers/vehicles';
 import {getChargerOnMission} from '../reducers/chargers';
 import {getRouteProvidersOnMission} from '../reducers/routes';
-import {resetOrderDetails, chooseBid} from '../actions';
+import {resetOrderDetails,chooseBid, startChargingMission} from '../actions';
 import {cancelNeed} from '../lib/api';
+import {withRouter} from 'react-router-dom';
 
 let Components = {
   'ChargingSearchingScreen': require('../components/drone_charging/SearchingScreen.jsx').default,
@@ -15,6 +16,7 @@ let Components = {
 const mapDispatchToProps = (dispatch) => ({
   cancelSearch: () => cancelNeed().then(dispatch(resetOrderDetails())),
   chooseBid: (bidId, vehicle_id, price) => dispatch(chooseBid(bidId, vehicle_id, price)),
+  startChargingMission: (mission) => dispatch(startChargingMission(mission))
 });
 
 const SearchingScreenContainer = (componentName) => {
@@ -24,6 +26,7 @@ const SearchingScreenContainer = (componentName) => {
       bids: getBidArray(state.bids),
       stage: state.order.stage,
       missionId: state.mission.id,
+      mission: state.mission,
       appPath: state.app.path
     };
 
@@ -33,18 +36,18 @@ const SearchingScreenContainer = (componentName) => {
     } else if (componentName === 'RoutePlanSearchingScreen') {
       props.routeProviders = state.routes;
       props.providersOnMission = getRouteProvidersOnMission(state);
+      props.missionStatus = state.mission.status;
     } else if (componentName === 'DeliverySearchingScreen') {
       props.vehicles = state.vehicles;
       props.vehicleOnMission = getVehicleOnMission(state);
-    } 
+    }
     return props;
   };
 
   return connect(
     mapStateToProps,
     mapDispatchToProps
-  )(SearchingScreen);
+  )(withRouter(SearchingScreen));
 };
 
 export default SearchingScreenContainer;
-'';

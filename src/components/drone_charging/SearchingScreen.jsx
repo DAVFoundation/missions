@@ -24,7 +24,16 @@ class SearchingScreen extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.stage === 'signing' && prevProps.stage !== 'signing') {
+      if (this.props.mission) {
+        setTimeout(() => {
+          this.props.startChargingMission(this.props.mission);
+        }, 6000);
+      }
       this.screenNode.scrollTop = 0;
+    }
+
+    if (this.props.missionStatus === 'charger_waiting' && prevProps.stage === 'signing') {
+      this.props.history.push(this.props.appPath+'/mission');
     }
 
     if (this.props.stage === 'choosing' && prevProps.stage !== 'choosing') {
@@ -188,11 +197,16 @@ class SearchingScreen extends Component {
 SearchingScreen.propTypes = {
   chargers: PropTypes.object.isRequired,
   chargerOnMission: PropTypes.object,
+  history: PropTypes.object,
   missionId: PropTypes.number,
+  mission: PropTypes.object,
+  missionStatus: PropTypes.string,
   bids: PropTypes.array.isRequired,
   stage: PropTypes.string.isRequired,
+  appPath: PropTypes.string.isRequired,
   cancelSearch: PropTypes.func.isRequired,
-  chooseBid: PropTypes.func.isRequired
+  chooseBid: PropTypes.func.isRequired,
+  startChargingMission: PropTypes.func.isRequired
 };
 
 export default SearchingScreen;

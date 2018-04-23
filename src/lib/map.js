@@ -1,15 +1,16 @@
 import mapboxgl from 'mapbox-gl';
+import store from '../store';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {makeImage} from './utils';
 import droneIcon from '../images/icon_drone.png';
 import locationIcon from '../images/icon_location.png';
-import chargingStationIcon from '../images/icon_charging_station.png';
+import chargerIcon from '../images/icon_charging_station.png';
 import pickupIcon from '../images/pin-pickup.svg';
 import dropoffIcon from '../images/pin-dropoff.svg';
 import mapStyle from './map_style.json';
 import turf from 'turf';
- 
-const icons = {droneIcon, locationIcon, chargingStationIcon, pickupIcon, dropoffIcon};
+
+const icons = {droneIcon, locationIcon, chargerIcon, pickupIcon, dropoffIcon};
 
 const createGeoJson = (features = []) => {
   return {
@@ -82,7 +83,6 @@ export const createMap = ({
   onMapItemClick,
   onMoveEnd,
   addControls,
-  appPath
 }) => {
   // Add support for right-to-left languages
   mapboxgl.setRTLTextPlugin(
@@ -145,7 +145,7 @@ export const createMap = ({
       },
     });
 
-    map.addSource('chargingStations', {
+    map.addSource('chargers', {
       type: 'geojson',
       data: {
         type: 'FeatureCollection',
@@ -154,18 +154,18 @@ export const createMap = ({
     });
 
     map.addLayer({
-      id: 'chargingStations',
+      id: 'chargers',
       type: 'symbol',
-      source: 'chargingStations',
+      source: 'chargers',
       minzoom: 10,
       layout: {
-        'icon-image': 'chargingStation',
+        'icon-image': 'charger',
         'icon-allow-overlap': true,
         'icon-ignore-placement': true,
       },
     });
 
-    ['vehicles', 'chargingStations'].forEach((mapItemType) => {
+    ['vehicles', 'chargers'].forEach((mapItemType) => {
       map.on('click', mapItemType, e =>
         onMapItemClick({id: e.features[0].properties.id, mapItemType: mapItemType}),
       );
@@ -183,12 +183,9 @@ export const createMap = ({
     .then(getUserLocation)
     .then(({coords}) => {
       addUserLocationIcon(map, coords);
-      if (appPath === '/drone_charging') {
-        // TODO: remove this/get actual charging stations
-        let chargingStations = addControls ? [] : generateRandomChargingStations(coords);
-        addChargingStations(map, chargingStations);
+      if (store.getState().order.stage === 'draft') {
+        return map.setCenter([coords.longitude, coords.latitude]);
       }
-      return map.setCenter([coords.longitude, coords.latitude]);
     })
     .catch(() => {
     });
@@ -196,21 +193,18 @@ export const createMap = ({
   return map;
 };
 
-export const updateMap = (map, vehicles = [], {pickup, dropoff, droneLocation}) => {
+export const updateMap = (map, mapItems = [], mapItemType, {pickup, dropoff, droneLocation}) => {
   handleMapUpdate(map, () => {
-    if (vehicles) map.getSource('vehicles').setData(createGeoJson(vehicles));
+    const mapItemTypePlural = `${mapItemType}s`;
+    if (mapItems) map.getSource(mapItemTypePlural).setData(createGeoJson(mapItems));
     if (droneLocation) map.getSource('vehicles').setData(createGeoJson([droneLocation]));
     if (pickupAndDropoffPresent(map, pickup, dropoff)) {
       map.getSource('pickup').setData(turf.point([pickup.long, pickup.lat]));
       map.getSource('dropoff').setData(turf.point([dropoff.long, dropoff.lat]));
     }
-    // addChargingStations(map, chargingStations);
   });
 };
 
-const addChargingStations = (map, chargingStations) => {
-  if (chargingStations) map.getSource('chargingStations').setData(createGeoJson(chargingStations));
-};
 
 const handleMapUpdate = (map, update) => {
   if (!map.loaded()) {
@@ -315,26 +309,3 @@ export const addTerminals = map => {
   }
 };
 
-
-// generate random charging stations just for viewing/testing purposes
-const generateRandomChargingStations = (coords) => {
-  let chargingStations = [];
-  for (let i = 0; i < 4; i++) {
-    chargingStations.push({id: i, coords: randomCoords({coords, radius: 1000})});
-  }
-  return chargingStations;
-};
-
-const randomCoords = ({coords, radius}) => {
-  const angle = Math.random() * 2 * Math.PI;
-  const distance = Math.random() * radius;
-  const longDegreesPerMeter = 1 / 111321.377778; // longitude degrees per meter
-  const latDegreesPerMeter = 1 / 111134.86111; // latitude degrees per meter
-  const x = parseFloat(
-    (coords.latitude + latDegreesPerMeter * distance * Math.cos(angle)).toFixed(6),
-  );
-  const y = parseFloat(
-    (coords.longitude + longDegreesPerMeter * distance * Math.sin(angle)).toFixed(6),
-  );
-  return {lat: x, long: y};
-};

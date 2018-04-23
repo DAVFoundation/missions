@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {createMap, updateMap, initiateZoomTransition, clearTerminals, addTerminals} from '../lib/map';
+import { createMap, updateMap, initiateZoomTransition, clearTerminals, addTerminals } from '../lib/map';
 import { NEED_TYPES } from '../config/needTypes.js';
 import './Map.css';
 
@@ -22,10 +22,10 @@ class Map extends Component {
 
     if (nextProps.droneLocation) terminals.droneLocation = nextProps.droneLocation;
 
-    updateMap(this.map, nextProps.vehicles, terminals);
+    updateMap(this.map, nextProps.mapItems, nextProps.mapItemType, terminals);
 
     if (this.props.orderStage === 'draft' && nextProps.orderStage === 'searching') {
-      initiateZoomTransition(this.map, terminals, {maxZoom: 14});
+      initiateZoomTransition(this.map, terminals, { maxZoom: 14 });
       addTerminals(this.map);
     }
 
@@ -40,11 +40,12 @@ class Map extends Component {
     }
 
     if (nextProps.orderStage === 'in_mission') {
-      if(nextProps.needType === NEED_TYPES.ROUTE_PLAN) {
+      if (nextProps.needType === NEED_TYPES.ROUTE_PLAN || nextProps.needType === NEED_TYPES.DRONE_CHARGING) {
         this.props.history.push(this.props.appPath + '/mission');
-      } else {
+      }
+      else {
         initiateZoomTransition(this.map, nextProps.pickup, nextProps.dropoff);
-        if (this.props.vehicles.length > 0 && nextProps.vehicles[0].status === 'waiting_pickup') {
+        if (this.props.mapItems.length > 0 && nextProps.mapItems[0].status === 'waiting_pickup') {
           this.props.history.push(this.props.appPath + '/confirm-takeoff');
         } else {
           this.props.history.push(this.props.appPath + '/mission');
@@ -55,7 +56,7 @@ class Map extends Component {
     return false;
   }
 
-  onMapItemClick({id, mapItemType}) {
+  onMapItemClick({ id, mapItemType }) {
     if (this.props.orderStage == 'in_mission') {
       this.props.history.push(this.props.appPath + `/mission/${mapItemType}/` + id);
     } else {
@@ -70,32 +71,33 @@ class Map extends Component {
       'coords': this.props.coords,
       'onMapItemClick': this.onMapItemClick,
       'onMoveEnd': this.props.onMoveEnd,
-      'addControls': this.props.addControls,
-      'appPath': this.props.appPath
+      'addControls': this.props.addControls
     });
     const terminals = {
       pickup: this.props.pickup,
       dropoff: this.props.dropoff
     };
-    updateMap(this.map, this.props.vehicles, terminals);
+    updateMap(this.map, this.props.mapItems, this.props.mapItemType, terminals);
   }
 
   render() {
     return (
       <div>
-        <div id="map"/>
-        <div id="map-overlay"/>
+        <div id="map" />
+        <div id="map-overlay" />
       </div>
     );
   }
 }
 
 Map.defaultProps = {
-  coords: {lat: 32.068717, long: 34.775805}
+  coords: { lat: 32.068717, long: 34.775805 }
 };
 
 Map.propTypes = {
-  vehicles: PropTypes.array.isRequired,
+  mapItems: PropTypes.array.isRequired,
+  mapItemType: PropTypes.string.isRequired,
+  needType: PropTypes.string.isRequired,
   coords: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   onMoveEnd: PropTypes.func.isRequired,
@@ -108,7 +110,6 @@ Map.propTypes = {
   endPosition: PropTypes.object,
   appPath: PropTypes.string,
   addControls: PropTypes.bool,
-  needType: PropTypes.string,
 };
 
 export default Map;

@@ -1,5 +1,6 @@
-import { connect } from 'react-redux';
-import { resetOrderDetails } from '../actions';
+import {connect} from 'react-redux';
+import {resetOrderDetails} from '../actions';
+import {getChargerArray} from '../reducers/chargers';
 
 let Components = {};
 
@@ -13,8 +14,17 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MainScreenContainer = (componentName) => {
+  let mapStateToProps = () => ({});
+  if (componentName === 'ChargingMainScreen') {
+    mapStateToProps = (state) => {
+      return {
+        chargers: getChargerArray(state.chargers),
+        coords: state.map.coords
+      };
+    };
+  }
   const MainScreen = Components[componentName];
-  return connect(() => ({}),mapDispatchToProps)(MainScreen);
+  return connect(mapStateToProps, mapDispatchToProps)(MainScreen);
 };
 
 
