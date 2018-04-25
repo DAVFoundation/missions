@@ -2,6 +2,7 @@ import store from '../store';
 import { packageSizeOptions } from '../lib/utils';
 import { createMissionTransaction } from '../actions';
 import moment from 'moment';
+import { NEED_TYPES } from '../config/needTypes.js';
 
 const apiRoot = process.env.MISSION_CONTROL_URL;
 
@@ -16,18 +17,28 @@ export const fetchStatus = ({ id, lat, long, needId }) => {
   return fetchWithUserId(url);
 };
 
-export const fetchBids = ({needId}) => {
+export const fetchBids = ({ needId }) => {
   let url = new URL(`/bids/${needId}`, apiRoot);
   return fetchWithUserId(url);
 };
 
-export const createNeed = ({ pickup, dropoff, pickup_at, size, weight, need_type }) => {
+export const createDroneChargingNeed = ({ chargingVelocity, currentCharge, droneLocation, droneType, searchRadius }) => {
+  // :    { address: "TT 453A Giải Phóng, Phương Liệt, Thanh Xuân, Hanoi, Vietnam", lat: 20.995084, long: 105.84166400000004 }
+  const params = {
+    chargingVelocity, currentCharge, droneLocation, droneType, searchRadius,
+    need_type: NEED_TYPES.DRONE_CHARGING
+  };
+
+  return createNeed(params);
+};
+
+export const createRoutePlanNeed = ({ pickup, dropoff, pickup_at, size, weight }) => {
   pickup_at = moment(pickup_at, 'HH:mm').format('x');
-  let url = new URL(`/needs`, apiRoot);
   const sizeOption = packageSizeOptions.find(
     sizeOption => sizeOption.id === size,
   );
-  const body = {
+
+  const params = {
     pickup_at: pickup_at,
     pickup_latitude: pickup.lat,
     pickup_longitude: pickup.long,
@@ -36,9 +47,40 @@ export const createNeed = ({ pickup, dropoff, pickup_at, size, weight, need_type
     dropoff_longitude: dropoff.long,
     cargo_type: sizeOption.cargoType,
     weight: parseFloat(weight),
-    need_type: need_type
+    need_type: NEED_TYPES.ROUTE_PLAN
   };
-  return fetchWithUserId(url, 'POST', body);
+
+  return createNeed(params);
+};
+
+export const createNeed = (params) => {
+  let url = new URL(`/needs`, apiRoot);
+  params = {
+    ...params,
+    need_type: params.need_type
+  };
+  return fetchWithUserId(url, 'POST', params);
+};
+
+export const createDroneDeliveryNeed = ({ pickup, dropoff, pickup_at, size, weight }) => {
+  pickup_at = moment(pickup_at, 'HH:mm').format('x');
+  const sizeOption = packageSizeOptions.find(
+    sizeOption => sizeOption.id === size,
+  );
+
+  const params = {
+    pickup_at: pickup_at,
+    pickup_latitude: pickup.lat,
+    pickup_longitude: pickup.long,
+    pickup_address: pickup.address,
+    dropoff_latitude: dropoff.lat,
+    dropoff_longitude: dropoff.long,
+    cargo_type: sizeOption.cargoType,
+    weight: parseFloat(weight),
+    need_type: NEED_TYPES.DRONE_DELIVERY
+  };
+
+  return createNeed(params);
 };
 
 export const chooseBid = (bidId, vehicle_id, price) => {

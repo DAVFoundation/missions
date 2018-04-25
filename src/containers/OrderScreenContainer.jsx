@@ -4,7 +4,7 @@ import {shiftCoords} from '../lib/utils';
 import { NEED_TYPES } from '../config/needTypes.js';
 import {
   updateOrderDetails,
-  createNeed,
+  createDroneDeliveryNeed,
   verifyDavId,
   registerDavId,
   closeWalletDialog
@@ -18,10 +18,9 @@ let Components = {
 };
 
 const OrderScreenContainer = (componentName) => {
-
   const mapDispatchToProps = (dispatch) => ({
     updateOrderDetails: (details) => dispatch(updateOrderDetails(details)),
-    createNeed: (need) => dispatch(createNeed(need)),
+    createNeed: (need) => dispatch(createDroneDeliveryNeed(need)),
     onMount: () => dispatch(updateOrderDetails({stage: 'draft'})),
     verifyIdentity: () => dispatch(verifyDavId()),
     registerIdentity: () => dispatch(registerDavId()),

@@ -1,7 +1,9 @@
 import { createAction } from 'redux-actions';
 import {
   fetchStatus as apiFetchStatus,
-  createNeed as apiCreateNeed,
+  createDroneDeliveryNeed as apiCreateDroneDeliveryNeed,
+  createRoutePlanNeed as apiCreateRoutePlanNeed,
+  createDroneChargingNeed as apiCreateDroneChargingNeed,
   fetchBids as apiFetchBids,
   chooseBid as apiChooseBid,
   confirmTakeoff as apiConfirmTakeoff,
@@ -42,7 +44,9 @@ export const updateOrderDetails = createAction('UPDATE_ORDER_DETAILS');
 
 export const resetOrderDetails = createAction('RESET_ORDER_DETAILS');
 
-export const createNeed = createAction('CREATE_NEED', apiCreateNeed);
+export const createDroneDeliveryNeed = createAction('CREATE_DRONEDELIVERY_NEED', apiCreateDroneDeliveryNeed);
+export const createDroneChargingNeed = createAction('CREATE_CHARGING_NEED', apiCreateDroneChargingNeed);
+export const createRoutePlanNeed = createAction('CREATE_ROUTEPLAN_NEED', apiCreateRoutePlanNeed);
 
 export const createNeedFulfilled = createAction('CREATE_NEED_FULFILLED');
 

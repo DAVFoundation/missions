@@ -50,7 +50,7 @@ class OrderScreen extends Component {
       droneType: this.droneTypeNode.value || undefined,
       currentCharge: this.currentChargeNode.value || undefined,
       chargingVelocity: this.chargingVelocityNode.value || undefined,
-      searchRadius: this.searchRadiusNode.value || undefined,
+      searchRadius: this.state.searchRadiusValue || undefined,
       need_type: this.props.needType
     };
   }
