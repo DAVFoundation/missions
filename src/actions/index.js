@@ -5,13 +5,14 @@ import {
   fetchBids as apiFetchBids,
   chooseBid as apiChooseBid,
   confirmTakeoff as apiConfirmTakeoff,
+  completeSimulationMission as apiCompleteSimulationMission,
 } from '../lib/api';
 
-import { 
-  initWeb3, 
+import {
+  initWeb3,
   registerDavId as davRegisterDavId,
   createMissionTransaction as davCreateMissionTransaction,
-  approveCompletedMission as davApproveCompletedMission 
+  approveCompletedMission as davApproveCompletedMission
 } from '../lib/dav';
 
 export const updateApp = createAction('UPDATE_APP');
@@ -58,7 +59,7 @@ export const chooseBidFulfilled = createAction('CHOOSE_BID_FULFILLED');
 
 export const createMissionTransaction = createAction('CREATE_MISSION_TRANSACTION', davCreateMissionTransaction);
 
-export const createMissionTransactionFulfilled = createAction('CREATE_MISSION_TRANSACTION_FULFILLED');
+export const createMissionTransactionFulfilled = createAction('CREATE_MISSION_TRANSACTION_FULFILLED', apiCompleteSimulationMission);
 
 export const createMissionTransactionFailed = createAction('CREATE_MISSION_TRANSACTION_FAILED');
 

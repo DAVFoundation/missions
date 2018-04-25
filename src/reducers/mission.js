@@ -4,7 +4,7 @@ import {
   updateContractMissionIdMissionId,
   confirmTakeoffPending,
   confirmTakeoffFulfilled,
-  updateStatusFulfilled,
+  updateStatusFulfilled, createMissionTransactionFulfilled,
 } from '../actions';
 
 const defaultState = {};
@@ -53,6 +53,10 @@ export default handleActions(
 
     [updateContractMissionIdMissionId]: (state, {payload: { contractMissionId }}) => {
       return { ...state, contractMissionId: contractMissionId };
+    },
+
+    [createMissionTransactionFulfilled]: (state) => {
+      return { ...state, status: 'completed' };
     },
 
     [confirmTakeoffPending]: state => ({

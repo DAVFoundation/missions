@@ -28,7 +28,7 @@ class MissionScreen extends Component {
         <div className="modal-container">
           <div className="modal-box wallet-dialog">
             <h1>Route Plan Is In Progress</h1>
-            <p>Once your route plan is ready you will be<br/> 
+            <p>Once your route plan is ready you will be<br/>
             notified via the app</p>
             <div id="rote-plan-img">
               <img
@@ -51,7 +51,7 @@ class MissionScreen extends Component {
         <div className="modal-container">
           <div className="modal-box wallet-dialog">
             <h1>Your Route Plan is Ready</h1>
-            <p>Click the ‘Download’ button below to<br /> 
+            <p>Click the ‘Download’ button below to<br />
             view the full details of your route plan.</p>
             <button onClick={this.dismissDialog.bind(this)} className="big-button">
               DOWNLOAD
@@ -66,15 +66,13 @@ class MissionScreen extends Component {
   }
 
   render() {
+    console.log(this.props.missionStatus);
     switch(this.props.missionStatus) {
     case 'completed': {
       return (
         <div>
           <div className="mission-info">
             <div className="mission-info-summary">
-              {
-                // TODO: draw path on map
-              }
               <h1>Route Plan is Ready!</h1>
               <p>Press ‘Confirm’ to view route instructions</p>
               <p>Cost for delivery:</p>

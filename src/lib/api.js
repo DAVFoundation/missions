@@ -9,6 +9,7 @@ const apiRoot = process.env.MISSION_CONTROL_URL;
 
 const simulationType = 'ROUTE_PLAN';
 let simulationMissionStarted = false;
+let simulationMissionCompleted = false;
 const getAPIFixtures = (simulation) => { // TODO: Remove this
   switch(simulation) {
   case 'ROUTE_PLAN': {
@@ -30,7 +31,7 @@ const getAPIFixtures = (simulation) => { // TODO: Remove this
   }
   case 'CHARGING': {
     const droneLocation = store.getState().order.droneLocation;
-    const testCharger = {   
+    const testCharger = {
       id: '1',
       icon: `https://lorempixel.com/100/100/abstract/?5673920`,
       manufacturer: 'GeoCharge',
@@ -56,7 +57,9 @@ const getAPIFixtures = (simulation) => { // TODO: Remove this
 
 export const fetchStatus = ({id, lat, long, needId}) => {
   if (simulationType !== 'NONE') {
-    if(simulationMissionStarted) {
+    if (simulationMissionCompleted) {
+      return Promise.resolve({ status: 'in_mission', mission: { status: 'completed' } });
+    } else if(simulationMissionStarted) {
       return Promise.resolve({ status: 'in_mission', mission: { status: 'in_progress' } });
     } else {
       let providers = [getAPIFixtures(simulationType).provider];
@@ -134,6 +137,10 @@ export const createNeed = (needDetails) => {
     });
   }
   }
+};
+
+export const completeSimulationMission = () => {
+  simulationMissionCompleted = true;
 };
 
 export const chooseBid = (bidId, vehicle_id, price) => {
