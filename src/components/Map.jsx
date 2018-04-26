@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {createMap, updateMap, initiateZoomTransition, clearTerminals, addTerminals} from '../lib/map';
+import {createMap, updateMap, initiateZoomTransition, clearTerminals, addTerminals, addRoute} from '../lib/map';
+import { NEED_TYPES } from '../config/needTypes.js';
 import './Map.css';
 
 class Map extends Component {
@@ -15,6 +16,10 @@ class Map extends Component {
 
     if (nextProps.pickup) terminals.pickup = nextProps.pickup;
     if (nextProps.dropoff) terminals.dropoff = nextProps.dropoff;
+
+    if (nextProps.startPosition) terminals.pickup = nextProps.startPosition;
+    if (nextProps.endPosition) terminals.dropoff = nextProps.endPosition;
+
     if (nextProps.droneLocation) terminals.droneLocation = nextProps.droneLocation;
 
     updateMap(this.map, nextProps.vehicles, terminals);
@@ -25,8 +30,14 @@ class Map extends Component {
     }
 
     if (nextProps.missionStatus === 'completed') {
-      clearTerminals(this.map);
+      if (nextProps.needType === NEED_TYPES.ROUTE_PLAN) {
+        addRoute(this.map, [terminals.pickup, terminals.dropoff]);
+      } else {
+        clearTerminals(this.map);
+      }
     }
+
+
 
     if (['searching', 'choosing', 'signing'].includes(this.props.orderStage) && nextProps.orderStage === 'draft') {
       clearTerminals(this.map);
@@ -35,11 +46,15 @@ class Map extends Component {
     }
 
     if (nextProps.orderStage === 'in_mission') {
-      initiateZoomTransition(this.map, nextProps.pickup, nextProps.dropoff);
-      if (this.props.vehicles.length > 0 && nextProps.vehicles[0].status === 'waiting_pickup') {
-        this.props.history.push(this.props.appPath + '/confirm-takeoff');
-      } else {
+      if(nextProps.needType === NEED_TYPES.ROUTE_PLAN) {
         this.props.history.push(this.props.appPath + '/mission');
+      } else {
+        initiateZoomTransition(this.map, nextProps.pickup, nextProps.dropoff);
+        if (this.props.vehicles.length > 0 && nextProps.vehicles[0].status === 'waiting_pickup') {
+          this.props.history.push(this.props.appPath + '/confirm-takeoff');
+        } else {
+          this.props.history.push(this.props.appPath + '/mission');
+        }
       }
     }
 
@@ -95,8 +110,11 @@ Map.propTypes = {
   pickup: PropTypes.object,
   dropoff: PropTypes.object,
   droneLocation: PropTypes.object,
+  startPosition: PropTypes.object,
+  endPosition: PropTypes.object,
   appPath: PropTypes.string,
-  addControls: PropTypes.bool
+  addControls: PropTypes.bool,
+  needType: PropTypes.string,
 };
 
 export default Map;

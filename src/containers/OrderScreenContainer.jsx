@@ -11,11 +11,11 @@ import {
 } from '../actions';
 
 
-let Components = {};
-
-Components['ChargingOrderScreen'] = require('../components/drone_charging/OrderScreen.jsx').default;
-Components['DeliveryOrderScreen'] = require('../components/OrderScreen.jsx').default;
-
+let Components = {
+  'ChargingOrderScreen': require('../components/drone_charging/OrderScreen.jsx').default,
+  'DeliveryOrderScreen': require('../components/OrderScreen.jsx').default,
+  'RoutePlanOrderScreen': require('../components/route_plan/OrderScreen.jsx').default
+};
 
 const OrderScreenContainer = (componentName) => {
 

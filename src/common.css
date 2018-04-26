@@ -6,7 +6,7 @@
 
 body {
   color: #383061;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 15px;
 }
@@ -109,10 +109,10 @@ h1 {
   text-decoration: none;
   text-transform: uppercase;
   color: #fff;
-  font-weight: 700;
-  font-size: 17px;
+  font-weight: normal;
+  font-size: 15px;
   background-color: #FF6A46;
-  padding: 20px 20px;
+  padding: 20px 60px;
 }
 
 .disabled-button {
@@ -120,11 +120,11 @@ h1 {
   text-decoration: none;
   text-transform: uppercase;
   color: #fff;
-  font-weight: 700;
-  font-size: 17px;
-  background-color: #d8ffed;
+  font-weight: normal;
+  font-size: 15px;
+  background-color: #FF6A4630;
   pointer-events: none;
-  padding: 20px 20px;
+  padding: 20px 60px;
 }
 
 .med-button {

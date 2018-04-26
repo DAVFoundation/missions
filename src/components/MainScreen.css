@@ -12,7 +12,7 @@ div#user-controls, a.order-button {
 }
 
 div#header {
-  margin: 15px auto 0;
+  margin: 15px 0;
   position: relative;
 }
 
@@ -28,6 +28,7 @@ div#logo img {
 
 span.logo-subtext {
   text-align: center;
+  display: block;
 }
 
 div#user-controls {
@@ -39,7 +40,7 @@ div#user-controls {
 }
 
 a.order-button {
-  margin: 0 auto 10px;
+  margin: 0 auto 20px;
 }
 
 /* */
@@ -47,7 +48,7 @@ a.order-button {
 .profile {
   position: absolute;
   top: 15px;
-  right: -10px;
+  right: 15px;
 }
 
 .user-location {

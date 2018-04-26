@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Link from '../containers/LinkContainer.jsx';
-import VehicleBid from './VehicleBid.jsx';
-import MapItemBidPreview from './MapItemBidPreview.jsx';
-import MapItemCard from './MapItemCard.jsx';
-import UserCardContainer from '../containers/UserCardContainer.jsx';
-import BidSelectionHeader from '../components/BidSelectionHeader.jsx';
-import './SearchingScreen.css';
-import radar from '../images/radar.png';
+import Link from '../../containers/LinkContainer.jsx';
+import MapItemBidPreview from '../MapItemBidPreview.jsx';
+import MapItemCard from '../MapItemCard.jsx';
+import UserCardContainer from '../../containers/UserCardContainer.jsx';
+import '../SearchingScreen.css';
+import radar from '../../images/radar.png';
+import RoutePlanBid from './RoutePlanBid.jsx';
 
 class SearchingScreen extends Component {
   constructor(props) {
@@ -33,7 +32,7 @@ class SearchingScreen extends Component {
     }
   }
 
-  // This function is called from BidSelectionHeader when a
+  // This function is called from ChargingBidSelectionHeader when a
   // sorting option is chosen.
   handleSortingOptionChange(option) {
     this.setState({
@@ -47,34 +46,33 @@ class SearchingScreen extends Component {
 
     switch (option) {
       case 'Best match': {
-        // sort on 'time_to_pickup', if bids have similar pickup time, show
+        // sort on distance, if bids have similar distance show
         // the lowest price first
         return this.props.bids.sort((a, b) => {
-          //convert 'time_to_pickup' to minutes
-          let timeToPickupMinutes_A = Math.ceil(a.time_to_pickup / 60000);
-          let timeToPickupMinutes_B = Math.ceil(b.time_to_pickup / 60000);
+          let distanceA = a.distance;
+          let distanceB = b.distance;
 
-          if (timeToPickupMinutes_A < timeToPickupMinutes_B) {
+          if (distanceA < distanceB) {
             return -1;
-          } else if (timeToPickupMinutes_A > timeToPickupMinutes_B) {
+          } else if (distanceA > distanceB) {
             return 1;
           } else {
-            //time to pickup in minutes is equal - compare by price
+            //distance is equal - compare by price
             return parseFloat(a.price) - parseFloat(b.price);
           }
         });
       }
-      case 'Fastest pickup': {
-        //sort on 'time_to_pickup'
+      case 'Shortest Distance': {
+        //sort on 'distance'
         return this.props.bids.sort(
-          (a, b) => parseFloat(a.time_to_pickup) - parseFloat(b.time_to_pickup)
+          (a, b) => parseFloat(a.distance) - parseFloat(b.distance)
         );
       }
-      case 'Fastest delivery': {
-        //sort on 'time_to_dropoff'
+      case 'Highest charging velocity': {
+        //sort on 'max_charging_velocity'
         return this.props.bids.sort(
           (a, b) =>
-            parseFloat(a.time_to_dropoff) - parseFloat(b.time_to_dropoff)
+            parseFloat(b.charger.max_charging_velocity) - parseFloat(a.charger.max_charging_velocity)
         );
       }
       case 'Lowest cost': {
@@ -92,11 +90,11 @@ class SearchingScreen extends Component {
   render() {
     const {
       bids,
-      vehicles,
+      routeProviders,
+      chargerOnMission,
       stage,
       cancelSearch,
       chooseBid,
-      vehicleOnMission,
       missionId
     } = this.props;
 
@@ -114,7 +112,7 @@ class SearchingScreen extends Component {
       >
         {stage === 'searching' && (
           <div>
-            <h1>Matching you with autonomous vehicles</h1>
+            <h1>Matching you with charging sations</h1>
             <Link
               to="/"
               className="med-button cancel-button"
@@ -126,10 +124,10 @@ class SearchingScreen extends Component {
             <div id="vehicle-bid-preview-cards">
               {bids.map(
                 bid =>
-                  vehicles[bid.vehicle_id] && (
+                  routeProviders[bid.provider_id] && (
                     <MapItemBidPreview
                       key={bid.id}
-                      mapItem={vehicles[bid.vehicle_id]}
+                      mapItem={routeProviders[bid.provider_id]}
                     />
                   )
               )}
@@ -138,19 +136,13 @@ class SearchingScreen extends Component {
         )}
 
         <div id="vehicle-bid-cards">
-          {stage === 'choosing' && (
-            <BidSelectionHeader
-              {...this.props}
-              handleSortingOptionChange={this.handleSortingOptionChange}
-            />
-          )}
           {this.state.sortedBids.map(
             bid =>
-              vehicles[bid.vehicle_id] && (
-                <VehicleBid
+              routeProviders[bid.provider_id] && (
+                <RoutePlanBid
                   key={bid.id}
                   bid={bid}
-                  vehicle={vehicles[bid.vehicle_id]}
+                  routeProvider={routeProviders[bid.provider_id]}
                   shown={stage === 'choosing'}
                   chooseBid={chooseBid}
                 />
@@ -160,15 +152,15 @@ class SearchingScreen extends Component {
 
         <div className="screen-background--dark">
           {stage === 'signing' &&
-          vehicleOnMission && (
+          chargerOnMission && (
             <div className="modal-container">
               <div id="signing-box" className="modal-box">
                 <h2>Initiating DAV Transaction</h2>
                 <p>Signing secure smart contract between:</p>
                 <MapItemCard
-                  icon={vehicleOnMission.icon}
-                  id={vehicleOnMission.id}
-                  model={vehicleOnMission.model}
+                  icon={chargerOnMission.icon}
+                  id={chargerOnMission.id}
+                  model={chargerOnMission.model}
                 />
                 <div id="sign-here">
                   <img
@@ -187,8 +179,8 @@ class SearchingScreen extends Component {
 }
 
 SearchingScreen.propTypes = {
-  vehicles: PropTypes.object.isRequired,
-  vehicleOnMission: PropTypes.object,
+  routeProviders: PropTypes.object.isRequired,
+  chargerOnMission: PropTypes.object,
   missionId: PropTypes.number,
   bids: PropTypes.array.isRequired,
   stage: PropTypes.string.isRequired,

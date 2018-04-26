@@ -4,11 +4,25 @@ import Link from '../../containers/LinkContainer.jsx';
 import '../MainScreen.css';
 import logo from '../../images/logo_missions.svg';
 import iconUser from '../../images/icon_signed_out.svg';
+import { getUserLocationPlace } from '../../lib/map';
 
 
 class MainScreen extends Component {
+
+  constructor () {
+    super();
+    this.state = {
+      locationPlace: null
+    };
+  }
+
   componentDidMount() {
     this.props.onMount();
+    getUserLocationPlace().then((res) => {
+      this.setState({locationPlace: res});
+    }).catch((res) => {
+      console.log(res);
+    });
   }
   render() {
     return (
@@ -17,17 +31,19 @@ class MainScreen extends Component {
           <div id="logo">
             <img src={logo} alt="Missions powered by DAV" />
           </div>
-          <span className="logo-subtext">4 charging stations available in viewable area</span>
           <span className="profile">
             <img src={iconUser} alt=""/>
           </span>
         </div>
-
-        <div className="user-location">
-          <h3>Your Location</h3>
-          <p>1556 Broadway, suite 416</p>
-        </div>
-        <Link to="/order" className="big-button order-button">Find Charging Stations</Link>
+        { 
+          this.state.locationPlace ?
+            (<div className="user-location">
+              <h3>Your Location</h3>
+              <p>{this.state.locationPlace}</p>
+            </div>) :
+            (<div />)
+        }
+        <Link to="/order" className="big-button order-button">ORDER ROUTE PLAN</Link>
       </div>
     );
   }

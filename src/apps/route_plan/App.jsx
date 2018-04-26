@@ -6,6 +6,7 @@ import MainScreenContainer from '../../containers/MainScreenContainer.jsx';
 import OrderScreenContainer from '../../containers/OrderScreenContainer.jsx';
 import MapItemDetailsScreenContainer from '../../containers/MapItemDetailsScreenContainer.jsx';
 import SearchingScreenContainer from '../../containers/SearchingScreenContainer.jsx';
+import MissionContainer from '../../containers/MissionContainer.jsx';
 
 class App extends Component {
 
@@ -22,9 +23,9 @@ class App extends Component {
 
           <Route path="/route_plan/:mapItemType/:id" component={ MainScreenContainer('ChargingMainScreen') } />
           <Route path="/route_plan/:mapItemType/:id" component={ MapItemDetailsScreenContainer } />
-          <Route path="/route_plan/order" component={ OrderScreenContainer('ChargingOrderScreen')  } />
-
-          <Route path="/route_plan/searching" component={ SearchingScreenContainer('ChargingSearchingScreen') } />
+          <Route path="/route_plan/order" component={ OrderScreenContainer('RoutePlanOrderScreen')  } />
+          <Route path="/route_plan/searching" component={ SearchingScreenContainer('RoutePlanSearchingScreen') } />
+          <Route path="/route_plan/mission" component= { MissionContainer('RoutePlanMissionScreen') } />
         </div>
       </Router>
     );

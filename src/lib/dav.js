@@ -192,7 +192,6 @@ export const createMissionTransaction = (bidId, vehicle_id, price) => {
   davSDK.createMissionTransaction(bidId, vehicle_id, price).then((response) => {
     if(response.logs.length > 0) {
       let contractMissionId = response.logs[0].args.id;
-      console.log(contractMissionId);
       store.dispatch(updateContractMissionIdMissionId({ contractMissionId }));
     }
     store.dispatch(createMissionTransactionFulfilled(response));
