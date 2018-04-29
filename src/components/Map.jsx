@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createMap, updateMap, initiateZoomTransition, clearTerminals, addTerminals } from '../lib/map';
+import {createMap, updateMap, initiateZoomTransition, clearTerminals, addTerminals, addRoute} from '../lib/map';
 import { NEED_TYPES } from '../config/needTypes.js';
 import './Map.css';
 
@@ -30,8 +30,14 @@ class Map extends Component {
     }
 
     if (nextProps.missionStatus === 'completed') {
-      clearTerminals(this.map);
+      if (nextProps.needType === NEED_TYPES.ROUTE_PLAN) {
+        addRoute(this.map, [terminals.pickup, terminals.dropoff]);
+      } else {
+        clearTerminals(this.map);
+      }
     }
+
+
 
     if (['searching', 'choosing', 'signing'].includes(this.props.orderStage) && nextProps.orderStage === 'draft') {
       clearTerminals(this.map);
