@@ -7,6 +7,7 @@ import {
   fetchBids as apiFetchBids,
   chooseBid as apiChooseBid,
   confirmTakeoff as apiConfirmTakeoff,
+  completeSimulationMission as apiCompleteSimulationMission,
 } from '../lib/api';
 
 import {
@@ -62,7 +63,7 @@ export const chooseBidFulfilled = createAction('CHOOSE_BID_FULFILLED');
 
 export const createMissionTransaction = createAction('CREATE_MISSION_TRANSACTION', davCreateMissionTransaction);
 
-export const createMissionTransactionFulfilled = createAction('CREATE_MISSION_TRANSACTION_FULFILLED');
+export const createMissionTransactionFulfilled = createAction('CREATE_MISSION_TRANSACTION_FULFILLED', apiCompleteSimulationMission);
 
 export const createMissionTransactionFailed = createAction('CREATE_MISSION_TRANSACTION_FAILED');
 

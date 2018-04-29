@@ -4,13 +4,13 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import {makeImage} from './utils';
 import droneIcon from '../images/icon_drone.png';
 import locationIcon from '../images/icon_location.png';
-import chargerIcon from '../images/icon_charging_station.png';
+import chargingStationIcon from '../images/icon_charging_station.png';
 import pickupIcon from '../images/pin-pickup.svg';
 import dropoffIcon from '../images/pin-dropoff.svg';
 import mapStyle from './map_style.json';
 import turf from 'turf';
 
-const icons = {droneIcon, locationIcon, chargerIcon, pickupIcon, dropoffIcon};
+const icons = {droneIcon, locationIcon, chargingStationIcon, pickupIcon, dropoffIcon};
 
 const createGeoJson = (features = []) => {
   return {
@@ -30,11 +30,15 @@ const createGeoJson = (features = []) => {
 
 export const getUserLocation = () =>
   new Promise((resolve, reject) =>
-    navigator.geolocation.getCurrentPosition(resolve, reject, {maximumAge:60000, timeout: 50000, enableHighAccuracy: false}),
+    navigator.geolocation.getCurrentPosition(resolve, reject, {
+      maximumAge: 60000,
+      timeout: 50000,
+      enableHighAccuracy: false
+    }),
   );
 
 export const getUserLocationPlace = () => {
-  return  hasGeolocationPermission()
+  return hasGeolocationPermission()
     .then(getUserLocation)
     .then((resp) => {
       return new Promise((resolve, reject) => {
@@ -239,6 +243,38 @@ export const clearTerminals = map => {
     map.removeLayer('dropoff');
     map.removeSource('pickup');
     map.removeSource('dropoff');
+  }
+};
+
+export const addRoute = (map, arrayOfTerminals) => {
+  arrayOfTerminals = arrayOfTerminals.map((terminal) => {
+    return [terminal.long || terminal.coords.long, terminal.lat || terminal.coords.lat];
+  });
+
+  if (!map.getSource('route')) {
+    map.addLayer({
+      'id': 'route',
+      'type': 'line',
+      'source': {
+        'type': 'geojson',
+        'data': {
+          'type': 'Feature',
+          'properties': {},
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': arrayOfTerminals
+          }
+        }
+      },
+      'layout': {
+        'line-join': 'round',
+        'line-cap': 'round'
+      },
+      'paint': {
+        'line-color': '#FF6F4D',
+        'line-width': 5
+      }
+    });
   }
 };
 

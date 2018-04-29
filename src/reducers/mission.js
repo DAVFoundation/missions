@@ -5,7 +5,10 @@ import {
   confirmTakeoffPending,
   confirmTakeoffFulfilled,
   updateStatusFulfilled,
-  startChargingMissionFulfilled, confirmDroneDocking, completeChargingMission,
+  startChargingMissionFulfilled, 
+  confirmDroneDocking, 
+  completeChargingMission, 
+  createMissionTransactionFulfilled,
 } from '../actions';
 import {NEED_TYPES} from '../config/needTypes';
 
@@ -59,6 +62,10 @@ export default handleActions(
 
     [updateContractMissionIdMissionId]: (state, {payload: {contractMissionId}}) => {
       return {...state, contractMissionId: contractMissionId};
+    },
+
+    [createMissionTransactionFulfilled]: (state) => {
+      return { ...state, status: 'completed' };
     },
 
     [confirmTakeoffPending]: state => ({
