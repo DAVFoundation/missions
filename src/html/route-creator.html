@@ -97,6 +97,7 @@
     <div class="hero route-creator" id="home">
       <div id="startchange"></div>
       <div class="hero-inner">
+        <div id="message_div"></div>
         <div class="hero-valign">
           <h1>Route Creator</h1>
           <h2>Create a new route for: <span>4ed359fc</span></h2>
@@ -107,19 +108,19 @@
                 <p><img src="img/gps.png"> START:</p>
               </div>
               <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Latitude">
+                <input type="text" placeholder="Latitude" id="pickup_latitude">
               </div>
               <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Longitude">
+                <input type="text" placeholder="Longitude" id="pickup_longitude">
               </div>
               <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Altitude (meters)">
+                <input type="text" placeholder="Altitude (meters)" id="pickup_altitude">
               </div>
               <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Heading (degrees)">
+                <input type="text" placeholder="Heading (degrees)" id="pickup_heading">
               </div>
               <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Distance (meters)">
+                <input type="text" placeholder="Distance (meters)" id="pickup_distance">
               </div>
             </div>
 
@@ -138,32 +139,27 @@
                 <p><img src="img/gps.png"> END:</p>
               </div>
               <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Latitude">
+                <input type="text" placeholder="Latitude" id="dropoff_latitude">
               </div>
               <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Longitude">
+                <input type="text" placeholder="Longitude" id="dropoff_longitude">
               </div>
               <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Altitude (meters)">
+                <input type="text" placeholder="Altitude (meters)" id="dropoff_altitude">
               </div>
             </div>
 
             <div class="row">
               <div class="col-sm-4 col-sm-offset-4">
-                <input type="submit" value="SUBMIT">
+                <input type="submit" value="SUBMIT" id="submit_button">
               </div>
             </div>
-
-
           </div>
+          <input type="hidden" id="mission_id" value="" />
           </form>
-
-
         </div>
       </div>
     </div>
-
-  
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript" data-cfasync="false"></script>
@@ -175,6 +171,100 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countto/1.2.0/jquery.countTo.min.js" data-cfasync="false"></script>
     <script src="js/main.js?v=3.1.7" type="text/javascript" data-cfasync="false"></script>
     <script data-cfasync="false">
+      var keyStr = "ABCDEFGHIJKLMNOP" +
+        "QRSTUVWXYZabcdef" +
+        "ghijklmnopqrstuv" +
+        "wxyz0123456789+/" +
+        "=";
+      function encode64(input) {
+        input = escape(input);
+        var output = "";
+        var chr1, chr2, chr3 = "";
+        var enc1, enc2, enc3, enc4 = "";
+        var i = 0;
+        do {
+          chr1 = input.charCodeAt(i++);
+          chr2 = input.charCodeAt(i++);
+          chr3 = input.charCodeAt(i++);
+          enc1 = chr1 >> 2;
+          enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+          enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+          enc4 = chr3 & 63;
+          if (isNaN(chr2)) {
+            enc3 = enc4 = 64;
+          } else if (isNaN(chr3)) {
+            enc4 = 64;
+          }
+          output = output +
+            keyStr.charAt(enc1) +
+            keyStr.charAt(enc2) +
+            keyStr.charAt(enc3) +
+            keyStr.charAt(enc4);
+          chr1 = chr2 = chr3 = "";
+          enc1 = enc2 = enc3 = enc4 = "";
+        } while (i < input.length);
+        return output;
+      }
+      function decode64(input) {
+        var output = "";
+        var chr1, chr2, chr3 = "";
+        var enc1, enc2, enc3, enc4 = "";
+        var i = 0;
+        // remove all characters that are not A-Z, a-z, 0-9, +, /, or =
+        var base64test = /[^A-Za-z0-9\+\/\=]/g;
+        if (base64test.exec(input)) {
+          alert("There were invalid base64 characters in the input text.\n" +
+            "Valid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\n" +
+            "Expect errors in decoding.");
+        }
+        input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+        do {
+          enc1 = keyStr.indexOf(input.charAt(i++));
+          enc2 = keyStr.indexOf(input.charAt(i++));
+          enc3 = keyStr.indexOf(input.charAt(i++));
+          enc4 = keyStr.indexOf(input.charAt(i++));
+          chr1 = (enc1 << 2) | (enc2 >> 4);
+          chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+          chr3 = ((enc3 & 3) << 6) | enc4;
+          output = output + String.fromCharCode(chr1);
+          if (enc3 != 64) {
+            output = output + String.fromCharCode(chr2);
+          }
+          if (enc4 != 64) {
+            output = output + String.fromCharCode(chr3);
+          }
+          chr1 = chr2 = chr3 = "";
+          enc1 = enc2 = enc3 = enc4 = "";
+        } while (i < input.length);
+        return unescape(output);
+      }
+      let url = new URL(window.location);
+      let mission = url.searchParams.get("mission") || false;
+      if (mission){
+        //FIRST decodeURIcomponent
+        mission = decodeURIComponent(mission);
+        //THEN decodebase64
+        mission = decode64(mission);
+        //THEN json parse string to object
+        mission = JSON.parse(mission);
+        //FINALLY: populate form with values from mission param
+        $('#pickup_latitude').val(mission.pickup_latitude);
+        $('#pickup_latitude').prop('disabled',true);
+        $('#pickup_longitude').val(mission.pickup_longitude);
+        $('#pickup_longitude').prop('disabled',true);
+        $('#pickup_altitude').val(mission.pickup_altitude);
+        $('#pickup_altitude').prop('disabled',true);
+        $('#dropoff_latitude').val(mission.dropoff_latitude);
+        $('#dropoff_latitude').prop('disabled',true);
+        $('#dropoff_longitude').val(mission.dropoff_longitude);
+        $('#dropoff_longitude').prop('disabled',true);
+        $('#dropoff_altitude').val(mission.dropoff_altitude);
+        $('#dropoff_altitude').prop('disabled',true);
+        $('#mission_id').val(mission.mission_id);
+      } else {
+        $('#submit_button').prop('disabled',true);
+        document.getElementById("message_div").innerHTML = "<div style='color:red'>Error: no mission selected. Please contact support.</div>";
+      };
       var waypointNumber = 1;
       $(".waypoint-plus a").click(function(e) {
         e.preventDefault();
