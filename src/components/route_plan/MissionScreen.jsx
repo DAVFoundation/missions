@@ -36,7 +36,7 @@ class MissionScreen extends Component {
                 alt="Route Plan"
               />
             </div>
-            <button onClick={this.dismissDialog.bind(this)} className="big-button">
+            <button onClick={this.dismissRequestedDialog.bind(this)} className="big-button">
               OK
             </button>
           </div>
@@ -53,7 +53,7 @@ class MissionScreen extends Component {
             <h1>Your Route Plan is Ready</h1>
             <p>Click the ‘Download’ button below to<br />
             view the full details of your route plan.</p>
-            <button onClick={this.dismissDialog.bind(this)} className="big-button">
+            <button onClick={this.dismissDownloadDialog.bind(this)} className="big-button">
               DOWNLOAD
             </button>
           </div>
@@ -61,8 +61,12 @@ class MissionScreen extends Component {
       </div>) : (<div/>);
   }
 
-  dismissDialog() {
+  dismissRequestedDialog() {
     this.setState({ dialogDismissed: true });
+  }
+
+  dismissDownloadDialog() {
+    this.setState({ showDownloadDialog: true });
   }
 
   render() {
