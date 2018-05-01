@@ -347,8 +347,8 @@ $(function(){
       window.removeEventListener('scroll', scrollAction);
       vidShowAndTell.play();
     };
-    window.addEventListener('scroll', scrollAction);
-
+    //commented out this event listener because it was causing a javascript error on the browser - dmauas
+    //window.addEventListener('scroll', scrollAction);
 
     var announcementTrigger = document.querySelector('.video-home');
     var scrollAnouncement = function() {
