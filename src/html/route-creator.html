@@ -70,22 +70,52 @@
       ga('send', 'Button', 'Clicked', 'Join', '0');
     </script>
     <!-- Facebook Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window,document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '738526256352778');
-  fbq('track', 'PageView');
-</script>
-<noscript>
-  <img height="1" width="1" src="https://www.facebook.com/tr?id=738526256352778&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Facebook Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window,document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '738526256352778');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" src="https://www.facebook.com/tr?id=738526256352778&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+    <script type="text/javascript">
+      var prepareDataForSubmission = ()=>{
+        let validationPassed = false;
+        let mission = {};
+        mission.coordinates = [];
+        try{
+          let elements = $("#route_creator_form input");
+          elements.each(
+            function(){
+              let current_element = $(this);
+              if (current_element.attr('id')=='submit_button' || current_element.attr('id')=='mission') return true;
+              match = current_element.attr('id').match(/waypoint_.+/);
+              if (null !== match) { //not coordinates
+                let coordinate = {};
+                coordinate[current_element.attr('id')] = current_element.val();
+                mission.coordinates.push(coordinate);
+              } else { //coordinates
+                mission[current_element.attr('id')] = current_element.val();
+              }
+            }
+          );
+          mission = encodeURIComponent(encode64(JSON.stringify(mission)));
+          $('#mission').val(mission);
+          validationPassed = true;
+        } catch(e) {
+          console.log('Unexpected error: '+e);
+        }
+        return validationPassed;
+      };
+    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -100,8 +130,8 @@
         <div id="message_div"></div>
         <div class="hero-valign">
           <h1>Route Creator</h1>
-          <h2>Create a new route for: <span>4ed359fc</span></h2>
-          <form>
+          <h2>Create a new route for: <span id="mission_id_span"></span></h2>
+          <form id="route_creator_form" method="post" onsubmit="return prepareDataForSubmission();" action="MISSION-CONTROL-URL/updateGraddPayload">
           <div class="container text-left">
             <div class="row">
               <div class="col-md-2">
@@ -151,10 +181,11 @@
 
             <div class="row">
               <div class="col-sm-4 col-sm-offset-4">
-                <input type="submit" value="SUBMIT" id="submit_button">
+                <input type="submit" value="SUBMIT" id="submit_button" />
               </div>
             </div>
           </div>
+          <input type="hidden" id="mission" value="" />
           <input type="hidden" id="mission_id" value="" />
           </form>
         </div>
@@ -261,7 +292,9 @@
         $('#dropoff_altitude').val(mission.dropoff_altitude);
         $('#dropoff_altitude').prop('disabled',true);
         $('#mission_id').val(mission.mission_id);
+        $('#mission_id_span').html(mission.mission_id);
       } else {
+        $('#mission_id_span').html('no mission selected');       
         $('#submit_button').prop('disabled',true);
         document.getElementById("message_div").innerHTML = "<div style='color:red'>Error: no mission selected. Please contact support.</div>";
       };
@@ -269,7 +302,29 @@
       $(".waypoint-plus a").click(function(e) {
         e.preventDefault();
         // alert("Add waypoint " + waypointNumber);
-        $(".waypoint-container").append('<div class="row waypoint"><div class="col-md-2"><p>WAYPOINT ' + waypointNumber + ':</p></div><div class="col-sm-2 col-xs-6"><input type="text" placeholder="Latitude"></div><div class="col-sm-2 col-xs-6"><input type="text" placeholder="Longitude"></div><div class="col-sm-2 col-xs-6"><input type="text" placeholder="Altitude (meters)"></div><div class="col-sm-2 col-xs-6"><input type="text" placeholder="Heading (degrees)"></div><div class="col-sm-2 col-xs-6"><input type="text" placeholder="Distance (meters)"></div></div>');
+        let currentWaypoint = `
+        <div class="row waypoint">
+          <div class="col-md-2">
+            <p>WAYPOINT ${waypointNumber}:</p>
+          </div>
+          <div class="col-sm-2 col-xs-6">
+            <input type="text" placeholder="Latitude" id="waypoint_${waypointNumber}_latitude">
+          </div>
+          <div class="col-sm-2 col-xs-6">
+            <input type="text" placeholder="Longitude" id="waypoint_${waypointNumber}_longitude">
+          </div>
+          <div class="col-sm-2 col-xs-6">
+            <input type="text" placeholder="Altitude (meters)" id="waypoint_${waypointNumber}_altitude">
+          </div>
+          <div class="col-sm-2 col-xs-6">
+            <input type="text" placeholder="Heading (degrees)" id="waypoint_${waypointNumber}_heading">
+          </div>
+          <div class="col-sm-2 col-xs-6">
+            <input type="text" placeholder="Distance (meters)" id="waypoint_${waypointNumber}_distance">
+          </div>
+        </div>
+        `;
+        $(".waypoint-container").append(currentWaypoint);
         waypointNumber ++;
       });
     </script>
