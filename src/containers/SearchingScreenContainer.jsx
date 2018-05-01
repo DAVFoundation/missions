@@ -31,14 +31,14 @@ const SearchingScreenContainer = (componentName) => {
     };
 
     if (componentName === 'ChargingSearchingScreen') {
-      props.chargers = state.chargers;
+      props.chargers = state.captains;
       props.chargerOnMission = getChargerOnMission(state);
     } else if (componentName === 'RoutePlanSearchingScreen') {
-      props.routeProviders = state.routes;
+      props.routeProviders = state.captains;
       props.providersOnMission = getRouteProvidersOnMission(state);
       props.missionStatus = state.mission.status;
     } else if (componentName === 'DeliverySearchingScreen') {
-      props.vehicles = state.vehicles;
+      props.vehicles = state.captains;
       props.vehicleOnMission = getVehicleOnMission(state);
     }
     return props;
