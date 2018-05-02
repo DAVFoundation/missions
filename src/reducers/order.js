@@ -1,6 +1,8 @@
-import {handleActions} from 'redux-actions';
+import {handleActions, combineActions} from 'redux-actions';
 import {
-  updateOrderDetails, createNeedFulfilled, updateStatusFulfilled,
+  updateOrderDetails, 
+  createDroneDeliveryNeedFulfilled, createDroneChargingNeedFulfilled, createRoutePlanNeedFulfilled, 
+  updateStatusFulfilled,
   resetOrderDetails, chooseBidPending, updateBidsFulfilled,
   unlockWallet, unregisteredDavId, registerDavIdFulfilled, closeWalletDialog, startChargingMissionFulfilled,
   confirmDroneDocking
@@ -36,7 +38,7 @@ export default handleActions({
     return {...state, ...payload};
   },
 
-  [createNeedFulfilled]: (state, {payload}) => {
+  [combineActions(createDroneDeliveryNeedFulfilled, createDroneChargingNeedFulfilled, createRoutePlanNeedFulfilled)]: (state, {payload}) => {
     return {...state, ...payload, stage: 'searching', created_at: Date.now()};
   },
 

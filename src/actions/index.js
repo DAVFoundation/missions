@@ -49,6 +49,10 @@ export const createDroneDeliveryNeed = createAction('CREATE_DRONEDELIVERY_NEED',
 export const createDroneChargingNeed = createAction('CREATE_CHARGING_NEED', apiCreateDroneChargingNeed);
 export const createRoutePlanNeed = createAction('CREATE_ROUTEPLAN_NEED', apiCreateRoutePlanNeed);
 
+export const createDroneDeliveryNeedFulfilled = createAction('CREATE_DRONEDELIVERY_NEED_FULFILLED');
+export const createDroneChargingNeedFulfilled = createAction('CREATE_CHARGING_NEED_FULFILLED');
+export const createRoutePlanNeedFulfilled = createAction('CREATE_ROUTEPLAN_NEED_FULFILLED');
+
 export const createNeedFulfilled = createAction('CREATE_NEED_FULFILLED');
 
 export const updateBids = createAction('UPDATE_BIDS', apiFetchBids);
