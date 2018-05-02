@@ -198,7 +198,7 @@ SearchingScreen.propTypes = {
   chargers: PropTypes.object.isRequired,
   chargerOnMission: PropTypes.object,
   history: PropTypes.object,
-  missionId: PropTypes.number,
+  missionId: PropTypes.string,
   mission: PropTypes.object,
   missionStatus: PropTypes.string,
   bids: PropTypes.array.isRequired,

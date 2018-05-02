@@ -29,7 +29,7 @@ class Map extends Component {
       addTerminals(this.map);
     }
 
-    if (nextProps.missionStatus === 'completed') {
+    if (nextProps.missionStatus === 'ready') {
       if (nextProps.needType === NEED_TYPES.ROUTE_PLAN) {
         addRoute(this.map, [terminals.pickup, terminals.dropoff]);
       } else {

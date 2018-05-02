@@ -25,7 +25,7 @@ export default handleActions(
       } = payloadMission;
 
       let mission = {
-        id: parseInt(mission_id),
+        id: mission_id,
         price: parseFloat(price),
       };
 

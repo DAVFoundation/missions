@@ -181,7 +181,7 @@ class SearchingScreen extends Component {
 SearchingScreen.propTypes = {
   routeProviders: PropTypes.object.isRequired,
   chargerOnMission: PropTypes.object,
-  missionId: PropTypes.number,
+  missionId: PropTypes.string,
   bids: PropTypes.array.isRequired,
   stage: PropTypes.string.isRequired,
   cancelSearch: PropTypes.func.isRequired,
