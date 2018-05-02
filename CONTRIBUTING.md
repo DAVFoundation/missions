@@ -20,6 +20,7 @@ A lot of **missions** functionality came from pull requests sent by the develope
 - [x] Run `npm start` to build the project 
 - [x] Open [http://localhost:3333/](http://localhost:3333/) to see your local instance of missions live.
 - [x] If you would like to see some simulated drones appear on the map, you will also need to set up the [Mission Control](https://github.com/DAVFoundation/missioncontrol/blob/master/CONTRIBUTING.md) project.
+- [x] To be able to make transactions on ethereum network, you need to set up [contracts](https://github.com/DAVFoundation/contracts) project, and set the build symlinks at missions/src, to point your build directory at contracts project, with `$ ln -sf /path/to/contracts/build /path/to/missions/src/build`.
 - [x] Now, code, code, code.
 - [x] Commit your local changes by using `$ git commit -m "nice detailed message here..."`
 - [x] Once you've made sure all your changes work correctly and have been committed, push your local changes back to github with `$ git push -u origin master`
@@ -28,7 +29,7 @@ A lot of **missions** functionality came from pull requests sent by the develope
 
 #### Important:
 
-* This project is just the client-facing side of missions. You can run it on its own and do some limited development, but you won't see any drones on the map, or get any responses to your requests for pickups. To get the full-experience, you will need to also [get **Mission Control** up and running](https://github.com/DAVFoundation/missioncontrol/blob/master/CONTRIBUTING.md) in a separate console window
+* This project is just the client-facing side of missions. You can run it on its own and do some limited development, but you won't see any drones on the map, or get any responses to your requests for pickups. To get the full-experience, you will need to also (https://github.com/DAVFoundation/missioncontrol/blob/master/CONTRIBUTING.md) in a separate console window
 * Please stick to the project's existing coding style. Coding styles don't need to have a consensus, they just need to be consistent :smile:
 * Push your changes to a topic branch in your fork of the repository. Your branch should be based on the `master` branch
 * When submitting a [pull request](https://help.github.com/articles/using-pull-requests/), please elaborate as much as possible about the change, your motivation for the change, etc.
