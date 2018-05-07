@@ -8,6 +8,7 @@ import {
   chooseBid as apiChooseBid,
   confirmTakeoff as apiConfirmTakeoff,
   completeSimulationMission as apiCompleteSimulationMission,
+  updateMissionStatus as apiUpdateMissionStatus
 } from '../lib/api';
 
 import {
@@ -82,7 +83,7 @@ export const confirmTakeoffFulfilled = createAction('CONFIRM_TAKEOFF_FULFILLED')
 
 export const confirmDroneDocking = createAction('CONFIRM_DRONE_DOCKING');
 
-
+export const updateMissionStatus = createAction('UPDATE_MISSION_STATUS', apiUpdateMissionStatus);
 // for charging mock purposes
 
 export const completeChargingMission = createAction('COMPLETE_CHARGING_MISSION');

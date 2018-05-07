@@ -18,5 +18,8 @@ export default handleActions(
   defaultState,
 );
 
-export const getRouteProvidersOnMission = state =>
-  state.mission.captainId ? state.captains[state.mission.captainId] : undefined;
+export const getCaptainsArray = state =>
+  Object.entries(state).map(([, captain]) => captain);
+
+export const getCaptainOnMission = state =>
+  state.mission.vehicle_id ? state.captains[state.mission.vehicle_id] : undefined;

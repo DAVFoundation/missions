@@ -7,7 +7,8 @@ import {
   unregisteredDavId,
   registerDavIdFulfilled,
   createMissionTransactionFulfilled,
-  createMissionTransactionFailed
+  createMissionTransactionFailed,
+  updateMissionStatus
 } from '../actions';
 const TruffleContract = require('truffle-contract');
 const Web3 = require('web3');
@@ -145,16 +146,16 @@ export const initWeb3 = () => {
       if (error) {
         console.log(error);
         store.dispatch(unlockWallet());
-        resolve(error);
+        reject(error);
       } else if (accounts.length > 0) {
         let davId = accounts[0];
         store.dispatch(updateDavId({ davId }));
-        return isRegistered(davId);
+        resolve(isRegistered(davId));
       } else {
         // unlock metamask
         store.dispatch(unlockWallet());
         console.log('The wallet locked, please unlock it to continue.');
-        resolve('The wallet locked, please unlock it to continue.');
+        reject('The wallet locked, please unlock it to continue.');
       }
       reject();
     }, 1500));
@@ -163,12 +164,13 @@ export const initWeb3 = () => {
 
 export const isRegistered = (davId) => {
   davSDK = new davJS(davId, davId);
-  davSDK.isRegistered().then((isRegistered) => {
+  return davSDK.isRegistered().then((isRegistered) => {
     if (isRegistered) {
       store.dispatch(registerDavIdFulfilled());
     } else {
       store.dispatch(unregisteredDavId());
     }
+    return isRegistered;
   }).catch(err => {
     console.log(err);
   });
@@ -202,10 +204,13 @@ export const createMissionTransaction = (bidId, vehicle_id, price) => {
 };
 
 export const approveCompletedMission = () => {
-  let contractMissionId = store.getState().mission.contractMissionId;
-
-  davSDK.approveCompletedMission(contractMissionId).then((response) => {
+  let mission = store.getState().mission;
+  let contractMissionId = mission.contractMissionId || mission.id;
+  initWeb3().then(() => {
+    return davSDK.approveCompletedMission(contractMissionId);
+  }).then((response) => {
     console.log(response.logs[0]);
+    store.dispatch(updateMissionStatus('confirmed'));
   }).catch(err => {
     console.log(err);
   });

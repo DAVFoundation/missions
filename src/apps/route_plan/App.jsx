@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import Map from '../../containers/MapContainer.jsx';
+import Map from '../../containers/route_plan/MapContainer.jsx';
 import {initializeApp} from '../../lib/app';
 import MainScreenContainer from '../../containers/MainScreenContainer.jsx';
 import OrderScreenContainer from '../../containers/route_plan/OrderScreenContainer.jsx';

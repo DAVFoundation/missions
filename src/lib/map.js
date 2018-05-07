@@ -236,7 +236,12 @@ export const initiateZoomTransition = (map, terminals, options) => {
     map.fitBounds(bbox, {...options, padding: {top: 100, bottom: 300, left: 50, right: 50}});
   });
 };
-
+export const clearRoute = map => {
+  if (map.getSource('route')) {
+    map.removeLayer('route');
+    map.removeSource('route');
+  }
+};
 export const clearTerminals = map => {
   if (map.getSource('pickup') && map.getSource('dropoff')) {
     map.removeLayer('pickup');

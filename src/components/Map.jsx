@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {createMap, updateMap, initiateZoomTransition, clearTerminals, addTerminals, addRoute} from '../lib/map';
+import {
+  createMap, 
+  updateMap, 
+  initiateZoomTransition, 
+  clearTerminals, 
+  addTerminals, 
+  addRoute,
+  clearRoute
+} from '../lib/map';
 import { NEED_TYPES } from '../config/needTypes.js';
 import './Map.css';
 
@@ -29,7 +37,7 @@ class Map extends Component {
       addTerminals(this.map);
     }
 
-    if (nextProps.missionStatus === 'ready') {
+    if (nextProps.showRoutePath === true) {
       if (nextProps.needType === NEED_TYPES.ROUTE_PLAN) {
         addRoute(this.map, [terminals.pickup, terminals.dropoff]);
       } else {
@@ -37,7 +45,10 @@ class Map extends Component {
       }
     }
 
-
+    if (nextProps.missionStatus === 'completed') {
+      clearTerminals(this.map);
+      clearRoute(this.map);
+    }
 
     if (['searching', 'choosing', 'signing'].includes(this.props.orderStage) && nextProps.orderStage === 'draft') {
       clearTerminals(this.map);
@@ -46,11 +57,13 @@ class Map extends Component {
     }
 
     if (nextProps.orderStage === 'in_mission') {
-      if (nextProps.needType === NEED_TYPES.ROUTE_PLAN || nextProps.needType === NEED_TYPES.DRONE_CHARGING) {
+      if (nextProps.needType === NEED_TYPES.DRONE_CHARGING) {
         this.props.history.push(this.props.appPath + '/mission');
-      }
-      else {
-        initiateZoomTransition(this.map, nextProps.pickup, nextProps.dropoff);
+      } else if (nextProps.needType === NEED_TYPES.ROUTE_PLAN) {
+        initiateZoomTransition(this.map, terminals, { maxZoom: 14 });
+        this.props.history.push(this.props.appPath + '/mission');
+      } else {
+        initiateZoomTransition(this.map, terminals, { maxZoom: 14 });
         if (this.props.mapItems.length > 0 && nextProps.mapItems[0].status === 'waiting_pickup') {
           this.props.history.push(this.props.appPath + '/confirm-takeoff');
         } else {
@@ -116,6 +129,7 @@ Map.propTypes = {
   endPosition: PropTypes.object,
   appPath: PropTypes.string,
   addControls: PropTypes.bool,
+  showRoutePath: PropTypes.bool
 };
 
 export default Map;

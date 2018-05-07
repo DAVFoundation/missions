@@ -1,19 +1,16 @@
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {getVehicleArray} from '../reducers/vehicles';
-import {getBidArray} from '../reducers/bids';
-import {updateMapCoords} from '../actions';
-import Map from '../components/Map.jsx';
-import {getChargerArray} from '../reducers/chargers';
-import {NEED_TYPES} from '../config/needTypes';
+import {getVehicleArray} from '../../reducers/vehicles';
+import {getBidArray} from '../../reducers/bids';
+import {updateMapCoords} from '../../actions';
+import Map from '../../components/Map.jsx';
+import {getChargerArray} from '../../reducers/chargers';
 
 const matchStateToProps = (state) => {
   const appPath = state.app.path;
   const needType = state.app.needType;
   let props = {
     orderStage: state.order.stage,
-    pickup: state.order.pickup,
-    dropoff: state.order.dropoff,
     droneLocation: state.order.droneLocation,
     startPosition: state.order.startPosition,
     endPosition: state.order.endPosition,
@@ -22,31 +19,23 @@ const matchStateToProps = (state) => {
   };
 
   props.showRoutePath = false;
-  if (needType === NEED_TYPES.DRONE_CHARGING) {
-    props.mapItems = getRelevantMapItems('charger', state);
-    props.mapItemType = 'charger';
-  } else {
-    props.mapItems = getRelevantMapItems('vehicle', state);
-    props.mapItemType = 'vehicle';
-  }
 
-  if (state.mission) {
+  props.mapItems = getRelevantMapItems('vehicle', state);
+  props.mapItemType = 'vehicle';
+
+  if (state.mission.status) {
     props.missionStatus = state.mission.status;
-    if (props.missionStatus === 'in_progress') {
-      props.dropoff = {long: state.mission.dropoff_longitude, lat: state.mission.dropoff_latitude};
-      props.pickup = {long: state.mission.pickup_longitude, lat: state.mission.pickup_latitude};
-    } else if (props.missionStatus === 'in_mission') {
-      if (needType === NEED_TYPES.ROUTE_PLAN && 
-        state.captains[state.mission.vehicle_id] &&
-        state.captains[state.mission.vehicle_id].status === 'ready') {
-        props.startPosition = {
-          lat: state.mission.start_latitude,
-          long: state.mission.start_longitude
-        };
-        props.endPosition = {
-          lat: state.mission.end_latitude,
-          long: state.mission.end_longitude
-        };
+    props.startPosition = {
+      lat: state.mission.start_latitude,
+      long: state.mission.start_longitude
+    };
+    props.endPosition = {
+      lat: state.mission.end_latitude,
+      long: state.mission.end_longitude
+    };
+    if (props.missionStatus === 'in_mission') {
+      if (state.captains[state.mission.vehicle_id] &&
+        state.captains[state.mission.vehicle_id].status === 'ready') {        
         props.showRoutePath = true;
       }
     }

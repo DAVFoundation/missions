@@ -25,7 +25,7 @@ class OrderScreen extends Component {
     getUserLocation().then((res) => {
       this.setState({
         startCoordinates: `${res.coords.latitude}, ${res.coords.longitude}`,
-        endCoordinates: `${res.coords.latitude}, ${res.coords.longitude}`  
+        endCoordinates: `${res.coords.latitude - 0.03}, ${res.coords.longitude + 0.05}`  
       });
     }).catch((res) => {
       console.log(res);

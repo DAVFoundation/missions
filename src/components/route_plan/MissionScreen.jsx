@@ -15,10 +15,15 @@ class MissionScreen extends Component {
       showDownloadDialog: false
     };
   }
+  
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.missionStatus === 'completed') {
+      this.props.history.push(this.props.appPath);
+    }
+  }
 
   approveCompletedMission() {
     this.props.approveCompletedMission();
-    this.setState({ showDownloadDialog: true });
   }
 
   showPlanRequestedDialog() {
@@ -44,56 +49,50 @@ class MissionScreen extends Component {
       </div>) : (<div/>);
   }
 
-  showPlanReadyDialog() {
-    return this.state.showDownloadDialog ? (
-      <div id="wallet-dialog-screen" className="screen">
-        <div className="screen-background--dark"/>
-        <div className="modal-container">
-          <div className="modal-box wallet-dialog">
-            <h1>Your Route Plan is Ready</h1>
-            <p>Click the ‘Download’ button below to<br />
-            view the full details of your route plan.</p>
-            <button onClick={this.dismissDownloadDialog.bind(this)} className="big-button">
-              DOWNLOAD
-            </button>
-          </div>
-        </div>
-      </div>) : (<div/>);
-  }
-
   dismissRequestedDialog() {
     this.setState({ dialogDismissed: true });
   }
 
   dismissDownloadDialog() {
-    this.setState({ showDownloadDialog: true });
+    this.props.completedMission();
   }
 
   render() {
-    console.log(this.props.missionStatus);
     switch(this.props.missionStatus) {
-    case 'completed': {
+    case 'confirmed': {
       return (
-        <div>
-          <div className="mission-info">
-            <div className="mission-info-summary">
-              <h1>Route Plan is Ready!</h1>
-              <p>Press ‘Confirm’ to view route instructions</p>
-              <p>Cost for delivery:</p>
-              <h1>{(this.props.price/1000000000000000000).toFixed(2)} <img src={currencyImage} className="currency-symbol" alt="DAV"/></h1>
-              <button onClick={this.approveCompletedMission.bind(this)} className="big-button close" >
-                CONFIRM
+        <div id="wallet-dialog-screen" className="screen">
+          <div className="screen-background--dark"/>
+          <div className="modal-container">
+            <div className="modal-box wallet-dialog">
+              <h1>Your Route Plan is Ready</h1>
+              <p>Click the ‘Download’ button below to<br />
+              view the full details of your route plan.</p>
+              <button onClick={this.dismissDownloadDialog.bind(this)} className="big-button">
+                DOWNLOAD
               </button>
             </div>
           </div>
-          { this.showPlanReadyDialog() }
-        </div>
-      );
+        </div>);
     }
-    case 'confirmed': {
-      return this.showPlanReadyDialog();
-    }
-    case 'in_progress': {
+    case 'in_mission': {
+      if(this.props.vehicleStatus === 'ready') {
+        return (
+          <div>
+            <div className="mission-info">
+              <div className="mission-info-summary">
+                <h1>Route Plan is Ready!</h1>
+                <p>Press ‘Confirm’ to view route instructions</p>
+                <p>Cost for delivery:</p>
+                <h1>{(this.props.price/1000000000000000000).toFixed(2)} <img src={currencyImage} className="currency-symbol" alt="DAV"/></h1>
+                <button onClick={this.approveCompletedMission.bind(this)} className="big-button close" >
+                  CONFIRM
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      }
       return this.showPlanRequestedDialog();
     }
     default: {
@@ -133,6 +132,7 @@ MissionScreen.propTypes = {
   timeLeftInLeg: PropTypes.number,
   price: PropTypes.number,
   approveCompletedMission: PropTypes.func.isRequired,
+  completedMission: PropTypes.func.isRequired,
 };
 
 export default MissionScreen;

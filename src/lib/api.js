@@ -96,6 +96,14 @@ export const cancelNeed = () => {
   return fetchWithUserId(url, 'DELETE');
 };
 
+export const updateMissionStatus = (status) => {
+  const missionId = store.getState().mission.mission_id;
+  let url = new URL(`/missions/${missionId}`, apiRoot);
+  return fetchWithUserId(url, 'PUT', {
+    status
+  });
+};
+
 export const confirmTakeoff = () => {
   const missionId = store.getState().mission.mission_id;
   const command = 'takeoff_pickup';

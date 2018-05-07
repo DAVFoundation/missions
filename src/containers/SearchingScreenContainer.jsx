@@ -1,8 +1,6 @@
 import {connect} from 'react-redux';
 import {getBidArray} from '../reducers/bids';
-import {getVehicleOnMission} from '../reducers/vehicles';
-import {getChargerOnMission} from '../reducers/chargers';
-import {getRouteProvidersOnMission} from '../reducers/routes';
+import { getCaptainOnMission } from '../reducers/captains';
 import {resetOrderDetails,chooseBid, startChargingMission} from '../actions';
 import {cancelNeed} from '../lib/api';
 import {withRouter} from 'react-router-dom';
@@ -30,16 +28,15 @@ const SearchingScreenContainer = (componentName) => {
       appPath: state.app.path
     };
 
+    props.captains = state.captains;
+    props.captainOnMission = getCaptainOnMission(state);
+    props.missionStatus = state.mission.status;
     if (componentName === 'ChargingSearchingScreen') {
-      props.chargers = state.captains;
-      props.chargerOnMission = getChargerOnMission(state);
-    } else if (componentName === 'RoutePlanSearchingScreen') {
-      props.routeProviders = state.captains;
-      props.providersOnMission = getRouteProvidersOnMission(state);
-      props.missionStatus = state.mission.status;
+      props.chargers = props.captains;
+      props.chargerOnMission = props.captainOnMission;
     } else if (componentName === 'DeliverySearchingScreen') {
-      props.vehicles = state.captains;
-      props.vehicleOnMission = getVehicleOnMission(state);
+      props.vehicles = props.captains;
+      props.vehicleOnMission = props.captainOnMission;
     }
     return props;
   };

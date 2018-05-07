@@ -54,7 +54,7 @@ export default handleActions({
   },
 
   [updateStatusFulfilled]: (state, {payload}) => {
-    if (payload.status === 'in_mission') {
+    if (payload.status === 'in_mission' || payload.status === 'confirmed') {
       return {...state, ...payload, ...{stage: 'in_mission'}};
     }
 

@@ -37,61 +37,19 @@ class SearchingScreen extends Component {
   handleSortingOptionChange(option) {
     this.setState({
       selectedSortingOption: option,
-      sortedBids: this.returnSortedBids(option)
+      sortedBids: this.returnSortedBids()
     });
   }
 
-  returnSortedBids(option) {
-    /* eslint-disable indent */
-
-    switch (option) {
-      case 'Best match': {
-        // sort on distance, if bids have similar distance show
-        // the lowest price first
-        return this.props.bids.sort((a, b) => {
-          let distanceA = a.distance;
-          let distanceB = b.distance;
-
-          if (distanceA < distanceB) {
-            return -1;
-          } else if (distanceA > distanceB) {
-            return 1;
-          } else {
-            //distance is equal - compare by price
-            return parseFloat(a.price) - parseFloat(b.price);
-          }
-        });
-      }
-      case 'Shortest Distance': {
-        //sort on 'distance'
-        return this.props.bids.sort(
-          (a, b) => parseFloat(a.distance) - parseFloat(b.distance)
-        );
-      }
-      case 'Highest charging velocity': {
-        //sort on 'max_charging_velocity'
-        return this.props.bids.sort(
-          (a, b) =>
-            parseFloat(b.charger.max_charging_velocity) - parseFloat(a.charger.max_charging_velocity)
-        );
-      }
-      case 'Lowest cost': {
-        //sort on 'price'
-        return this.props.bids.sort(
-          (a, b) => parseFloat(a.price) - parseFloat(b.price)
-        );
-      }
-      default:
-        return this.props.bids;
-    }
-    /* eslint-enable indent */
+  returnSortedBids() {
+    return this.props.bids;
   }
 
   render() {
     const {
       bids,
-      routeProviders,
-      chargerOnMission,
+      captains,
+      captainOnMission,
       stage,
       cancelSearch,
       chooseBid,
@@ -124,10 +82,10 @@ class SearchingScreen extends Component {
             <div id="vehicle-bid-preview-cards">
               {bids.map(
                 bid =>
-                  routeProviders[bid.provider_id] && (
+                  captains[bid.provider_id] && (
                     <MapItemBidPreview
                       key={bid.id}
-                      mapItem={routeProviders[bid.provider_id]}
+                      mapItem={captains[bid.provider_id]}
                     />
                   )
               )}
@@ -138,11 +96,11 @@ class SearchingScreen extends Component {
         <div id="vehicle-bid-cards">
           {this.state.sortedBids.map(
             bid =>
-              routeProviders[bid.provider_id] && (
+              captains[bid.provider_id] && (
                 <RoutePlanBid
                   key={bid.id}
                   bid={bid}
-                  routeProvider={routeProviders[bid.provider_id]}
+                  routeProvider={captains[bid.provider_id]}
                   shown={stage === 'choosing'}
                   chooseBid={chooseBid}
                 />
@@ -152,15 +110,15 @@ class SearchingScreen extends Component {
 
         <div className="screen-background--dark">
           {stage === 'signing' &&
-          chargerOnMission && (
+          captainOnMission && (
               <div className="modal-container">
                 <div id="signing-box" className="modal-box">
                   <h2>Initiating DAV Transaction</h2>
                   <p>Signing secure smart contract between:</p>
                   <MapItemCard
-                    icon={chargerOnMission.icon}
-                    id={chargerOnMission.id}
-                    model={chargerOnMission.model}
+                    icon={captainOnMission.icon}
+                    id={captainOnMission.id}
+                    model={captainOnMission.model}
                   />
                   <div id="sign-here">
                     <img
@@ -179,8 +137,8 @@ class SearchingScreen extends Component {
 }
 
 SearchingScreen.propTypes = {
-  routeProviders: PropTypes.object.isRequired,
-  chargerOnMission: PropTypes.object,
+  captains: PropTypes.object.isRequired,
+  captainOnMission: PropTypes.object,
   missionId: PropTypes.string,
   bids: PropTypes.array.isRequired,
   stage: PropTypes.string.isRequired,

@@ -1,7 +1,12 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getVehicleArray } from '../reducers/vehicles';
-import { approveCompletedMission, confirmDroneDocking, completeChargingMission } from '../actions';
+import { getCaptainsArray, getCaptainOnMission } from '../reducers/captains';
+import { 
+  approveCompletedMission, 
+  confirmDroneDocking, 
+  completeChargingMission,
+  updateMissionStatus 
+} from '../actions';
 import { NEED_TYPES } from '../config/needTypes';
 
 let Components = {
@@ -12,6 +17,7 @@ let Components = {
 
 const mapDispatchToProps = (dispatch) => ({
   approveCompletedMission: () => dispatch(approveCompletedMission()),
+  completedMission: () => dispatch(updateMissionStatus('completed')),
   confirmDroneDocking: () => dispatch(confirmDroneDocking()),
   completeChargingMission: () => dispatch(completeChargingMission())
 });
@@ -23,8 +29,13 @@ const matchStateToProps = (state) => {
 
   if (needType === NEED_TYPES.DRONE_CHARGING) {
     props.missionStatus = mission.status;
+  } else if (needType === NEED_TYPES.ROUTE_PLAN) {
+    const vehicleOnMission = getCaptainOnMission(state);
+    if(vehicleOnMission) {
+      props.vehicleStatus = vehicleOnMission.status;
+    }
   } else {
-    const vehicles = getVehicleArray(state.vehicles);
+    const vehicles = getCaptainsArray(state.vehicles);
     let props = {};
     if (vehicles[0] && vehicles[0].status) {
       const leg = vehicles[0].status.split('_')[1];
