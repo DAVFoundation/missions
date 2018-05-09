@@ -160,26 +160,26 @@ class SearchingScreen extends Component {
 
         <div className="screen-background--dark">
           {stage === 'signing' &&
-          vehicleOnMission && (
-              <div className="modal-container">
-                <div id="signing-box" className="modal-box">
-                  <h2>Initiating DAV Transaction</h2>
-                  <p>Signing secure smart contract between:</p>
-                  <MapItemCard
-                    icon={vehicleOnMission.icon}
-                    id={vehicleOnMission.id}
-                    model={vehicleOnMission.model}
+            vehicleOnMission && (
+            <div className="modal-container">
+              <div id="signing-box" className="modal-box">
+                <h2>Initiating DAV Transaction</h2>
+                <p>Signing secure smart contract between:</p>
+                <MapItemCard
+                  icon={vehicleOnMission.icon}
+                  id={vehicleOnMission.id}
+                  model={vehicleOnMission.model}
+                />
+                <div id="sign-here">
+                  <img
+                    src={'/images/signing.gif?' + missionId}
+                    alt="Signing smart contract"
                   />
-                  <div id="sign-here">
-                    <img
-                      src={'/images/signing.gif?' + missionId}
-                      alt="Signing smart contract"
-                    />
-                  </div>
-                  <UserCardContainer />
                 </div>
+                <UserCardContainer />
               </div>
-            )}
+            </div>
+          )}
         </div>
       </div>
     );
