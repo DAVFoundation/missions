@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getCaptainsArray, getCaptainOnMission } from '../reducers/captains';
+import { /*getCaptainsArray, */getCaptainOnMission } from '../reducers/captains';
 import { 
   approveCompletedMission, 
   confirmDroneDocking, 
@@ -35,14 +35,12 @@ const matchStateToProps = (state) => {
       props.vehicleStatus = vehicleOnMission.status;
     }
   } else {
-    const vehicles = getCaptainsArray(state.vehicles);
-    let props = {};
-    if (vehicles[0] && vehicles[0].status) {
-      const leg = vehicles[0].status.split('_')[1];
-      props.vehicleStatus = vehicles[0].status;
-      props.leg = leg;
+    const vehicleOnMission = getCaptainOnMission(state);
+    if(vehicleOnMission && vehicleOnMission.status) {
+      props.vehicleStatus = vehicleOnMission.status;
+      props.leg = props.vehicleStatus.split('_')[1];
       let timeLeftInLeg;
-      switch (leg) {
+      switch (props.leg) {
       case 'dropoff': {
         const travellingDropoffAt = parseInt(mission.travelling_dropoff_at);
         const timeToDropoff = parseInt(mission.time_to_dropoff);
@@ -56,8 +54,7 @@ const matchStateToProps = (state) => {
         break;
       }
       }
-      timeLeftInLeg = timeLeftInLeg ? parseInt(timeLeftInLeg.toFixed(0)) : 0;
-      props.timeLeftInLeg = timeLeftInLeg;
+      props.timeLeftInLeg = timeLeftInLeg ? parseInt(timeLeftInLeg.toFixed(0)) : 0;
     }
   }
 

@@ -1,10 +1,9 @@
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {getVehicleArray} from '../reducers/vehicles';
+import { getCaptainsArray/*, getCaptainOnMission*/ } from '../reducers/captains';
 import {getBidArray} from '../reducers/bids';
 import {updateMapCoords} from '../actions';
 import Map from '../components/Map.jsx';
-import {getChargerArray} from '../reducers/chargers';
 import {NEED_TYPES} from '../config/needTypes';
 
 const matchStateToProps = (state) => {
@@ -15,8 +14,6 @@ const matchStateToProps = (state) => {
     pickup: state.order.pickup,
     dropoff: state.order.dropoff,
     droneLocation: state.order.droneLocation,
-    startPosition: state.order.startPosition,
-    endPosition: state.order.endPosition,
     needType,
     appPath
   };
@@ -30,25 +27,11 @@ const matchStateToProps = (state) => {
     props.mapItemType = 'vehicle';
   }
 
-  if (state.mission) {
+  if (state.mission.status) {
     props.missionStatus = state.mission.status;
-    if (props.missionStatus === 'in_progress') {
+    if (props.missionStatus !== 'completed') {
       props.dropoff = {long: state.mission.dropoff_longitude, lat: state.mission.dropoff_latitude};
       props.pickup = {long: state.mission.pickup_longitude, lat: state.mission.pickup_latitude};
-    } else if (props.missionStatus === 'in_mission') {
-      if (needType === NEED_TYPES.ROUTE_PLAN && 
-        state.captains[state.mission.vehicle_id] &&
-        state.captains[state.mission.vehicle_id].status === 'ready') {
-        props.startPosition = {
-          lat: state.mission.start_latitude,
-          long: state.mission.start_longitude
-        };
-        props.endPosition = {
-          lat: state.mission.end_latitude,
-          long: state.mission.end_longitude
-        };
-        props.showRoutePath = true;
-      }
     }
   }
 
@@ -70,7 +53,7 @@ const getRelevantMapItems = (mapItemType, state) => {
       bid => state[mapItemTypePlural][bid[mapItemIdKey]] && mapItems.push(state[mapItemTypePlural][bid[mapItemIdKey]])
     );
   } else {
-    mapItems = mapItemType === 'vehicle' ? getVehicleArray(state[mapItemTypePlural]) : getChargerArray(state[mapItemTypePlural]);
+    mapItems = getCaptainsArray(state.captains);
   }
   return mapItems;
 };
