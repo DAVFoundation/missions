@@ -68,6 +68,22 @@ class MissionScreen extends Component {
           </div>
         </div>
       );
+    } else {
+      return ( // TODO:  fix in_mission case and use captainstateinsted of mission
+        <div className="mission-info">
+          <div className="mission-info-container">
+            <div className="mission-info-icon">
+              <img src={chargingIcon} alt="GPS Point Icon"/>
+            </div>
+            <div className="mission-info-text">
+              <p>Current State:</p>
+            </div>
+          </div>
+          <div className="mission-info-container">
+            
+          </div>
+        </div>
+      );
     }
   }
 }
