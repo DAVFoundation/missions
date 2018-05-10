@@ -13,7 +13,7 @@ let Components = {
 
 const mapDispatchToProps = (dispatch) => ({
   cancelSearch: () => cancelNeed().then(dispatch(resetOrderDetails())),
-  chooseBid: (bidId, vehicle_id, price) => dispatch(chooseBid(bidId, vehicle_id, price)),
+  chooseBid: (bidId, captain_id, price) => dispatch(chooseBid(bidId, captain_id, price)),
   startChargingMission: (mission) => dispatch(startChargingMission(mission))
 });
 

@@ -82,10 +82,10 @@ export const createDroneDeliveryNeed = ({ pickup, dropoff, pickup_at, size, weig
   return createNeed(params);
 };
 
-export const chooseBid = (bidId, vehicle_id, price) => {
+export const chooseBid = (bidId, captain_id, price) => {
   let url = new URL(`/bids/${bidId}/choose`, apiRoot);
   return fetchWithUserId(url, 'PUT').then(response => {
-    store.dispatch(createMissionTransaction(bidId, vehicle_id, price));
+    store.dispatch(createMissionTransaction(bidId, captain_id, price));
     return response;
   });
 };

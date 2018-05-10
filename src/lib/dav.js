@@ -186,12 +186,12 @@ export const registerDavId = () => {
   });
 };
 
-export const createMissionTransaction = (bidId, vehicle_id, price) => {
+export const createMissionTransaction = (bidId, captain_id, price) => {
   if (process.env.BLOCKCHAIN_TYPE === 'NONE') {
     store.dispatch(createMissionTransactionFulfilled());
     return Promise.resolve('Blockchain is disabled');
   }
-  davSDK.createMissionTransaction(bidId, vehicle_id, price).then((response) => {
+  davSDK.createMissionTransaction(bidId, captain_id, price).then((response) => {
     if(response.logs.length > 0) {
       let contractMissionId = response.logs[0].args.id;
       store.dispatch(updateContractMissionIdMissionId({ contractMissionId }));

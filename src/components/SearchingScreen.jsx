@@ -126,10 +126,10 @@ class SearchingScreen extends Component {
             <div id="vehicle-bid-preview-cards">
               {bids.map(
                 bid =>
-                  vehicles[bid.vehicle_id] && (
+                  vehicles[bid.captain_id] && (
                     <MapItemBidPreview
                       key={bid.id}
-                      mapItem={vehicles[bid.vehicle_id]}
+                      mapItem={vehicles[bid.captain_id]}
                     />
                   )
               )}
@@ -146,11 +146,11 @@ class SearchingScreen extends Component {
           )}
           {this.state.sortedBids.map(
             bid =>
-              vehicles[bid.vehicle_id] && (
+              vehicles[bid.captain_id] && (
                 <VehicleBid
                   key={bid.id}
                   bid={bid}
-                  vehicle={vehicles[bid.vehicle_id]}
+                  vehicle={vehicles[bid.captain_id]}
                   shown={stage === 'choosing'}
                   chooseBid={chooseBid}
                 />

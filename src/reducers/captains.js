@@ -22,4 +22,4 @@ export const getCaptainsArray = state =>
   Object.entries(state).map(([, captain]) => captain);
 
 export const getCaptainOnMission = state =>
-  state.mission.vehicle_id ? state.captains[state.mission.vehicle_id] : undefined;
+  state.mission.captain_id ? state.captains[state.mission.captain_id] : undefined;

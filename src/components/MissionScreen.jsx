@@ -12,13 +12,18 @@ class MissionScreen extends Component {
     super(props);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.missionStatus === 'completed') {
+      this.props.history.push(this.props.appPath);
+    }
+  }
   approveCompletedMission() {
-    this.props.approveCompletedMission();
-    this.props.history.push(this.props.appPath+'/');
+    this.props.approveCompletedMission(); // TODO: show spinner or disable the button
   }
 
   render() {
-    if (this.props.missionComplete) {
+
+    if (this.props.vehicleStatus === 'ready') {
       return (
         <div className="mission-info">
           <div className="mission-info-summary">
@@ -61,6 +66,7 @@ class MissionScreen extends Component {
 MissionScreen.propTypes = {
   history: PropTypes.object.isRequired,
   appPath: PropTypes.string,
+  missionStatus: PropTypes.string,
   vehicleStatus: PropTypes.string,
   missionComplete: PropTypes.bool.isRequired,
   leg: PropTypes.string,

@@ -34,8 +34,8 @@ const matchStateToProps = (state) => {
       long: state.mission.end_longitude
     };
     if (props.missionStatus === 'in_mission') {
-      if (state.captains[state.mission.vehicle_id] &&
-        state.captains[state.mission.vehicle_id].status === 'ready') {        
+      if (state.captains[state.mission.captain_id] &&
+        state.captains[state.mission.captain_id].status === 'ready') {        
         props.showRoutePath = true;
       }
     }
