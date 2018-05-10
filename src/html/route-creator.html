@@ -31,21 +31,29 @@
     <meta name="msapplication-TileImage" content="img/fav/ms-icon-144x144.png?v=2">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Google Tag Manager -->
-    <script type="text/javascript" data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
+  <!-- Google Tag Manager -->
+  <!-- <script type="text/javascript" data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
+    
+  {'gtm.start': new Date().getTime(),event:'gtm.js'}
+  );var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NCJHZN5');</script> -->
+  <!-- End Google Tag Manager -->
 
-    {'gtm.start': new Date().getTime(),event:'gtm.js'}
-    );var f=d.getElementsByTagName(s)[0],
+  <!-- Google Tag Manager -->
+  <script type="text/javascript" data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NCJHZN5');</script>
+    })(window,document,'script','dataLayer','GTM-KRPG9G6');</script>
     <!-- End Google Tag Manager -->
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-gallery/2.30.0/css/blueimp-gallery.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css?v=3.1.7"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=3.2.5"/>
 
     <!-- Bootstrap -->
     <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -64,7 +72,6 @@
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
       ga('create', 'UA-104463303-1', 'auto');
       ga('send', 'pageview');
       ga('send', 'Button', 'Clicked', 'Join', '0');
@@ -117,9 +124,14 @@
       };
     </script>
   </head>
-  <body>
+  <body class="route-creator-bg">
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NCJHZN5"
+    <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NCJHZN5"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRPG9G6"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
@@ -132,25 +144,33 @@
           <h1>Route Creator</h1>
           <h2>Create a new route for: <span id="mission_id_span"></span></h2>
           <form id="route_creator_form" method="post" onsubmit="return prepareDataForSubmission();" action="MISSION-CONTROL-URL/updateGraddPayload">
-          <div class="container text-left">
-            <div class="row">
-              <div class="col-md-2">
-                <p><img src="img/gps.png"> START:</p>
+            <div class="container text-left fixed-container-width">
+              <div class="row waypoint-header hidden-xs1">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-2"><p>Latitude</p></div>
+                <div class="col-xs-2"><p>Longitude</p></div>
+                <div class="col-xs-2"><p>Altitude (meters)</p></div>
+                <div class="col-xs-2"><p>Heading (degrees)</p></div>
+                <div class="col-xs-2"><p>Distance (meters)</p></div>
               </div>
-              <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Latitude" id="pickup_latitude">
+              <div class="row">
+              <div class="col-xs-2">
+                <p><img src="img/gps.png"> START:<br class="visible-xs"><br class="visible-xs"></p>
               </div>
-              <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Longitude" id="pickup_longitude">
+              <div class="col-xs-2">
+                <input type="text" class="input-gray" placeholder="N/A" id="pickup_latitude">
               </div>
-              <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Altitude (meters)" id="pickup_altitude">
+              <div class="col-xs-2">
+                <input type="text" class="input-gray" placeholder="N/A" id="pickup_longitude">
               </div>
-              <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Heading (degrees)" id="pickup_heading">
+              <div class="col-xs-2">
+                <input type="text" class="input-gray" placeholder="N/A" id="pickup_altitude">
               </div>
-              <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Distance (meters)" id="pickup_distance">
+              <div class="col-xs-2">
+                <input type="text" id="pickup_heading">
+              </div>
+              <div class="col-xs-2">
+                <input type="text"" id="pickup_distance">
               </div>
             </div>
 
@@ -159,7 +179,7 @@
             </div>
 
             <div class="row waypoint-plus">
-              <div class="col-sm-10 col-sm-offset-2">
+              <div class="col-xs-10 col-xs-offset-2">
                 <p><a href="#">+ Add Waypoint</a></p>
               </div>
             </div>
@@ -168,19 +188,19 @@
               <div class="col-md-2">
                 <p><img src="img/gps.png"> END:</p>
               </div>
-              <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Latitude" id="dropoff_latitude">
+              <div class="col-xs-2 col-xs-6">
+                <input type="text" class="input-gray" placeholder="N/A" id="dropoff_latitude" disabled>
               </div>
-              <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Longitude" id="dropoff_longitude">
+              <div class="col-xs-2 col-xs-6">
+                <input type="text" class="input-gray" placeholder="N/A" id="dropoff_longitude" disabled>
               </div>
-              <div class="col-sm-2 col-xs-6">
-                <input type="text" placeholder="Altitude (meters)" id="dropoff_altitude">
+              <div class="col-xs-2 col-xs-6">
+                <input type="text" class="input-gray" placeholder="N/A" id="dropoff_altitude" disabled>
               </div>
             </div>
 
             <div class="row">
-              <div class="col-sm-4 col-sm-offset-4">
+              <div class="col-xs-2 col-xs-offset-5">
                 <input type="submit" value="SUBMIT" id="submit_button" />
               </div>
             </div>
@@ -200,7 +220,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.0.2/jquery.countdown.min.js" type="text/javascript" data-cfasync="false"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js" data-cfasync="false"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countto/1.2.0/jquery.countTo.min.js" data-cfasync="false"></script>
-    <script src="js/main.js?v=3.1.7" type="text/javascript" data-cfasync="false"></script>
+    <script src="js/main.js?v=3.2.5" type="text/javascript" data-cfasync="false"></script>
     <script data-cfasync="false">
       var keyStr = "ABCDEFGHIJKLMNOP" +
         "QRSTUVWXYZabcdef" +
@@ -307,20 +327,20 @@
           <div class="col-md-2">
             <p>WAYPOINT ${waypointNumber}:</p>
           </div>
-          <div class="col-sm-2 col-xs-6">
-            <input type="text" placeholder="Latitude" id="waypoint_${waypointNumber}_latitude">
+          <div class="col-xs-2">
+            <input type="text" id="waypoint_${waypointNumber}_latitude">
           </div>
-          <div class="col-sm-2 col-xs-6">
-            <input type="text" placeholder="Longitude" id="waypoint_${waypointNumber}_longitude">
+          <div class="col-xs-2">
+            <input type="text" id="waypoint_${waypointNumber}_longitude">
           </div>
-          <div class="col-sm-2 col-xs-6">
-            <input type="text" placeholder="Altitude (meters)" id="waypoint_${waypointNumber}_altitude">
+          <div class="col-xs-2">
+            <input type="text" id="waypoint_${waypointNumber}_altitude">
           </div>
-          <div class="col-sm-2 col-xs-6">
-            <input type="text" placeholder="Heading (degrees)" id="waypoint_${waypointNumber}_heading">
+          <div class="col-xs-2">
+            <input type="text" id="waypoint_${waypointNumber}_heading">
           </div>
-          <div class="col-sm-2 col-xs-6">
-            <input type="text" placeholder="Distance (meters)" id="waypoint_${waypointNumber}_distance">
+          <div class="col-xs-2">
+            <input type="text" id="waypoint_${waypointNumber}_distance">
           </div>
         </div>
         `;

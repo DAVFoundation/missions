@@ -13,6 +13,9 @@ input {
     -webkit-appearance: none;
     border-radius: 0;
 }
+.makeOrange{
+	color: $orange !important;
+}
 .btn-orange{
 	border-radius: 3px;
 	background: $orange;
@@ -110,6 +113,17 @@ input {
 		background: transparent;
 	}
 }
+.navbar-nav>li.btn-top-register #mc-embedded-subscribe{
+	background: $orange;
+	color: #FFF;
+    border-radius: 5px;
+    padding: 6px 15px;
+    margin-top: 12px;
+    margin-right: 10px;
+    margin-left: 8px;
+    border: none;
+    font-size: 13px;
+}
 .navbar-nav.navbar-right>li>a{
 	font-size: 13px;
 }
@@ -134,10 +148,48 @@ input {
 		display: inline-block;
 	}
 }
+.telegram-bottom {
+    position: fixed;
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    left: auto;
+    height: 47px;
+    background-color: #ffffff;
+    z-index: 200;
+    border-radius: 50%;
+    box-shadow: 0 4px 5px -1px rgba(0, 0, 0, 0.5);
+}
+
+.telegram-bottom a {
+    display: block;
+    font-size: 48px;
+    color: #26AFE2;
+}
+
+.telegram-bottom a:hover,
+.telegram-bottom a:focus {
+    color: #26AFE2;
+}
+
+.telegram-bottom a .fa {
+    vertical-align: top;
+}
+
 .hero{
 	background: #000 url('../img/hero.jpg') no-repeat center;
 	background-size: cover;
 	color: #FFF;
+	&.index2{
+		.hero-inner{
+			.hero-valign{
+				h1{
+					margin: -40px 0 0;
+					padding: 0;
+				}
+			}
+		}
+	}
 	.hero-inner{
 		height: 47.85714285714286vw;
 		display: table;
@@ -164,6 +216,12 @@ input {
 				min-width: 50px;
 				text-align: right;
 			}
+			&.orange-title{
+				font-size: 19px;
+				color: $orange;
+				font-weight: 400;
+				margin: 0 0 10px;
+			}
 		}
 		h5{
 			font-size: 15px;
@@ -171,7 +229,7 @@ input {
 			line-height: 25px;
 			}
 		.countdown{
-			width: 320px;
+			width: 290px;
 			margin: 0 auto;
 			p{
 				border: 1px solid #FFF;
@@ -186,6 +244,38 @@ input {
 				margin: 0 0 45px;
 				}
 			}
+			.eth-progress{
+				width: 300px;
+				margin: 0px auto 20px;
+				p{
+					font-weight: 700;
+					font-size: 15px;
+				}
+				.progress{
+					border-radius: 10px;
+					.progress-bar{
+						background: $orange;
+						border-top-right-radius: 10px;
+						border-bottom-right-radius: 10px;
+						font-weight: 700;
+					}
+				}
+			}
+		.hero-telegram{
+			background: $orange;
+			border-radius: 3px;
+			color: #FFF;
+			font-size: 15px;
+			font-weight: 700;
+			height: 47px;
+			line-height: 47px;
+			display: inline-block;
+			padding: 0 15px;
+			margin-top: 20px;
+			img{
+				margin-right: 7px;
+			}
+		}
 		.hero-join{
 			width: 390px;
 			margin: 0 auto;
@@ -224,7 +314,38 @@ input {
 				display: block;
 				width: 100%;
 				height: 37px;
+			}
+			&.makeFix{
+				border-top: 1px solid $orange;
+				position: fixed;
+				background: #FFF;
+				bottom: -17px;
+				width: 100%;
+				padding: 0 30%;
+				z-index: 99999;
+				padding-top: 20px;
+				// left: 50%;
+				// margin-left: -195px;
+				input[type=email]{
+					color: $orange;
+					border-color: $orange;
+					&::-webkit-input-placeholder {
+					   color: $orange;
+					}
+					
+					&:-moz-placeholder {
+					   color: $orange;  
+					}
+					
+					&::-moz-placeholder {
+					   color: $orange;  
+					}
+					
+					&:-ms-input-placeholder {  
+					   color: $orange;  
+					}
 				}
+			}
 			}
 		}
 		a[href='#modalKYCStatus']{
@@ -238,7 +359,7 @@ input {
 		}
 	}
 	.countdown-row {
-	margin:0 auto 40px;
+	margin:0 auto 30px;
 	width:100%;
 	display:table;
 	text-align:center;
@@ -251,8 +372,8 @@ input {
 		display: block;
 		float: left;
 		text-align: center;
-		width:74px;
-		height:55px;
+		width:64px;
+		height:45px;
 		border-radius: 3px;
 		-webkit-border-radius: 3px;
 		-moz-border-radius: 3px;
@@ -267,14 +388,14 @@ input {
 		// font-weight:700;
 		// line-height:120px;
 		    // border: 1px solid #FFF;
-		font-size: 24px;
+		font-size: 18px;
 		font-weight: 700;
-		line-height: 55px;
+		line-height: 45px;
 		border-radius: 2px;
 	}
 	.countdown-period {
 	    display: block;
-		font-size: 15px;
+		font-size: 12px;
     	text-transform: uppercase;
     	margin: 0 0 45px;
     	font-weight: 500;
@@ -283,6 +404,17 @@ input {
 	&.hero-whitelist{
 		background: #000 url('../img/intersection.jpg') no-repeat center;
 		background-size: cover;
+	}
+}
+.best-brands.index2{
+	margin-top: -112px;
+	padding: 15px;
+	background: #FFF;
+	img{
+		// width: 20%;
+		margin: 0 0 15px;
+		height: 26px;
+		width: auto;
 	}
 }
 .join-us-orange{
@@ -395,6 +527,7 @@ input {
 .video-home{
 	background: url('../img/highways.jpg') no-repeat center;
 	background-size: cover;
+	background-color: #263E49;
 	color: #FFF;
 	text-align: center;
 	padding: 35px 0 60px;
@@ -775,6 +908,92 @@ height: 0;
 	// 	width: 20%;
 	// }
 }
+
+.members{
+	h2{
+		font-weight: 700;
+		font-size: 26px;
+		margin: 0 0 70px;
+		color: #333;
+	}
+	a{
+		display: block;
+		position: relative;
+		.alliance-popup{
+			min-height: 230px;
+			opacity: 0;
+			position: absolute;
+			top: -45%;
+			background: #FFF;
+			z-index: 2;
+			border-radius: 5px;
+			-webkit-box-shadow: 0px 0px 38px 6px rgba(222,221,221,0.84);
+-moz-box-shadow: 0px 0px 38px 6px rgba(222,221,221,0.84);
+box-shadow: 0px 0px 38px 6px rgba(222,221,221,0.84);
+-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+			img{
+				margin: 0;
+				height: 60px;
+			}
+			h5{
+				font-size: 13px;
+				color: #363840;
+				font-weight: 500;
+				padding: 0 10px 10px;
+				margin: 0;
+			}
+		}
+		&:hover{
+			.alliance-popup{
+				opacity: 1;
+			}
+		}
+		&:hover,
+		&:active,
+		&:focus{
+			outline: none;
+		}
+	}
+	img{
+		height: 90px;
+		margin-bottom: 60px;
+	}
+	.popover-content img{
+		margin: 0;
+		height: auto;
+		width: 100%;
+	}
+}
+.alliance-modal-small{
+	.modal-dialog button.close{
+		position: absolute;
+		right: 10px;
+		color: #a7a7a7;
+		opacity: 1;
+		font-size: 36px;
+	}
+	.modal-content{
+		// background: #ebebeb;
+		border: none;
+	}
+	a{
+		display: block;
+		font-size: 13px;
+		text-align: center;
+		font-weight: 500;
+		color: #4361d8;
+	}
+	h5{
+		font-size: 13px;
+		color: #363840;
+		font-weight: 500;
+		line-height: 21px;
+		padding: 0 10px 20px;
+		margin: 0;
+	}
+}
 .alliance-modal.team-modal{
 	.modal-dialog{
 		width: 360px;
@@ -1096,6 +1315,7 @@ height: 0;
 			font-weight: 300;
 			font-size: 15px;
 			color: $orange;
+			min-height: 44px;
 		}
 	}
 }
@@ -1304,6 +1524,9 @@ height: 0;
 			line-height: normal;
 		}
 		a{
+			color: $orange;
+		}
+		a.viewTokenInfo{
 			border-radius: 3px;
 			background: $orange;
 			color: #FFF;
@@ -1755,6 +1978,7 @@ box-shadow: 0px 0px 21px 7px rgba(200,202,205,0.74);
 	border-radius: 0px;
 	padding: 5px 15px;
 	margin: 0px;
+	z-index: 300;
 	.close{
 		color: #FFF;
 		box-shadow: none;
@@ -2764,9 +2988,12 @@ box-shadow: 0px 0px 21px 7px rgba(200,202,205,0.74);
 		}
 	}
 }
-.hero.route-creator{
+.route-creator-bg{
 	background: #000 url(../img/route-creator.jpg) no-repeat center;
     background-size: cover;
+}
+.hero.route-creator{
+	background: none;
     .hero-inner{
     	// min-height: 98.64364981504316vw !important;
 		// padding-top: 55px;
@@ -2778,15 +3005,20 @@ box-shadow: 0px 0px 21px 7px rgba(200,202,205,0.74);
     		padding-top: 30px;
     	}
     	h2{
-    		font-size: 25px;
+    		font-size: 15px;
     		font-weight: 400;
     		margin: 0 0 45px;
     		span{
     			font-weight: 700;
+    			word-wrap: break-word;
     		}
     	}
+    	h3{
+    		margin-top: 0;
+    		font-size: 20px;
+    	}
     	p{
-    		padding-left: 24%;
+    		padding-left: 16%;
     		font-size: 14px;
     		font-weight: 400;
     		line-height: 27px;
@@ -2799,6 +3031,18 @@ box-shadow: 0px 0px 21px 7px rgba(200,202,205,0.74);
     			height: 20px;
     			margin-right: 5px;
     		}
+    	}
+    	label{
+    		padding: 0;
+    		font-weight: 700;
+    		font-size: 12px;
+    		color: $orange;
+    	}
+    	.waypoint-header p,label{
+    		padding: 0;
+    		font-weight: 700;
+    		font-size: 12px;
+    		color: $orange;
     	}
     	.waypoint-plus p{
     		padding-left: 0;
@@ -2819,22 +3063,26 @@ box-shadow: 0px 0px 21px 7px rgba(200,202,205,0.74);
     		color: #FFF;
     		display: block;
     		width: 100%;
-    		border-bottom: 1px solid #FFF;
+    		border-bottom: 1px solid #9b9b9b;
     		font-size: 12px;
     		&::-webkit-input-placeholder {
-    		   color: #FFF;
+    		   color: #9b9b9b;
     		}
     		
     		&:-moz-placeholder {
-    		   color: #FFF;  
+    		   color: #9b9b9b;  
     		}
     		
     		&::-moz-placeholder {
-    		   color: #FFF;  
+    		   color: #9b9b9b;  
     		}
     		
     		&:-ms-input-placeholder {  
-    		   color: #FFF;  
+    		   color: #9b9b9b;  
+    		}
+    		&.input-gray{
+    			border: none;
+    			color: #9b9b9b;
     		}
     	}
     	.waypoint{
@@ -2844,7 +3092,7 @@ box-shadow: 0px 0px 21px 7px rgba(200,202,205,0.74);
     			margin-right: 5px;
     		}
     		input[type=text]{
-    			color: $orange;
+    			// color: $orange;
     		}
     	}
     	input[type=submit]{
@@ -2853,14 +3101,114 @@ box-shadow: 0px 0px 21px 7px rgba(200,202,205,0.74);
     		color: #FFF;
     		border: none;
     		width: 100%;
-    		height: 58px;
-    		font-size: 19px;
+    		height: 42px;
+    		font-size: 15px;
     		border-radius: 6px;
     		letter-spacing: 1px;
     		margin: 60px 0 0;
     		font-weight: 700;
     	}
     }
+}
+// charging station dashboard
+.custom-check{
+	& > label span{
+		display: block;
+		border: 1px solid $orange;
+		width: 18px;
+		height: 18px;
+		float: left;
+		margin-right: 10px;
+	}
+	input{
+		display: none;
+	}
+	input:checked + label span:after{
+		content: '\00d7';
+		color: $orange;
+		font-size: 24px;
+		line-height: 16px;
+		text-align: center;
+		display: block;
+		// margin-left: -1px;
+		font-weight: normal;
+	}
+	label{
+		color: #FFF !important;
+		line-height: 18px;
+		cursor: pointer;
+		margin-bottom: 20px;
+	}
+
+}
+.inline-label{
+	line-height: 27px;
+	display: block;
+	input{
+		width: 60% !important;
+		margin-left: 10px !important;
+		display: inline-block !important;
+	}
+	&.charge-price{
+		input{
+			margin-left: 0;
+			width: 100px !important;
+			text-align: center;
+		}
+	}
+}
+.station-name{
+	margin: 40px 0 20px !important;
+	font-size: 18px !important;
+	font-weight: 700 !important;
+}
+.station-box{
+	border: 1px solid #FFF;
+	min-height: 200px;
+	padding: 15px 0;
+	p{
+		padding: 5px 0 !important;
+		font-size: 12px;
+	}
+	span{
+		display: block;
+		font-weight: 700;
+	}
+	a{
+		color: #4a4a4a;
+		background-color: #9a9a9a;
+		border-radius: 6px;
+		display: inline-block;
+		padding: 0 15px;
+		margin: 20px 0;
+		font-size: 12px;
+		height: 32px;
+		line-height: 32px;
+		font-weight: normal;
+		cursor: default;
+		&:hover,
+		&:active,
+		&:focus{
+			text-decoration: none;
+		}
+	}
+	&.awaiting{
+		span{
+			color: $orange;
+		}
+		border-color: $orange;
+		a{
+			font-weight: bold;
+			color: #FFF;
+			background: $orange;
+			cursor: pointer;
+		}
+	}
+	&.charging{
+		span{
+			color: #7ed321;
+		}
+	}
 }
 // media queries
 @media (max-width: 1400px) {
@@ -2898,6 +3246,9 @@ box-shadow: 0px 0px 21px 7px rgba(200,202,205,0.74);
 	}
 	.drone-flight-planning img{
 		width: 60%;
+	}
+	.navbar-nav>li.btn-top-register #mc-embedded-subscribe{
+		margin-top: 7px;
 	}
 }
 @media (max-width: 1200px) {
@@ -3007,6 +3358,13 @@ box-shadow: 0px 0px 21px 7px rgba(200,202,205,0.74);
 	}
 	.hero.route-creator .hero-inner p{
 		padding-left: 0;
+		font-size: 12px;
+	}
+	.route-creator-bg{
+		background-size: auto;
+	}
+	.fixed-container-width{
+		width: 970px;
 	}
 }
 @media (max-width: 992px) {
@@ -3451,7 +3809,7 @@ box-shadow: 0px 0px 21px 7px rgba(200,202,205,0.74);
 		width: 50%;
 	}
 	.contributors ul li{
-		width: 18%;
+		width: 12%;
 		margin: 1%;
 	}
 	.alliance-modal.team-modal .modal-dialog {
@@ -3570,6 +3928,31 @@ box-shadow: 0px 0px 21px 7px rgba(200,202,205,0.74);
 	.hero.route-creator .hero-inner input[type=text]{
 		margin: 0 0 20px;
 	}
+	.hero .hero-inner .hero-valign .hero-join.makeFix{
+		padding: 20px 15px 0;
+	}
+	.route-creator-bg.chargin-stations-bg{
+		background-size: cover;
+		// background: #000;
+		h1{
+			line-height: 120px !important;
+			font-size: 22px !important;
+		}
+	}
+	.station-name{
+		font-size: 20px !important;
+	}
+	.station-box p{
+		font-size: 18px !important;
+	}
+	.station-box a{
+		font-size: 16px !important;
+		height: 36px;
+		line-height: 36px;
+	}
+	.station-box{
+		margin-bottom: 50px;
+	}
 }
 @media (max-height: 767px) {
 	#iphonex {
@@ -3590,7 +3973,7 @@ box-shadow: 0px 0px 21px 7px rgba(200,202,205,0.74);
     font-size: 16px;
   }
 }
-body.iosBugFixCaret.modal-open { position: fixed; width: 100%; }
+// body.iosBugFixCaret.modal-open { position: fixed; width: 100%; }
 // @media (min-width: 768px) {
 //     .navbar .navbar-nav {
 //         display: inline-block;
