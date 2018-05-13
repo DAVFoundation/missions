@@ -1,10 +1,10 @@
 import randomString from 'randomstring';
 
 // icons
-import sizeLetter from '../images/size_letter.svg';
-import sizeCan from '../images/size_can.svg';
-import sizePizza from '../images/size_pizza.svg';
-import sizeBox from '../images/size_box.svg';
+import sizeLetter from '../images/size-letter.svg';
+import sizeCan from '../images/size-can.svg';
+import sizePizza from '../images/size-pizza.svg';
+import sizeBox from '../images/size-box.svg';
 
 export const makeImage = imageData => {
   return new Promise((resolve, reject) => {
