@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from '../../containers/LinkContainer.jsx';
 import '../BidSelectionHeader.css';
-import sort_button from '../../images/sort_button.svg';
+import sort_button from '../../images/sort-button.svg';
 import arrow from '../../images/arrow-left.svg';
-import x_button from '../../images/x_button.svg';
+import x_button from '../../images/x-button.svg';
 import check from '../../images/check.svg';
 
 const CheckMark = props => (

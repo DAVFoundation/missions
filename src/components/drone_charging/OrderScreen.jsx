@@ -6,7 +6,7 @@ import Geosuggest from 'react-geosuggest';
 import Slider from 'react-rangeslider';
 import 'react-rangeslider/lib/index.css';
 import '../OrderScreen.css';
-import x_button from '../../images/x_button.svg';
+import x_button from '../../images/x-button.svg';
 
 
 class OrderScreen extends Component {

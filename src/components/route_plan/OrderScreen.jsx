@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Link from '../../containers/LinkContainer.jsx';
 import './OrderScreen.css';
 import arrow from '../../images/arrow-left.svg';
-import x_button from '../../images/x_button.svg';
+import x_button from '../../images/x-button.svg';
 import { getUserLocation } from '../../lib/map';
 
 class OrderScreen extends Component {

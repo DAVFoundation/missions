@@ -7,7 +7,7 @@ import IconSelector from './IconSelector.jsx';
 import getConfig from '../config';
 import {packageSizeOptions} from '../lib/utils';
 import Geosuggest from 'react-geosuggest';
-import x_button from '../images/x_button.svg';
+import x_button from '../images/x-button.svg';
 
 class OrderScreen extends Component {
   constructor(props) {

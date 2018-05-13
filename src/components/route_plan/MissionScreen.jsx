@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../MissionScreen.css';
-import gpsPointIcon from '../../images/gps_point.svg';
+import gpsPointIcon from '../../images/gps-point.svg';
 import timeIcon from '../../images/time.svg';
 import currencyImage from '../../images/dav.svg';
 import PropTypes from 'prop-types';
