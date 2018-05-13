@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import '../MissionScreen.css';
 import '../ConfirmTakeoff.css';
+import timeIcon from '../../images/time.svg';
 import currencyImage from '../../images/dav.svg';
 import droneWaiting from '../../images/charging_drone_waiting.png';
 import chargingIcon from '../../images/charging_icon.png';
+import {humanReadableVehicleStatus} from '../../lib/utils';
 import PropTypes from 'prop-types';
 
 class MissionScreen extends Component {
@@ -12,12 +14,18 @@ class MissionScreen extends Component {
     super(props);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.missionStatus === 'completed') {
+      this.props.history.push(this.props.appPath);
+    }
+  }
+
   approveCompletedMission() {
-    this.props.history.push(this.props.appPath + '/');
+    this.props.approveCompletedMission();
   }
 
   render() {
-    if (this.props.missionComplete) {
+    if (this.props.vehicleStatus === 'ready') {
       return (
         <div className="mission-info">
           <div className="mission-info-summary">
@@ -32,7 +40,7 @@ class MissionScreen extends Component {
           </div>
         </div>
       );
-    } else if (this.props.missionStatus === 'docking_confirmation_received') {
+    } else if (this.props.vehicleStatus === 'docking_confirmation_received') {
       return (
         <div id="confirm-takeoff-screen" className="screen">
           <div className="screen-background--dark"/>
@@ -49,7 +57,7 @@ class MissionScreen extends Component {
             </div>
           </div>
         </div>);
-    } else if (this.props.missionStatus === 'charger_waiting') {
+    } else if (this.props.vehicleStatus === 'charger_waiting') {
       return (
         <div id="confirm-takeoff-screen" className="screen">
           <div className="screen-background--dark"/>
@@ -72,15 +80,19 @@ class MissionScreen extends Component {
       return ( // TODO:  fix in_mission case and use captainstateinsted of mission
         <div className="mission-info">
           <div className="mission-info-container">
-            <div className="mission-info-icon">
-              <img src={chargingIcon} alt="GPS Point Icon"/>
-            </div>
             <div className="mission-info-text">
               <p>Current State:</p>
+              <h3>{humanReadableVehicleStatus[this.props.vehicleStatus]}</h3>
             </div>
           </div>
           <div className="mission-info-container">
-            
+            <div className="mission-info-icon">
+              <img src={timeIcon} alt="Time Icon"/>
+            </div>
+            <div className="mission-info-text">
+              <p>Estimated time:</p>
+              <h3>{parseFloat(this.props.timeLeft) > 1 ? `${this.props.timeLeft} minutes` : 'less than a minute'}</h3>
+            </div>
           </div>
         </div>
       );
@@ -93,6 +105,8 @@ MissionScreen.propTypes = {
   appPath: PropTypes.string,
   missionComplete: PropTypes.bool.isRequired,
   missionStatus: PropTypes.string.isRequired,
+  vehicleStatus: PropTypes.string,
+  timeLeft: PropTypes.number,
   price: PropTypes.number,
   approveCompletedMission: PropTypes.func.isRequired,
   confirmDroneDocking: PropTypes.func.isRequired,

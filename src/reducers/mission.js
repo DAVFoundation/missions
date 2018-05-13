@@ -32,13 +32,13 @@ export default handleActions(
       if (need_type === NEED_TYPES.DRONE_CHARGING) {
         mission = {
           ...mission, ...{
-            chargerId: payloadMission.charger_id,
+            chargerId: payloadMission.captain_id,
           }
         };
       } else {
         mission = {
           ...mission, ...{
-            vehicleId: payloadMission.vehicle_od,
+            vehicleId: payloadMission.captain_id,
             timeToPickup: parseFloat(payloadMission.time_to_pickup),
             timeToDropoff: parseFloat(payloadMission.time_to_dropoff),
             pickup: {

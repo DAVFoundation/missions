@@ -27,17 +27,13 @@ const matchStateToProps = (state) => {
   const props = {};
   const mission = state.mission;
 
-  if (needType === NEED_TYPES.DRONE_CHARGING) {
-    props.missionStatus = mission.status;
-  } else if (needType === NEED_TYPES.ROUTE_PLAN) {
-    const vehicleOnMission = getCaptainOnMission(state);
-    if(vehicleOnMission) {
-      props.vehicleStatus = vehicleOnMission.status;
-    }
-  } else {
-    const vehicleOnMission = getCaptainOnMission(state);
-    if(vehicleOnMission && vehicleOnMission.status) {
-      props.vehicleStatus = vehicleOnMission.status;
+  const vehicleOnMission = getCaptainOnMission(state);
+  if(vehicleOnMission && vehicleOnMission.status) {
+    props.vehicleStatus = vehicleOnMission.status;
+  }
+
+  if (needType === NEED_TYPES.DRONE_DELIVERY) {
+    if(props.vehicleStatus) {
       props.leg = props.vehicleStatus.split('_')[1];
       let timeLeftInLeg;
       switch (props.leg) {
