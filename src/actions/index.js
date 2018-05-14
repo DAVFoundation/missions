@@ -88,10 +88,6 @@ export const updateMissionStatus = createAction('UPDATE_MISSION_STATUS', apiUpda
 
 export const completeChargingMission = createAction('COMPLETE_CHARGING_MISSION');
 
-const apiStartChargingMission = (mission) => {
-  return new Promise(resolve => resolve({mission}));
-};
-
-export const startChargingMission = createAction('START_CHARGING_MISSION', apiStartChargingMission);
+export const startChargingMission = createAction('START_CHARGING_MISSION');
 
 export const startChargingMissionFulfilled = createAction('START_CHARGING_MISSION_FULFILLED');
