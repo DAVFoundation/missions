@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './MissionScreen.css';
-import gpsPointIcon from '../images/gps_point.svg';
+import gpsPointIcon from '../images/gps-point.svg';
 import timeIcon from '../images/time.svg';
 import currencyImage from '../images/dav.svg';
 import PropTypes from 'prop-types';
@@ -12,7 +12,7 @@ class MissionScreen extends Component {
     super(props);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if(nextProps.missionStatus === 'completed') {
       this.props.history.push(this.props.appPath);
     }

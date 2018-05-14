@@ -7,7 +7,7 @@ import IconSelector from './IconSelector.jsx';
 import getConfig from '../config';
 import {packageSizeOptions} from '../lib/utils';
 import Geosuggest from 'react-geosuggest';
-import x_button from '../images/x_button.svg';
+import x_button from '../images/x-button.svg';
 
 class OrderScreen extends Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class OrderScreen extends Component {
     this.props.onMount();
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.registration_step === 'register_fulfilled') {
       this.submitForm();
     }

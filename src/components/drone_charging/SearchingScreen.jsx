@@ -134,10 +134,10 @@ class SearchingScreen extends Component {
             <div id="vehicle-bid-preview-cards">
               {bids.map(
                 bid =>
-                  chargers[bid.charger_id] && (
+                  chargers[bid.captain_id] && (
                     <MapItemBidPreview
                       key={bid.id}
-                      mapItem={chargers[bid.charger_id]}
+                      mapItem={chargers[bid.captain_id]}
                     />
                   )
               )}
@@ -154,11 +154,11 @@ class SearchingScreen extends Component {
           )}
           {this.state.sortedBids.map(
             bid =>
-              chargers[bid.charger_id] && (
+              chargers[bid.captain_id] && (
                 <ChargingStationBid
                   key={bid.id}
                   bid={bid}
-                  charger={chargers[bid.charger_id]}
+                  charger={chargers[bid.captain_id]}
                   shown={stage === 'choosing'}
                   chooseBid={chooseBid}
                 />
@@ -169,25 +169,25 @@ class SearchingScreen extends Component {
         <div className="screen-background--dark">
           {stage === 'signing' &&
           chargerOnMission && (
-              <div className="modal-container">
-                <div id="signing-box" className="modal-box">
-                  <h2>Initiating DAV Transaction</h2>
-                  <p>Signing secure smart contract between:</p>
-                  <MapItemCard
-                    icon={chargerOnMission.icon}
-                    id={chargerOnMission.id}
-                    model={chargerOnMission.model}
+            <div className="modal-container">
+              <div id="signing-box" className="modal-box">
+                <h2>Initiating DAV Transaction</h2>
+                <p>Signing secure smart contract between:</p>
+                <MapItemCard
+                  icon={chargerOnMission.icon}
+                  id={chargerOnMission.id}
+                  model={chargerOnMission.model}
+                />
+                <div id="sign-here">
+                  <img
+                    src={'/images/signing.gif?' + missionId}
+                    alt="Signing smart contract"
                   />
-                  <div id="sign-here">
-                    <img
-                      src={'/images/signing.gif?' + missionId}
-                      alt="Signing smart contract"
-                    />
-                  </div>
-                  <UserCardContainer />
                 </div>
+                <UserCardContainer />
               </div>
-            )}
+            </div>
+          )}
         </div>
       </div>
     );

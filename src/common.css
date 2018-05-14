@@ -101,7 +101,7 @@ h1 {
 
 .alert-button-confirm {
   border-bottom-right-radius: 5px;
-  color: #2BCA81;
+  color: #FF6A46;
 }
 
 .big-button {
@@ -120,9 +120,9 @@ h1 {
   text-decoration: none;
   text-transform: uppercase;
   color: #fff;
-  font-weight: normal;
-  font-size: 15px;
-  background-color: #FF6A4630;
+  font-weight: 700;
+  font-size: 17px;
+  background-color: #FFBBAB;
   pointer-events: none;
   padding: 20px 60px;
 }
@@ -193,7 +193,7 @@ input, select {
 }
 
 img.currency-symbol {
-  height: 13px;
-  margin-bottom: -4px;
-  margin-left: 3px;
+  height: 20px;
+  margin-bottom: -5px;
+  margin-left: 5px;
 }
