@@ -10,6 +10,7 @@ const matchStateToProps = (state) => {
   const appPath = state.app.path;
   const needType = state.app.needType;
   let props = {
+    graddPayload: state.mission && state.mission.gradd_payload,
     orderStage: state.order.stage,
     droneLocation: state.order.droneLocation,
     startPosition: state.order.startPosition,

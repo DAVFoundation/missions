@@ -37,9 +37,10 @@ class Map extends Component {
       addTerminals(this.map);
     }
 
-    if (nextProps.showRoutePath === true) {
+    if (nextProps.showRoutePath === true && nextProps.graddPayload) {
       if (nextProps.needType === NEED_TYPES.ROUTE_PLAN) {
-        addRoute(this.map, [terminals.pickup, terminals.dropoff]);
+        const route = extractTerminals(nextProps.graddPayload);
+        addRoute(this.map, route);
       } else {
         clearTerminals(this.map);
       }
@@ -107,6 +108,10 @@ class Map extends Component {
       </div>
     );
   }
+}
+
+function extractTerminals(graddPayload) {
+  return graddPayload.features.map(terminal => terminal.geometry.coordinates).map(coordinates => ({long: coordinates[0], lat: coordinates[1]}));
 }
 
 Map.defaultProps = {
