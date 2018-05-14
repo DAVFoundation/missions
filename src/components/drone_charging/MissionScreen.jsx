@@ -14,7 +14,7 @@ class MissionScreen extends Component {
     super(props);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if(nextProps.missionStatus === 'completed') {
       this.props.history.push(this.props.appPath);
     }
