@@ -34,7 +34,7 @@ class OrderScreen extends Component {
     this.props.onMount();
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.registration_step === 'register_fulfilled') {
       this.submitForm();
     }

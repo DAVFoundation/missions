@@ -32,7 +32,7 @@ class OrderScreen extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if(nextProps.registration_step === 'register_fulfilled') {
       this.submitForm();
     }
