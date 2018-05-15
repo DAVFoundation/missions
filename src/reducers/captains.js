@@ -2,12 +2,21 @@ import {
   handleActions
 } from 'redux-actions';
 import {
-  getSimulationDronesFulfilled
+  getSimulationDronesFulfilled,
+  updateStatusFulfilled
 } from '../actions';
 
 const defaultState = {};
 
 export default handleActions({
+  [updateStatusFulfilled]: (state, { payload }) => {
+    let nextState = {};
+    let captains = payload.captains || [];
+    captains.forEach(captain => {
+      nextState[captain.id] = captain;
+    });
+    return nextState;
+  },
   [getSimulationDronesFulfilled]: (state, {
     payload
   }) => {
