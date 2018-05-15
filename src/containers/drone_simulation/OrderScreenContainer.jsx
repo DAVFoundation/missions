@@ -1,23 +1,18 @@
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {shiftCoords} from '../lib/utils';
-import { NEED_TYPES } from '../config/needTypes.js';
+import {shiftCoords} from '../../lib/utils';
+import { NEED_TYPES } from '../../config/needTypes.js';
 import {
   updateOrderDetails,
   createDroneDeliveryNeed,
   verifyDavId,
   registerDavId,
   closeWalletDialog
-} from '../actions';
+} from '../../actions';
 
+import OrderScreen from '../../components/drone_simulation/OrderScreen.jsx';
 
-let Components = {
-  'ChargingOrderScreen': require('../components/drone_charging/OrderScreen.jsx').default,
-  'DeliveryOrderScreen': require('../components/OrderScreen.jsx').default,
-  'RoutePlanOrderScreen': require('../components/route_plan/OrderScreen.jsx').default
-};
-
-const OrderScreenContainer = (componentName) => {
+const OrderScreenContainer = () => {
   const mapDispatchToProps = (dispatch) => ({
     updateOrderDetails: (details) => dispatch(updateOrderDetails(details)),
     createNeed: (need) => dispatch(createDroneDeliveryNeed(need)),
@@ -27,8 +22,6 @@ const OrderScreenContainer = (componentName) => {
     closeWalletDialog: () => dispatch(closeWalletDialog())
   });
 
-
-  const OrderScreen = Components[componentName];
   return connect(
     (state) => {
       const defaultDropoff = shiftCoords(state.map.coords);

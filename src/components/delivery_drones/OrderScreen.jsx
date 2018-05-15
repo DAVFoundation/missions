@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Link from '../containers/LinkContainer.jsx';
-import './OrderScreen.css';
-import arrow from '../images/arrow-left.svg';
-import IconSelector from './IconSelector.jsx';
-import getConfig from '../config';
-import {packageSizeOptions} from '../lib/utils';
+import Link from '../../containers/LinkContainer.jsx';
+import arrow from '../../images/arrow-left.svg';
 import Geosuggest from 'react-geosuggest';
-import x_button from '../images/x-button.svg';
+import 'react-rangeslider/lib/index.css';
+import '../OrderScreen.css';
+import x_button from '../../images/x-button.svg';
+import IconSelector from '../IconSelector.jsx';
+import getConfig from '../../config';
+import {packageSizeOptions} from '../../lib/utils';
 
 class OrderScreen extends Component {
   constructor(props) {

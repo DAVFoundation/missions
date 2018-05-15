@@ -21,7 +21,6 @@ class App extends Component {
           <Map addControls={false}/>
           <Route exact path="/route_plan/" component={MainScreenContainer('RoutePlanMainScreen')}/>
 
-          <Route path="/route_plan/:mapItemType/:id" component={ MainScreenContainer('ChargingMainScreen') } />
           <Route path="/route_plan/:mapItemType/:id" component={ MapItemDetailsScreenContainer } />
           <Route path="/route_plan/order" component={ OrderScreenContainer()  } />
           <Route path="/route_plan/searching" component={ SearchingScreenContainer('RoutePlanSearchingScreen') } />

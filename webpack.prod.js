@@ -18,6 +18,7 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         MISSION_CONTROL_URL: JSON.stringify('https://ctrl.missions.io'),
+        CAPTAIN_SIM_URL: JSON.stringify('https://ctrl.missions.io'),
       },
     }),
     new HtmlWebpackPlugin({

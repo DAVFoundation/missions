@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import { getCaptainsArray/*, getCaptainOnMission*/ } from '../reducers/captains';
 import {getBidArray} from '../reducers/bids';
-import {updateMapCoords} from '../actions';
+import {updateMapCoords,getSimulationDrones} from '../actions';
 import Map from '../components/Map.jsx';
 import {NEED_TYPES} from '../config/needTypes';
 
@@ -39,7 +39,10 @@ const matchStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onMoveEnd: (coords) => dispatch(updateMapCoords({coords: coords}))
+  onMoveEnd: (coords) => {
+    dispatch(updateMapCoords({coords: coords}));
+    dispatch(getSimulationDrones());
+  }
 });
 
 

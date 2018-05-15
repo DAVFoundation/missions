@@ -1,12 +1,24 @@
 import store from '../store';
-import { packageSizeOptions } from '../lib/utils';
-import { createMissionTransaction } from '../actions';
+import {
+  packageSizeOptions
+} from '../lib/utils';
+import {
+  createMissionTransaction
+} from '../actions';
 import moment from 'moment';
-import { NEED_TYPES } from '../config/needTypes.js';
+import {
+  NEED_TYPES
+} from '../config/needTypes.js';
 
 const apiRoot = process.env.MISSION_CONTROL_URL;
+const captainSimRoot = process.env.CAPTAIN_SIM_URL;
 
-export const fetchStatus = ({ id, lat, long, needId }) => {
+export const fetchStatus = ({
+  id,
+  lat,
+  long,
+  needId
+}) => {
   const missionId = store.getState().mission.id;
   let url = new URL(`/status`, apiRoot);
   id && url.searchParams.set('id', id);
@@ -17,15 +29,27 @@ export const fetchStatus = ({ id, lat, long, needId }) => {
   return fetchWithUserId(url);
 };
 
-export const fetchBids = ({ needId }) => {
+export const fetchBids = ({
+  needId
+}) => {
   let url = new URL(`/bids/${needId}`, apiRoot);
   return fetchWithUserId(url);
 };
 
-export const createDroneChargingNeed = ({ chargingVelocity, currentCharge, droneLocation, droneType, searchRadius }) => {
+export const createDroneChargingNeed = ({
+  chargingVelocity,
+  currentCharge,
+  droneLocation,
+  droneType,
+  searchRadius
+}) => {
   // :    { address: "TT 453A Giải Phóng, Phương Liệt, Thanh Xuân, Hanoi, Vietnam", lat: 20.995084, long: 105.84166400000004 }
   const params = {
-    chargingVelocity, currentCharge, droneLocation, droneType, searchRadius,
+    chargingVelocity,
+    currentCharge,
+    droneLocation,
+    droneType,
+    searchRadius,
     need_location_latitude: droneLocation.lat,
     need_location_longitude: droneLocation.long,
     need_type: NEED_TYPES.DRONE_CHARGING
@@ -34,7 +58,12 @@ export const createDroneChargingNeed = ({ chargingVelocity, currentCharge, drone
   return createNeed(params);
 };
 
-export const createRoutePlanNeed = ({ startPosition, endPosition, flightHeight, heightUnits }) => {
+export const createRoutePlanNeed = ({
+  startPosition,
+  endPosition,
+  flightHeight,
+  heightUnits
+}) => {
   const params = {
     need_location_latitude: startPosition.lat,
     need_location_longitude: startPosition.long,
@@ -59,7 +88,13 @@ export const createNeed = (params) => {
   return fetchWithUserId(url, 'POST', params);
 };
 
-export const createDroneDeliveryNeed = ({ pickup, dropoff, pickup_at, size, weight }) => {
+export const createDroneDeliveryNeed = ({
+  pickup,
+  dropoff,
+  pickup_at,
+  size,
+  weight
+}) => {
   pickup_at = moment(pickup_at, 'HH:mm').format('x');
   const sizeOption = packageSizeOptions.find(
     sizeOption => sizeOption.id === size,
@@ -113,6 +148,26 @@ export const confirmTakeoff = () => {
   return fetchWithUserId(url);
 };
 
+export function fetchSimulationDrones() {
+  let url = new URL(`/simulation/drones`, captainSimRoot);
+
+  const headers = new Headers();
+  headers.append('Accept', 'application/json');
+  headers.append('Content-Type', 'application/json');
+
+  const coords = store.getState().map.coords;
+
+  const options = {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      latitude: coords.lat,
+      longitude: coords.long
+    })
+  };
+  return fetch(url, options).then(response => response.json());
+}
+
 const fetchWithUserId = (url, method = 'GET', body) => {
   const userId = store.getState().settings.user_id;
   url.searchParams.set('user_id', userId);
@@ -121,7 +176,10 @@ const fetchWithUserId = (url, method = 'GET', body) => {
   headers.append('Accept', 'application/json');
   headers.append('Content-Type', 'application/json');
 
-  const options = { method, headers };
+  const options = {
+    method,
+    headers
+  };
   if (body) options.body = JSON.stringify(body);
   return fetch(url, options).then(response => response.json());
 };
