@@ -1,10 +1,9 @@
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {getVehicleArray} from '../../reducers/vehicles';
 import {getBidArray} from '../../reducers/bids';
 import {updateMapCoords} from '../../actions';
 import Map from '../../components/Map.jsx';
-import {getChargerArray} from '../../reducers/chargers';
+import {getCaptainsArray} from '../../reducers/captains';
 
 const matchStateToProps = (state) => {
   const appPath = state.app.path;
@@ -51,16 +50,14 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 const getRelevantMapItems = (mapItemType, state) => {
-  const mapItemTypePlural = `${mapItemType}s`;
-  const mapItemIdKey = `${mapItemType}_id`;
   let mapItems = [];
   // if we are looking at bids, only show vehicles with bids
   if (['searching', 'choosing'].includes(state.order.stage)) {
     getBidArray(state.bids).forEach(
-      bid => state[mapItemTypePlural][bid[mapItemIdKey]] && mapItems.push(state[mapItemTypePlural][bid[mapItemIdKey]])
+      bid => state.captains[bid.captain_id] && mapItems.push(state.captains[bid.captain_id])
     );
   } else {
-    mapItems = mapItemType === 'vehicle' ? getVehicleArray(state[mapItemTypePlural]) : getChargerArray(state[mapItemTypePlural]);
+    mapItems = getCaptainsArray(state.captains);
   }
   return mapItems;
 };
