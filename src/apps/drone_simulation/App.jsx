@@ -4,7 +4,7 @@ import { initializeApp } from '../../lib/app';
 import Map from '../../containers/MapContainer.jsx';
 import MainScreenContainer from '../../containers/MainScreenContainer.jsx';
 import MapItemDetailsScreenContainer from '../../containers/MapItemDetailsScreenContainer.jsx';
-import OrderScreenContainer from '../../containers/OrderScreenContainer.jsx';
+import OrderScreenContainer from '../../containers/drone_simulation/OrderScreenContainer.jsx';
 import MissionContainer from '../../containers/MissionContainer.jsx';
 import SearchingScreenContainer from '../../containers/SearchingScreenContainer.jsx';
 import ConfirmPickupContainer from '../../containers/ConfirmTakeoffContainer.jsx';
@@ -26,10 +26,9 @@ class App extends Component {
 
           <Route path="/welcome" component={ Welcome } />
 
-          <Route path="/vehicles/:id" component={ MainScreenContainer('DeliveryMainScreen') } />
           <Route path="/vehicles/:id" component={ MapItemDetailsScreenContainer } />
 
-          <Route path="/order" component={ OrderScreenContainer('DeliveryOrderScreen') } />
+          <Route path="/order" component={ OrderScreenContainer() } />
 
           <Route path="/searching" component={ SearchingScreenContainer('DeliverySearchingScreen') } />
 

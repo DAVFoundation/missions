@@ -43,7 +43,8 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         // BLOCKCHAIN_TYPE: JSON.stringify('NONE'),
-        MISSION_CONTROL_URL: JSON.stringify('http://localhost:8888')
+        MISSION_CONTROL_URL: JSON.stringify('http://localhost:8888'),
+        CAPTAIN_SIM_URL: JSON.stringify('http://localhost:8887')
       },
     }),
   ],

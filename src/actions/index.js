@@ -1,6 +1,9 @@
-import { createAction } from 'redux-actions';
+import {
+  createAction
+} from 'redux-actions';
 import {
   fetchStatus as apiFetchStatus,
+  fetchSimulationDrones,
   createDroneDeliveryNeed as apiCreateDroneDeliveryNeed,
   createRoutePlanNeed as apiCreateRoutePlanNeed,
   createDroneChargingNeed as apiCreateDroneChargingNeed,
@@ -23,6 +26,9 @@ export const updateApp = createAction('UPDATE_APP');
 export const updateStatus = createAction('UPDATE_STATUS', apiFetchStatus);
 
 export const updateStatusFulfilled = createAction('UPDATE_STATUS_FULFILLED');
+
+export const getSimulationDrones = createAction('GET_SIMULATION_DRONES', fetchSimulationDrones);
+export const getSimulationDronesFulfilled = createAction('GET_SIMULATION_DRONES_FULFILLED');
 
 export const verifyDavId = createAction('VERIFY_DAV_ID', initWeb3);
 
@@ -88,6 +94,12 @@ export const updateMissionStatus = createAction('UPDATE_MISSION_STATUS', apiUpda
 
 export const completeChargingMission = createAction('COMPLETE_CHARGING_MISSION');
 
-export const startChargingMission = createAction('START_CHARGING_MISSION');
+const apiStartChargingMission = (mission) => {
+  return new Promise(resolve => resolve({
+    mission
+  }));
+};
+
+export const startChargingMission = createAction('START_CHARGING_MISSION', apiStartChargingMission);
 
 export const startChargingMissionFulfilled = createAction('START_CHARGING_MISSION_FULFILLED');

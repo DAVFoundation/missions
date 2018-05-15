@@ -9,7 +9,7 @@ import {
 } from '../../actions';
 import OrderScreen from '../../components/drone_charging/OrderScreen.jsx';
 
-const OrderScreenContainer = (/* componentName */) => {
+const OrderScreenContainer = () => {
   const mapDispatchToProps = (dispatch) => ({
     updateOrderDetails: (details) => dispatch(updateOrderDetails(details)),
     createNeed: (need) => dispatch(createDroneChargingNeed(need)),

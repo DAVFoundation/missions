@@ -134,7 +134,8 @@ Map.propTypes = {
   endPosition: PropTypes.object,
   appPath: PropTypes.string,
   addControls: PropTypes.bool,
-  showRoutePath: PropTypes.bool
+  showRoutePath: PropTypes.bool,
+  graddPayload: PropTypes.object,
 };
 
 export default Map;

@@ -1,4 +1,4 @@
-import { handleActions } from 'redux-actions';
+/* import { handleActions } from 'redux-actions';
 import { updateStatusFulfilled, confirmTakeoffFulfilled } from '../actions';
 
 const defaultState = {};
@@ -27,3 +27,4 @@ export const getVehicleArray = state =>
 
 export const getVehicleOnMission = state =>
   state.mission.vehicleId ? state.vehicles[state.mission.vehicleId] : undefined;
+ */

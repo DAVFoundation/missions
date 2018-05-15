@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { getCaptainOnMission } from '../reducers/captains';
 import { 
   approveCompletedMission, 
-  completeChargingMission,
   updateMissionStatus 
 } from '../actions';
 import { NEED_TYPES } from '../config/needTypes';
