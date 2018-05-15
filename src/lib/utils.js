@@ -75,3 +75,16 @@ export const randomDavAddress = () => {
     })
   );
 };
+
+export const downloadAsJsonFile = (obj) => {
+  if (document) {
+    const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(obj));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute('href',     dataStr);
+    downloadAnchorNode.setAttribute('download', 'route.json');
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();  
+  } else {
+    console.error('Download failed: document is not defined.');
+  }
+};

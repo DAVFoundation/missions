@@ -57,6 +57,7 @@ const matchStateToProps = (state) => {
   props.price = parseFloat(mission.price);
   props.appPath = state.app.path;
   props.missionComplete = mission.status === 'completed';
+  props.route = mission.gradd_payload;
 
   return props;
 };

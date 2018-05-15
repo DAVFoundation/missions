@@ -4,7 +4,7 @@ import gpsPointIcon from '../../images/gps-point.svg';
 import timeIcon from '../../images/time.svg';
 import currencyImage from '../../images/dav.svg';
 import PropTypes from 'prop-types';
-import {humanReadableVehicleStatus} from '../../lib/utils';
+import {humanReadableVehicleStatus, downloadAsJsonFile} from '../../lib/utils';
 
 class MissionScreen extends Component {
 
@@ -54,6 +54,8 @@ class MissionScreen extends Component {
   }
 
   dismissDownloadDialog() {
+    const geoJson = this.props.route;
+    downloadAsJsonFile(geoJson);
     this.props.completedMission();
   }
 
@@ -125,6 +127,7 @@ class MissionScreen extends Component {
 
 MissionScreen.propTypes = {
   history: PropTypes.object.isRequired,
+  route:  PropTypes.object,
   appPath: PropTypes.string,
   vehicleStatus: PropTypes.string,
   missionStatus: PropTypes.string.isRequired,

@@ -24,7 +24,8 @@
   font-size: 15px;
   font-weight: 500;
   max-width: 160px;
-  margin: 35px auto 10px;
+  margin: 16px auto 12px;
+  color: #FF6A46;
 }
 
 #searching-screen .vehicle-card {
@@ -38,9 +39,11 @@
 
 #searching-screen .cancel-button {
   display: block;
-  margin: 20px auto 10px;
+  margin: 12px auto;
   width: 60px;
   text-align: center;
+  border-color: #FF6A46;
+  color: #FF6A46;
 }
 
 .vehicle-bid-card {
@@ -175,4 +178,14 @@ dl.bid-details {
 }
 #signing-box #sign-here img {
   margin-top: 11px;
+}
+
+#searching-screen .vehicle-vitals .dav-uid {
+  font-size: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#searching-screen img.currency-symbol {
+  height: 16px;
 }

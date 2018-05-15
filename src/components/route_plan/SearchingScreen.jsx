@@ -70,7 +70,7 @@ class SearchingScreen extends Component {
       >
         {stage === 'searching' && (
           <div>
-            <h1>Matching you with charging sations</h1>
+            <h1>Matching you with flights route providers...</h1>
             <Link
               to="/"
               className="med-button cancel-button"

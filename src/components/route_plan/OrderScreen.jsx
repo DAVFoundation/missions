@@ -219,9 +219,9 @@ class OrderScreen extends Component {
           </div>
         </div>
         <div id="bottom-button-container">
-          <button onClick={this.verifyIdentity.bind(this)} className={ this.isValidForm() ? 'big-button form-submit-button': 'disabled-button form-submit-button'} >
+          <div onClick={this.verifyIdentity.bind(this)} className={ this.isValidForm() ? 'big-button form-submit-button': 'disabled-button form-submit-button'} >
             Find Routes
-          </button>
+          </div>
         </div>
         { showSignInToWalletDialog === false ? (<div/>) : signInToWalletDialog }
         { showRegisterDavIdDialog === false ? (<div/>) : registerDavIdDialog}

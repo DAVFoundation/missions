@@ -11,7 +11,7 @@
 }
 #bottom-button-container {
   position: absolute;
-  bottom: 15px;
+  bottom: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

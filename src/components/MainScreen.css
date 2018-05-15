@@ -17,7 +17,7 @@ div#header {
 }
 
 div#logo {
-  margin: 15px auto 0;
+  margin: auto;
   width: 116px;
 }
 
@@ -47,20 +47,22 @@ a.order-button {
 
 .profile {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 2px;
+  right: 16px;
 }
 
 .user-location {
   margin-top: auto;
-  padding: 30px;
+  padding: 16px;
 }
 
 .user-location h3 {
-  font-size: 19px;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: 300;
 }
 
 .user-location p {
+  font-size: 14px;
+  font-weight: 500;
   color: #807B9C;
 }
