@@ -27,16 +27,16 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-geosuggest": "^2.7.0",
+    "react-rangeslider": "^2.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-promise-middleware": "5.0.0",
-    "react-rangeslider": "^2.2.0",
     "truffle-contract": "^3.0.4",
     "turf": "^3.0.14",
-    "web3": "^1.0.0-beta.33"
+    "web3": "^1.0.0-beta.34"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
