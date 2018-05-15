@@ -1,10 +1,8 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { /*getCaptainsArray, */getCaptainOnMission } from '../reducers/captains';
+import { getCaptainOnMission } from '../reducers/captains';
 import { 
   approveCompletedMission, 
-  confirmDroneDocking, 
-  completeChargingMission,
   updateMissionStatus 
 } from '../actions';
 import { NEED_TYPES } from '../config/needTypes';
@@ -18,8 +16,8 @@ let Components = {
 const mapDispatchToProps = (dispatch) => ({
   approveCompletedMission: () => dispatch(approveCompletedMission()),
   completedMission: () => dispatch(updateMissionStatus('completed')),
-  confirmDroneDocking: () => dispatch(confirmDroneDocking()),
-  completeChargingMission: () => dispatch(completeChargingMission())
+  confirmDroneDocking: () => dispatch(updateMissionStatus('docking_confirmation_received', 'docking_confirmation_received')),
+  completeChargingMission: () => dispatch(updateMissionStatus('ready', 'ready')),
 });
 
 const matchStateToProps = (state) => {

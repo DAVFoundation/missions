@@ -131,12 +131,17 @@ export const cancelNeed = () => {
   return fetchWithUserId(url, 'DELETE');
 };
 
-export const updateMissionStatus = (status) => {
+export const updateMissionStatus = (status, captain_status) => {
   const missionId = store.getState().mission.mission_id;
   let url = new URL(`/missions/${missionId}`, apiRoot);
-  return fetchWithUserId(url, 'PUT', {
-    status
-  });
+  let body = {status};
+  if(captain_status) {
+    body = {
+      vehicle_status: captain_status,
+      mission_status: status
+    };
+  }
+  return fetchWithUserId(url, 'PUT', body);
 };
 
 export const confirmTakeoff = () => {

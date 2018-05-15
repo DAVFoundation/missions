@@ -87,7 +87,12 @@
     </noscript>
     <!-- End Facebook Pixel Code -->
     <script type="text/javascript">
+      var getUpdateGraddPayloadEndpointUrl = () => {
+        const env = window.location.href.indexOf('missions.io') > -1 ? 'prod' : 'dev';
+        return env === 'prod' ? 'https://ctrl.missions.io' : 'http://localhost:8888' + '/missions/updateGraddPayload';
+      }
       var prepareDataForSubmission = ()=>{
+        $('#route_creator_form').attr('action', getUpdateGraddPayloadEndpointUrl());
         let validationPassed = false;
         let mission = {};
         mission.coordinates = [];
@@ -107,7 +112,7 @@
               }
             }
           );
-          mission = encodeURIComponent(encode64(JSON.stringify(mission)));
+          mission = encodeURIComponent(btoa(JSON.stringify(mission)));
           $('#mission').val(mission);
           validationPassed = true;
         } catch(e) {
@@ -131,7 +136,7 @@
         <div class="hero-valign">
           <h1>Route Creator</h1>
           <h2>Create a new route for: <span id="mission_id_span"></span></h2>
-          <form id="route_creator_form" method="post" onsubmit="return prepareDataForSubmission();" action="MISSION-CONTROL-URL/updateGraddPayload">
+          <form id="route_creator_form" method="post" onsubmit="prepareDataForSubmission()" >
           <div class="container text-left">
             <div class="row">
               <div class="col-md-2">
@@ -185,8 +190,9 @@
               </div>
             </div>
           </div>
-          <input type="hidden" id="mission" value="" />
+          <input type="hidden" id="mission" value="" name="mission" />
           <input type="hidden" id="mission_id" value="" />
+          <input type="hidden" id="captain_id" value="" />
           </form>
         </div>
       </div>
@@ -207,35 +213,6 @@
         "ghijklmnopqrstuv" +
         "wxyz0123456789+/" +
         "=";
-      function encode64(input) {
-        input = escape(input);
-        var output = "";
-        var chr1, chr2, chr3 = "";
-        var enc1, enc2, enc3, enc4 = "";
-        var i = 0;
-        do {
-          chr1 = input.charCodeAt(i++);
-          chr2 = input.charCodeAt(i++);
-          chr3 = input.charCodeAt(i++);
-          enc1 = chr1 >> 2;
-          enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-          enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-          enc4 = chr3 & 63;
-          if (isNaN(chr2)) {
-            enc3 = enc4 = 64;
-          } else if (isNaN(chr3)) {
-            enc4 = 64;
-          }
-          output = output +
-            keyStr.charAt(enc1) +
-            keyStr.charAt(enc2) +
-            keyStr.charAt(enc3) +
-            keyStr.charAt(enc4);
-          chr1 = chr2 = chr3 = "";
-          enc1 = enc2 = enc3 = enc4 = "";
-        } while (i < input.length);
-        return output;
-      }
       function decode64(input) {
         var output = "";
         var chr1, chr2, chr3 = "";
@@ -291,6 +268,7 @@
         $('#dropoff_longitude').prop('disabled',true);
         $('#dropoff_altitude').val(mission.dropoff_altitude);
         $('#dropoff_altitude').prop('disabled',true);
+        $('#captain_id').val(mission.captain_id);
         $('#mission_id').val(mission.mission_id);
         $('#mission_id_span').html(mission.mission_id);
       } else {
