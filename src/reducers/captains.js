@@ -10,22 +10,19 @@ const defaultState = {};
 
 export default handleActions({
   [updateStatusFulfilled]: (state, { payload }) => {
-    let nextState = {};
     let captains = payload.captains || [];
     captains.forEach(captain => {
-      nextState[captain.id] = captain;
+      state[captain.id] = captain;
     });
-    return nextState;
+    return state;
   },
   [getSimulationDronesFulfilled]: (state, {
     payload
   }) => {
-    return (payload || []).reduce(
-      (nextState, captain) => {
-        nextState[captain.id] = captain;
-        return nextState;
-      }, {}
-    );
+    payload.forEach(captain => {
+      state[captain.id] = captain;
+    });
+    return state;
   }
 },
 defaultState
