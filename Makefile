@@ -9,6 +9,9 @@ setup:
 start: setup
 	@ npm start
 
+stop:
+	@ npm run stop
+
 build: setup
 	@ npm run build
 

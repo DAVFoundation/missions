@@ -16,6 +16,7 @@
     "build": "webpack --config webpack.prod.js",
     "build-stg": "webpack --config webpack.stg.js",
     "start": "webpack-dev-server --config webpack.dev.js",
+    "stop": "kill $(ps aux | grep 'webpack' | awk '{print $2}')",
     "test": "jest"
   },
   "dependencies": {
