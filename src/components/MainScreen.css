@@ -12,12 +12,11 @@ div#user-controls, a.order-button {
 }
 
 div#header {
-  margin: 15px 0;
   position: relative;
 }
 
 div#logo {
-  margin: auto;
+  margin: 16px auto;
   width: 116px;
 }
 
@@ -47,7 +46,7 @@ a.order-button {
 
 .profile {
   position: absolute;
-  top: 2px;
+  top: 16px;
   right: 16px;
 }
 
