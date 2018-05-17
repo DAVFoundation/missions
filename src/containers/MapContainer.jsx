@@ -47,13 +47,11 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 const getRelevantMapItems = (mapItemType, state) => {
-  const mapItemTypePlural = `${mapItemType}s`;
-  const mapItemIdKey = `${mapItemType}_id`;
   let mapItems = [];
   // if we are looking at bids, only show vehicles with bids
   if (['searching', 'choosing'].includes(state.order.stage)) {
     getBidArray(state.bids).forEach(
-      bid => state[mapItemTypePlural][bid[mapItemIdKey]] && mapItems.push(state[mapItemTypePlural][bid[mapItemIdKey]])
+      bid => state.captains[bid.captain_id] && mapItems.push(state.captains[bid.captain_id])
     );
   } else {
     mapItems = getCaptainsArray(state.captains);
