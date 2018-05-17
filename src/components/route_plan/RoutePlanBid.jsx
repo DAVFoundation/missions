@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MapItemCard from '../MapItemCard.jsx';
 import currencyImage from '../../images/dav.svg';
 
-const ChargingStationBid = ({bid, routeProvider, shown, chooseBid}) => {
+const RoutePlanBid = ({bid, routeProvider, shown, chooseBid}) => {
   const clickChooseBid = (e) => {
     e.preventDefault();
     chooseBid(bid.id, bid.captain_id, bid.price);
@@ -26,11 +26,11 @@ const ChargingStationBid = ({bid, routeProvider, shown, chooseBid}) => {
   );
 };
 
-ChargingStationBid.propTypes = {
+RoutePlanBid.propTypes = {
   bid: PropTypes.object.isRequired,
   routeProvider: PropTypes.object.isRequired,
   shown: PropTypes.bool.isRequired,
   chooseBid: PropTypes.func.isRequired,
 };
 
-export default ChargingStationBid;
+export default RoutePlanBid;
