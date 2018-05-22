@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import { getCaptainsArray/*, getCaptainOnMission*/ } from '../reducers/captains';
+import { getCaptainsArray, getCaptainOnMission } from '../reducers/captains';
 import {getBidArray} from '../reducers/bids';
 import {updateMapCoords,getSimulationDrones} from '../actions';
 import Map from '../components/Map.jsx';
@@ -34,6 +34,8 @@ const matchStateToProps = (state) => {
       props.pickup = {long: state.mission.pickup_longitude, lat: state.mission.pickup_latitude};
     }
   }
+
+  props.vehicleOnMission =  getCaptainOnMission(state);
 
   return props;
 };
