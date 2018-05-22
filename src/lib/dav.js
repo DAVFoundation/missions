@@ -196,7 +196,7 @@ export const registerDavId = () => {
 
 export const createMissionTransaction = (bidId, captain_id, price) => {
   if (process.env.BLOCKCHAIN_TYPE === 'NONE') {
-    store.dispatch(createMissionTransactionFulfilled());
+    store.dispatch(updateContractMissionIdMissionId({ bidId }));
     return Promise.resolve('Blockchain is disabled');
   }
   davSDK.createMissionTransaction(bidId, captain_id, price).then((response) => {
@@ -213,7 +213,7 @@ export const createMissionTransaction = (bidId, captain_id, price) => {
 
 export const approveCompletedMission = () => {
   if (process.env.BLOCKCHAIN_TYPE === 'NONE') {
-    store.dispatch(registerDavIdFulfilled());
+    store.dispatch(updateMissionStatus('confirmed'));
     return Promise.resolve('Blockchain is disabled');
   }
   let mission = store.getState().mission;
