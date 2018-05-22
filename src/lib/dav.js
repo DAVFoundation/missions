@@ -163,6 +163,10 @@ export const initWeb3 = () => {
 };
 
 export const isRegistered = (davId) => {
+  if (process.env.BLOCKCHAIN_TYPE === 'NONE') {
+    store.dispatch(registerDavIdFulfilled());
+    return Promise.resolve('Blockchain is disabled');
+  }
   davSDK = new davJS(davId, davId);
   return davSDK.isRegistered().then((isRegistered) => {
     if (isRegistered) {
@@ -177,6 +181,10 @@ export const isRegistered = (davId) => {
 };
 
 export const registerDavId = () => {
+  if (process.env.BLOCKCHAIN_TYPE === 'NONE') {
+    store.dispatch(registerDavIdFulfilled());
+    return Promise.resolve('Blockchain is disabled');
+  }
   davSDK.registerSimple().then((isRegistered) => {
     if (isRegistered === true) {
       store.dispatch(registerDavIdFulfilled());
@@ -204,6 +212,10 @@ export const createMissionTransaction = (bidId, captain_id, price) => {
 };
 
 export const approveCompletedMission = () => {
+  if (process.env.BLOCKCHAIN_TYPE === 'NONE') {
+    store.dispatch(registerDavIdFulfilled());
+    return Promise.resolve('Blockchain is disabled');
+  }
   let mission = store.getState().mission;
   let contractMissionId = mission.contractMissionId || mission.id;
   initWeb3().then(() => {
