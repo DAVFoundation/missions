@@ -17,6 +17,7 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        BLOCKCHAIN_TYPE: JSON.stringify('NONE'),
         MISSION_CONTROL_URL: JSON.stringify('http://missioncontrol-stg.us-east-1.elasticbeanstalk.com'),
         CAPTAIN_SIM_URL: JSON.stringify('http://missioncontrol-stg.us-east-1.elasticbeanstalk.com'),
       },
