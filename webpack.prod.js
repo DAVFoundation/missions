@@ -17,6 +17,7 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        BLOCKCHAIN_TYPE: JSON.stringify('MAINNET'),
         MISSION_CONTROL_URL: JSON.stringify('https://ctrl.missions.io'),
         CAPTAIN_SIM_URL: JSON.stringify('https://ctrl.missions.io'),
       },
