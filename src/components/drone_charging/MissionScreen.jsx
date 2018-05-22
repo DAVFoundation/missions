@@ -4,6 +4,7 @@ import '../ConfirmTakeoff.css';
 import timeIcon from '../../images/time.svg';
 import currencyImage from '../../images/dav.svg';
 import droneWaiting from '../../images/charging_drone_waiting.png';
+import stationWaiting from '../../images/icon_charging_station.png';
 import chargingIcon from '../../images/charging_icon.png';
 import {humanReadableVehicleStatus} from '../../lib/utils';
 import PropTypes from 'prop-types';
@@ -72,6 +73,23 @@ class MissionScreen extends Component {
                 START CHARGING<br/>
                 <span className="button-subtext">DRONE AT CHARGING STATION</span>
               </button>
+            </div>
+          </div>
+        </div>
+      );
+    } else if (this.props.vehicleStatus === 'in_progress') {
+      return (
+        <div id="confirm-takeoff-screen" className="screen">
+          <div className="screen-background--dark"/>
+          <div className="modal-container">
+            <div className="modal-box confirm-takeoff">
+              <h1>Awaiting Station Availabilty</h1>
+              <p>The charging station is now preparing for your drone’s arrival.
+                  You will be notified when it is ready</p>
+              <p>
+                <img src={stationWaiting} alt="Waiting for station icon"/>
+              </p>
+              <progress/>
             </div>
           </div>
         </div>
