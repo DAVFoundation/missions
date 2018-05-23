@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  createMap, 
-  updateMap, 
-  initiateZoomTransition, 
-  clearTerminals, 
-  addTerminals, 
+  createMap,
+  updateMap,
+  initiateZoomTransition,
+  clearTerminals,
+  addTerminals,
   addRoute,
   clearRoute
 } from '../lib/map';
@@ -65,7 +65,7 @@ class Map extends Component {
         this.props.history.push(this.props.appPath + '/mission');
       } else {
         initiateZoomTransition(this.map, terminals, { maxZoom: 14 });
-        if (this.props.mapItems.length > 0 && nextProps.mapItems[0].status === 'waiting_pickup') {
+        if (this.props.vehicleOnMission && this.props.vehicleOnMission.status === 'waiting_pickup') {
           this.props.history.push(this.props.appPath + '/confirm-takeoff');
         } else {
           this.props.history.push(this.props.appPath + '/mission');
@@ -136,6 +136,7 @@ Map.propTypes = {
   addControls: PropTypes.bool,
   showRoutePath: PropTypes.bool,
   graddPayload: PropTypes.object,
+  vehicleOnMission: PropTypes.object,
 };
 
 export default Map;
