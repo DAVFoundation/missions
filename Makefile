@@ -15,6 +15,15 @@ stop:
 build: setup
 	@ npm run build
 
+build-docker:
+	docker-compose build
+
+up: build-docker
+	docker-compose up
+
+down:
+	docker-compose down
+
 publish: build
 	@ aws s3 cp --recursive --acl public-read dist/ ${BUCKET}
 
