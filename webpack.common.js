@@ -1,8 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = (env = 'development') => {
+module.exports = (/* env = 'development' */) => {
   return {
     entry: {
       drone_simulation: './src/apps/drone_simulation/Main.jsx',
@@ -41,14 +41,14 @@ module.exports = (env = 'development') => {
         },
         {
           test: /\.css$/,
-          use: env === 'production'
+          use:/*  env === 'production'
             ? ExtractTextPlugin.extract(
               {
                 fallback: 'style-loader',
                 use: [{ loader: 'css-loader', options: { minimize: true } }],
               }
             )
-            : ['style-loader', 'css-loader'],
+            :  */['style-loader', 'css-loader'],
         },
         {
           test: /\.(png|jpg|gif|svg)$/,

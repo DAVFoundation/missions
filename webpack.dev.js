@@ -11,6 +11,7 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
   devServer: {
     inline: true,
     contentBase: path.resolve(__dirname, 'src'),
+    host:'0.0.0.0',
     port: 3333,
     historyApiFallback: true,
   },
