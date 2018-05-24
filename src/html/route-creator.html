@@ -93,7 +93,7 @@
           {name: 'dev',distinctUrl: 'localhost', serverUrl: 'http://localhost:8888'}, 
           {name: 'prod',distinctUrl: 'missions.io', serverUrl: 'https://ctrl.missions.io'}
       ];
-        let env = envs.find((env) => window.location.href.contain(env.distinctUrl));
+        let env = envs.find((env) => window.location.href.includes(env.distinctUrl));
         return env.serverUrl;
       }
       var prepareDataForSubmission = ()=>{
