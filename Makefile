@@ -30,6 +30,13 @@ publish: build
 build-stg: setup
 	@ npm run build-stg
 
+create-aws-stg-docker-env:
+	@eb init missions
+	@eb create missions-stg --cname missions-stg -k missions-stg-key
+
+deploy-aws-stg-docker-env:
+	@eb deploy --profile eb-cli-dav --staged
+
 create-aws-stg-env:
 	## create s3 bucket for missions
 	@aws s3api create-bucket --bucket missions-stg --region us-east-1

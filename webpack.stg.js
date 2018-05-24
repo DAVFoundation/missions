@@ -12,6 +12,13 @@ process.env.NODE_ENV = 'production';
 
 module.exports = merge(getCommon(process.env.NODE_ENV), {
   devtool: 'cheap-module-source-map',
+  devServer: {
+    inline: true,
+    contentBase: path.resolve(__dirname, 'src'),
+    host:'0.0.0.0',
+    port: 3333,
+    historyApiFallback: true,
+  },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new webpack.DefinePlugin({
@@ -19,7 +26,7 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         BLOCKCHAIN_TYPE: JSON.stringify('NONE'),
         MISSION_CONTROL_URL: JSON.stringify('http://missioncontrol-stg.us-east-1.elasticbeanstalk.com'),
-        CAPTAIN_SIM_URL: JSON.stringify('http://missioncontrol-stg.us-east-1.elasticbeanstalk.com'),
+        CAPTAIN_SIM_URL: JSON.stringify('http://captain-sim-stg.us-east-1.elasticbeanstalk.com'),
       },
     }),
     new HtmlWebpackPlugin({

@@ -5,4 +5,6 @@ WORKDIR /app
 COPY . /app
 RUN npm i
 
-CMD npm run start
+CMD npm run start-stg
+
+EXPOSE 3333
