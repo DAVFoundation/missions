@@ -8,6 +8,7 @@ var DELIVERY_DRONES = '/delivery_drones';
 var DRONE_CHARGING = '/drone_charging';
 var DRONE_SIMULATION = '/drone_simulation';
 var ROUTE_PLAN = '/route_plan';
+var STATIC_PAGES = '/html';
 
 var baseUrl = location.origin;
 var route = getRoute(location.pathname);
@@ -20,6 +21,9 @@ switch (route) {
         break;
     case ROUTE_PLAN:
         window.location.replace(baseUrl + ROUTE_PLAN);
+        break;
+    case STATIC_PAGES:
+        window.location.replace(baseUrl + location.pathname);
         break;
     default:
         window.location.replace(baseUrl + DRONE_SIMULATION);
