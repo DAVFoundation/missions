@@ -1,4 +1,7 @@
 branch-defaults:
+  INT-SKY-GRADD:
+    environment: missions-stg2
+    group_suffix: null
   master:
     environment: missions-stg
     group_suffix: null

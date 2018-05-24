@@ -3,6 +3,7 @@ version: '3'
 services:
   missions:
     build: .
+    comannad: 'npm run start'
     ports:
       - '3333:3333'
     environment:
