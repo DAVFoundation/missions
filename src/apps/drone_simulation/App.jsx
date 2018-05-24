@@ -22,20 +22,20 @@ class App extends Component {
         <div>
           <Map />
 
-          <Route exact path="/" component={ MainScreenContainer('DeliveryMainScreen') } />
+          <Route exact path="/drone_simulation/" component={ MainScreenContainer('DeliveryMainScreen') } />
 
-          <Route path="/welcome" component={ Welcome } />
+          <Route path="/drone_simulation/welcome" component={ Welcome } />
 
-          <Route path="/vehicles/:id" component={ MapItemDetailsScreenContainer } />
+          <Route path="/drone_simulation/vehicles/:id" component={ MapItemDetailsScreenContainer } />
 
-          <Route path="/order" component={ OrderScreenContainer() } />
+          <Route path="/drone_simulation/order" component={ OrderScreenContainer() } />
 
-          <Route path="/searching" component={ SearchingScreenContainer('DeliverySearchingScreen') } />
+          <Route path="/drone_simulation/searching" component={ SearchingScreenContainer('DeliverySearchingScreen') } />
 
-          <Route path="/mission" component= { MissionContainer('DeliveryMissionScreen') } />
-          <Route path="/mission/vehicles/:id" component={ MapItemDetailsScreenContainer } />
+          <Route path="/drone_simulation/mission" component= { MissionContainer('DeliveryMissionScreen') } />
+          <Route path="/drone_simulation/mission/vehicles/:id" component={ MapItemDetailsScreenContainer } />
 
-          <Route path="/confirm-takeoff" component= { ConfirmPickupContainer } />
+          <Route path="/drone_simulation/confirm-takeoff" component= { ConfirmPickupContainer } />
 
         </div>
       </Router>

@@ -1,0 +1,34 @@
+<html>
+<head>
+</head>
+<body>
+<script>
+(function() {
+var DELIVERY_DRONES = '/delivery_drones';
+var DRONE_CHARGING = '/drone_charging';
+var DRONE_SIMULATION = '/drone_simulation';
+var ROUTE_PLAN = '/route_plan';
+
+var baseUrl = location.origin;
+var route = getRoute(location.pathname);
+switch (route) {
+    case DELIVERY_DRONES:
+        window.location.replace(baseUrl + DELIVERY_DRONES);
+        break;
+    case DRONE_CHARGING:
+        window.location.replace(baseUrl + DRONE_CHARGING);
+        break;
+    case ROUTE_PLAN:
+        window.location.replace(baseUrl + ROUTE_PLAN);
+        break;
+    default:
+        window.location.replace(baseUrl + DRONE_SIMULATION);
+}
+
+function getRoute(pathname) {
+    return pathname.substring(0, pathname.slice(1).indexOf('/') + 1);
+}
+})();
+</script>
+</body>
+</html>

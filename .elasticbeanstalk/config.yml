@@ -1,0 +1,25 @@
+branch-defaults:
+  INT-SKY-GRADD:
+    environment: missions-stg2
+    group_suffix: null
+  master:
+    environment: missions-stg
+    group_suffix: null
+environment-defaults:
+  missions-stg:
+    branch: null
+    repository: null
+global:
+  application_name: missions
+  branch: null
+  default_ec2_keyname: missions-stg-key
+  default_platform: Docker 17.09.1-ce
+  default_region: us-east-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli-dav
+  repository: null
+  sc: git
+  workspace_type: Application

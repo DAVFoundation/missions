@@ -4,16 +4,16 @@ STG_BUCKET=s3://missions-stg/
 all:
 
 setup:
-	@ npm i
+	@npm i
 
 start: setup
-	@ npm start
+	@npm start
 
 stop:
-	@ npm run stop
+	@npm run stop
 
 build: setup
-	@ npm run build
+	@npm run build
 
 build-docker:
 	docker-compose build
@@ -25,16 +25,24 @@ down:
 	docker-compose down
 
 publish: build
-	@ aws s3 cp --recursive --acl public-read dist/ ${BUCKET}
+	@aws s3 cp --recursive --acl public-read dist/ ${BUCKET}
 
 build-stg: setup
-	@ npm run build-stg
+	@npm run build-stg
+
+create-aws-stg-docker-env:
+	@eb init missions
+	@eb create missions-stg --cname missions-stg -k missions-stg-key
+
+deploy-aws-stg-docker-env:
+	@eb deploy --profile eb-cli-dav --staged
 
 create-aws-stg-env:
 	## create s3 bucket for missions
 	@aws s3api create-bucket --bucket missions-stg --region us-east-1
 
 deploy-aws-stg-env: build-stg
+	@cp ./index.html ./dist/
 	@aws s3 cp --recursive --acl public-read dist/ ${STG_BUCKET}
 
 link-contracts:
