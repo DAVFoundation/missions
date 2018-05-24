@@ -94,7 +94,7 @@
           {name: 'prod',distinctUrl: 'missions.io', serverUrl: 'https://ctrl.missions.io'}
       ];
         let env = envs.find((env) => window.location.href.includes(env.distinctUrl));
-        return env.serverUrl;
+        return env.serverUrl + '/missions/updateGraddPayload';
       }
       var prepareDataForSubmission = ()=>{
         $('#route_creator_form').attr('action', getUpdateGraddPayloadEndpointUrl());
