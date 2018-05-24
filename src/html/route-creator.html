@@ -88,8 +88,13 @@
     <!-- End Facebook Pixel Code -->
     <script type="text/javascript">
       var getUpdateGraddPayloadEndpointUrl = () => {
-        const env = window.location.href.indexOf('missions.io') > -1 ? 'prod' : 'dev';
-        return env === 'prod' ? 'https://ctrl.missions.io' : 'http://localhost:8888' + '/missions/updateGraddPayload';
+        let envs = [
+          {name: 'stg',distinctUrl: 'stg', serverUrl: 'http://missioncontrol-stg.us-east-1.elasticbeanstalk.com/'}, 
+          {name: 'dev',distinctUrl: 'localhost', serverUrl: 'http://localhost:8888'}, 
+          {name: 'prod',distinctUrl: 'missions.io', serverUrl: 'https://ctrl.missions.io'}
+      ];
+        let env = envs.find((env) => window.location.href.contain(env.distinctUrl));
+        return env.serverUrl;
       }
       var prepareDataForSubmission = ()=>{
         $('#route_creator_form').attr('action', getUpdateGraddPayloadEndpointUrl());
