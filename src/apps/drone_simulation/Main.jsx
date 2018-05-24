@@ -9,7 +9,7 @@ import { NEED_TYPES } from '../../config/needTypes.js';
 
 store.dispatch(updateApp({
   name: 'Drone Delivery Simulation',
-  path: '',
+  path: '/drone_simulation',
   needType: NEED_TYPES.DRONE_DELIVERY
 }));
 
