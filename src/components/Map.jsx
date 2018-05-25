@@ -34,11 +34,21 @@ class Map extends Component {
     }
 
     if (nextProps.orderStage === 'in_mission') {
-      initiateZoomTransition(this.map, nextProps.pickup, nextProps.dropoff);
-      if (this.props.vehicles.length > 0 && nextProps.vehicles[0].status === 'waiting_pickup') {
-        this.props.history.push(this.props.appPath+'/confirm-takeoff');
-      } else {
-        this.props.history.push(this.props.appPath+'/mission');
+      if (this.props.vehicles.length > 0) {
+
+        if (nextProps.vehicles[0].status === 'waiting_pickup') {
+          this.props.history.push(this.props.appPath+'/confirm-takeoff');
+        } else {
+          this.props.history.push(this.props.appPath+'/mission');
+        }
+
+        if (nextProps.vehicles[0].status === 'travelling_pickup') {
+          initiateZoomTransition(this.map, nextProps.vehicles[0].coords, nextProps.pickup, { maxZoom: 18 });
+        }
+
+        if (nextProps.vehicles[0].status === 'travelling_dropoff') {
+          initiateZoomTransition(this.map, nextProps.pickup, nextProps.dropoff);
+        }
       }
     }
 
