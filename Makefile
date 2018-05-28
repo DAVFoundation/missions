@@ -1,29 +1,29 @@
 BUCKET=s3://missions.io/
-## deploy to staging
 STG_BUCKET=s3://missions-stg/
-all:
 
-setup:
+FORCE:
+
+setup: FORCE
 	@npm i
 
 start: setup
 	@rsync -a ../dav-js/build src
 	@npm start
 
-stop:
+stop: FORCE
 	@npm run stop
 
 build: setup
 	@rsync -a ../dav-js/build src
 	@npm run build
 
-build-docker:
-	docker-compose build
+build-docker: FORCE
+	docker-compose build --no-cache
 
 up: build-docker
 	docker-compose up
 
-down:
+down: FORCE
 	docker-compose down
 
 publish: build
@@ -32,21 +32,16 @@ publish: build
 build-stg: setup
 	@npm run build-stg
 
-create-aws-stg-docker-env:
+create-aws-stg-docker-env: FORCE
 	@eb init missions
 	@eb create missions-stg --cname missions-stg -k missions-stg-key
 
-deploy-aws-stg-docker-env:
+deploy-aws-stg-docker-env: FORCE
 	@eb deploy --profile eb-cli-dav --staged
 
-create-aws-stg-env:
-	## create s3 bucket for missions
+create-aws-stg-env: FORCE
 	@aws s3api create-bucket --bucket missions-stg --region us-east-1
 
 deploy-aws-stg-env: build-stg
 	@cp -r ./src/html/. ./dist/html
 	@aws s3 cp --recursive --acl public-read dist/ ${STG_BUCKET}
-
-link-contracts:
-	-rm -rf ./src/build
-	-ln -s ../../contracts/build ./src
