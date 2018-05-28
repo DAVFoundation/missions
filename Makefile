@@ -18,7 +18,7 @@ build: setup
 	@npm run build
 
 build-docker: FORCE
-	docker-compose build
+	docker-compose build --no-cache
 
 up: build-docker
 	docker-compose up
