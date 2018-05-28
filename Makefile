@@ -7,12 +7,14 @@ setup:
 	@npm i
 
 start: setup
+	@rsync -a ../dav-js/build src
 	@npm start
 
 stop:
 	@npm run stop
 
 build: setup
+	@rsync -a ../dav-js/build src
 	@npm run build
 
 build-docker:
