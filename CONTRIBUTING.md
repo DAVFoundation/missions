@@ -17,9 +17,9 @@ A lot of **missions** functionality came from pull requests sent by the develope
 - [x] Fork the repository from the [missions GitHub page](https://github.com/DAVFoundation/missions).
 - [x] Clone a copy to your local machine with `$ git clone git@github.com:YOUR-GITHUB-USER-NAME/missions.git`
 - [x] Run `npm install` to install all the packages
-- [x] Run `npm start` to build the project 
+- [x] Run `npm start` to build the project
 - [x] Open [http://localhost:3333/](http://localhost:3333/) to see your local instance of missions live.
-- [x] If you would like to see some simulated drones appear on the map, you will also need to set up the [Mission Control](https://github.com/DAVFoundation/missioncontrol/blob/master/CONTRIBUTING.md) project.
+- [x] If you would like to see some simulated drones appear on the map, you will also need to set up the [Mission Control](https://github.com/DAVFoundation/missioncontrol/blob/master/CONTRIBUTING.md) project as well as the [Captain-Sim](https://github.com/DAVFoundation/captain-sim/blob/master/CONTRIBUTING.md) project.
 - [x] To be able to make transactions on ethereum network, you need to set up [contracts](https://github.com/DAVFoundation/contracts) project, and set the build symlinks at missions/src, to point your build directory at contracts project, with `$ ln -sf /path/to/contracts/build /path/to/missions/src/build`.
 - [x] Now, code, code, code.
 - [x] Commit your local changes by using `$ git commit -m "nice detailed message here..."`
