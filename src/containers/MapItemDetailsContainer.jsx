@@ -4,7 +4,7 @@ import MapItemDetails from '../components/MapItemDetails.jsx';
 export default connect(
   (state, ownProps) => {
     return {
-      mapItem: state[ownProps.mapItemType][ownProps.id]
+      mapItem: state.captains[ownProps.id]
     };
   }
 )(MapItemDetails);

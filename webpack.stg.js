@@ -24,13 +24,13 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        BLOCKCHAIN_TYPE: JSON.stringify('NONE'),
+        BLOCKCHAIN_TYPE: JSON.stringify('TESTNET'),
         MISSION_CONTROL_URL: JSON.stringify('http://missioncontrol-stg.us-east-1.elasticbeanstalk.com'),
         CAPTAIN_SIM_URL: JSON.stringify('http://captain-sim-stg.us-east-1.elasticbeanstalk.com'),
       },
     }),
     new HtmlWebpackPlugin({
-      filename: 'drone_simulation/index.html',
+      filename: 'index.html',
       chunks: ['vendor', 'drone_simulation'],
       template: path.resolve(__dirname, 'src/index.html'),
       favicon: path.resolve(__dirname, 'src/favicon.ico'),

@@ -1,0 +1,4463 @@
+{
+  "contractName": "Identity",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "name": "_davTokenContract",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_id",
+          "type": "address"
+        },
+        {
+          "name": "_v",
+          "type": "uint8"
+        },
+        {
+          "name": "_r",
+          "type": "bytes32"
+        },
+        {
+          "name": "_s",
+          "type": "bytes32"
+        }
+      ],
+      "name": "register",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "registerSimple",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_id",
+          "type": "address"
+        }
+      ],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_id",
+          "type": "address"
+        },
+        {
+          "name": "_wallet",
+          "type": "address"
+        }
+      ],
+      "name": "verifyOwnership",
+      "outputs": [
+        {
+          "name": "verified",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_id",
+          "type": "address"
+        }
+      ],
+      "name": "isRegistered",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_id",
+          "type": "address"
+        }
+      ],
+      "name": "getIdentityWallet",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b50604051602080610a168339810180604052810190808051906020019092919050505080600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050610992806100846000396000f300608060405260043610610078576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063079573601461007d5780633c56e2ae146100f85780635db3f963146101645780637b5bd7411461017b578063c3c5a547146101fe578063f8b2cb4f14610259575b600080fd5b34801561008957600080fd5b506100de600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506102b0565b604051808215151515815260200191505060405180910390f35b34801561010457600080fd5b50610162600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803560ff1690602001909291908035600019169060200190929190803560001916906020019092919050505061034a565b005b34801561017057600080fd5b506101796105df565b005b34801561018757600080fd5b506101bc600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610715565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561020a57600080fd5b5061023f600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610780565b604051808215151515815260200191505060405180910390f35b34801561026557600080fd5b5061029a600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610804565b6040518082815260200191505060405180910390f35b60008173ffffffffffffffffffffffffffffffffffffffff166000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614905092915050565b6000806000808773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff161415156103d157600080fd5b7f19457468657265756d205369676e6564204d6573736167653a0a3332000000007f444156204964656e7469747920526567697374726174696f6e00000000000000604051808266ffffffffffffff191666ffffffffffffff191681526019019150506040518091039020604051808363ffffffff191663ffffffff19168152601c01826000191660001916815260200192505050604051809103902090508473ffffffffffffffffffffffffffffffffffffffff16600182868686604051600081526020016040526040518085600019166000191681526020018460ff1660ff1681526020018360001916600019168152602001826000191660001916815260200194505050505060206040516020810390808403906000865af11580156104fe573d6000803e3d6000fd5b5050506020604051035173ffffffffffffffffffffffffffffffffffffffff1614151561052a57600080fd5b6020604051908101604052803373ffffffffffffffffffffffffffffffffffffffff168152506000808773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055509050505050505050565b60008060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614151561066557600080fd5b6020604051908101604052803373ffffffffffffffffffffffffffffffffffffffff168152506000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550905050565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff169050919050565b6000806000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614159050919050565b6000600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166370a082316000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff166040518263ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050602060405180830381600087803b15801561092457600080fd5b505af1158015610938573d6000803e3d6000fd5b505050506040513d602081101561094e57600080fd5b810190808051906020019092919050505090509190505600a165627a7a723058200e643021d604f45ba55675391f0b96ac3f52a52b7c0f82d9cfa1e4fbb44a75390029",
+  "deployedBytecode": "0x608060405260043610610078576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063079573601461007d5780633c56e2ae146100f85780635db3f963146101645780637b5bd7411461017b578063c3c5a547146101fe578063f8b2cb4f14610259575b600080fd5b34801561008957600080fd5b506100de600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506102b0565b604051808215151515815260200191505060405180910390f35b34801561010457600080fd5b50610162600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803560ff1690602001909291908035600019169060200190929190803560001916906020019092919050505061034a565b005b34801561017057600080fd5b506101796105df565b005b34801561018757600080fd5b506101bc600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610715565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561020a57600080fd5b5061023f600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610780565b604051808215151515815260200191505060405180910390f35b34801561026557600080fd5b5061029a600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610804565b6040518082815260200191505060405180910390f35b60008173ffffffffffffffffffffffffffffffffffffffff166000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614905092915050565b6000806000808773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff161415156103d157600080fd5b7f19457468657265756d205369676e6564204d6573736167653a0a3332000000007f444156204964656e7469747920526567697374726174696f6e00000000000000604051808266ffffffffffffff191666ffffffffffffff191681526019019150506040518091039020604051808363ffffffff191663ffffffff19168152601c01826000191660001916815260200192505050604051809103902090508473ffffffffffffffffffffffffffffffffffffffff16600182868686604051600081526020016040526040518085600019166000191681526020018460ff1660ff1681526020018360001916600019168152602001826000191660001916815260200194505050505060206040516020810390808403906000865af11580156104fe573d6000803e3d6000fd5b5050506020604051035173ffffffffffffffffffffffffffffffffffffffff1614151561052a57600080fd5b6020604051908101604052803373ffffffffffffffffffffffffffffffffffffffff168152506000808773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055509050505050505050565b60008060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614151561066557600080fd5b6020604051908101604052803373ffffffffffffffffffffffffffffffffffffffff168152506000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550905050565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff169050919050565b6000806000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614159050919050565b6000600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166370a082316000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff166040518263ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050602060405180830381600087803b15801561092457600080fd5b505af1158015610938573d6000803e3d6000fd5b505050506040513d602081101561094e57600080fd5b810190808051906020019092919050505090509190505600a165627a7a723058200e643021d604f45ba55675391f0b96ac3f52a52b7c0f82d9cfa1e4fbb44a75390029",
+  "sourceMap": "80:1927:2:-;;;559:89;8:9:-1;5:2;;;30:1;27;20:12;5:2;559:89:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;626:17;618:5;;:25;;;;;;;;;;;;;;;;;;559:89;80:1927;;;;;;",
+  "deployedSourceMap": "80:1927:2:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1571:142;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1571:142:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;652:518;;8:9:-1;5:2;;;30:1;27;20:12;5:2;652:518:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1174:261;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1174:261:2;;;;;;1895:110;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1895:110:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1757:109;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1757:109:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1439:128;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1439:128:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1571:142;1647:13;1701:7;1675:33;;:10;:15;1686:3;1675:15;;;;;;;;;;;;;;;:22;;;;;;;;;;;;:33;;;1668:40;;1571:142;;;;:::o;652:518::-;860:20;816:3;790:10;:15;801:3;790:15;;;;;;;;;;;;;;;:22;;;;;;;;;;;;:29;;;775:50;;;;;;;;893:25;930:24;920:35;;;;;;;;;;;;;;;;;;;;;;;;883:73;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;860:96;;1048:3;1009:42;;:35;1019:12;1033:2;1037;1041;1009:35;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1009:35:2;;;;;;;;:42;;;994:63;;;;;;;;1120:45;;;;;;;;;1148:10;1120:45;;;;;1102:10;:15;1113:3;1102:15;;;;;;;;;;;;;;;:63;;;;;;;;;;;;;;;;;;;;;;;;;;;;;652:518;;;;;:::o;1174:261::-;1306:3;1273:10;:22;1284:10;1273:22;;;;;;;;;;;;;;;:29;;;;;;;;;;;;:36;;;1258:57;;;;;;;;1385:45;;;;;;;;;1413:10;1385:45;;;;;1360:10;:22;1371:10;1360:22;;;;;;;;;;;;;;;:70;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1174:261::o;1895:110::-;1956:7;1978:10;:15;1989:3;1978:15;;;;;;;;;;;;;;;:22;;;;;;;;;;;;1971:29;;1895:110;;;:::o;1757:109::-;1813:4;1858:3;1832:10;:15;1843:3;1832:15;;;;;;;;;;;;;;;:22;;;;;;;;;;;;:29;;;;1825:36;;1757:109;;;:::o;1439:128::-;1493:15;1523:5;;;;;;;;;;;:15;;;1539:10;:15;1550:3;1539:15;;;;;;;;;;;;;;;:22;;;;;;;;;;;;1523:39;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1523:39:2;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1523:39:2;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1523:39:2;;;;;;;;;;;;;;;;1516:46;;1439:128;;;:::o",
+  "source": "pragma solidity ^0.4.15;\n\nimport './DAVToken.sol';\n\n\n/**\n * @title Identity\n */\ncontract Identity {\n\n  struct DAVIdentity {\n    address wallet;\n  }\n\n  mapping (address => DAVIdentity) private identities;\n\n  DAVToken private token;\n\n  // Prefix to added to messages signed by web3\n  bytes28 private constant ETH_SIGNED_MESSAGE_PREFIX = '\\x19Ethereum Signed Message:\\n32';\n  bytes25 private constant DAV_REGISTRATION_REQUEST = 'DAV Identity Registration';\n\n  /**\n   * @dev Constructor\n   *\n   * @param _davTokenContract address of the DAVToken contract\n   */\n  function Identity(DAVToken _davTokenContract) public {\n    token = _davTokenContract;\n  }\n\n  function register(address _id, uint8 _v, bytes32 _r, bytes32 _s) public {\n    // Make sure id isn't registered already\n    require(\n      identities[_id].wallet == 0x0\n    );\n    // Generate message hash\n    bytes32 prefixedHash = keccak256(ETH_SIGNED_MESSAGE_PREFIX, keccak256(DAV_REGISTRATION_REQUEST));\n    // Verify message signature\n    require(\n      ecrecover(prefixedHash, _v, _r, _s) == _id\n    );\n\n    // Register in identities mapping\n    identities[_id] = DAVIdentity({\n      wallet: msg.sender\n    });\n  }\n\n  function registerSimple() public {\n    // Make sure id isn't registered already\n    require(\n      identities[msg.sender].wallet == 0x0\n    );\n\n    // Register in identities mapping\n    identities[msg.sender] = DAVIdentity({\n      wallet: msg.sender\n    });\n  }\n\n  function getBalance(address _id) public view returns (uint256 balance) {\n    return token.balanceOf(identities[_id].wallet);\n  }\n\n  function verifyOwnership(address _id, address _wallet) public view returns (bool verified) {\n    return identities[_id].wallet == _wallet;\n  }\n\n  // Check identity registration status\n  function isRegistered(address _id) public view returns (bool) {\n    return identities[_id].wallet != 0x0;\n  }\n\n  // Get identity wallet\n  function getIdentityWallet(address _id) public view returns (address) {\n    return identities[_id].wallet;\n  }\n}\n",
+  "sourcePath": "/Users/anatolyt/projects/dav/contracts/contracts/Identity.sol",
+  "ast": {
+    "absolutePath": "/Users/anatolyt/projects/dav/contracts/contracts/Identity.sol",
+    "exportedSymbols": {
+      "Identity": [
+        506
+      ]
+    },
+    "id": 507,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 344,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".15"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:2"
+      },
+      {
+        "absolutePath": "/Users/anatolyt/projects/dav/contracts/contracts/DAVToken.sol",
+        "file": "./DAVToken.sol",
+        "id": 345,
+        "nodeType": "ImportDirective",
+        "scope": 507,
+        "sourceUnit": 343,
+        "src": "26:24:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title Identity",
+        "fullyImplemented": true,
+        "id": 506,
+        "linearizedBaseContracts": [
+          506
+        ],
+        "name": "Identity",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Identity.DAVIdentity",
+            "id": 348,
+            "members": [
+              {
+                "constant": false,
+                "id": 347,
+                "name": "wallet",
+                "nodeType": "VariableDeclaration",
+                "scope": 348,
+                "src": "128:14:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 346,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "128:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "DAVIdentity",
+            "nodeType": "StructDefinition",
+            "scope": 506,
+            "src": "103:44:2",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 352,
+            "name": "identities",
+            "nodeType": "VariableDeclaration",
+            "scope": 506,
+            "src": "151:51:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+              "typeString": "mapping(address => struct Identity.DAVIdentity)"
+            },
+            "typeName": {
+              "id": 351,
+              "keyType": {
+                "id": 349,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "160:7:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "151:32:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                "typeString": "mapping(address => struct Identity.DAVIdentity)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 350,
+                "name": "DAVIdentity",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 348,
+                "src": "171:11:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_DAVIdentity_$348_storage_ptr",
+                  "typeString": "struct Identity.DAVIdentity"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "constant": false,
+            "id": 354,
+            "name": "token",
+            "nodeType": "VariableDeclaration",
+            "scope": 506,
+            "src": "207:22:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_DAVToken_$342",
+              "typeString": "contract DAVToken"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 353,
+              "name": "DAVToken",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 342,
+              "src": "207:8:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_DAVToken_$342",
+                "typeString": "contract DAVToken"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "constant": true,
+            "id": 357,
+            "name": "ETH_SIGNED_MESSAGE_PREFIX",
+            "nodeType": "VariableDeclaration",
+            "scope": 506,
+            "src": "282:87:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes28",
+              "typeString": "bytes28"
+            },
+            "typeName": {
+              "id": 355,
+              "name": "bytes28",
+              "nodeType": "ElementaryTypeName",
+              "src": "282:7:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes28",
+                "typeString": "bytes28"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "19457468657265756d205369676e6564204d6573736167653a0a3332",
+              "id": 356,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "335:34:2",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_178a2411ab6fbc1ba11064408972259c558d0e82fd48b0aba3ad81d14f065e73",
+                "typeString": "literal_string \"\u0019Ethereum Signed Message:\n32\""
+              },
+              "value": "\u0019Ethereum Signed Message:\n32"
+            },
+            "visibility": "private"
+          },
+          {
+            "constant": true,
+            "id": 360,
+            "name": "DAV_REGISTRATION_REQUEST",
+            "nodeType": "VariableDeclaration",
+            "scope": 506,
+            "src": "373:79:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes25",
+              "typeString": "bytes25"
+            },
+            "typeName": {
+              "id": 358,
+              "name": "bytes25",
+              "nodeType": "ElementaryTypeName",
+              "src": "373:7:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes25",
+                "typeString": "bytes25"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "444156204964656e7469747920526567697374726174696f6e",
+              "id": 359,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "425:27:2",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_3d75604157f80934d3965cbdf5676395ddaf5f92b8d7c90caf745f93d35d2066",
+                "typeString": "literal_string \"DAV Identity Registration\""
+              },
+              "value": "DAV Identity Registration"
+            },
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 369,
+              "nodeType": "Block",
+              "src": "612:36:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 367,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 365,
+                      "name": "token",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 354,
+                      "src": "618:5:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_DAVToken_$342",
+                        "typeString": "contract DAVToken"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 366,
+                      "name": "_davTokenContract",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 362,
+                      "src": "626:17:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_DAVToken_$342",
+                        "typeString": "contract DAVToken"
+                      }
+                    },
+                    "src": "618:25:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_DAVToken_$342",
+                      "typeString": "contract DAVToken"
+                    }
+                  },
+                  "id": 368,
+                  "nodeType": "ExpressionStatement",
+                  "src": "618:25:2"
+                }
+              ]
+            },
+            "documentation": "@dev Constructor\n   * @param _davTokenContract address of the DAVToken contract",
+            "id": 370,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "Identity",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 363,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 362,
+                  "name": "_davTokenContract",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 370,
+                  "src": "577:26:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_DAVToken_$342",
+                    "typeString": "contract DAVToken"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 361,
+                    "name": "DAVToken",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 342,
+                    "src": "577:8:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_DAVToken_$342",
+                      "typeString": "contract DAVToken"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "576:28:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 364,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "612:0:2"
+            },
+            "scope": 506,
+            "src": "559:89:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 419,
+              "nodeType": "Block",
+              "src": "724:446:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 387,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 382,
+                              "name": "identities",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 352,
+                              "src": "790:10:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                                "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                              }
+                            },
+                            "id": 384,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 383,
+                              "name": "_id",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 372,
+                              "src": "801:3:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "790:15:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                              "typeString": "struct Identity.DAVIdentity storage ref"
+                            }
+                          },
+                          "id": 385,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "wallet",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 347,
+                          "src": "790:22:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "307830",
+                          "id": 386,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "816:3:2",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0x0"
+                        },
+                        "src": "790:29:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 381,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        1230,
+                        1231
+                      ],
+                      "referencedDeclaration": 1230,
+                      "src": "775:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 388,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "775:50:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 389,
+                  "nodeType": "ExpressionStatement",
+                  "src": "775:50:2"
+                },
+                {
+                  "assignments": [
+                    391
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 391,
+                      "name": "prefixedHash",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 420,
+                      "src": "860:20:2",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 390,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "860:7:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 398,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 393,
+                        "name": "ETH_SIGNED_MESSAGE_PREFIX",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 357,
+                        "src": "893:25:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes28",
+                          "typeString": "bytes28"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 395,
+                            "name": "DAV_REGISTRATION_REQUEST",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 360,
+                            "src": "930:24:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes25",
+                              "typeString": "bytes25"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_bytes25",
+                              "typeString": "bytes25"
+                            }
+                          ],
+                          "id": 394,
+                          "name": "keccak256",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1221,
+                          "src": "920:9:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
+                            "typeString": "function () pure returns (bytes32)"
+                          }
+                        },
+                        "id": 396,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "920:35:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes28",
+                          "typeString": "bytes28"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 392,
+                      "name": "keccak256",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1221,
+                      "src": "883:9:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
+                        "typeString": "function () pure returns (bytes32)"
+                      }
+                    },
+                    "id": 397,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "883:73:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "860:96:2"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 407,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "id": 401,
+                              "name": "prefixedHash",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 391,
+                              "src": "1019:12:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            },
+                            {
+                              "argumentTypes": null,
+                              "id": 402,
+                              "name": "_v",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 374,
+                              "src": "1033:2:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              }
+                            },
+                            {
+                              "argumentTypes": null,
+                              "id": 403,
+                              "name": "_r",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 376,
+                              "src": "1037:2:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            },
+                            {
+                              "argumentTypes": null,
+                              "id": 404,
+                              "name": "_s",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 378,
+                              "src": "1041:2:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              },
+                              {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              },
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              },
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            ],
+                            "id": 400,
+                            "name": "ecrecover",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1219,
+                            "src": "1009:9:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_ecrecover_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$returns$_t_address_$",
+                              "typeString": "function (bytes32,uint8,bytes32,bytes32) pure returns (address)"
+                            }
+                          },
+                          "id": 405,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1009:35:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 406,
+                          "name": "_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 372,
+                          "src": "1048:3:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "1009:42:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 399,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        1230,
+                        1231
+                      ],
+                      "referencedDeclaration": 1230,
+                      "src": "994:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 408,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "994:63:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 409,
+                  "nodeType": "ExpressionStatement",
+                  "src": "994:63:2"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 417,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 410,
+                        "name": "identities",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 352,
+                        "src": "1102:10:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                          "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                        }
+                      },
+                      "id": 412,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 411,
+                        "name": "_id",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 372,
+                        "src": "1113:3:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1102:15:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                        "typeString": "struct Identity.DAVIdentity storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 414,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1227,
+                            "src": "1148:3:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 415,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1148:10:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 413,
+                        "name": "DAVIdentity",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 348,
+                        "src": "1120:11:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_DAVIdentity_$348_storage_ptr_$",
+                          "typeString": "type(struct Identity.DAVIdentity storage pointer)"
+                        }
+                      },
+                      "id": 416,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [
+                        "wallet"
+                      ],
+                      "nodeType": "FunctionCall",
+                      "src": "1120:45:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_DAVIdentity_$348_memory",
+                        "typeString": "struct Identity.DAVIdentity memory"
+                      }
+                    },
+                    "src": "1102:63:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                      "typeString": "struct Identity.DAVIdentity storage ref"
+                    }
+                  },
+                  "id": 418,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1102:63:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 420,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "register",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 379,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 372,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "670:11:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 371,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "670:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 374,
+                  "name": "_v",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "683:8:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 373,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "683:5:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 376,
+                  "name": "_r",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "693:10:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 375,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "693:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 378,
+                  "name": "_s",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "705:10:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 377,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "705:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "669:47:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 380,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "724:0:2"
+            },
+            "scope": 506,
+            "src": "652:518:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 443,
+              "nodeType": "Block",
+              "src": "1207:228:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 430,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 424,
+                              "name": "identities",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 352,
+                              "src": "1273:10:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                                "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                              }
+                            },
+                            "id": 427,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "expression": {
+                                "argumentTypes": null,
+                                "id": 425,
+                                "name": "msg",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 1227,
+                                "src": "1284:3:2",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_message",
+                                  "typeString": "msg"
+                                }
+                              },
+                              "id": 426,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "sender",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": null,
+                              "src": "1284:10:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1273:22:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                              "typeString": "struct Identity.DAVIdentity storage ref"
+                            }
+                          },
+                          "id": 428,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "wallet",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 347,
+                          "src": "1273:29:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "307830",
+                          "id": 429,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1306:3:2",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0x0"
+                        },
+                        "src": "1273:36:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 423,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        1230,
+                        1231
+                      ],
+                      "referencedDeclaration": 1230,
+                      "src": "1258:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 431,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1258:57:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 432,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1258:57:2"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 441,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 433,
+                        "name": "identities",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 352,
+                        "src": "1360:10:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                          "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                        }
+                      },
+                      "id": 436,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 434,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1227,
+                          "src": "1371:3:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 435,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1371:10:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1360:22:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                        "typeString": "struct Identity.DAVIdentity storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 438,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1227,
+                            "src": "1413:3:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 439,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1413:10:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 437,
+                        "name": "DAVIdentity",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 348,
+                        "src": "1385:11:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_DAVIdentity_$348_storage_ptr_$",
+                          "typeString": "type(struct Identity.DAVIdentity storage pointer)"
+                        }
+                      },
+                      "id": 440,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [
+                        "wallet"
+                      ],
+                      "nodeType": "FunctionCall",
+                      "src": "1385:45:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_DAVIdentity_$348_memory",
+                        "typeString": "struct Identity.DAVIdentity memory"
+                      }
+                    },
+                    "src": "1360:70:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                      "typeString": "struct Identity.DAVIdentity storage ref"
+                    }
+                  },
+                  "id": 442,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1360:70:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 444,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "registerSimple",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 421,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1197:2:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 422,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1207:0:2"
+            },
+            "scope": 506,
+            "src": "1174:261:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 459,
+              "nodeType": "Block",
+              "src": "1510:57:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "baseExpression": {
+                            "argumentTypes": null,
+                            "id": 453,
+                            "name": "identities",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 352,
+                            "src": "1539:10:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                              "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                            }
+                          },
+                          "id": 455,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "id": 454,
+                            "name": "_id",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 446,
+                            "src": "1550:3:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "1539:15:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                            "typeString": "struct Identity.DAVIdentity storage ref"
+                          }
+                        },
+                        "id": 456,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "wallet",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 347,
+                        "src": "1539:22:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 451,
+                        "name": "token",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 354,
+                        "src": "1523:5:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_DAVToken_$342",
+                          "typeString": "contract DAVToken"
+                        }
+                      },
+                      "id": 452,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "balanceOf",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 890,
+                      "src": "1523:15:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
+                        "typeString": "function (address) view external returns (uint256)"
+                      }
+                    },
+                    "id": 457,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1523:39:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 450,
+                  "id": 458,
+                  "nodeType": "Return",
+                  "src": "1516:46:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 460,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getBalance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 447,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 446,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 460,
+                  "src": "1459:11:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 445,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1459:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1458:13:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 450,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 449,
+                  "name": "balance",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 460,
+                  "src": "1493:15:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 448,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1493:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1492:17:2"
+            },
+            "scope": 506,
+            "src": "1439:128:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 476,
+              "nodeType": "Block",
+              "src": "1662:51:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 474,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 469,
+                          "name": "identities",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 352,
+                          "src": "1675:10:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                            "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                          }
+                        },
+                        "id": 471,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 470,
+                          "name": "_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 462,
+                          "src": "1686:3:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1675:15:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                          "typeString": "struct Identity.DAVIdentity storage ref"
+                        }
+                      },
+                      "id": 472,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "wallet",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 347,
+                      "src": "1675:22:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 473,
+                      "name": "_wallet",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 464,
+                      "src": "1701:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1675:33:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 468,
+                  "id": 475,
+                  "nodeType": "Return",
+                  "src": "1668:40:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 477,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "verifyOwnership",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 465,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 462,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 477,
+                  "src": "1596:11:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 461,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1596:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 464,
+                  "name": "_wallet",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 477,
+                  "src": "1609:15:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 463,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1609:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1595:30:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 468,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 467,
+                  "name": "verified",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 477,
+                  "src": "1647:13:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 466,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1647:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1646:15:2"
+            },
+            "scope": 506,
+            "src": "1571:142:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 491,
+              "nodeType": "Block",
+              "src": "1819:47:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 489,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 484,
+                          "name": "identities",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 352,
+                          "src": "1832:10:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                            "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                          }
+                        },
+                        "id": 486,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 485,
+                          "name": "_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 479,
+                          "src": "1843:3:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1832:15:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                          "typeString": "struct Identity.DAVIdentity storage ref"
+                        }
+                      },
+                      "id": 487,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "wallet",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 347,
+                      "src": "1832:22:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "!=",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "hexValue": "307830",
+                      "id": 488,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1858:3:2",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0x0"
+                    },
+                    "src": "1832:29:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 483,
+                  "id": 490,
+                  "nodeType": "Return",
+                  "src": "1825:36:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 492,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "isRegistered",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 480,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 479,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 492,
+                  "src": "1779:11:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 478,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1779:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1778:13:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 483,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 482,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 492,
+                  "src": "1813:4:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 481,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1813:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1812:6:2"
+            },
+            "scope": 506,
+            "src": "1757:109:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 504,
+              "nodeType": "Block",
+              "src": "1965:40:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 499,
+                        "name": "identities",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 352,
+                        "src": "1978:10:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                          "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                        }
+                      },
+                      "id": 501,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 500,
+                        "name": "_id",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 494,
+                        "src": "1989:3:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "1978:15:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                        "typeString": "struct Identity.DAVIdentity storage ref"
+                      }
+                    },
+                    "id": 502,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "wallet",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 347,
+                    "src": "1978:22:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 498,
+                  "id": 503,
+                  "nodeType": "Return",
+                  "src": "1971:29:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 505,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getIdentityWallet",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 495,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 494,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 505,
+                  "src": "1922:11:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 493,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1922:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1921:13:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 498,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 497,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 505,
+                  "src": "1956:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 496,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1956:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1955:9:2"
+            },
+            "scope": 506,
+            "src": "1895:110:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 507,
+        "src": "80:1927:2"
+      }
+    ],
+    "src": "0:2008:2"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/anatolyt/projects/dav/contracts/contracts/Identity.sol",
+    "exportedSymbols": {
+      "Identity": [
+        506
+      ]
+    },
+    "id": 507,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 344,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".15"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:2"
+      },
+      {
+        "absolutePath": "/Users/anatolyt/projects/dav/contracts/contracts/DAVToken.sol",
+        "file": "./DAVToken.sol",
+        "id": 345,
+        "nodeType": "ImportDirective",
+        "scope": 507,
+        "sourceUnit": 343,
+        "src": "26:24:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title Identity",
+        "fullyImplemented": true,
+        "id": 506,
+        "linearizedBaseContracts": [
+          506
+        ],
+        "name": "Identity",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Identity.DAVIdentity",
+            "id": 348,
+            "members": [
+              {
+                "constant": false,
+                "id": 347,
+                "name": "wallet",
+                "nodeType": "VariableDeclaration",
+                "scope": 348,
+                "src": "128:14:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 346,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "128:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "DAVIdentity",
+            "nodeType": "StructDefinition",
+            "scope": 506,
+            "src": "103:44:2",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 352,
+            "name": "identities",
+            "nodeType": "VariableDeclaration",
+            "scope": 506,
+            "src": "151:51:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+              "typeString": "mapping(address => struct Identity.DAVIdentity)"
+            },
+            "typeName": {
+              "id": 351,
+              "keyType": {
+                "id": 349,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "160:7:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "151:32:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                "typeString": "mapping(address => struct Identity.DAVIdentity)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 350,
+                "name": "DAVIdentity",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 348,
+                "src": "171:11:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_DAVIdentity_$348_storage_ptr",
+                  "typeString": "struct Identity.DAVIdentity"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "constant": false,
+            "id": 354,
+            "name": "token",
+            "nodeType": "VariableDeclaration",
+            "scope": 506,
+            "src": "207:22:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_DAVToken_$342",
+              "typeString": "contract DAVToken"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 353,
+              "name": "DAVToken",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 342,
+              "src": "207:8:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_DAVToken_$342",
+                "typeString": "contract DAVToken"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "constant": true,
+            "id": 357,
+            "name": "ETH_SIGNED_MESSAGE_PREFIX",
+            "nodeType": "VariableDeclaration",
+            "scope": 506,
+            "src": "282:87:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes28",
+              "typeString": "bytes28"
+            },
+            "typeName": {
+              "id": 355,
+              "name": "bytes28",
+              "nodeType": "ElementaryTypeName",
+              "src": "282:7:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes28",
+                "typeString": "bytes28"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "19457468657265756d205369676e6564204d6573736167653a0a3332",
+              "id": 356,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "335:34:2",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_178a2411ab6fbc1ba11064408972259c558d0e82fd48b0aba3ad81d14f065e73",
+                "typeString": "literal_string \"\u0019Ethereum Signed Message:\n32\""
+              },
+              "value": "\u0019Ethereum Signed Message:\n32"
+            },
+            "visibility": "private"
+          },
+          {
+            "constant": true,
+            "id": 360,
+            "name": "DAV_REGISTRATION_REQUEST",
+            "nodeType": "VariableDeclaration",
+            "scope": 506,
+            "src": "373:79:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes25",
+              "typeString": "bytes25"
+            },
+            "typeName": {
+              "id": 358,
+              "name": "bytes25",
+              "nodeType": "ElementaryTypeName",
+              "src": "373:7:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes25",
+                "typeString": "bytes25"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "444156204964656e7469747920526567697374726174696f6e",
+              "id": 359,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "425:27:2",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_3d75604157f80934d3965cbdf5676395ddaf5f92b8d7c90caf745f93d35d2066",
+                "typeString": "literal_string \"DAV Identity Registration\""
+              },
+              "value": "DAV Identity Registration"
+            },
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 369,
+              "nodeType": "Block",
+              "src": "612:36:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 367,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 365,
+                      "name": "token",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 354,
+                      "src": "618:5:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_DAVToken_$342",
+                        "typeString": "contract DAVToken"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 366,
+                      "name": "_davTokenContract",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 362,
+                      "src": "626:17:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_DAVToken_$342",
+                        "typeString": "contract DAVToken"
+                      }
+                    },
+                    "src": "618:25:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_DAVToken_$342",
+                      "typeString": "contract DAVToken"
+                    }
+                  },
+                  "id": 368,
+                  "nodeType": "ExpressionStatement",
+                  "src": "618:25:2"
+                }
+              ]
+            },
+            "documentation": "@dev Constructor\n   * @param _davTokenContract address of the DAVToken contract",
+            "id": 370,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "Identity",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 363,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 362,
+                  "name": "_davTokenContract",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 370,
+                  "src": "577:26:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_DAVToken_$342",
+                    "typeString": "contract DAVToken"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 361,
+                    "name": "DAVToken",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 342,
+                    "src": "577:8:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_DAVToken_$342",
+                      "typeString": "contract DAVToken"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "576:28:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 364,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "612:0:2"
+            },
+            "scope": 506,
+            "src": "559:89:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 419,
+              "nodeType": "Block",
+              "src": "724:446:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 387,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 382,
+                              "name": "identities",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 352,
+                              "src": "790:10:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                                "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                              }
+                            },
+                            "id": 384,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 383,
+                              "name": "_id",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 372,
+                              "src": "801:3:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "790:15:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                              "typeString": "struct Identity.DAVIdentity storage ref"
+                            }
+                          },
+                          "id": 385,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "wallet",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 347,
+                          "src": "790:22:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "307830",
+                          "id": 386,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "816:3:2",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0x0"
+                        },
+                        "src": "790:29:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 381,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        1230,
+                        1231
+                      ],
+                      "referencedDeclaration": 1230,
+                      "src": "775:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 388,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "775:50:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 389,
+                  "nodeType": "ExpressionStatement",
+                  "src": "775:50:2"
+                },
+                {
+                  "assignments": [
+                    391
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 391,
+                      "name": "prefixedHash",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 420,
+                      "src": "860:20:2",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 390,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "860:7:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 398,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 393,
+                        "name": "ETH_SIGNED_MESSAGE_PREFIX",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 357,
+                        "src": "893:25:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes28",
+                          "typeString": "bytes28"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 395,
+                            "name": "DAV_REGISTRATION_REQUEST",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 360,
+                            "src": "930:24:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes25",
+                              "typeString": "bytes25"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_bytes25",
+                              "typeString": "bytes25"
+                            }
+                          ],
+                          "id": 394,
+                          "name": "keccak256",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1221,
+                          "src": "920:9:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
+                            "typeString": "function () pure returns (bytes32)"
+                          }
+                        },
+                        "id": 396,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "920:35:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes28",
+                          "typeString": "bytes28"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 392,
+                      "name": "keccak256",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1221,
+                      "src": "883:9:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
+                        "typeString": "function () pure returns (bytes32)"
+                      }
+                    },
+                    "id": 397,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "883:73:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "860:96:2"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 407,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "id": 401,
+                              "name": "prefixedHash",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 391,
+                              "src": "1019:12:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            },
+                            {
+                              "argumentTypes": null,
+                              "id": 402,
+                              "name": "_v",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 374,
+                              "src": "1033:2:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              }
+                            },
+                            {
+                              "argumentTypes": null,
+                              "id": 403,
+                              "name": "_r",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 376,
+                              "src": "1037:2:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            },
+                            {
+                              "argumentTypes": null,
+                              "id": 404,
+                              "name": "_s",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 378,
+                              "src": "1041:2:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              },
+                              {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              },
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              },
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            ],
+                            "id": 400,
+                            "name": "ecrecover",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1219,
+                            "src": "1009:9:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_ecrecover_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$returns$_t_address_$",
+                              "typeString": "function (bytes32,uint8,bytes32,bytes32) pure returns (address)"
+                            }
+                          },
+                          "id": 405,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1009:35:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 406,
+                          "name": "_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 372,
+                          "src": "1048:3:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "1009:42:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 399,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        1230,
+                        1231
+                      ],
+                      "referencedDeclaration": 1230,
+                      "src": "994:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 408,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "994:63:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 409,
+                  "nodeType": "ExpressionStatement",
+                  "src": "994:63:2"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 417,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 410,
+                        "name": "identities",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 352,
+                        "src": "1102:10:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                          "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                        }
+                      },
+                      "id": 412,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 411,
+                        "name": "_id",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 372,
+                        "src": "1113:3:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1102:15:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                        "typeString": "struct Identity.DAVIdentity storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 414,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1227,
+                            "src": "1148:3:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 415,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1148:10:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 413,
+                        "name": "DAVIdentity",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 348,
+                        "src": "1120:11:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_DAVIdentity_$348_storage_ptr_$",
+                          "typeString": "type(struct Identity.DAVIdentity storage pointer)"
+                        }
+                      },
+                      "id": 416,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [
+                        "wallet"
+                      ],
+                      "nodeType": "FunctionCall",
+                      "src": "1120:45:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_DAVIdentity_$348_memory",
+                        "typeString": "struct Identity.DAVIdentity memory"
+                      }
+                    },
+                    "src": "1102:63:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                      "typeString": "struct Identity.DAVIdentity storage ref"
+                    }
+                  },
+                  "id": 418,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1102:63:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 420,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "register",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 379,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 372,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "670:11:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 371,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "670:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 374,
+                  "name": "_v",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "683:8:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 373,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "683:5:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 376,
+                  "name": "_r",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "693:10:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 375,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "693:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 378,
+                  "name": "_s",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 420,
+                  "src": "705:10:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 377,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "705:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "669:47:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 380,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "724:0:2"
+            },
+            "scope": 506,
+            "src": "652:518:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 443,
+              "nodeType": "Block",
+              "src": "1207:228:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 430,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 424,
+                              "name": "identities",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 352,
+                              "src": "1273:10:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                                "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                              }
+                            },
+                            "id": 427,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "expression": {
+                                "argumentTypes": null,
+                                "id": 425,
+                                "name": "msg",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 1227,
+                                "src": "1284:3:2",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_message",
+                                  "typeString": "msg"
+                                }
+                              },
+                              "id": 426,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "sender",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": null,
+                              "src": "1284:10:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1273:22:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                              "typeString": "struct Identity.DAVIdentity storage ref"
+                            }
+                          },
+                          "id": 428,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "wallet",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 347,
+                          "src": "1273:29:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "307830",
+                          "id": 429,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1306:3:2",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0x0"
+                        },
+                        "src": "1273:36:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 423,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        1230,
+                        1231
+                      ],
+                      "referencedDeclaration": 1230,
+                      "src": "1258:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 431,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1258:57:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 432,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1258:57:2"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 441,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 433,
+                        "name": "identities",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 352,
+                        "src": "1360:10:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                          "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                        }
+                      },
+                      "id": 436,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 434,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1227,
+                          "src": "1371:3:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 435,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1371:10:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1360:22:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                        "typeString": "struct Identity.DAVIdentity storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 438,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1227,
+                            "src": "1413:3:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 439,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1413:10:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 437,
+                        "name": "DAVIdentity",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 348,
+                        "src": "1385:11:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_DAVIdentity_$348_storage_ptr_$",
+                          "typeString": "type(struct Identity.DAVIdentity storage pointer)"
+                        }
+                      },
+                      "id": 440,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [
+                        "wallet"
+                      ],
+                      "nodeType": "FunctionCall",
+                      "src": "1385:45:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_DAVIdentity_$348_memory",
+                        "typeString": "struct Identity.DAVIdentity memory"
+                      }
+                    },
+                    "src": "1360:70:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                      "typeString": "struct Identity.DAVIdentity storage ref"
+                    }
+                  },
+                  "id": 442,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1360:70:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 444,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "registerSimple",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 421,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1197:2:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 422,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1207:0:2"
+            },
+            "scope": 506,
+            "src": "1174:261:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 459,
+              "nodeType": "Block",
+              "src": "1510:57:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "baseExpression": {
+                            "argumentTypes": null,
+                            "id": 453,
+                            "name": "identities",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 352,
+                            "src": "1539:10:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                              "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                            }
+                          },
+                          "id": 455,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "id": 454,
+                            "name": "_id",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 446,
+                            "src": "1550:3:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "1539:15:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                            "typeString": "struct Identity.DAVIdentity storage ref"
+                          }
+                        },
+                        "id": 456,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "wallet",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 347,
+                        "src": "1539:22:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 451,
+                        "name": "token",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 354,
+                        "src": "1523:5:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_DAVToken_$342",
+                          "typeString": "contract DAVToken"
+                        }
+                      },
+                      "id": 452,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "balanceOf",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 890,
+                      "src": "1523:15:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
+                        "typeString": "function (address) view external returns (uint256)"
+                      }
+                    },
+                    "id": 457,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1523:39:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 450,
+                  "id": 458,
+                  "nodeType": "Return",
+                  "src": "1516:46:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 460,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getBalance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 447,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 446,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 460,
+                  "src": "1459:11:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 445,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1459:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1458:13:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 450,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 449,
+                  "name": "balance",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 460,
+                  "src": "1493:15:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 448,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1493:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1492:17:2"
+            },
+            "scope": 506,
+            "src": "1439:128:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 476,
+              "nodeType": "Block",
+              "src": "1662:51:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 474,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 469,
+                          "name": "identities",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 352,
+                          "src": "1675:10:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                            "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                          }
+                        },
+                        "id": 471,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 470,
+                          "name": "_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 462,
+                          "src": "1686:3:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1675:15:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                          "typeString": "struct Identity.DAVIdentity storage ref"
+                        }
+                      },
+                      "id": 472,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "wallet",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 347,
+                      "src": "1675:22:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 473,
+                      "name": "_wallet",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 464,
+                      "src": "1701:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1675:33:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 468,
+                  "id": 475,
+                  "nodeType": "Return",
+                  "src": "1668:40:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 477,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "verifyOwnership",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 465,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 462,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 477,
+                  "src": "1596:11:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 461,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1596:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 464,
+                  "name": "_wallet",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 477,
+                  "src": "1609:15:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 463,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1609:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1595:30:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 468,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 467,
+                  "name": "verified",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 477,
+                  "src": "1647:13:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 466,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1647:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1646:15:2"
+            },
+            "scope": 506,
+            "src": "1571:142:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 491,
+              "nodeType": "Block",
+              "src": "1819:47:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 489,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 484,
+                          "name": "identities",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 352,
+                          "src": "1832:10:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                            "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                          }
+                        },
+                        "id": 486,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 485,
+                          "name": "_id",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 479,
+                          "src": "1843:3:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1832:15:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                          "typeString": "struct Identity.DAVIdentity storage ref"
+                        }
+                      },
+                      "id": 487,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "wallet",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 347,
+                      "src": "1832:22:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "!=",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "hexValue": "307830",
+                      "id": 488,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1858:3:2",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0x0"
+                    },
+                    "src": "1832:29:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 483,
+                  "id": 490,
+                  "nodeType": "Return",
+                  "src": "1825:36:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 492,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "isRegistered",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 480,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 479,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 492,
+                  "src": "1779:11:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 478,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1779:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1778:13:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 483,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 482,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 492,
+                  "src": "1813:4:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 481,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1813:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1812:6:2"
+            },
+            "scope": 506,
+            "src": "1757:109:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 504,
+              "nodeType": "Block",
+              "src": "1965:40:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 499,
+                        "name": "identities",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 352,
+                        "src": "1978:10:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_DAVIdentity_$348_storage_$",
+                          "typeString": "mapping(address => struct Identity.DAVIdentity storage ref)"
+                        }
+                      },
+                      "id": 501,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 500,
+                        "name": "_id",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 494,
+                        "src": "1989:3:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "1978:15:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_DAVIdentity_$348_storage",
+                        "typeString": "struct Identity.DAVIdentity storage ref"
+                      }
+                    },
+                    "id": 502,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "wallet",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 347,
+                    "src": "1978:22:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 498,
+                  "id": 503,
+                  "nodeType": "Return",
+                  "src": "1971:29:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 505,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getIdentityWallet",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 495,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 494,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 505,
+                  "src": "1922:11:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 493,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1922:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1921:13:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 498,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 497,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 505,
+                  "src": "1956:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 496,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1956:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1955:9:2"
+            },
+            "scope": 506,
+            "src": "1895:110:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 507,
+        "src": "80:1927:2"
+      }
+    ],
+    "src": "0:2008:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.23+commit.124ca40d.Emscripten.clang"
+  },
+  "networks": {
+    "3": {
+      "events": {},
+      "links": {},
+      "address": "0x763a054cbd706b1bfa1002dca778135df7433cd8",
+      "transactionHash": "0x0f13fd8404db841fb4e84d44b82cb6bf8b6957da060f675c651ec0a8de7d9da8"
+    },
+    "2048": {
+      "events": {},
+      "links": {},
+      "address": "0x4549288e6063687df904ef54b8f5e6d5db8f3e54",
+      "transactionHash": "0x7396aa7bdc8bc71010266177647e0819040fe7b25857431b4be6bfa270c66c8a"
+    },
+    "2084": {
+      "events": {},
+      "links": {},
+      "address": "0xf381319b8b8a2fbf326f8e5e4366887188abd5ab",
+      "transactionHash": "0x4466c67584a253d2414ca23dd61dc979a7c214588499ede427c280b36ffdf09e"
+    }
+  },
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-05-27T16:19:51.096Z"
+}
