@@ -9,7 +9,9 @@ import {
 const defaultState = {};
 
 export default handleActions({
-  [updateStatusFulfilled]: (state, { payload }) => {
+  [updateStatusFulfilled]: (state, {
+    payload
+  }) => {
     let captains = payload.captains || [];
     captains.forEach(captain => {
       state[captain.id] = captain;
@@ -20,7 +22,12 @@ export default handleActions({
     payload
   }) => {
     payload.forEach(captain => {
-      state[captain.id] = captain;
+      if (!state[captain.id]) {
+        state[captain.id] = captain;
+      }
+      else{
+        state[captain.id].coords = captain.coords;
+      }
     });
     return state;
   }
