@@ -21,6 +21,7 @@ publish: build
 	@aws s3 cp --recursive --acl public-read dist/ ${BUCKET}
 
 build-stg: setup
+  @rsync -a ../dav-js/build src
 	@npm run build-stg
 
 deploy-aws-stg-env: build-stg
