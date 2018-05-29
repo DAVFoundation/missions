@@ -25,8 +25,8 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         BLOCKCHAIN_TYPE: JSON.stringify('TESTNET'),
-        MISSION_CONTROL_URL: JSON.stringify('http://ctrl.stg.missions.io.missions.io'),
-        CAPTAIN_SIM_URL: JSON.stringify('http://cap-sim.stg.missions.io.missions.io'),
+        MISSION_CONTROL_URL: JSON.stringify('http://ctrl.stg.missions.io'),
+        CAPTAIN_SIM_URL: JSON.stringify('http://cap-sim.stg.missions.io'),
       },
     }),
     new HtmlWebpackPlugin({
@@ -59,7 +59,7 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
       { from: 'src/manifest.json' },
       { from: 'src/lib/mapbox-gl-rtl-text.js.min' , to: 'lib' },
     ]),
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('[name].bundle.css'),
     new UglifyJSPlugin({
       sourceMap: true,
     }),

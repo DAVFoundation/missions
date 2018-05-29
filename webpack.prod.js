@@ -52,7 +52,7 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
       { from: 'src/manifest.json' },
       { from: 'src/lib/mapbox-gl-rtl-text.js.min' , to: 'lib' },
     ]),
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('[name].bundle.css'),
     new UglifyJSPlugin({
       sourceMap: true,
     }),
