@@ -1,5 +1,5 @@
 BUCKET=s3://missions.io/
-STG_BUCKET=s3://missions-stg/
+STG_BUCKET=s3://stg.missions.io/
 
 FORCE:
 
@@ -22,9 +22,6 @@ publish: build
 
 build-stg: setup
 	@npm run build-stg
-
-create-aws-stg-env: FORCE
-	@aws s3api create-bucket --bucket missions-stg --region us-east-1
 
 deploy-aws-stg-env: build-stg
 	@cp -r ./src/html/. ./dist/html
