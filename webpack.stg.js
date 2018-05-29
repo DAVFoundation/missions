@@ -25,8 +25,8 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         BLOCKCHAIN_TYPE: JSON.stringify('TESTNET'),
-        MISSION_CONTROL_URL: JSON.stringify('ctrl.stg.missions.io.missions.io'),
-        CAPTAIN_SIM_URL: JSON.stringify('cap-sim.stg.missions.io.missions.io'),
+        MISSION_CONTROL_URL: JSON.stringify('http://ctrl.stg.missions.io.missions.io'),
+        CAPTAIN_SIM_URL: JSON.stringify('http://cap-sim.stg.missions.io.missions.io'),
       },
     }),
     new HtmlWebpackPlugin({
