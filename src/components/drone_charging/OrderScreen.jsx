@@ -166,13 +166,14 @@ class OrderScreen extends Component {
           <label htmlFor="drone-type">Drone Type</label>
           <select
             id="drone-type"
-            defaultValue='dji'
+            defaultValue='mavic'
             ref={node => {
               this.droneTypeNode = node;
             }}
           >
-            <option value="dji">DJI Phantom</option>
-            <option value="not-dji">Not DJI Phantom</option>
+            <option value="mavic">DJI Mavic Air</option>
+            <option value="matrice">DJI Matrice 100</option>
+            <option value="phantom">DJI Phantom 4</option>
           </select>
         </div>
         <div className="form-field">
