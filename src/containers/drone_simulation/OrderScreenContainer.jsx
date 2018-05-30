@@ -5,7 +5,7 @@ import { NEED_TYPES } from '../../config/needTypes.js';
 import {
   updateOrderDetails,
   createDroneDeliveryNeed,
-  verifyDavId,
+  verifyDavId_NO_BLOCKCHAIN,
   registerDavId,
   closeWalletDialog
 } from '../../actions';
@@ -17,7 +17,7 @@ const OrderScreenContainer = () => {
     updateOrderDetails: (details) => dispatch(updateOrderDetails(details)),
     createNeed: (need) => dispatch(createDroneDeliveryNeed(need)),
     onMount: () => dispatch(updateOrderDetails({stage: 'draft'})),
-    verifyIdentity: () => dispatch(verifyDavId()),
+    verifyIdentity: () => dispatch(verifyDavId_NO_BLOCKCHAIN()),
     registerIdentity: () => dispatch(registerDavId()),
     closeWalletDialog: () => dispatch(closeWalletDialog())
   });

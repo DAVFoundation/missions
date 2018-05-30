@@ -16,6 +16,7 @@ import {
 
 import {
   initWeb3,
+  initWeb3_NO_BLOCKCHAIN,
   registerDavId as davRegisterDavId,
   createMissionTransaction as davCreateMissionTransaction,
   approveCompletedMission as davApproveCompletedMission
@@ -31,6 +32,8 @@ export const getSimulationDrones = createAction('GET_SIMULATION_DRONES', fetchSi
 export const getSimulationDronesFulfilled = createAction('GET_SIMULATION_DRONES_FULFILLED');
 
 export const verifyDavId = createAction('VERIFY_DAV_ID', initWeb3);
+
+export const verifyDavId_NO_BLOCKCHAIN = createAction('VERIFY_DAV_ID', initWeb3_NO_BLOCKCHAIN);
 
 export const updateDavId = createAction('UPDATE_DAV_ID');
 

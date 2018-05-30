@@ -13,13 +13,12 @@ import {
 const TruffleContract = require('truffle-contract');
 const Web3 = require('web3');
 
-const BLOCKCHAIN_TYPE = process.env.BLOCKCHAIN_TYPE || 'INJECTED';
-
+let blockchainType = process.env.BLOCKCHAIN_TYPE || 'INJECTED';
 let web3Provider = null;
 // Use injected web3 instance
 if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
   web3Provider = window.web3.currentProvider;
-} else if (BLOCKCHAIN_TYPE === 'ETH_LOCAL_TESTNET') {
+} else if (blockchainType === 'ETH_LOCAL_TESTNET') {
   // If no injected web3 instance is detected, fall back to Ganache
   web3Provider = new Web3
     .providers
@@ -78,7 +77,7 @@ let davJS = function (davId, wallet) {
 
   this.registerSimple = function () {
     let dav = this;
-    if (process.env.NODE_ENV === 'development' && BLOCKCHAIN_TYPE === 'NONE') {
+    if (blockchainType === 'NONE') {
       return Promise.resolve({});
     }
 
@@ -103,7 +102,7 @@ let davJS = function (davId, wallet) {
 
   this.createMissionTransaction = function (bidId, vehicleId, missionCost) {
     let dav = this;
-    if (process.env.NODE_ENV === 'development' && BLOCKCHAIN_TYPE === 'NONE') {
+    if (blockchainType === 'NONE') {
       return Promise.resolve(true);
     }
 
@@ -125,7 +124,7 @@ let davJS = function (davId, wallet) {
 
   this.approveCompletedMission = function (missionId) {
     let dav = this;
-    if (process.env.NODE_ENV === 'development' && BLOCKCHAIN_TYPE === 'NONE') {
+    if (blockchainType === 'NONE') {
       return Promise.resolve(true);
     }
 
@@ -136,8 +135,13 @@ let davJS = function (davId, wallet) {
   };
 };
 
+export const initWeb3_NO_BLOCKCHAIN = () => {
+  blockchainType = 'NONE';
+  return initWeb3();
+};
+
 export const initWeb3 = () => {
-  if (process.env.BLOCKCHAIN_TYPE === 'NONE') {
+  if (blockchainType === 'NONE') {
     store.dispatch(registerDavIdFulfilled());
     return Promise.resolve('Blockchain is disabled');
   }
@@ -163,7 +167,7 @@ export const initWeb3 = () => {
 };
 
 export const isRegistered = (davId) => {
-  if (process.env.BLOCKCHAIN_TYPE === 'NONE') {
+  if (blockchainType === 'NONE') {
     store.dispatch(registerDavIdFulfilled());
     return Promise.resolve('Blockchain is disabled');
   }
@@ -181,7 +185,7 @@ export const isRegistered = (davId) => {
 };
 
 export const registerDavId = () => {
-  if (process.env.BLOCKCHAIN_TYPE === 'NONE') {
+  if (blockchainType === 'NONE') {
     store.dispatch(registerDavIdFulfilled());
     return Promise.resolve('Blockchain is disabled');
   }
@@ -195,7 +199,7 @@ export const registerDavId = () => {
 };
 
 export const createMissionTransaction = (bidId, captain_id, price) => {
-  if (process.env.BLOCKCHAIN_TYPE === 'NONE') {
+  if (blockchainType === 'NONE') {
     store.dispatch(updateContractMissionIdMissionId({ bidId }));
     return Promise.resolve('Blockchain is disabled');
   }
@@ -212,7 +216,7 @@ export const createMissionTransaction = (bidId, captain_id, price) => {
 };
 
 export const approveCompletedMission = () => {
-  if (process.env.BLOCKCHAIN_TYPE === 'NONE') {
+  if (blockchainType === 'NONE') {
     store.dispatch(updateMissionStatus('confirmed'));
     return Promise.resolve('Blockchain is disabled');
   }

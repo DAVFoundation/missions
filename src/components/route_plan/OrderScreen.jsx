@@ -169,7 +169,7 @@ class OrderScreen extends Component {
         <h1>Order Route Plan</h1>
         <div id="order-screen-content">
           <div className="form-field">
-            <label htmlFor="start-coordinates">&apos;Start&apos; coordinates</label>
+            <label htmlFor="start-coordinates">Start coordinates</label>
             <input
               id="start-coordinates"
               type="text"
@@ -182,7 +182,7 @@ class OrderScreen extends Component {
           </div>
 
           <div className="form-field">
-            <label htmlFor="end-coordinates">&apos;End&apos; coordinates</label>
+            <label htmlFor="end-coordinates">End coordinates</label>
             <input
               id="end-coordinates"
               type="text"
