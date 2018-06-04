@@ -18,7 +18,7 @@ class SearchingScreen extends Component {
       sortedBids: []
     };
 
-    this.handleSortingOptionChange = this.handleSortingOptionChange.bind(this);
+    this.animateBidsUp = this.animateBidsUp.bind(this);
     this.returnSortedBids = this.returnSortedBids.bind(this);
   }
 
@@ -36,20 +36,21 @@ class SearchingScreen extends Component {
   // This function is called from BidSelectionHeader when a
   // sorting option is chosen.
   handleSortingOptionChange(option) {
-    this.setState({
+    this.setState((state, props) => ({
       selectedSortingOption: option,
-      sortedBids: this.returnSortedBids(option)
-    });
+      sortedBids: this.returnSortedBids(props, option)
+    }));
+    this.animateBidsUp();
   }
 
-  returnSortedBids(option) {
+  returnSortedBids(props, option) {
     /* eslint-disable indent */
 
     switch (option) {
       case 'Best match': {
         // sort on 'time_to_pickup', if bids have similar pickup time, show
         // the lowest price first
-        return this.props.bids.sort((a, b) => {
+        return props.bids.sort((a, b) => {
           //convert 'time_to_pickup' to minutes
           let timeToPickupMinutes_A = Math.ceil(a.time_to_pickup / 60000);
           let timeToPickupMinutes_B = Math.ceil(b.time_to_pickup / 60000);
@@ -66,13 +67,13 @@ class SearchingScreen extends Component {
       }
       case 'Fastest pickup': {
         //sort on 'time_to_pickup'
-        return this.props.bids.sort(
+        return props.bids.sort(
           (a, b) => parseFloat(a.time_to_pickup) - parseFloat(b.time_to_pickup)
         );
       }
       case 'Fastest delivery': {
         //sort on 'time_to_dropoff'
-        return this.props.bids.sort(
+        return props.bids.sort(
           (a, b) =>
             parseFloat(a.time_to_dropoff) - parseFloat(b.time_to_dropoff)
         );
@@ -87,6 +88,10 @@ class SearchingScreen extends Component {
         return this.props.bids;
     }
     /* eslint-enable indent */
+  }
+
+  animateBidsUp (){
+    setTimeout(() => this.setState({showBids: true}));
   }
 
   render() {
@@ -151,7 +156,7 @@ class SearchingScreen extends Component {
                   key={bid.id}
                   bid={bid}
                   vehicle={vehicles[bid.captain_id]}
-                  shown={stage === 'choosing'}
+                  shown={this.state.showBids}
                   chooseBid={chooseBid}
                 />
               )
