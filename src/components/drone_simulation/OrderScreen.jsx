@@ -20,6 +20,8 @@ class OrderScreen extends Component {
 
     this.state = {
       packageSize: getConfig('default_package_size'),
+      pickup: {location: {lat: 32.0750224, lng: 34.77493950000007}},
+      dropoff: {lat: 32.06299430000001, lng: 34.76920629999995}
     };
 
     // Options should be read from some kind of configuration
@@ -48,7 +50,6 @@ class OrderScreen extends Component {
       dropoff: dropoff ? { lat: dropoff.lat, long: dropoff.lng} : undefined,
       size: packageSize || undefined,
       weight: this.weightNode.value || undefined,
-      pickup_at: this.pickupTimeNode.value || undefined,
       need_type: this.props.needType
     };
   }
@@ -92,8 +93,6 @@ class OrderScreen extends Component {
 
   render() {
     const {weight} = this.props; // size
-    const pickup_at =
-      this.props.pickup_at || new Date().toTimeString().slice(0, 5);
     let showSignInToWalletDialog = this.props.registration_step === 'unlock_wallet';
     const signInToWalletDialog = (
       <div id="wallet-dialog-screen" className="screen">
@@ -147,7 +146,7 @@ class OrderScreen extends Component {
             type="text"
             id="pickup-location"
             ignoreTab={true}
-            placeholder="Type the address of the pickup location"
+            placeholder="Dizengoff Center Mall, Tel Aviv-Yafo, Israel"
             onChange={
               () => this.setState({pickup: undefined})
             }
@@ -166,7 +165,7 @@ class OrderScreen extends Component {
             type="text"
             id="dropoff-location"
             ignoreTab={true}
-            placeholder="Type the address of the dropoff location"
+            placeholder="Rothschild Boulevard 1, Tel Aviv-Yafo, Israel"
             onChange={
               () => this.setState({dropoff: undefined})
             }
@@ -204,19 +203,8 @@ class OrderScreen extends Component {
             <option value="100000">Up to 100 kg</option>
           </select>
         </div>
-        <div className="form-field">
-          <label htmlFor="pickup-time">Pickup time</label>
-          <input
-            id="pickup-time"
-            type="time"
-            defaultValue={pickup_at}
-            ref={node => {
-              this.pickupTimeNode = node;
-            }}
-          />
-        </div>
         <button onClick={this.verifyIdentity.bind(this)}
-          className={(this.state.pickup !== undefined && this.state.pickup.location !== undefined && this.state.dropoff !== undefined) ? 'big-button form-submit-button' : 'disabled-button form-submit-button'}>
+          className={(this.state.pickup && this.state.pickup.location && this.state.dropoff) ? 'big-button form-submit-button' : 'disabled-button form-submit-button'}>
           Find drones
         </button>
         {showSignInToWalletDialog === false ? (<div/>) : signInToWalletDialog}
