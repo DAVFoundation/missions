@@ -171,9 +171,15 @@ class OrderScreen extends Component {
               this.droneTypeNode = node;
             }}
           >
-            <option value="mavic">DJI Mavic Air</option>
-            <option value="matrice">DJI Matrice 100</option>
-            <option value="phantom">DJI Phantom 4</option>
+            <option value="matrice100">DJI Matrice 100</option>
+            <option value="matrice200">DJI Matrice 200</option>
+            <option value="matrice210">DJI Matrice 210</option>
+            <option value="matrice210rtk">DJI Matrice 210 RTK</option>
+            <option value="phantom3">DJI Phantom 3 Pro</option>
+            <option value="phantom4">DJI Phantom 4 Pro</option>
+            <option value="yuneecTyphoon">Yuneec Typhoon H</option>
+            <option value="yuneecH920">Yuneec H920 Plus</option>
+            <option value="yuneecH520">Yuneec H520</option>
           </select>
         </div>
         <div className="form-field">
