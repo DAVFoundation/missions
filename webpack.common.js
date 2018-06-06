@@ -2,13 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = (env = 'development') => {
+module.exports = (env = 'development',appName) => {
   return {
     entry: {
-      drone_simulation: './src/apps/drone_simulation/Main.jsx',
-      delivery_drones: './src/apps/delivery_drones/Main.jsx',
-      drone_charging: './src/apps/drone_charging/Main.jsx',
-      route_plan: './src/apps/route_plan/Main.jsx',
+      app:`./src/apps/${appName}/Main.jsx`,
       vendor: [
         'mapbox-gl',
         'react',
@@ -22,7 +19,7 @@ module.exports = (env = 'development') => {
       ],
     },
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, `dist/${appName}`),
       publicPath: '/',
       filename: '[name].bundle.[chunkhash:8].js',
       sourceMapFilename: '[file].map',

@@ -14,7 +14,7 @@ class MainScreen extends Component {
         <div id="logo">
           <img src={logo} alt="Missions powered by DAV" />
         </div>
-        <Link to="/order" className="big-button order-button">Order Pickup</Link>
+        <Link to="order" className="big-button order-button">Order Pickup</Link>
       </div>
     );
   }

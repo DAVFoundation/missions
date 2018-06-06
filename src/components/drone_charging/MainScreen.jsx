@@ -29,7 +29,7 @@ class MainScreen extends Component {
           <h3>Your Location</h3>
           <p>1556 Broadway, suite 416</p>
         </div>
-        <Link to="/order" className="big-button order-button">Find Charging Stations</Link>
+        <Link to="order" className="big-button order-button">Find Charging Stations</Link>
       </div>
     );
   }

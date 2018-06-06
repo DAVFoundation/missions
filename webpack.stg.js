@@ -9,8 +9,11 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 process.env.NODE_ENV = 'production';
+const appName=process.env.APP;
 
-module.exports = merge(getCommon(process.env.NODE_ENV), {
+console.log(`Building ${appName}...`);
+
+module.exports = merge(getCommon(process.env.NODE_ENV,appName), {
   devtool: 'cheap-module-source-map',
   devServer: {
     inline: true,
@@ -20,36 +23,19 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
     historyApiFallback: true,
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin([`dist/${appName}`]),
     new webpack.DefinePlugin({
       'process.env': {
+        APP: JSON.stringify(process.env.APP),
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         BLOCKCHAIN_TYPE: JSON.stringify('MAINNET'),
-        MISSION_CONTROL_URL: JSON.stringify('http://ctrl.stg.missions.io'),
-        CAPTAIN_SIM_URL: JSON.stringify('http://cap-sim.stg.missions.io'),
+        MISSION_CONTROL_URL: JSON.stringify('https://ctrl.mooving.io'),
+        CAPTAIN_SIM_URL: JSON.stringify('https://captain-sim.mooving.io'),
       },
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      chunks: ['vendor', 'drone_simulation'],
-      template: path.resolve(__dirname, 'src/index.html'),
-      favicon: path.resolve(__dirname, 'src/favicon.ico'),
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'delivery_drones/index.html',
-      chunks: ['vendor', 'delivery_drones'],
-      template: path.resolve(__dirname, 'src/index.html'),
-      favicon: path.resolve(__dirname, 'src/favicon.ico'),
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'drone_charging/index.html',
-      chunks: ['vendor', 'drone_charging'],
-      template: path.resolve(__dirname, 'src/index.html'),
-      favicon: path.resolve(__dirname, 'src/favicon.ico'),
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'route_plan/index.html',
-      chunks: ['vendor', 'route_plan'],
+      chunks: ['vendor', 'app'],
       template: path.resolve(__dirname, 'src/index.html'),
       favicon: path.resolve(__dirname, 'src/favicon.ico'),
     }),

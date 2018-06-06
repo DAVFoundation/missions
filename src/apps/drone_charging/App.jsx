@@ -19,12 +19,12 @@ class App extends Component {
       <Router>
         <div>
           <Map addControls={false}/>
-          <Route exact path="/drone_charging/" component={MainScreenContainer('ChargingMainScreen')}/>
+          <Route exact path="/" component={MainScreenContainer('ChargingMainScreen')}/>
 
-          <Route path="/drone_charging/:mapItemType/:id" component={ MapItemDetailsScreenContainer } />
-          <Route path="/drone_charging/order" component={ OrderScreenContainer()  } />
-          <Route path="/drone_charging/searching" component={ SearchingScreenContainer('ChargingSearchingScreen') } />
-          <Route path="/drone_charging/mission" component= { MissionContainer('ChargingMissionScreen') } />
+          <Route path="/:mapItemType/:id" component={ MapItemDetailsScreenContainer } />
+          <Route path="/order" component={ OrderScreenContainer()  } />
+          <Route path="/searching" component={ SearchingScreenContainer('ChargingSearchingScreen') } />
+          <Route path="/mission" component= { MissionContainer('ChargingMissionScreen') } />
         </div>
       </Router>
     );

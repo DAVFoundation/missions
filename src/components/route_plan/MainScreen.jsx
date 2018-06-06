@@ -35,7 +35,7 @@ class MainScreen extends Component {
             <img src={iconUser} alt=""/>
           </span>
         </div>
-        { 
+        {
           this.state.locationPlace ?
             (<div className="user-location">
               <h3>Your Location</h3>
@@ -43,7 +43,7 @@ class MainScreen extends Component {
             </div>) :
             (<div />)
         }
-        <Link to="/order" className="big-button order-button">ORDER ROUTE PLAN</Link>
+        <Link to="order" className="big-button order-button">ORDER ROUTE PLAN</Link>
       </div>
     );
   }

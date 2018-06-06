@@ -7,9 +7,9 @@ import '../../common.css';
 import { updateApp } from '../../actions';
 import { NEED_TYPES } from '../../config/needTypes.js';
 
-store.dispatch(updateApp({ 
-  name: 'Route Plan', 
-  path: '/route_plan',
+store.dispatch(updateApp({
+  name: 'Route Plan',
+  path: '',
   needType: NEED_TYPES.ROUTE_PLAN
 }));
 
