@@ -10,7 +10,7 @@ setup: FORCE
 	@rsync -a ../dav-js/build src
 
 start-sim: setup
-	@export APP=drone_simulation && ${WEBPACK_DEV} --config webpack.dev.js
+	@export APP=drone_simulation && export DOMAIN=mooving && ${WEBPACK_DEV} --config webpack.dev.js
 
 start-sky: setup
 	@export APP=drone_charging && ${WEBPACK_DEV} --config webpack.dev.js
@@ -30,9 +30,9 @@ publish: build
 
 build-stg: setup
 	@rsync -a ../dav-js/build src
-	@export APP=drone_simulation && ${WEBPACK} --config webpack.stg.js
-	@export APP=route_plan && ${WEBPACK} --config webpack.stg.js
-	@export APP=drone_charging && ${WEBPACK} --config webpack.stg.js
+	@export APP=drone_simulation && export DOMAIN=mooving && ${WEBPACK} --config webpack.stg.js
+	@export APP=route_plan && export DOMAIN=mooving && ${WEBPACK} --config webpack.stg.js
+	@export APP=drone_charging && export DOMAIN=mooving && ${WEBPACK} --config webpack.stg.js
 	@cp -r ./src/html/. ./dist/route_plan/html
 
 deploy-aws-stg-env: build-stg

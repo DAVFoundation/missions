@@ -22,7 +22,7 @@ class App extends Component {
         <div>
           <Map />
 
-          <Route exact path="/" component={ MainScreenContainer('DeliveryMainScreen') } />
+          <Route exact path="/" component={ MainScreenContainer('DeliverySimulationMainScreen') } />
 
           <Route path="/welcome" component={ Welcome } />
 
