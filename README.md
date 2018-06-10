@@ -6,9 +6,9 @@
 
 > By DAV
 
-Missions is the client facing side of the marketplace connecting DAV users looking to ship packages, with autonomous vehicles.
+Missions is the client facing side of the marketplace connecting DAV users with transportation service providers
 
-It demonstrates how a third party might build their own product, while integrating technologies provided by DAV, and provide a way for users and autonomous vehicles to transact.
+It demonstrates how a third party might build their own product, while integrating technologies provided by DAV, and provide a way for users and transportation services to interact and transact.
 
 ### Contributing Code, Reporting Bugs and Suggesting Features
 
