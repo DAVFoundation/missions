@@ -151,7 +151,7 @@ class BidSelectionHeader extends Component {
           </ul>
         </div>
         <div className="bid-selection-header">
-          <Link to="/order" className="back-button">
+          <Link to="order" className="back-button">
             <img src={arrow} alt="Back" />
           </Link>
 

@@ -2,9 +2,19 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Link from '../../containers/LinkContainer.jsx';
 import '../MainScreen.css';
-import logo from '../../images/logo_missions.svg';
 import iconUser from '../../images/icon_signed_out.svg';
+import logoMissions from '../../images/logo_missions.svg';
+import logoMooving from '../../images/logo_mooving.svg';
 
+const logo = (domain => {
+  switch (domain) {
+  default:
+  case 'missions':
+    return logoMissions;
+  case 'mooving':
+    return logoMooving;
+  }
+})(process.env.DOMAIN);
 
 class MainScreen extends Component {
   componentDidMount() {
@@ -29,7 +39,7 @@ class MainScreen extends Component {
           <h3>Your Location</h3>
           <p>1556 Broadway, suite 416</p>
         </div>
-        <Link to="/order" className="big-button order-button">Find Charging Stations</Link>
+        <Link to="order" className="big-button order-button">Find Charging Stations</Link>
       </div>
     );
   }

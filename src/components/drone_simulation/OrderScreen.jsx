@@ -136,7 +136,7 @@ class OrderScreen extends Component {
 
     return (
       <div id="order-screen" className="screen">
-        <Link to="/" className="back-button" onClick={this.cancelForm}>
+        <Link to="" className="back-button" onClick={this.cancelForm}>
           <img src={arrow} alt="Back"/>
         </Link>
         <h1>Order Pickup</h1>

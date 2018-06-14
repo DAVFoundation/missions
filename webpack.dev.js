@@ -5,8 +5,22 @@ const getCommon = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 process.env.NODE_ENV = 'development';
+const appName=process.env.APP;
 
-module.exports = merge(getCommon(process.env.NODE_ENV), {
+console.log(`Building ${appName}...`);
+
+const favicon = process.env.DOMAIN || 'missions';
+const title = (domain => {
+  switch (domain) {
+  default:
+  case 'missions':
+    return 'Missions';
+  case 'mooving':
+    return 'Mooving';
+  }
+})(process.env.DOMAIN);
+
+module.exports = merge(getCommon(process.env.NODE_ENV,appName), {
   devtool: 'eval-source-map',
   devServer: {
     inline: true,
@@ -18,35 +32,19 @@ module.exports = merge(getCommon(process.env.NODE_ENV), {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      chunks: ['vendor', 'drone_simulation'],
+      chunks: ['vendor', 'app'],
+      title:`${title} by DAV`,
       template: path.resolve(__dirname, 'src/index.html'),
-      favicon: path.resolve(__dirname, 'src/favicon.ico'),
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'delivery_drones/index.html',
-      chunks: ['vendor', 'delivery_drones'],
-      template: path.resolve(__dirname, 'src/index.html'),
-      favicon: path.resolve(__dirname, 'src/favicon.ico'),
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'drone_charging/index.html',
-      chunks: ['vendor', 'drone_charging'],
-      template: path.resolve(__dirname, 'src/index.html'),
-      favicon: path.resolve(__dirname, 'src/favicon.ico'),
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'route_plan/index.html',
-      chunks: ['vendor', 'route_plan'],
-      template: path.resolve(__dirname, 'src/index.html'),
-      favicon: path.resolve(__dirname, 'src/favicon.ico'),
+      favicon: path.resolve(__dirname, `src/favicon_${favicon}.ico`),
     }),
     new webpack.DefinePlugin({
       'process.env': {
+        APP: JSON.stringify(process.env.APP),
+        DOMAIN: JSON.stringify(process.env.DOMAIN),
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         BLOCKCHAIN_TYPE: JSON.stringify('TESTNET'),
         MISSION_CONTROL_URL: JSON.stringify('http://localhost:8888'),
         CAPTAIN_SIM_URL: JSON.stringify('http://localhost:8887')
-
       },
     }),
   ],

@@ -25,7 +25,7 @@ class OrderScreen extends Component {
     getUserLocation().then((res) => {
       this.setState({
         startCoordinates: `${res.coords.latitude}, ${res.coords.longitude}`,
-        endCoordinates: `${res.coords.latitude - 0.03}, ${res.coords.longitude + 0.05}`  
+        endCoordinates: `${res.coords.latitude - 0.03}, ${res.coords.longitude + 0.05}`
       });
     }).catch((res) => {
       console.log(res);
@@ -163,7 +163,7 @@ class OrderScreen extends Component {
 
     return (
       <div id="order-screen" className="screen">
-        <Link to="/" className="back-button" onClick={this.cancelForm}>
+        <Link to="" className="back-button" onClick={this.cancelForm}>
           <img src={arrow} alt="Back" />
         </Link>
         <h1>Order Route Plan</h1>

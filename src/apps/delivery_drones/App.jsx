@@ -21,20 +21,20 @@ class App extends Component {
         <div>
           <Map addControls={true}/>
 
-          <Route exact path="/delivery_drones/" component={ MainScreenContainer('DeliveryMainScreen') } />
+          <Route exact path="/" component={ MainScreenContainer('DeliveryMainScreen') } />
 
-          <Route path="/delivery_drones/welcome" component={ Welcome } />
+          <Route path="/welcome" component={ Welcome } />
 
-          <Route path="/delivery_drones/:mapItemType/:id" component={ MapItemDetailsScreenContainer } />
+          <Route path="/:mapItemType/:id" component={ MapItemDetailsScreenContainer } />
 
-          <Route path="/delivery_drones/order" component={ OrderScreenContainer()  } />
+          <Route path="/order" component={ OrderScreenContainer()  } />
 
-          <Route path="/delivery_drones/searching" component={ SearchingScreenContainer('DeliverySearchingScreen') } />
+          <Route path="/searching" component={ SearchingScreenContainer('DeliverySearchingScreen') } />
 
-          <Route path="/delivery_drones/mission" component= { MissionContainer('DeliveryMissionScreen') } />
-          <Route path="/delivery_drones/mission/:mapItemType/:id" component={ MapItemDetailsScreenContainer } />
+          <Route path="/mission" component= { MissionContainer('DeliveryMissionScreen') } />
+          <Route path="/mission/:mapItemType/:id" component={ MapItemDetailsScreenContainer } />
 
-          <Route path="/delivery_drones/confirm-takeoff" component= { ConfirmPickupContainer } />
+          <Route path="/confirm-takeoff" component= { ConfirmPickupContainer } />
 
         </div>
       </Router>
