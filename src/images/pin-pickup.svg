@@ -1,22 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="22px" height="38px" viewBox="0 0 22 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
-    <title>Group 4</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Main-screen-during-mission" transform="translate(-253.000000, -106.000000)">
-            <g id="Group-4" transform="translate(253.000000, 106.000000)">
-                <g id="location">
-                    <path d="M11,30 L10.3993813,29.3201133 C9.97486466,28.8399021 0,17.4749031 0,10.6686102 C0,4.78643527 4.93426141,0 11,0 C17.0657386,0 22,4.78643527 22,10.6686102 C22,17.4749031 12.0251353,28.8399021 11.6006187,29.3201133 L11,30 L11,30 Z" id="Fill-55" fill="#FFB09E"></path>
-                    <ellipse id="Oval" fill="#FFFFFF" cx="11.0595514" cy="10.7345957" rx="8.63184901" ry="8.37180298"></ellipse>
-                </g>
-                <g id="Group-6" transform="translate(7.000000, 5.000000)" fill="#FFB09E">
-                    <polyline id="Fill-74" points="7.40635028 5.32839589 4.20031208 2.04015158 0.994273873 5.32839589 0.205815292 4.51848956 4.20031208 0.421569783 8.19480886 4.51848956 7.40635028 5.32839589"></polyline>
-                    <polygon id="Fill-75" points="3.60026749 1.23086068 4.80035666 1.23086068 4.80035666 11 3.60026749 11"></polygon>
-                </g>
-                <circle id="point_blue" fill="#45474E" cx="11" cy="34" r="4"></circle>
-            </g>
-        </g>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="22px" height="67.813px" viewBox="0 0 22 67.813" enable-background="new 0 0 22 67.813" xml:space="preserve">
+<title>Group 4</title>
+<desc>Created with Sketch.</desc>
+<g id="location">
+	<path id="Fill-55" fill="#FFB09E" d="M11,30l-0.601-0.68C9.975,28.84,0,17.475,0,10.668C0,4.786,4.934,0,11,0
+		c6.066,0,11,4.786,11,10.668c0,6.807-9.975,18.171-10.399,18.652L11,30L11,30z"/>
+	<ellipse id="Oval" fill="#FFFFFF" cx="11.06" cy="10.735" rx="8.632" ry="8.372"/>
+</g>
+<g id="Group-6" transform="translate(7.000000, 5.000000)">
+	<polyline id="Fill-74" fill="#FFB09E" points="7.406,5.328 4.2,2.04 0.994,5.328 0.206,4.519 4.2,0.421 8.195,4.519 7.406,5.328 	
+		"/>
+	<polygon id="Fill-75" fill="#FFB09E" points="3.6,1.231 4.801,1.231 4.801,11 3.6,11 	"/>
+</g>
+<circle id="point_blue" fill="#45474E" cx="11" cy="34" r="4"/>
 </svg>

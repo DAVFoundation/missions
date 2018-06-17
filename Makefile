@@ -16,7 +16,7 @@ start-sky: setup
 	@export APP=drone_charging && ${WEBPACK_DEV} --config webpack.dev.js
 
 start-gradd: setup
-	@export APP=route_plans && ${WEBPACK_DEV} --config webpack.dev.js
+	@export APP=route_plan && ${WEBPACK_DEV} --config webpack.dev.js
 
 stop: FORCE
 	@npm run stop
