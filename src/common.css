@@ -56,6 +56,10 @@ h1 {
   position: relative;
 }
 
+.modal-box, .wallet-dialog {
+  position: absolute;
+}
+
 .modal-close-button {
   color: #807B9C;
   text-decoration: none;
