@@ -8,6 +8,7 @@ import '../SearchingScreen.css';
 import radar from '../../images/radar.png';
 import ChargingStationBid from './ChargingStationBid.jsx';
 import ChargingBidSelectionHeader from './ChargingBidSelectionHeader.jsx';
+import Modal from '../modal/Modal.jsx';
 
 class SearchingScreen extends Component {
   constructor(props) {
@@ -38,7 +39,11 @@ class SearchingScreen extends Component {
 
     if (this.props.stage === 'choosing' && prevProps.stage !== 'choosing') {
       //run initial bid sort when bids have been received
-      this.handleSortingOptionChange(this.state.selectedSortingOption);
+      if (this.props.bids.length) {
+        this.handleSortingOptionChange(this.state.selectedSortingOption);
+      } else {
+        this.setState({showModal: true});
+      }
     }
   }
 
@@ -161,6 +166,7 @@ class SearchingScreen extends Component {
                   charger={chargers[bid.captain_id]}
                   shown={stage === 'choosing'}
                   chooseBid={chooseBid}
+
                 />
               )
           )}
@@ -189,6 +195,19 @@ class SearchingScreen extends Component {
             </div>
           )}
         </div>
+        <Modal show={ this.state.showModal }
+          title="No Provider Was Found"
+          buttonText="OK"
+          onButtonClick={
+            () => {
+              this.props.history.push('/');
+              this.setState({showModal: false});
+            }
+          }
+        >
+          We couldn’t find any provider for the requested service. <br/>
+          Please try again later, or try refining your search.
+        </Modal>
       </div>
     );
   }
