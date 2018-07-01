@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from '../../containers/LinkContainer.jsx';
 import '../MainScreen.css';
-import iconUser from '../../images/icon_signed_out.svg';
 import { getUserLocationPlace } from '../../lib/map';
 import logoMissions from '../../images/logo_missions.svg';
 import logoMooving from '../../images/logo_mooving.svg';
@@ -41,9 +40,6 @@ class MainScreen extends Component {
           <div id="logo">
             <img src={logo} alt="Missions powered by DAV" />
           </div>
-          <span className="profile">
-            <img src={iconUser} alt=""/>
-          </span>
         </div>
         {
           this.state.locationPlace ?
