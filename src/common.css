@@ -40,7 +40,7 @@ h1 {
 /* Modal */
 .modal-container {
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,10 +54,6 @@ h1 {
   padding: 20px 20px;
   margin: 10px 10px;
   position: relative;
-}
-
-.modal-box, .wallet-dialog {
-  position: absolute;
 }
 
 .modal-close-button {
