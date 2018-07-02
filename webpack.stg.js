@@ -51,7 +51,7 @@ module.exports = merge(getCommon(process.env.NODE_ENV,appName), {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       chunks: ['vendor', 'app'],
-      title:`${title} by DAV`,
+      title:`${title}`,
       template: path.resolve(__dirname, 'src/index.html'),
       favicon: path.resolve(__dirname, 'src/favicon.ico'),
     }),
