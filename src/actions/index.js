@@ -2,20 +2,20 @@ import {
   createAction
 } from 'redux-actions';
 import {
-  fetchStatus as apiFetchStatus,
-  fetchSimulationDrones,
   createDroneDeliveryNeed as apiCreateDroneDeliveryNeed,
   createRoutePlanNeed as apiCreateRoutePlanNeed,
   createDroneChargingNeed as apiCreateDroneChargingNeed,
-  fetchBids as apiFetchBids,
-  chooseBid as apiChooseBid,
-  confirmTakeoff as apiConfirmTakeoff,
   completeSimulationMission as apiCompleteSimulationMission,
-  updateMissionStatus as apiUpdateMissionStatus
 } from '../lib/api';
 
 import {
+  fetchStatus as apiFetchStatus,
+  updateMissionStatus as apiUpdateMissionStatus,
+  fetchBids as apiFetchBids,
+  chooseBid as apiChooseBid,
+  fetchSimulationDrones,
   initWeb3,
+  confirmTakeoff as apiConfirmTakeoff,
   initWeb3_NO_BLOCKCHAIN,
   registerDavId as davRegisterDavId,
   createMissionTransaction as davCreateMissionTransaction,

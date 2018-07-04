@@ -8,10 +8,11 @@ import {
   registerDavIdFulfilled,
   createMissionTransactionFulfilled,
   createMissionTransactionFailed,
-  updateMissionStatus
 } from '../actions';
 const TruffleContract = require('truffle-contract');
 const Web3 = require('web3');
+const apiRoot = process.env.MISSION_CONTROL_URL;
+const captainSimRoot = process.env.CAPTAIN_SIM_URL;
 
 let blockchainType = process.env.BLOCKCHAIN_TYPE || 'INJECTED';
 let web3Provider = null;
@@ -27,7 +28,6 @@ if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
 
 let web3 = new Web3(web3Provider);
 let davSDK;
-
 const DavContracts = function () {
   let contracts = {
     identity: {
@@ -232,3 +232,109 @@ export const approveCompletedMission = () => {
   });
 };
 
+
+export const chooseBid = (bidId, captain_id, price) => {
+  let url = new URL(`/bids/${bidId}/choose`, apiRoot);
+  return fetchWithUserId(url, 'PUT').then(response => {
+    store.dispatch(createMissionTransaction(bidId, captain_id, price));
+    return response;
+  });
+};
+
+export const createNeed = (params) => {
+  let url = new URL(`/needs`, apiRoot);
+  params = {
+    ...params,
+    // need_type: params.need_type
+  };
+  return fetchWithUserId(url, 'POST', params);
+};
+
+
+export const fetchBids = ({
+  needId
+}) => {
+  let url = new URL(`/bids/${needId}`, apiRoot);
+  return fetchWithUserId(url);
+};
+
+export const cancelNeed = () => {
+  const needId = store.getState().order.needId;
+  let url = new URL(`/needs/${needId}`, apiRoot);
+  return fetchWithUserId(url, 'DELETE');
+};
+
+export const updateMissionStatus = (status, captain_status) => {
+  const missionId = store.getState().mission.mission_id;
+  let url = new URL(`/missions/${missionId}`, apiRoot);
+  let body = {status};
+  if(captain_status) {
+    body = {
+      vehicle_status: captain_status,
+      mission_status: status
+    };
+  }
+  return fetchWithUserId(url, 'PUT', body);
+};
+
+export const confirmTakeoff = () => {
+  const missionId = store.getState().mission.mission_id;
+  const command = 'takeoff_pickup';
+  let url = new URL(`/mission_command`, apiRoot);
+  url.searchParams.set('mission_id', missionId);
+  url.searchParams.set('command', command);
+  return fetchWithUserId(url);
+};
+
+export function fetchSimulationDrones() {
+  let url = new URL(`/simulation/drones`, captainSimRoot);
+
+  const headers = new Headers();
+  headers.append('Accept', 'application/json');
+  headers.append('Content-Type', 'application/json');
+
+  const coords = store.getState().map.coords;
+
+  const options = {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      latitude: coords.lat,
+      longitude: coords.long
+    })
+  };
+  return fetch(url, options).then(response => response.json());
+}
+
+
+export const fetchStatus = ({
+  id,
+  lat,
+  long,
+  needId
+}) => {
+  const missionId = store.getState().mission.id;
+  let url = new URL(`/status`, apiRoot);
+  id && url.searchParams.set('id', id);
+  lat && url.searchParams.set('lat', lat); // Don't stand on the equator or you'll break this
+  long && url.searchParams.set('long', long);
+  needId && url.searchParams.set('needId', needId);
+  missionId && url.searchParams.set('missionId', missionId);
+  return fetchWithUserId(url);
+};
+
+const fetchWithUserId = (url, method = 'GET', body) => {
+  const userId = store.getState().settings.user_id;
+  url.searchParams.set('user_id', userId);
+  const headers = new Headers();
+
+  headers.append('Accept', 'application/json');
+  headers.append('Content-Type', 'application/json');
+
+  const options = {
+    method,
+    headers
+  };
+  if (body) options.body = JSON.stringify(body);
+  return fetch(url, options).then(response => response.json());
+};
