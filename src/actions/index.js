@@ -1,12 +1,6 @@
 import {
   createAction
 } from 'redux-actions';
-import {
-  createDroneDeliveryNeed as apiCreateDroneDeliveryNeed,
-  createRoutePlanNeed as apiCreateRoutePlanNeed,
-  createDroneChargingNeed as apiCreateDroneChargingNeed,
-  completeSimulationMission as apiCompleteSimulationMission,
-} from '../lib/api';
 
 import {
   fetchStatus as apiFetchStatus,
@@ -55,10 +49,6 @@ export const updateOrderDetails = createAction('UPDATE_ORDER_DETAILS');
 
 export const resetOrderDetails = createAction('RESET_ORDER_DETAILS');
 
-export const createDroneDeliveryNeed = createAction('CREATE_DRONEDELIVERY_NEED', apiCreateDroneDeliveryNeed);
-export const createDroneChargingNeed = createAction('CREATE_CHARGING_NEED', apiCreateDroneChargingNeed);
-export const createRoutePlanNeed = createAction('CREATE_ROUTEPLAN_NEED', apiCreateRoutePlanNeed);
-
 export const createDroneDeliveryNeedFulfilled = createAction('CREATE_DRONEDELIVERY_NEED_FULFILLED');
 export const createDroneChargingNeedFulfilled = createAction('CREATE_CHARGING_NEED_FULFILLED');
 export const createRoutePlanNeedFulfilled = createAction('CREATE_ROUTEPLAN_NEED_FULFILLED');
@@ -77,7 +67,7 @@ export const chooseBidFulfilled = createAction('CHOOSE_BID_FULFILLED');
 
 export const createMissionTransaction = createAction('CREATE_MISSION_TRANSACTION', davCreateMissionTransaction);
 
-export const createMissionTransactionFulfilled = createAction('CREATE_MISSION_TRANSACTION_FULFILLED', apiCompleteSimulationMission);
+export const createMissionTransactionFulfilled = createAction('CREATE_MISSION_TRANSACTION_FULFILLED');
 
 export const createMissionTransactionFailed = createAction('CREATE_MISSION_TRANSACTION_FAILED');
 
