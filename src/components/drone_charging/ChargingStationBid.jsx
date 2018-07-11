@@ -6,7 +6,7 @@ import currencyImage from '../../images/dav.svg';
 const ChargingStationBid = ({bid, charger, shown, chooseBid}) => {
   const clickChooseBid = (e) => {
     e.preventDefault();
-    chooseBid(bid.id, bid.captain_id, bid.price);
+    chooseBid(bid.id, bid.captain_id, bid.price, bid.token_amount);
   };
 
   let classNames = ['vehicle-bid-card'];
@@ -22,7 +22,9 @@ const ChargingStationBid = ({bid, charger, shown, chooseBid}) => {
         <dt>Max charging velocity</dt>
         <dd>{charger.max_charging_velocity} Ah</dd>
         <dt>Cost for charging:</dt>
-        <dd>{parseFloat(bid.price/1000000000000000000).toFixed(2)}<img src={currencyImage} className="currency-symbol" alt="DAV"/></dd>
+        <dd>{parseFloat(bid.price/1000000000000000000).toFixed(4)} ETH</dd>
+        <dt>Token amount:</dt>
+        <dd>{parseFloat(bid.token_amount/1000000000000000000).toFixed(2)}<img src={currencyImage} className="currency-symbol" alt="DAV"/></dd>
       </dl>
     </div>
   );

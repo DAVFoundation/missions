@@ -100,7 +100,7 @@ let davJS = function (davId, wallet) {
     });
   };
 
-  this.createMissionTransaction = function (bidId, vehicleId, missionCost) {
+  this.createMissionTransaction = function (bidId, vehicleId, missionCost, tockenAmount) {
     let dav = this;
     if (blockchainType === 'NONE') {
       return Promise.resolve(true);
@@ -114,10 +114,10 @@ let davJS = function (davId, wallet) {
         return dav.davContracts.getInstance('mission')
           .then((instance) => {
             missionContractInstance = instance;
-            return tokenContractInstance.approve(missionContractInstance.address, missionCost, { from: dav.wallet });
+            return tokenContractInstance.approve(missionContractInstance.address, tockenAmount, { from: dav.wallet });
           })
           .then(() => {
-            return missionContractInstance.create(bidId, vehicleId, dav.davId, missionCost, { from: dav.wallet });
+            return missionContractInstance.create(bidId, vehicleId, dav.davId, tockenAmount, { from: dav.wallet, value: missionCost });
           });
       });
   };
@@ -130,7 +130,7 @@ let davJS = function (davId, wallet) {
 
     return dav.davContracts.getInstance('mission')
       .then((instance) => {
-        return instance.fulfilled(missionId, dav.davId, { from: dav.wallet });
+        return instance.fulfilled(missionId, { from: dav.wallet });
       });
   };
 };
@@ -198,12 +198,12 @@ export const registerDavId = () => {
   });
 };
 
-export const createMissionTransaction = (bidId, captain_id, price) => {
+export const createMissionTransaction = (bidId, captain_id, price, tocken_amount) => {
   if (blockchainType === 'NONE') {
     store.dispatch(updateContractMissionIdMissionId({ bidId }));
     return Promise.resolve('Blockchain is disabled');
   }
-  davSDK.createMissionTransaction(bidId, captain_id, price).then((response) => {
+  davSDK.createMissionTransaction(bidId, captain_id, price, tocken_amount).then((response) => {
     if(response.logs.length > 0) {
       let contractMissionId = response.logs[0].args.id;
       store.dispatch(updateContractMissionIdMissionId({ contractMissionId }));
