@@ -6145,8 +6145,19 @@
     "1531318304602": {
       "events": {},
       "links": {},
+<<<<<<< HEAD
       "address": "0x9561c133dd8580860b6b7e504bc5aa500f0f06a7",
       "transactionHash": "0x13defa03bab14fc1b0bc73c9aae6674b5454191ceb1a9c7bcc1d8847ef98ae28"
+=======
+      "address": "0x36db70e49ec65c2b14032078fcd1687c9cd21e03",
+      "transactionHash": "0x7993c1c9d283d3c06c8afbc7183e4a188a321075a91afe350ab3a0bfb47df02c"
+    },
+    "1527616997088": {
+      "events": {},
+      "links": {},
+      "address": "0x9561c133dd8580860b6b7e504bc5aa500f0f06a7",
+      "transactionHash": "0xd735a2a3b94a0daa26e8d4d37ee7356df1122a443c93633df17528185b28dbcd"
+>>>>>>> FEAT-SDK-V-1-0
     }
   },
   "schemaVersion": "2.0.1",

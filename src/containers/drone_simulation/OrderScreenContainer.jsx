@@ -1,17 +1,40 @@
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
-import {shiftCoords} from '../../lib/utils';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { shiftCoords, packageSizeOptions } from '../../lib/utils';
 import { NEED_TYPES } from '../../config/needTypes.js';
 import {
   updateOrderDetails,
-  createDroneDeliveryNeed,
   verifyDavId_NO_BLOCKCHAIN,
   registerDavId,
   closeWalletDialog
 } from '../../actions';
 
 import OrderScreen from '../../components/drone_simulation/OrderScreen.jsx';
+import moment from 'moment';
 
+import { createAction } from 'redux-actions';
+import { createNeed } from '../../lib/dav';
+const createDroneDeliveryNeed = createAction('CREATE_CHARGING_NEED', 
+  ({pickup, dropoff, pickup_at, size, weight}) => {
+
+    pickup_at = moment(pickup_at, 'HH:mm').format('x');
+    const sizeOption = packageSizeOptions.find(sizeOption => sizeOption.id === size);
+    const params = {
+      need_location_latitude: pickup.lat,
+      need_location_longitude: pickup.long,
+      pickup_at: pickup_at,
+      pickup_latitude: pickup.lat,
+      pickup_longitude: pickup.long,
+      pickup_address: pickup.address,
+      dropoff_latitude: dropoff.lat,
+      dropoff_longitude: dropoff.long,
+      cargo_type: sizeOption.cargoType,
+      weight: parseFloat(weight),
+      need_type: NEED_TYPES.DRONE_DELIVERY
+    };
+    return createNeed(params);
+  }
+);
 const OrderScreenContainer = () => {
   const mapDispatchToProps = (dispatch) => ({
     updateOrderDetails: (details) => dispatch(updateOrderDetails(details)),

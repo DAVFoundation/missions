@@ -2,12 +2,30 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
   updateOrderDetails,
-  createDroneChargingNeed,
   verifyDavId,
   registerDavId,
   closeWalletDialog
 } from '../../actions';
 import OrderScreen from '../../components/drone_charging/OrderScreen.jsx';
+
+import { createAction } from 'redux-actions';
+import { NEED_TYPES } from '../../config/needTypes.js';
+import { createNeed } from '../../lib/dav';
+const createDroneChargingNeed = createAction('CREATE_CHARGING_NEED', 
+  ({chargingVelocity, currentCharge, droneLocation, droneType, searchRadius}) => {
+    const params = {
+      chargingVelocity,
+      currentCharge,
+      droneLocation,
+      droneType,
+      searchRadius,
+      need_location_latitude: droneLocation.lat,
+      need_location_longitude: droneLocation.long,
+      need_type: NEED_TYPES.DRONE_CHARGING
+    };
+    return createNeed(params);
+  }
+);
 
 const OrderScreenContainer = () => {
   const mapDispatchToProps = (dispatch) => ({
@@ -33,3 +51,4 @@ const OrderScreenContainer = () => {
 };
 
 export default OrderScreenContainer;
+

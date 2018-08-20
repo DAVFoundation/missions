@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import {getBidArray} from '../reducers/bids';
 import { getCaptainOnMission } from '../reducers/captains';
 import {resetOrderDetails,chooseBid, startChargingMission} from '../actions';
-import {cancelNeed} from '../lib/api';
+import {cancelNeed} from '../lib/dav';
 import {withRouter} from 'react-router-dom';
 
 let Components = {
