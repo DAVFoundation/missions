@@ -60,7 +60,7 @@ class BidSelectionHeader extends Component {
     //check if options are open or closed to set delay
     if (this.state.sortOptionsOpen) {
       delay = 100;
-    }
+    } 
     //set delay
     setTimeout(() => {
       this.setState({
