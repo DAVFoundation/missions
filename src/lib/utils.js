@@ -34,11 +34,9 @@ export const getShortCoordsString = (
   );
 };
 
-export const coordsFromString = strCoords => {
-  const [lat, long] = strCoords.replace(/[^\d.,-]/gi, '').split(',');
-  return lat && long
-    ? { lat: parseFloat(lat), long: parseFloat(long) }
-    : undefined;
+export const getCoordinatesFromString = coordinatesString => {
+  const [lat, long] = coordinatesString.replace(/[^\d.,-]/gi, '').split(',');
+  if (lat && long) return { lat: parseFloat(lat), long: parseFloat(long) };
 };
 
 export const humanReadableVehicleStatus = {
