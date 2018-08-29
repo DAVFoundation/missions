@@ -52,11 +52,21 @@ class BidSelectionHeader extends Component {
     //call function in SearchingScreen, passing in
     //selected sort option
     this.props.handleSortingOptionChange(e.target.title);
-
+    let delay = 0;
+    //set selected sort option
     this.setState({
-      sortOptionSelected: e.target.title,
-      sortOptionsOpen: !this.state.sortOptionsOpen
+      sortOptionSelected: e.target.title
     });
+    //check if options are open or closed to set delay
+    if (this.state.sortOptionsOpen) {
+      delay = 100;
+    } 
+    //set delay
+    setTimeout(() => {
+      this.setState({
+        sortOptionsOpen: !this.state.sortOptionsOpen
+      });
+    }, delay);
   }
 
   render() {
