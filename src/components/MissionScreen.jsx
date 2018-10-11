@@ -31,7 +31,7 @@ class MissionScreen extends Component {
             <p>Cost for delivery:</p>
             <h1>{(this.props.price/1000000000000000000).toFixed(2)} <img src={currencyImage} className="currency-symbol" alt="DAV"/></h1>
             <button onClick={this.approveCompletedMission.bind(this)} className="big-button close" >
-              Close
+              Confirm
             </button>
           </div>
         </div>
