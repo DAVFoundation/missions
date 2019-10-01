@@ -380,7 +380,7 @@ $.ajax({
         from: 18350,
         to: data.count,
         speed: 3000,
-        refreshInterval: 20,
+        refreshInterval: 10,
         formatter: function (value, options) {
           value = value.toFixed(options.decimals);
           value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -429,7 +429,7 @@ $(function() {
         // alert("Modal for " + $(this).attr('id') + " is open.")
         var windowHeight = $(window).height();
         var modalHeight = $(this).find('.modal-content').height();
-        var modalTopPadding = (windowHeight - modalHeight)/2 - 30;
+        var modalTopPadding = (windowHeight - modalHeight)/2 - 32;
         // var modalTopPadding = (windowHeight + windowHeight*0.18 - modalHeight)/2 - 30;
         $('.modal-dialog').css('padding-top', modalTopPadding +'px');
       });
