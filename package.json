@@ -18,7 +18,9 @@
     "start": "webpack-dev-server --config webpack.dev.js",
     "start-stg": "webpack-dev-server --config webpack.stg.js",
     "stop": "kill $(ps aux | grep 'webpack' | awk '{print $2}')",
-    "test": "jest"
+    "test": "jest",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "jest": {
     "moduleNameMapper": {
@@ -43,7 +45,8 @@
     "redux-promise-middleware": "5.0.0",
     "truffle-contract": "^3.0.4",
     "turf": "^3.0.14",
-    "web3": "^1.0.0-beta.34"
+    "web3": "^1.0.0-beta.34",
+    "snyk": "^1.319.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -67,5 +70,6 @@
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1",
     "webpack-merge": "^4.1.1"
-  }
+  },
+  "snyk": true
 }
