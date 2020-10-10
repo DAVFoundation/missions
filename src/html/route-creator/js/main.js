@@ -90,12 +90,14 @@ $(document).ready(function(){
       e.preventDefault();
       $('.navbar-collapse').removeClass('in');
       $('.navbar-toggle').addClass('collapsed');
-      var offset = $('.navbar').height();
+      let offset = $('.navbar').height();
+//_________________________________________
       // offset = offset + offset*0.15;
-      var section = $(this).attr("href");
+//___________________________________________      
+      let section = $(this).attr("href");
       $("html, body").animate({
         scrollTop: $(section).offset().top - offset
-      }, 700);
+      }, 710);
     });
 
     $("a[href=#dav-team]").click(function(e) {
@@ -103,6 +105,7 @@ $(document).ready(function(){
       var offset = $('.navbar').height();
       // offset = offset + offset*0.15;
       var section = "#team";
+      let section2 = "#item2";
       $("html, body").animate({
         scrollTop: $(section).offset().top - offset
       }, 700);
